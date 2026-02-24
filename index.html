@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TK Web Solutions</title>
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI, Arial;
+scroll-behavior:smooth;
+color:#333;
+}
+
+/* Navbar */
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-between;
+padding:15px 40px;
+box-shadow:0 2px 15px rgba(0,0,0,0.08);
+z-index:1000;
+}
+
+.navbar nav a{
+margin:0 12px;
+text-decoration:none;
+color:#333;
+font-weight:500;
+}
+
+/* Hero */
+.hero{
+height:100vh;
+background:linear-gradient(135deg,#0a4d8c,#1e88e5);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:44px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.btn{
+padding:14px 28px;
+margin:10px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+}
+
+.primary{
+background:#ff6a00;
+color:white;
+}
+
+.secondary{
+background:white;
+color:#0a4d8c;
+}
+
+/* Sections */
+.section{
+padding:90px 20px;
+text-align:center;
+}
+
+.light{
+background:#f7f9fc;
+}
+
+/* Grid */
+.grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+max-width:1100px;
+margin:auto;
+}
+
+/* Cards */
+.card{
+width:260px;
+margin:15px;
+padding:25px;
+background:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* Portfolio Box */
+.portfolio{
+background:white;
+padding:30px;
+margin:20px auto;
+max-width:700px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+border-radius:10px;
+}
+
+/* Pricing */
+.price{
+font-size:22px;
+color:#0a4d8c;
+font-weight:bold;
+}
+
+/* Footer */
+footer{
+background:#0a4d8c;
+color:white;
+padding:30px;
+text-align:center;
+}
+
+/* Floating Email */
+.float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0a4d8c;
+color:white;
+padding:14px 18px;
+border-radius:50px;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<div><b>TK Web Solutions</b></div>
+<nav>
+<a href="#services">Services</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#pricing">Pricing</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>Professional Website & App Development</h1>
+<p>Helping Businesses & Coaching Institutes Grow Online</p>
+<a href="#contact" class="btn primary">Get Your Website</a>
+<a href="#portfolio" class="btn secondary">View Portfolio</a>
+</div>
+</section>
+
+<section id="services" class="section">
+<h2>Our Services</h2>
+<div class="grid">
+<div class="card">
+<h3>Coaching Websites</h3>
+<p>Modern websites for institutes with courses, results and contact.</p>
+</div>
+
+<div class="card">
+<h3>Business Websites</h3>
+<p>Professional websites for local businesses to attract customers.</p>
+</div>
+
+<div class="card">
+<h3>Landing Pages</h3>
+<p>High-converting pages for promotions and ads.</p>
+</div>
+
+<div class="card">
+<h3>App Development</h3>
+<p>Basic Android apps for business and service needs.</p>
+</div>
+
+<div class="card">
+<h3>Website Redesign</h3>
+<p>Upgrade your old website with a modern look.</p>
+</div>
+
+<div class="card">
+<h3>Maintenance</h3>
+<p>Regular updates and support after delivery.</p>
+</div>
+</div>
+</section>
+
+<section id="portfolio" class="section light">
+<h2>Portfolio</h2>
+
+<div class="portfolio">
+<h3>Coaching Institute Website Demo</h3>
+<p>A modern coaching website design with course section, contact form, WhatsApp button and Google map.</p>
+<a href="PASTE-YOUR-ACHIEVERS-DEMO-LINK" target="_blank" class="btn primary">
+View Live Demo
+</a>
+</div>
+
+</section>
+
+<section id="pricing" class="section">
+<h2>Pricing</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Starter Package</h3>
+<p class="price">Starting ₹7,000</p>
+<p>Responsive Design<br>
+Contact Form<br>
+WhatsApp Integration<br>
+Google Map</p>
+</div>
+
+<div class="card">
+<h3>Business Package</h3>
+<p class="price">₹10,000 – ₹15,000</p>
+<p>Multi-page Website<br>
+Advanced Design<br>
+Gallery Section<br>
+Technical Support</p>
+</div>
+
+</div>
+</section>
+
+<section id="contact" class="section light">
+<h2>Contact</h2>
+<p>Email: tkwebsolution1301@gmail.com</p>
+<p>Location: Bharatpur, Rajasthan</p>
+<p>Available for Coaching Institutes, Schools, Businesses & Startups</p>
+</section>
+
+<footer>
+© 2026 TK Web Solutions | Web & App Development
+</footer>
+
+<a href="mailto:tkwebsolution1301@gmail.com" class="float">Email</a>
+
+</body>
+</html>
