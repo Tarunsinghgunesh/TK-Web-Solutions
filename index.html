@@ -8,9 +8,10 @@
 <style>
 body{
 margin:0;
-font-family:Segoe UI, Arial;
-scroll-behavior:smooth;
+font-family: 'Segoe UI', Arial;
 color:#333;
+background:#f5f7fb;
+scroll-behavior:smooth;
 }
 
 /* Navbar */
@@ -46,26 +47,32 @@ padding:20px;
 }
 
 .hero h1{
-font-size:44px;
+font-size:46px;
 margin-bottom:10px;
 }
 
 .hero p{
 font-size:18px;
+opacity:0.9;
 }
 
 .btn{
-padding:14px 28px;
+padding:14px 30px;
 margin:10px;
 border-radius:6px;
 text-decoration:none;
 font-weight:bold;
 display:inline-block;
+transition:0.3s;
 }
 
 .primary{
 background:#ff6a00;
 color:white;
+}
+
+.primary:hover{
+background:#e85c00;
 }
 
 .secondary{
@@ -79,11 +86,6 @@ padding:90px 20px;
 text-align:center;
 }
 
-.light{
-background:#f7f9fc;
-}
-
-/* Grid */
 .grid{
 display:flex;
 flex-wrap:wrap;
@@ -98,23 +100,24 @@ width:260px;
 margin:15px;
 padding:25px;
 background:white;
+border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-border-radius:10px;
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
 }
 
 /* Portfolio Box */
 .portfolio{
 background:white;
-padding:30px;
+padding:35px;
 margin:20px auto;
-max-width:700px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-border-radius:10px;
+max-width:750px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 /* Pricing */
@@ -124,12 +127,23 @@ color:#0a4d8c;
 font-weight:bold;
 }
 
+/* Contact */
+.contact-box{
+background:white;
+padding:30px;
+max-width:600px;
+margin:auto;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
 /* Footer */
 footer{
 background:#0a4d8c;
 color:white;
 padding:30px;
 text-align:center;
+margin-top:40px;
 }
 
 /* Floating Email */
@@ -139,9 +153,10 @@ bottom:20px;
 right:20px;
 background:#0a4d8c;
 color:white;
-padding:14px 18px;
+padding:14px 20px;
 border-radius:50px;
 text-decoration:none;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 </style>
 </head>
@@ -161,9 +176,9 @@ text-decoration:none;
 <section class="hero">
 <div>
 <h1>Professional Website & App Development</h1>
-<p>Helping Businesses & Coaching Institutes Grow Online</p>
-<a href="#contact" class="btn primary">Get Your Website</a>
-<a href="#portfolio" class="btn secondary">View Portfolio</a>
+<p>Helping Coaching Institutes & Businesses Grow Online</p>
+<a href="#portfolio" class="btn secondary">View Work</a>
+<a href="#contact" class="btn primary">Contact Now</a>
 </div>
 </section>
 
@@ -172,44 +187,52 @@ text-decoration:none;
 <div class="grid">
 <div class="card">
 <h3>Coaching Websites</h3>
-<p>Modern websites for institutes with courses, results and contact.</p>
+<p>Course, results, faculty and admission ready websites.</p>
 </div>
 
 <div class="card">
 <h3>Business Websites</h3>
-<p>Professional websites for local businesses to attract customers.</p>
+<p>Professional websites to attract customers.</p>
 </div>
 
 <div class="card">
 <h3>Landing Pages</h3>
-<p>High-converting pages for promotions and ads.</p>
+<p>High-conversion pages for marketing.</p>
 </div>
 
 <div class="card">
 <h3>App Development</h3>
-<p>Basic Android apps for business and service needs.</p>
+<p>Basic Android apps for business needs.</p>
 </div>
 
 <div class="card">
 <h3>Website Redesign</h3>
-<p>Upgrade your old website with a modern look.</p>
+<p>Upgrade old websites with modern design.</p>
 </div>
 
 <div class="card">
 <h3>Maintenance</h3>
-<p>Regular updates and support after delivery.</p>
+<p>Regular updates and technical support.</p>
 </div>
 </div>
 </section>
 
-<section id="portfolio" class="section light">
+<section id="portfolio" class="section">
 <h2>Portfolio</h2>
 
 <div class="portfolio">
-<h3>Coaching Institute Website Demo</h3>
-<p>A modern coaching website design with course section, contact form, WhatsApp button and Google map.</p>
-<a href="PASTE-YOUR-ACHIEVERS-DEMO-LINK" target="_blank" class="btn primary">
+<h3>Coaching Website Demo</h3>
+<p>Modern coaching website with responsive design, contact form, WhatsApp integration and Google Map.</p>
+
+<a href="PASTE-ACHIEVERS-DEMO-LINK" target="_blank" class="btn primary">
 View Live Demo
+</a>
+
+<br><br>
+
+<h4>Company Portfolio</h4>
+<a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing" target="_blank" class="btn secondary">
+View Full Portfolio (Drive)
 </a>
 </div>
 
@@ -219,33 +242,28 @@ View Live Demo
 <h2>Pricing</h2>
 
 <div class="grid">
-
 <div class="card">
 <h3>Starter Package</h3>
 <p class="price">Starting ₹7,000</p>
-<p>Responsive Design<br>
-Contact Form<br>
-WhatsApp Integration<br>
-Google Map</p>
+<p>Responsive Design<br>Contact Form<br>WhatsApp<br>Google Map</p>
 </div>
 
 <div class="card">
 <h3>Business Package</h3>
 <p class="price">₹10,000 – ₹15,000</p>
-<p>Multi-page Website<br>
-Advanced Design<br>
-Gallery Section<br>
-Technical Support</p>
+<p>Multi-page Website<br>Advanced Design<br>Gallery<br>Support</p>
 </div>
-
 </div>
 </section>
 
-<section id="contact" class="section light">
+<section id="contact" class="section">
 <h2>Contact</h2>
+
+<div class="contact-box">
 <p>Email: tkwebsolution1301@gmail.com</p>
 <p>Location: Bharatpur, Rajasthan</p>
-<p>Available for Coaching Institutes, Schools, Businesses & Startups</p>
+<p>Contact available via Email</p>
+</div>
 </section>
 
 <footer>
