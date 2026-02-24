@@ -3,283 +3,255 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TK Web Solutions | Web & App Development</title>
+<title>TK Web Solutions</title>
 
 <style>
 :root{
-  --primary:#0a4d8c;
-  --secondary:#1e88e5;
-  --accent:#ff6a00;
-  --dark:#0a2540;
-  --light:#f6f9ff;
+--primary:#0a4d8c;
+--secondary:#1e88e5;
+--accent:#ff6a00;
+--light:#f4f7ff;
+--dark:#0a2540;
 }
 
 body{
-  margin:0;
-  font-family:'Segoe UI',Arial,sans-serif;
-  background:#ffffff;
-  color:#222;
-  scroll-behavior:smooth;
+margin:0;
+font-family:'Segoe UI',Arial;
+color:#333;
+scroll-behavior:smooth;
 }
 
-/* NAVBAR */
+/* Navbar */
 .navbar{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:16px 50px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(8px);
-  box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  z-index:1000;
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+z-index:1000;
 }
 
-.navbar b{
-  font-size:20px;
-  color:var(--dark);
+.logo{
+display:flex;
+align-items:center;
+font-weight:bold;
+font-size:18px;
+color:var(--dark);
+}
+
+.logo img{
+height:40px;
+margin-right:10px;
 }
 
 .navbar nav a{
-  margin-left:18px;
-  text-decoration:none;
-  color:#333;
-  font-weight:500;
+margin-left:20px;
+text-decoration:none;
+color:#333;
+font-weight:500;
 }
 
-/* HERO */
+/* Hero */
 .hero{
-  height:100vh;
-  background:
-  linear-gradient(120deg,rgba(10,37,64,0.85),rgba(30,136,229,0.85)),
-  url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-  padding:20px;
+height:100vh;
+background:linear-gradient(120deg,rgba(10,37,64,0.9),rgba(30,136,229,0.85)),
+url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:20px;
 }
 
-.hero-box{
-  background:rgba(255,255,255,0.1);
-  padding:45px 40px;
-  border-radius:18px;
-  max-width:750px;
-  backdrop-filter:blur(10px);
+.hero-content{
+max-width:700px;
 }
 
 .hero h1{
-  font-size:46px;
-  margin-bottom:12px;
+font-size:48px;
+margin-bottom:10px;
 }
 
 .hero p{
-  font-size:18px;
-  opacity:0.95;
+font-size:18px;
 }
 
+/* Buttons */
 .btn{
-  display:inline-block;
-  padding:14px 30px;
-  margin:12px;
-  border-radius:30px;
-  font-weight:600;
-  text-decoration:none;
+display:inline-block;
+padding:14px 30px;
+margin:10px;
+border-radius:6px;
+text-decoration:none;
+font-weight:bold;
 }
 
-.primary{
-  background:var(--accent);
-  color:white;
-}
+.primary{background:var(--accent);color:white;}
+.secondary{background:white;color:var(--primary);}
 
-.secondary{
-  background:white;
-  color:var(--dark);
-}
-
-/* SECTION */
+/* Sections */
 .section{
-  padding:100px 20px;
-  text-align:center;
+padding:100px 20px;
+text-align:center;
 }
 
-.light{
-  background:var(--light);
-}
+.light{background:var(--light);}
 
-.section h2{
-  font-size:34px;
-  margin-bottom:15px;
-}
-
-.section p{
-  max-width:700px;
-  margin:auto;
-  color:#555;
-}
-
-/* GRID */
+/* Grid */
 .grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  max-width:1200px;
-  margin:50px auto 0;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+max-width:1100px;
+margin:auto;
 }
 
-/* CARD */
+/* Cards */
 .card{
-  width:260px;
-  margin:18px;
-  padding:30px;
-  background:white;
-  border-radius:16px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.08);
-  transition:0.35s;
+width:260px;
+margin:18px;
+padding:30px;
+background:white;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-12px);
+transform:translateY(-8px);
 }
 
-/* PORTFOLIO */
+/* Portfolio Box */
 .portfolio-box{
-  background:white;
-  max-width:850px;
-  margin:40px auto;
-  padding:40px;
-  border-radius:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.1);
+max-width:800px;
+margin:30px auto;
+padding:40px;
+background:white;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
 }
 
-/* PRICING */
-.price{
-  font-size:24px;
-  color:var(--primary);
-  font-weight:700;
+/* Contact */
+.contact{
+font-size:18px;
 }
 
-/* FOOTER */
+/* Footer */
 footer{
-  background:var(--dark);
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-}
-
-/* FLOAT EMAIL */
-.float{
-  position:fixed;
-  right:22px;
-  bottom:22px;
-  background:var(--primary);
-  color:white;
-  padding:14px 20px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:600;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+background:var(--dark);
+color:white;
+padding:30px;
+text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <header class="navbar">
-  <b>TK Web Solutions</b>
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<div class="logo">
+<img src="logo.png" alt="TK Web Solutions">
+<span>TK Web Solutions</span>
+</div>
+
+<nav>
+<a href="#services">Services</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-box">
-    <h1>Web & App Development<br>That Builds Trust</h1>
-    <p>Professional websites & apps for businesses and coaching institutes</p>
+<div class="hero-content">
+<h1>Professional Website & App Development</h1>
+<p>Helping Businesses & Coaching Institutes Build a Strong Online Presence</p>
 
-    <a href="#portfolio" class="btn primary">View Portfolio</a>
-    <a href="#contact" class="btn secondary">Get in Touch</a>
-  </div>
+<a href="#portfolio" class="btn primary">View Portfolio</a>
+<a href="#contact" class="btn secondary">Contact via Email</a>
+</div>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="section">
-  <h2>Our Services</h2>
-  <p>We provide modern, scalable and professional digital solutions.</p>
+<h2>Our Services</h2>
 
-  <div class="grid">
-    <div class="card">Coaching Institute Websites</div>
-    <div class="card">Business Websites</div>
-    <div class="card">Landing Pages</div>
-    <div class="card">Portfolio Websites</div>
-    <div class="card">App Development</div>
-    <div class="card">Website Redesign & Maintenance</div>
-  </div>
+<div class="grid">
+<div class="card">
+<h3>Coaching Websites</h3>
+<p>Modern websites for institutes with courses, results and contact.</p>
+</div>
+
+<div class="card">
+<h3>Business Websites</h3>
+<p>Professional websites for local businesses to attract customers.</p>
+</div>
+
+<div class="card">
+<h3>Landing Pages</h3>
+<p>High-converting pages for marketing and promotions.</p>
+</div>
+
+<div class="card">
+<h3>Portfolio Websites</h3>
+<p>Personal and company portfolio websites.</p>
+</div>
+
+<div class="card">
+<h3>Website Redesign</h3>
+<p>Upgrade your old website with a modern look.</p>
+</div>
+
+<div class="card">
+<h3>Basic App Development</h3>
+<p>Simple Android apps for business needs.</p>
+</div>
+</div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio" class="section light">
-  <h2>Portfolio</h2>
+<h2>Our Work</h2>
 
-  <div class="portfolio-box">
-    <h3>Company Portfolio (PDF)</h3>
-    <p>Detailed portfolio including services, demo project and pricing.</p>
+<div class="portfolio-box">
+<h3>Company Portfolio Document</h3>
+<p>Complete details of services, pricing and project information.</p>
 
-    <a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing"
-       target="_blank" class="btn primary">
-       View Portfolio Document
-    </a>
-  </div>
+<a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing"
+target="_blank" class="btn primary">
+View Portfolio PDF
+</a>
+</div>
 
-  <div class="portfolio-box">
-    <h3>Demo Website</h3>
-    <p>Sample coaching institute website to showcase design & structure.</p>
-    <a href="#" class="btn secondary">View Demo Website</a>
-  </div>
+<div class="portfolio-box">
+<h3>Coaching Website Demo</h3>
+<p>Premium demo website created for Achievers Point Bharatpur.</p>
+
+<a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/"
+target="_blank" class="btn secondary">
+View Live Demo
+</a>
+</div>
+
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="section">
-  <h2>Pricing</h2>
+<section id="contact" class="section">
+<h2>Contact</h2>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Starter Package</h3>
-      <p class="price">Starting ₹7,000</p>
-      <p>Professional Design<br>Mobile Responsive<br>Contact Form<br>WhatsApp & Map</p>
-    </div>
-
-    <div class="card">
-      <h3>Business Package</h3>
-      <p class="price">₹10,000 – ₹15,000</p>
-      <p>Multi-page Website<br>Advanced UI<br>Gallery<br>Support</p>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section light">
-  <h2>Contact</h2>
-  <p>Email: <b>tkwebsolution1301@gmail.com</b></p>
-  <p>Location: Bharatpur, Rajasthan</p>
-  <p>Contact available via Email only</p>
+<div class="contact">
+<p>Email: tkwebsolution1301@gmail.com</p>
+<p>Location: Bharatpur, Rajasthan</p>
+<p>Contact available via Email only</p>
+</div>
 </section>
 
 <footer>
-© 2026 TK Web Solutions • Web & App Development
+© 2026 TK Web Solutions | Web & App Development
 </footer>
-
-<a href="mailto:tkwebsolution1301@gmail.com" class="float">Email Us</a>
 
 </body>
 </html>
