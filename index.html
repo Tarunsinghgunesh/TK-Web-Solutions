@@ -6,17 +6,9 @@
 <title>TK Web Solutions</title>
 
 <style>
-:root{
---primary:#0a4d8c;
---secondary:#1e88e5;
---accent:#ff6a00;
---light:#f4f7ff;
---dark:#0a2540;
-}
-
 body{
 margin:0;
-font-family:'Segoe UI',Arial;
+font-family:Arial, sans-serif;
 color:#333;
 scroll-behavior:smooth;
 }
@@ -26,26 +18,29 @@ scroll-behavior:smooth;
 position:fixed;
 top:0;
 width:100%;
-background:white;
-padding:15px 50px;
+background:#fff;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 8px 25px rgba(0,0,0,0.08);
+padding:12px 40px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
 z-index:1000;
 }
 
 .logo{
 display:flex;
 align-items:center;
-font-weight:bold;
-font-size:18px;
-color:var(--dark);
 }
 
 .logo img{
-height:40px;
+height:45px;
 margin-right:10px;
+}
+
+.logo span{
+font-size:20px;
+font-weight:bold;
+color:#0a2540;
 }
 
 .navbar nav a{
@@ -58,7 +53,7 @@ font-weight:500;
 /* Hero */
 .hero{
 height:100vh;
-background:linear-gradient(120deg,rgba(10,37,64,0.9),rgba(30,136,229,0.85)),
+background:linear-gradient(rgba(10,37,64,0.9),rgba(30,136,229,0.85)),
 url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
 background-size:cover;
 background-position:center;
@@ -70,12 +65,8 @@ color:white;
 padding:20px;
 }
 
-.hero-content{
-max-width:700px;
-}
-
 .hero h1{
-font-size:48px;
+font-size:44px;
 margin-bottom:10px;
 }
 
@@ -86,23 +77,32 @@ font-size:18px;
 /* Buttons */
 .btn{
 display:inline-block;
-padding:14px 30px;
+padding:12px 28px;
 margin:10px;
-border-radius:6px;
+border-radius:5px;
 text-decoration:none;
 font-weight:bold;
 }
 
-.primary{background:var(--accent);color:white;}
-.secondary{background:white;color:var(--primary);}
+.primary{
+background:#ff6a00;
+color:white;
+}
+
+.secondary{
+background:white;
+color:#0a4d8c;
+}
 
 /* Sections */
 .section{
-padding:100px 20px;
+padding:90px 20px;
 text-align:center;
 }
 
-.light{background:var(--light);}
+.light{
+background:#f4f7ff;
+}
 
 /* Grid */
 .grid{
@@ -113,41 +113,39 @@ max-width:1100px;
 margin:auto;
 }
 
-/* Cards */
 .card{
 width:260px;
-margin:18px;
-padding:30px;
+margin:15px;
+padding:25px;
 background:white;
-border-radius:12px;
-box-shadow:0 15px 35px rgba(0,0,0,0.08);
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-6px);
 }
 
-/* Portfolio Box */
-.portfolio-box{
+/* About */
+.about{
 max-width:800px;
-margin:30px auto;
-padding:40px;
-background:white;
-border-radius:12px;
-box-shadow:0 15px 35px rgba(0,0,0,0.08);
+margin:auto;
+line-height:1.6;
 }
 
-/* Contact */
-.contact{
-font-size:18px;
+/* Pricing */
+.price{
+font-size:22px;
+font-weight:bold;
+color:#0a4d8c;
 }
 
 /* Footer */
 footer{
-background:var(--dark);
+background:#0a2540;
 color:white;
-padding:30px;
+padding:25px;
 text-align:center;
 }
 </style>
@@ -157,96 +155,93 @@ text-align:center;
 
 <header class="navbar">
 <div class="logo">
-<img src="logo.png" alt="TK Web Solutions">
+<img src="logo.png" alt="Logo">
 <span>TK Web Solutions</span>
 </div>
 
 <nav>
+<a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#portfolio">Portfolio</a>
+<a href="#pricing">Pricing</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
 
 <section class="hero">
-<div class="hero-content">
+<div>
 <h1>Professional Website & App Development</h1>
-<p>Helping Businesses & Coaching Institutes Build a Strong Online Presence</p>
-
+<p>Helping Businesses & Coaching Institutes Grow Online</p>
 <a href="#portfolio" class="btn primary">View Portfolio</a>
 <a href="#contact" class="btn secondary">Contact via Email</a>
 </div>
 </section>
 
-<section id="services" class="section">
-<h2>Our Services</h2>
-
-<div class="grid">
-<div class="card">
-<h3>Coaching Websites</h3>
-<p>Modern websites for institutes with courses, results and contact.</p>
-</div>
-
-<div class="card">
-<h3>Business Websites</h3>
-<p>Professional websites for local businesses to attract customers.</p>
-</div>
-
-<div class="card">
-<h3>Landing Pages</h3>
-<p>High-converting pages for marketing and promotions.</p>
-</div>
-
-<div class="card">
-<h3>Portfolio Websites</h3>
-<p>Personal and company portfolio websites.</p>
-</div>
-
-<div class="card">
-<h3>Website Redesign</h3>
-<p>Upgrade your old website with a modern look.</p>
-</div>
-
-<div class="card">
-<h3>Basic App Development</h3>
-<p>Simple Android apps for business needs.</p>
-</div>
+<section id="about" class="section">
+<h2>About TK Web Solutions</h2>
+<div class="about">
+<p>
+TK Web Solutions provides modern, responsive and professional websites for coaching institutes, businesses and startups.  
+Our goal is to help organizations build a strong online presence, increase trust and attract more customers.
+</p>
 </div>
 </section>
 
-<section id="portfolio" class="section light">
+<section id="services" class="section light">
+<h2>Our Services</h2>
+
+<div class="grid">
+<div class="card">Coaching Website Development</div>
+<div class="card">Business Website Development</div>
+<div class="card">Landing Page Design</div>
+<div class="card">Portfolio Websites</div>
+<div class="card">Website Redesign</div>
+<div class="card">Basic App Development</div>
+</div>
+</section>
+
+<section id="portfolio" class="section">
 <h2>Our Work</h2>
 
-<div class="portfolio-box">
-<h3>Company Portfolio Document</h3>
-<p>Complete details of services, pricing and project information.</p>
-
-<a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing"
-target="_blank" class="btn primary">
-View Portfolio PDF
+<p>
+<a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing" class="btn primary" target="_blank">
+View Company Portfolio
 </a>
+</p>
+
+<p>
+<a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" class="btn secondary" target="_blank">
+View Coaching Website Demo
+</a>
+</p>
+
+</section>
+
+<section id="pricing" class="section light">
+<h2>Pricing</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Starter Website</h3>
+<p class="price">Starting ₹7,000</p>
+<p>Responsive Design<br>Contact Form<br>WhatsApp Integration<br>Google Map</p>
 </div>
 
-<div class="portfolio-box">
-<h3>Coaching Website Demo</h3>
-<p>Premium demo website created for Achievers Point Bharatpur.</p>
-
-<a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/"
-target="_blank" class="btn secondary">
-View Live Demo
-</a>
+<div class="card">
+<h3>Business Website</h3>
+<p class="price">₹10,000 – ₹15,000</p>
+<p>Multi-page Website<br>Advanced Layout<br>Gallery Section<br>Support</p>
 </div>
 
+</div>
 </section>
 
 <section id="contact" class="section">
 <h2>Contact</h2>
-
-<div class="contact">
 <p>Email: tkwebsolution1301@gmail.com</p>
 <p>Location: Bharatpur, Rajasthan</p>
 <p>Contact available via Email only</p>
-</div>
 </section>
 
 <footer>
