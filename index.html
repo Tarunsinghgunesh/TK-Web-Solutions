@@ -67,17 +67,15 @@ padding:20px;
 
 .hero h1{
 font-size:44px;
-margin-bottom:10px;
 }
 
 .hero p{
 font-size:18px;
 }
 
-/* Buttons */
 .btn{
 display:inline-block;
-padding:12px 28px;
+padding:12px 25px;
 margin:10px;
 border-radius:5px;
 text-decoration:none;
@@ -109,7 +107,7 @@ background:#f4f7ff;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-max-width:1100px;
+max-width:1000px;
 margin:auto;
 }
 
@@ -120,25 +118,65 @@ padding:25px;
 background:white;
 border-radius:10px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-6px);
+/* Contact Section */
+.contact-section{
+padding:60px 20px;
+background:#f5f8ff;
+text-align:center;
 }
 
-/* About */
-.about{
-max-width:800px;
-margin:auto;
-line-height:1.6;
+.contact-cards{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
 }
 
-/* Pricing */
-.price{
-font-size:22px;
+.contact-card{
+background:#fff;
+padding:25px;
+border-radius:10px;
+width:260px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.contact-btn{
+display:inline-block;
+padding:10px 18px;
+color:#fff;
+text-decoration:none;
+border-radius:5px;
 font-weight:bold;
-color:#0a4d8c;
+}
+
+.email-btn{
+background:#0a4d8c;
+}
+
+.insta-btn{
+background:#E1306C;
+}
+
+/* Floating Instagram */
+.floating-insta{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+background:#E1306C;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+z-index:999;
+}
+
+.floating-insta img{
+width:30px;
 }
 
 /* Footer */
@@ -160,10 +198,8 @@ text-align:center;
 </div>
 
 <nav>
-<a href="#about">About</a>
 <a href="#services">Services</a>
 <a href="#portfolio">Portfolio</a>
-<a href="#pricing">Pricing</a>
 <a href="#contact">Contact</a>
 </nav>
 </header>
@@ -173,80 +209,69 @@ text-align:center;
 <h1>Professional Website & App Development</h1>
 <p>Helping Businesses & Coaching Institutes Grow Online</p>
 <a href="#portfolio" class="btn primary">View Portfolio</a>
-<a href="#contact" class="btn secondary">Contact via Email</a>
+<a href="#contact" class="btn secondary">Contact</a>
 </div>
 </section>
 
-<section id="about" class="section">
-<h2>About TK Web Solutions</h2>
-<div class="about">
-<p>
-TK Web Solutions provides modern, responsive and professional websites for coaching institutes, businesses and startups.  
-Our goal is to help organizations build a strong online presence, increase trust and attract more customers.
-</p>
-</div>
-</section>
-
-<section id="services" class="section light">
+<section id="services" class="section">
 <h2>Our Services</h2>
-
 <div class="grid">
 <div class="card">Coaching Website Development</div>
 <div class="card">Business Website Development</div>
-<div class="card">Landing Page Design</div>
+<div class="card">Landing Pages</div>
 <div class="card">Portfolio Websites</div>
 <div class="card">Website Redesign</div>
 <div class="card">Basic App Development</div>
 </div>
 </section>
 
-<section id="portfolio" class="section">
+<section id="portfolio" class="section light">
 <h2>Our Work</h2>
 
 <p>
 <a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit?usp=sharing" class="btn primary" target="_blank">
-View Company Portfolio
+View Portfolio Document
 </a>
 </p>
 
 <p>
 <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" class="btn secondary" target="_blank">
-View Coaching Website Demo
+View Coaching Demo
 </a>
 </p>
 
 </section>
 
-<section id="pricing" class="section light">
-<h2>Pricing</h2>
+<!-- New Contact Section -->
+<section id="contact" class="contact-section">
+<h2>Contact TK Web Solutions</h2>
+<p>Let’s build your website and grow your business online</p>
 
-<div class="grid">
+<div class="contact-cards">
 
-<div class="card">
-<h3>Starter Website</h3>
-<p class="price">Starting ₹7,000</p>
-<p>Responsive Design<br>Contact Form<br>WhatsApp Integration<br>Google Map</p>
+<div class="contact-card">
+<h3>Email</h3>
+<p>tkwebsolution1301@gmail.com</p>
+<a href="mailto:tkwebsolution1301@gmail.com" class="contact-btn email-btn">Send Email</a>
 </div>
 
-<div class="card">
-<h3>Business Website</h3>
-<p class="price">₹10,000 – ₹15,000</p>
-<p>Multi-page Website<br>Advanced Layout<br>Gallery Section<br>Support</p>
+<div class="contact-card">
+<h3>Instagram</h3>
+<p>@tkwebsolutions_official</p>
+<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="contact-btn insta-btn">Open Instagram</a>
 </div>
 
 </div>
-</section>
-
-<section id="contact" class="section">
-<h2>Contact</h2>
-<p>Email: tkwebsolution1301@gmail.com</p>
-<p>Location: Bharatpur, Rajasthan</p>
-<p>Contact available via Email only</p>
 </section>
 
 <footer>
-© 2026 TK Web Solutions | Web & App Development
+© 2026 TK Web Solutions
 </footer>
+
+<!-- Floating Instagram Button -->
+<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="floating-insta">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+</a>
 
 </body>
 </html>
