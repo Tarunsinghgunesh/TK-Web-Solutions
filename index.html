@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TK Web Solutions</title>
+
+<title>TK Web Solutions | Website Developer</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<meta name="description" content="Professional Website Development for Coaching, School and Business. Starting ₹7000. TK Web Solutions">
 
 <style>
 body{
@@ -33,7 +39,7 @@ align-items:center;
 }
 
 .logo img{
-height:45px;
+height:40px;
 margin-right:10px;
 }
 
@@ -66,7 +72,8 @@ padding:20px;
 }
 
 .hero h1{
-font-size:44px;
+font-size:42px;
+margin-bottom:10px;
 }
 
 .hero p{
@@ -102,7 +109,7 @@ text-align:center;
 background:#f4f7ff;
 }
 
-/* Grid */
+/* Cards */
 .grid{
 display:flex;
 flex-wrap:wrap;
@@ -121,13 +128,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* Contact Section */
-.contact-section{
-padding:60px 20px;
-background:#f5f8ff;
-text-align:center;
-}
-
-.contact-cards{
+.contact-container{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
@@ -159,24 +160,31 @@ background:#0a4d8c;
 background:#E1306C;
 }
 
-/* Floating Instagram */
-.floating-insta{
+/* Floating Buttons */
+.float{
 position:fixed;
-bottom:20px;
 right:20px;
-width:55px;
-height:55px;
-background:#E1306C;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
 z-index:999;
 }
 
-.floating-insta img{
-width:30px;
+.float-instagram{
+bottom:90px;
+background:#E1306C;
+}
+
+.float-email{
+bottom:30px;
+background:#0a4d8c;
+}
+
+.float a{
+color:#fff;
+padding:12px 18px;
+border-radius:50px;
+text-decoration:none;
+font-size:14px;
+display:block;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* Footer */
@@ -193,7 +201,7 @@ text-align:center;
 
 <header class="navbar">
 <div class="logo">
-<img src="logo.png" alt="Logo">
+<img src="logo.png">
 <span>TK Web Solutions</span>
 </div>
 
@@ -207,7 +215,7 @@ text-align:center;
 <section class="hero">
 <div>
 <h1>Professional Website & App Development</h1>
-<p>Helping Businesses & Coaching Institutes Grow Online</p>
+<p>Helping Coaching, Schools & Businesses Grow Online</p>
 <a href="#portfolio" class="btn primary">View Portfolio</a>
 <a href="#contact" class="btn secondary">Contact</a>
 </div>
@@ -215,13 +223,14 @@ text-align:center;
 
 <section id="services" class="section">
 <h2>Our Services</h2>
+
 <div class="grid">
 <div class="card">Coaching Website Development</div>
+<div class="card">School Website Development</div>
 <div class="card">Business Website Development</div>
-<div class="card">Landing Pages</div>
 <div class="card">Portfolio Websites</div>
+<div class="card">Landing Pages</div>
 <div class="card">Website Redesign</div>
-<div class="card">Basic App Development</div>
 </div>
 </section>
 
@@ -239,15 +248,12 @@ View Portfolio Document
 View Coaching Demo
 </a>
 </p>
-
 </section>
 
-<!-- New Contact Section -->
-<section id="contact" class="contact-section">
+<section id="contact" class="section">
 <h2>Contact TK Web Solutions</h2>
-<p>Let’s build your website and grow your business online</p>
 
-<div class="contact-cards">
+<div class="contact-container">
 
 <div class="contact-card">
 <h3>Email</h3>
@@ -258,7 +264,9 @@ View Coaching Demo
 <div class="contact-card">
 <h3>Instagram</h3>
 <p>@tkwebsolutions_official</p>
-<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="contact-btn insta-btn">Open Instagram</a>
+<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="contact-btn insta-btn">
+Open Instagram
+</a>
 </div>
 
 </div>
@@ -268,10 +276,14 @@ View Coaching Demo
 © 2026 TK Web Solutions
 </footer>
 
-<!-- Floating Instagram Button -->
-<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="floating-insta">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-</a>
+<!-- Floating Buttons -->
+<div class="float float-instagram">
+<a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank">Instagram</a>
+</div>
+
+<div class="float float-email">
+<a href="mailto:tkwebsolution1301@gmail.com">Email</a>
+</div>
 
 </body>
 </html>
