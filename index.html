@@ -4,14 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SEO Title -->
-<title>TK Web Solutions | Website Developer in Bharatpur | Business & Coaching Websites</title>
+<title>TK Web Solutions | Website Developer Bharatpur</title>
 
-<!-- SEO Meta -->
-<meta name="description" content="TK Web Solutions provides professional website development for Coaching Institutes, Schools and Businesses. Affordable websites starting ₹7,000. Free demo available.">
-<meta name="keywords" content="Website developer Bharatpur, Coaching website, Business website, School website, TK Web Solutions, Affordable website India">
+<meta name="description" content="Professional website development for Coaching Institutes, Schools and Businesses. Starting ₹7,000. Free demo available. TK Web Solutions Bharatpur.">
+<meta name="keywords" content="Website developer Bharatpur, Coaching website, Business website, School website, TK Web Solutions">
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="favicon-32x32.png">
 
 <!-- Tidio Chat -->
@@ -81,10 +78,7 @@ padding:20px;
 font-size:44px;
 }
 
-.hero p{
-font-size:18px;
-}
-
+/* Buttons */
 .btn{
 display:inline-block;
 padding:12px 25px;
@@ -132,16 +126,39 @@ border-radius:10px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* Contact */
-.contact-links a{
-display:inline-block;
-margin:10px;
-padding:10px 20px;
-background:#0a4d8c;
-color:white;
-border-radius:6px;
-text-decoration:none;
+/* Contact text */
+.contact-info p{
+font-size:18px;
+margin:6px 0;
 }
+
+/* Floating Buttons */
+.float-container{
+position:fixed;
+right:20px;
+bottom:20px;
+display:flex;
+flex-direction:column;
+gap:12px;
+z-index:999;
+}
+
+.float-btn{
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:20px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.float-instagram{ background:#E1306C; }
+.float-email{ background:#0a4d8c; }
+.float-facebook{ background:#1877F2; }
 
 /* Footer */
 footer{
@@ -149,7 +166,6 @@ background:#0a2540;
 color:white;
 padding:25px;
 text-align:center;
-margin-top:40px;
 }
 </style>
 </head>
@@ -158,7 +174,7 @@ margin-top:40px;
 
 <header class="navbar">
 <div class="logo">
-<img src="logo.png" alt="Logo">
+<img src="logo.png">
 <span>TK Web Solutions</span>
 </div>
 
@@ -169,20 +185,17 @@ margin-top:40px;
 </nav>
 </header>
 
-<!-- Hero -->
 <section class="hero">
 <div>
 <h1>Professional Website Development</h1>
-<p>Helping Coaching Institutes, Schools & Businesses Grow Online</p>
-<a href="#portfolio" class="btn primary">View Portfolio</a>
-<a href="#contact" class="btn secondary">Contact Now</a>
+<p>Grow Your Coaching, School or Business Online</p>
+<a href="#portfolio" class="btn primary">View Work</a>
+<a href="#contact" class="btn secondary">Contact</a>
 </div>
 </section>
 
-<!-- Services -->
 <section id="services" class="section">
 <h2>Our Services</h2>
-
 <div class="grid">
 <div class="card">Coaching Website Development</div>
 <div class="card">School Website Development</div>
@@ -193,43 +206,43 @@ margin-top:40px;
 </div>
 </section>
 
-<!-- Portfolio -->
 <section id="portfolio" class="section light">
 <h2>Our Work</h2>
 
 <p>
 <a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit" class="btn primary" target="_blank">
-View Portfolio Document
+Portfolio Document
 </a>
 </p>
 
 <p>
 <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" class="btn secondary" target="_blank">
-View Coaching Demo
+Coaching Demo
 </a>
 </p>
-
 </section>
 
-<!-- Contact -->
 <section id="contact" class="section">
 <h2>Contact Us</h2>
 
+<div class="contact-info">
 <p>Email: tkwebsolution1301@gmail.com</p>
+<p>Instagram: https://www.instagram.com/tkwebsolutions_official</p>
+<p>Facebook: https://www.facebook.com/profile.php?id=61586888301761</p>
 <p>Bharatpur, Rajasthan</p>
-
-<div class="contact-links">
-<a href="https://www.instagram.com/tkwebsolutions_official" target="_blank">Instagram</a>
-<a href="https://www.facebook.com/" target="_blank">Facebook</a>
 </div>
-
 </section>
 
-<!-- Footer -->
 <footer>
-<p>© 2026 TK Web Solutions</p>
-<p>Professional Website Developer in India</p>
+© 2026 TK Web Solutions
 </footer>
+
+<!-- Floating Buttons -->
+<div class="float-container">
+<a href="https://www.instagram.com/tkwebsolutions_official" class="float-btn float-instagram" target="_blank">I</a>
+<a href="mailto:tkwebsolution1301@gmail.com" class="float-btn float-email">M</a>
+<a href="https://www.facebook.com/profile.php?id=61586888301761" class="float-btn float-facebook" target="_blank">F</a>
+</div>
 
 </body>
 </html>
