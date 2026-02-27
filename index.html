@@ -3,307 +3,865 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO -->
 <title>TK Web Solutions | Website Developer in Bharatpur</title>
-<meta name="description" content="Professional Website Development for Coaching, Schools & Businesses. Mobile Friendly, Fast Delivery, Affordable Price.">
-
-<!-- Favicon -->
+<meta name="description" content="Professional Website Development for Coaching, Schools & Businesses in Bharatpur. Mobile Friendly, Fast Delivery, Starting ₹7,000.">
 <link rel="icon" type="image/png" href="favicon-32x32.png">
-
-<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-color:#333;
-scroll-behavior:smooth;
+:root {
+  --blue: #1a56ff;
+  --blue-dark: #0d3acc;
+  --blue-light: #e8eeff;
+  --navy: #060d1f;
+  --white: #ffffff;
+  --gray: #6b7280;
+  --light: #f5f7ff;
+  --accent: #00e5ff;
+  --green: #25d366;
 }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
 
-/* Navbar */
-.navbar{
-position:fixed;
-top:0;
-width:100%;
-background:#fff;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 40px;
-box-shadow:0 4px 15px rgba(0,0,0,0.08);
-z-index:1000;
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 6%;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26,86,255,0.08); transition: box-shadow 0.3s;
 }
+.navbar.scrolled { box-shadow: 0 4px 30px rgba(26,86,255,0.1); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo img { height: 40px; }
+.logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--navy); }
+.logo-text span { color: var(--blue); }
+.logo-badge { background: var(--blue); color: white; font-size: 0.58rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.5px; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--navy); font-size: 0.9rem; font-weight: 500; position: relative; transition: color 0.2s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--blue); transition: width 0.25s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta { background: var(--blue) !important; color: white !important; padding: 9px 20px; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s !important; }
+.nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; }
 
-.logo{
-display:flex;
-align-items:center;
+/* HERO */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  display: flex; align-items: center; padding: 120px 6% 80px;
+  position: relative; overflow: hidden;
 }
-
-.logo img{
-height:45px;
-margin-right:10px;
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(26,86,255,0.25) 0%, transparent 70%); border-radius: 50%;
 }
-
-.logo span{
-font-size:20px;
-font-weight:bold;
-color:#0a2540;
+.hero::after {
+  content: ''; position: absolute; bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,229,255,0.1) 0%, transparent 70%); border-radius: 50%;
 }
-
-.navbar nav a{
-margin-left:20px;
-text-decoration:none;
-color:#333;
-font-weight:500;
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(26,86,255,0.18); border: 1px solid rgba(26,86,255,0.4);
+  color: var(--accent); padding: 8px 16px; border-radius: 30px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 26px;
+  animation: fadeUp 0.6s ease both;
 }
-
-/* Hero */
-.hero{
-height:100vh;
-background:linear-gradient(rgba(10,37,64,0.9),rgba(30,136,229,0.85)),
-url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-padding:20px;
+.pulse-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(1.5);} }
+.hero h1 {
+  font-family: 'Syne', sans-serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800;
+  color: white; line-height: 1.1; margin-bottom: 20px; animation: fadeUp 0.7s 0.1s ease both;
 }
-
-.hero h1{
-font-size:44px;
-margin-bottom:10px;
+.hero h1 .hl { background: linear-gradient(90deg, var(--blue), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero > div > p, .hero-content > p {
+  font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.75;
+  margin-bottom: 34px; max-width: 520px; animation: fadeUp 0.7s 0.2s ease both;
 }
-
-.hero p{
-font-size:18px;
-margin-bottom:20px;
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+.btn-primary {
+  background: var(--blue); color: white; padding: 13px 28px; border-radius: 10px;
+  text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  transition: all 0.25s; box-shadow: 0 8px 28px rgba(26,86,255,0.4); display: inline-flex; align-items: center; gap: 7px;
 }
-
-.btn{
-display:inline-block;
-padding:12px 25px;
-margin:10px;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+.btn-wa {
+  background: var(--green); color: white; padding: 13px 28px; border-radius: 10px;
+  text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  transition: all 0.25s; box-shadow: 0 8px 28px rgba(37,211,102,0.35); display: inline-flex; align-items: center; gap: 7px;
 }
-
-.primary{
-background:#ff6a00;
-color:white;
+.btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.25); color: white; padding: 13px 28px; border-radius: 10px;
+  text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; display: inline-flex; align-items: center;
 }
+.btn-outline:hover { border-color: var(--blue); background: rgba(26,86,255,0.1); }
+.hero-stats { display: flex; gap: 44px; margin-top: 56px; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: white; }
+.stat-num em { color: var(--blue); font-style: normal; }
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
 
-.secondary{
-background:white;
-color:#0a4d8c;
+/* SECTION COMMON */
+section { padding: 90px 6%; }
+.section-tag {
+  display: inline-block; background: var(--blue-light); color: var(--blue);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 12px;
 }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
+.section-sub { color: var(--gray); font-size: 1rem; max-width: 500px; line-height: 1.7; margin-bottom: 46px; }
 
-/* Sections */
-.section{
-padding:90px 20px;
-text-align:center;
+/* SERVICES */
+#services { background: var(--light); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+.service-card {
+  background: white; border-radius: 16px; padding: 30px 26px;
+  border: 1.5px solid transparent; transition: all 0.3s; position: relative; overflow: hidden;
 }
-
-.light{
-background:#f4f7ff;
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--blue); transition: height 0.3s; }
+.service-card:hover { border-color: rgba(26,86,255,0.2); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,86,255,0.1); }
+.service-card:hover::before { height: 100%; }
+.service-icon { width: 50px; height: 50px; background: var(--blue-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 18px; transition: background 0.3s; }
+.service-card:hover .service-icon { background: var(--blue); }
+.service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.service-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+.service-price { margin-top: 16px; font-weight: 700; color: var(--blue); font-size: 0.92rem; }
+.service-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px; color: var(--blue); font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; transition: gap 0.2s;
 }
+.service-cta:hover { gap: 10px; }
 
-/* Grid */
-.grid{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-max-width:1000px;
-margin:auto;
+/* WHY US */
+#why { background: white; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.why-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.why-item { display: flex; align-items: flex-start; gap: 14px; padding: 18px; border-radius: 12px; transition: background 0.2s; }
+.why-item:hover { background: var(--light); }
+.why-icon { width: 42px; height: 42px; background: var(--blue); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; flex-shrink: 0; }
+.why-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 3px; font-size: 0.95rem; }
+.why-item p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+.why-visual { background: var(--navy); border-radius: 22px; padding: 36px; }
+.why-visual-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: white; margin-bottom: 18px; }
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.check-list li { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+.check-list li::before {
+  content: '✓'; width: 22px; height: 22px; background: rgba(26,86,255,0.3);
+  border: 1px solid var(--blue); color: var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
 }
-
-.card{
-width:260px;
-margin:15px;
-padding:25px;
-background:white;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
+.price-highlight { background: var(--blue); border-radius: 12px; padding: 18px; text-align: center; margin-top: 22px; }
+.price-highlight > p { color: rgba(255,255,255,0.8); font-size: 0.82rem; margin-bottom: 4px; }
+.price-big { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: white; }
+.why-cta-row { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.why-btn {
+  flex: 1; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600;
+  font-size: 0.85rem; text-align: center; transition: all 0.25s; display: flex; align-items: center; justify-content: center; gap: 7px;
 }
+.why-btn-wa { background: var(--green); color: white; }
+.why-btn-wa:hover { background: #1ebe5d; }
+.why-btn-call { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.why-btn-call:hover { background: rgba(255,255,255,0.2); }
 
-/* Contact Premium */
-#contact{
-background:linear-gradient(135deg,#0b63d1,#0a2540);
-color:white;
-padding:90px 20px;
-text-align:center;
+/* PORTFOLIO */
+#portfolio { background: var(--light); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+.portfolio-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.3s; }
+.portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(26,86,255,0.12); }
+.p-thumb { background: linear-gradient(135deg, var(--navy) 0%, #1a3a6e 100%); height: 185px; display: flex; align-items: center; justify-content: center; }
+.mock-browser { width: 82%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+.mock-bar { background: #f3f4f6; padding: 7px 10px; display: flex; align-items: center; gap: 4px; }
+.mock-dot { width: 7px; height: 7px; border-radius: 50%; }
+.mock-url { flex: 1; background: white; border-radius: 4px; height: 10px; margin-left: 6px; }
+.mock-content { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: var(--blue); letter-spacing: 0.5px; background: linear-gradient(135deg, #eef1ff, #dde5ff); padding: 10px; text-align: center; }
+.p-info { padding: 20px; }
+.p-info h3 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 6px; font-size: 1rem; }
+.p-info > p { font-size: 0.86rem; color: var(--gray); line-height: 1.6; margin-bottom: 12px; }
+.p-tag { display: inline-block; background: var(--blue-light); color: var(--blue); font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-right: 5px; }
+.p-link { display: inline-flex; align-items: center; gap: 6px; color: var(--blue); font-weight: 600; font-size: 0.88rem; text-decoration: none; margin-top: 10px; transition: gap 0.2s; }
+.p-link:hover { gap: 10px; }
+.portfolio-doc { text-align: center; margin-top: 36px; }
+
+/* PROCESS */
+#process { background: white; }
+.process-center { text-align: center; max-width: 520px; margin: 0 auto 50px; }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.process-step { text-align: center; padding: 28px 18px; border-radius: 16px; transition: background 0.3s; }
+.process-step:hover { background: var(--light); }
+.step-num { width: 54px; height: 54px; background: var(--blue); color: white; font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.process-step h3 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 1rem; }
+.process-step p { font-size: 0.86rem; color: var(--gray); line-height: 1.6; }
+
+/* TESTIMONIALS */
+#testimonials { background: var(--light); }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+.testi-card { background: white; border-radius: 16px; padding: 26px; border: 1.5px solid rgba(26,86,255,0.08); transition: box-shadow 0.3s; }
+.testi-card:hover { box-shadow: 0 12px 40px rgba(26,86,255,0.1); }
+.stars { color: #f59e0b; font-size: 1rem; margin-bottom: 12px; }
+.testi-card > p { font-size: 0.92rem; color: #374151; line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+.reviewer { display: flex; align-items: center; gap: 12px; }
+.r-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: white; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+.r-name { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+.r-role { font-size: 0.78rem; color: var(--gray); }
+
+/* CTA BANNER */
+.cta-banner { background: var(--navy); border-radius: 22px; padding: 65px 55px; text-align: center; margin: 0 6% 80px; position: relative; overflow: hidden; }
+.cta-banner::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(26,86,255,0.3), transparent 70%); border-radius: 50%; }
+.cta-banner h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; color: white; margin-bottom: 12px; position: relative; }
+.cta-banner > p { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 32px; position: relative; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-white { background: white; color: var(--navy); padding: 13px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.25s; display: inline-flex; align-items: center; gap: 7px; }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,255,255,0.2); }
+.btn-ghost { border: 1.5px solid rgba(255,255,255,0.3); color: white; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: all 0.25s; display: inline-flex; align-items: center; gap: 7px; }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+/* CONTACT */
+#contact { background: white; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 55px; align-items: start; }
+.contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+.contact-info > p { color: var(--gray); line-height: 1.7; margin-bottom: 26px; }
+.contact-methods { display: flex; flex-direction: column; gap: 10px; }
+.contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-method {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; padding: 14px 16px; border-radius: 14px;
+  transition: all 0.25s; color: white; font-weight: 600; font-size: 0.88rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
+.contact-method:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.contact-method i { font-size: 1.3rem; flex-shrink: 0; }
+.contact-method span { font-size: 0.82rem; font-weight: 600; line-height: 1.3; }
 
-.contact-box{
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
-max-width:520px;
-margin:auto;
-padding:35px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.25);
+.cm-phone  { background: linear-gradient(135deg, #1a56ff, #0d3acc); }
+.cm-wa     { background: linear-gradient(135deg, #25d366, #128c50); }
+.cm-email  { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.cm-insta  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.cm-fb     { background: linear-gradient(135deg, #1877f2, #0d5cbf); }
+.cm-web    { background: linear-gradient(135deg, #060d1f, #1a3a6e); }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+input, textarea, select { padding: 12px 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--navy); outline: none; transition: border-color 0.2s; background: white; }
+input:focus, textarea:focus, select:focus { border-color: var(--blue); }
+textarea { resize: vertical; min-height: 110px; }
+.form-submit { background: var(--blue); color: white; border: none; padding: 14px; border-radius: 10px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s; box-shadow: 0 8px 24px rgba(26,86,255,0.35); }
+.form-submit:hover { background: var(--blue-dark); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 50px 6% 28px; }
+.footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 26px; }
+.footer-brand > p { font-size: 0.88rem; margin-top: 10px; max-width: 230px; line-height: 1.6; }
+.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: white; }
+.footer-logo span { color: var(--blue); }
+.footer-phone { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+.footer-phone:hover { color: var(--green); }
+.footer-phone i { color: var(--green); }
+.social-links { display: flex; gap: 10px; margin-top: 14px; }
+.social-link { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 0.95rem; transition: background 0.2s; }
+.social-link:hover { background: var(--blue); }
+.footer-col h4 { font-family: 'Syne', sans-serif; color: white; font-weight: 700; margin-bottom: 14px; font-size: 0.9rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col a:hover { color: white; }
+.footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.footer-bottom p { font-size: 0.82rem; }
+
+/* FLOATING BUTTONS */
+.float-container { position: fixed; right: 20px; bottom: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+.float-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px 11px 13px; border-radius: 50px;
+  color: white; text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.22);
+  transition: all 0.3s; overflow: hidden; max-width: 52px; white-space: nowrap;
 }
+.float-btn:hover { max-width: 180px; box-shadow: 0 6px 24px rgba(0,0,0,0.3); transform: translateY(-2px); }
+.float-btn i { font-size: 1.2rem; flex-shrink: 0; width: 24px; text-align: center; }
+.float-btn .fb-label { font-size: 0.82rem; font-weight: 600; opacity: 0; transition: opacity 0.15s 0.08s; pointer-events: none; }
+.float-btn:hover .fb-label { opacity: 1; }
+.float-wa { background: #25d366; }
+.float-insta { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.float-facebook { background: #1877f2; }
+.float-call { background: var(--blue); }
 
-.contact-btn{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-margin:12px 0;
-padding:14px;
-border-radius:10px;
-text-decoration:none;
-color:white;
-font-size:16px;
-font-weight:500;
-transition:0.3s;
-}
+/* SCROLL TOP */
+.scroll-top { position: fixed; right: 20px; bottom: 260px; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); border: 1.5px solid rgba(26,86,255,0.5); color: white; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 998; opacity: 0; transition: all 0.3s; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+.scroll-top.show { opacity: 1; }
+.scroll-top:hover { background: var(--blue); transform: translateY(-2px); }
 
-.contact-btn:hover{
-transform:translateY(-2px);
-box-shadow:0 6px 15px rgba(0,0,0,0.3);
-}
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s, transform 0.65s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-.email{background:#444;}
-.insta{background:linear-gradient(45deg,#fd5949,#d6249f,#285AEB);}
-.facebook{background:#1877f2;}
-
-/* Floating Buttons */
-.float-container{
-position:fixed;
-right:20px;
-bottom:80px;
-display:flex;
-flex-direction:column;
-gap:12px;
-z-index:999;
-}
-
-.float-container a{
-width:50px;
-height:50px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:20px;
-box-shadow:0 6px 15px rgba(0,0,0,0.3);
-text-decoration:none;
-}
-
-.float-insta{background:#e1306c;}
-.float-email{background:#444;}
-.float-facebook{background:#1877f2;}
-
-/* Footer */
-footer{
-background:#0a2540;
-color:white;
-padding:25px;
-text-align:center;
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 20px 6%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); gap: 16px; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none !important; }
+  .hero { padding: 110px 6% 60px; }
+  .hero-stats { gap: 24px; }
+  .why-grid, .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .cta-banner { padding: 44px 26px; margin: 0 4% 60px; }
+  .footer-top { flex-direction: column; }
+  .float-btn { max-width: 52px; }
+  .float-btn .fb-label { display: none; }
 }
 </style>
 </head>
-
 <body>
 
-<header class="navbar">
-<div class="logo">
-<img src="logo.png">
-<span>TK Web Solutions</span>
-</div>
-
-<nav>
-<a href="#services">Services</a>
-<a href="#portfolio">Portfolio</a>
-<a href="#contact">Contact</a>
-</nav>
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <a href="#" class="logo">
+    <img src="logo.png" alt="TK Web Solutions">
+    <span class="logo-text"><span>TK</span> Web Solutions</span>
+    <span class="logo-badge">BHARATPUR</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get Free Demo →</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
-<section class="hero">
-<div>
-<h1>Professional Website Development</h1>
-<p>Grow Your Coaching, School or Business Online</p>
-<a href="#portfolio" class="btn primary">View Work</a>
-<a href="#contact" class="btn secondary">Contact Now</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><div class="pulse-dot"></div> Bharatpur's #1 Web Design Agency</div>
+    <h1>Grow Your Business With a <span class="hl">Professional Website</span></h1>
+    <p>We create fast, modern, and mobile-friendly websites for coaching institutes, schools, and local businesses — starting at just ₹7,000.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary"><i class="fas fa-rocket"></i> Get Free Demo</a>
+      <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo%20website." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+      <a href="#portfolio" class="btn-outline">View Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num" id="statProjects">0<em>+</em></div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div>
+        <div class="stat-num" id="statSat">0<em>%</em></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div>
+        <div class="stat-num">₹7k<em>+</em></div>
+        <div class="stat-label">Starting Price</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">Our Services</div>
+  <div class="section-title">What We Build For You</div>
+  <p class="section-sub">Professional websites tailored for your specific needs — fast, modern, and mobile-friendly.</p>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>Coaching Website</h3>
+      <p>Professional websites for coaching institutes with batch info, results, fee structure, and online inquiry forms.</p>
+      <div class="service-price">Starting ₹7,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Coaching%20Website." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏫</div>
+      <h3>School Website</h3>
+      <p>Complete school websites with admission forms, gallery, events, staff pages and parent portal.</p>
+      <div class="service-price">Starting ₹9,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20School%20Website." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3>Business Website</h3>
+      <p>Grow your local business online with a professional website that attracts more customers 24/7.</p>
+      <div class="service-price">Starting ₹8,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Business%20Website." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👤</div>
+      <h3>Portfolio Website</h3>
+      <p>Showcase your work, skills, and achievements with a stunning personal portfolio website.</p>
+      <div class="service-price">Starting ₹5,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Portfolio%20Website." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📄</div>
+      <h3>Landing Page</h3>
+      <p>High-converting landing pages designed to capture leads and grow your customer base fast.</p>
+      <div class="service-price">Starting ₹4,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Landing%20Page." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <h3>Website Redesign</h3>
+      <p>Already have a website but it looks outdated? We'll give it a complete modern makeover.</p>
+      <div class="service-price">Starting ₹6,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Website%20Redesign." target="_blank" class="service-cta">Get This <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" style="background:var(--light);">
+  <div class="why-grid reveal">
+    <div>
+      <div class="section-tag">Why Choose Us</div>
+      <div class="section-title">We Deliver Results, Not Just Websites</div>
+      <p class="section-sub">We understand local Bharatpur businesses and build websites that actually work for you.</p>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-icon"><i class="fas fa-bolt"></i></div>
+          <div><h4>Fast Delivery</h4><p>Your website ready in 5–7 days. No delays, no excuses.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div><h4>Mobile Friendly</h4><p>Looks perfect on every phone, tablet, and computer.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon"><i class="fas fa-headset"></i></div>
+          <div><h4>30 Days Free Support</h4><p>We provide free support for 30 days after delivery.</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><h4>Local Bharatpur Support</h4><p>Based in Bharatpur — meet us in person anytime!</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-visual">
+      <div class="why-visual-title">✅ Every Website Includes:</div>
+      <ul class="check-list">
+        <li>Mobile Responsive Design</li>
+        <li>Contact / Inquiry Form</li>
+        <li>WhatsApp Button Integration</li>
+        <li>Google Maps Integration</li>
+        <li>Social Media Links</li>
+        <li>SEO Friendly Structure</li>
+        <li>Fast Loading Speed</li>
+        <li>Free Domain Setup Guidance</li>
+        <li>30 Days Free Support</li>
+      </ul>
+      <div class="price-highlight">
+        <p>Starting at just</p>
+        <div class="price-big">₹7,000 onwards</div>
+      </div>
+      <div class="why-cta-row">
+        <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20free%20demo%20website." target="_blank" class="why-btn why-btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+919079368240" class="why-btn why-btn-call"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-tag">Our Work</div>
+  <div class="section-title">Live Demo Projects</div>
+  <p class="section-sub">Real websites we have built — click to see them live!</p>
+  <div class="portfolio-grid reveal">
+    <div class="portfolio-card">
+      <div class="p-thumb">
+        <div class="mock-browser">
+          <div class="mock-bar">
+            <div class="mock-dot" style="background:#ff5f57"></div>
+            <div class="mock-dot" style="background:#febc2e"></div>
+            <div class="mock-dot" style="background:#28c840"></div>
+            <div class="mock-url"></div>
+          </div>
+          <div class="mock-content">ACHIEVERS POINT COACHING</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <h3>Achievers Point Coaching</h3>
+        <p>Modern coaching website with batch details, results gallery, fee structure and inquiry form.</p>
+        <span class="p-tag">Coaching</span><span class="p-tag">Education</span><br>
+        <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="p-link"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="p-thumb">
+        <div class="mock-browser">
+          <div class="mock-bar">
+            <div class="mock-dot" style="background:#ff5f57"></div>
+            <div class="mock-dot" style="background:#febc2e"></div>
+            <div class="mock-dot" style="background:#28c840"></div>
+            <div class="mock-url"></div>
+          </div>
+          <div class="mock-content">EK PAHAL INDIA — NGO</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <h3>Ek Pahal India — NGO</h3>
+        <p>Clean, impactful NGO website with mission, team, donation info and volunteer section.</p>
+        <span class="p-tag">NGO</span><span class="p-tag">Non-Profit</span><br>
+        <a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank" class="p-link"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="p-thumb">
+        <div class="mock-browser">
+          <div class="mock-bar">
+            <div class="mock-dot" style="background:#ff5f57"></div>
+            <div class="mock-dot" style="background:#febc2e"></div>
+            <div class="mock-dot" style="background:#28c840"></div>
+            <div class="mock-url"></div>
+          </div>
+          <div class="mock-content">SUPPORT SMALL BUSINESS</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <h3>Support Small Business</h3>
+        <p>Business listing website promoting and supporting local small businesses online.</p>
+        <span class="p-tag">Business</span><span class="p-tag">Local</span><br>
+        <a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank" class="p-link"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-doc">
+    <a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit" target="_blank" class="btn-primary"><i class="fas fa-file-alt"></i> View Full Portfolio Document</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:var(--light);">
+  <div class="process-center">
+    <div class="section-tag">How It Works</div>
+    <div class="section-title">Simple 4-Step Process</div>
+    <p class="section-sub" style="margin:0 auto;">From idea to live website — quick and hassle-free.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <h3>Free Consultation</h3>
+      <p>Tell us your requirements. We'll understand your business and suggest the best solution for free.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <h3>Design & Review</h3>
+      <p>We design your website and share a preview for your feedback before final work begins.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <h3>Development</h3>
+      <p>We build your full website — mobile-friendly, fast loading, with all requested features.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <h3>Go Live! 🚀</h3>
+      <p>Your website is live in 5–7 days. Plus 30 days of free after-support included!</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag">Testimonials</div>
+  <div class="section-title">What Our Clients Say</div>
+  <p class="section-sub">Real feedback from real clients in Bharatpur.</p>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"TK Web Solutions ne hamare coaching institute ke liye bahut hi professional website banai. Students aur parents dono ko bohot pasand aayi. Highly recommend!"</p>
+      <div class="reviewer">
+        <div class="r-avatar">R</div>
+        <div><div class="r-name">Ramesh Sir</div><div class="r-role">Achievers Point Coaching, Bharatpur</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Bohot fast delivery thi aur website bilkul waisi bani jaise maine sochi thi. Price bhi reasonable hai aur support bhi bahut achha mila."</p>
+      <div class="reviewer">
+        <div class="r-avatar">S</div>
+        <div><div class="r-name">Suresh Kumar</div><div class="r-role">Local Business Owner, Bharatpur</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Mobile pe perfectly chalti hai website. Bahut saare naye customers aane lage hain website dekhne ke baad. Best investment for my business!"</p>
+      <div class="reviewer">
+        <div class="r-avatar">P</div>
+        <div><div class="r-name">Priya Sharma</div><div class="r-role">Business Owner, Bharatpur</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to Grow Your Business Online?</h2>
+  <p>Get a free demo website within 24 hours — no payment, no commitment needed.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo%20website." target="_blank" class="btn-white"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Us</a>
+    <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="btn-ghost"><i class="fab fa-instagram"></i> DM on Instagram</a>
+    <a href="mailto:tkwebsolution1301@gmail.com" class="btn-ghost"><i class="fas fa-envelope"></i> Email Us</a>
+  </div>
 </div>
-</section>
 
-<section id="services" class="section">
-<h2>Our Services</h2>
-<div class="grid">
-<div class="card">Coaching Website Development</div>
-<div class="card">School Website Development</div>
-<div class="card">Business Website Development</div>
-<div class="card">Portfolio Websites</div>
-<div class="card">Landing Pages</div>
-<div class="card">Website Redesign</div>
-</div>
-</section>
-
-<section id="portfolio" class="section light">
-<h2>Our Work</h2>
-
-<p>
-<a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit" class="btn primary" target="_blank">
-Portfolio Document
-</a>
-</p>
-
-<p>
-<a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" class="btn secondary" target="_blank">
-Coaching Demo
-</a>
-</p>
-</section>
-
+<!-- CONTACT -->
 <section id="contact">
-<h2>Contact Us</h2>
-
-<div class="contact-box">
-
-<a class="contact-btn email" href="mailto:tkwebsolution1301@gmail.com">
-<i class="fas fa-envelope"></i> Email Us
-</a>
-
-<a class="contact-btn insta" href="https://www.instagram.com/tkwebsolutions_official" target="_blank">
-<i class="fab fa-instagram"></i> Message on Instagram
-</a>
-
-<a class="contact-btn facebook" href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank">
-<i class="fab fa-facebook"></i> Visit Facebook Page
-</a>
-
-</div>
+  <div class="section-tag">Contact Us</div>
+  <div class="section-title">Let's Talk!</div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <h3>Get In Touch</h3>
+      <p>Have questions or want a free demo? We respond fast — reach out via any channel below!</p>
+      <div class="contact-methods">
+        <a href="tel:+919079368240" class="contact-method cm-phone">
+          <i class="fas fa-phone-alt"></i>
+          <span>Call Us<br>+91 90793 68240</span>
+        </a>
+        <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo%20website." target="_blank" class="contact-method cm-wa">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp<br>+91 90793 68240</span>
+        </a>
+        <a href="mailto:tkwebsolution1301@gmail.com" class="contact-method cm-email">
+          <i class="fas fa-envelope"></i>
+          <span>Email Us<br>tkwebsolution1301@gmail.com</span>
+        </a>
+        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="contact-method cm-insta">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram<br>@tkwebsolutions_official</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="contact-method cm-fb">
+          <i class="fab fa-facebook-f"></i>
+          <span>Facebook<br>TK Web Solutions</span>
+        </a>
+        <a href="https://tarunsinghgunesh.github.io/TK-Web-Solutions/" target="_blank" class="contact-method cm-web">
+          <i class="fas fa-globe"></i>
+          <span>Website<br>TK Web Solutions</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/tkwebsolution1301@gmail.com" method="POST" onsubmit="handleSubmit(event)">
+        <!-- Formspree config -->
+        <input type="hidden" name="_subject" value="🚀 New Demo Request — TK Web Solutions">
+        <input type="hidden" name="_replyto" value="tkwebsolution1301@gmail.com">
+        <input type="text" name="_gotcha" style="display:none">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" placeholder="Ramesh Kumar" required/>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="business">Business / Institute Name</label>
+          <input type="text" id="business" name="business" placeholder="Your Coaching / School / Business"/>
+        </div>
+        <div class="form-group">
+          <label for="service">What Do You Need?</label>
+          <select id="service" name="service">
+            <option value="">Select a Service</option>
+            <option>Coaching Website — ₹7,000</option>
+            <option>School Website — ₹9,000</option>
+            <option>Business Website — ₹8,000</option>
+            <option>Portfolio Website — ₹5,000</option>
+            <option>Landing Page — ₹4,000</option>
+            <option>Website Redesign — ₹6,000</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us More</label>
+          <textarea id="message" name="message" placeholder="Describe what you need, any features, budget, etc..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message 🚀</button>
+      </form>
+    </div>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-© 2026 TK Web Solutions
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo"><span>TK</span> Web Solutions</div>
+      <p>Professional website development for coaching, schools & businesses in Bharatpur, Rajasthan.</p>
+      <a href="tel:+919079368240" class="footer-phone"><i class="fas fa-phone"></i> +91 90793 68240</a>
+      <div class="social-links">
+        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/919079368240" target="_blank" class="social-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:tkwebsolution1301@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Coaching Website</a></li>
+        <li><a href="#services">School Website</a></li>
+        <li><a href="#services">Business Website</a></li>
+        <li><a href="#services">Portfolio Website</a></li>
+        <li><a href="#services">Landing Page</a></li>
+        <li><a href="#services">Website Redesign</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Work</h4>
+      <ul>
+        <li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li>
+        <li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li>
+        <li><a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank">Support Small Business</a></li>
+        <li><a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit" target="_blank">Full Portfolio Doc</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="tel:+919079368240">Call: 9079368240</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 TK Web Solutions. All rights reserved.</p>
+    <p>Made with ❤️ in Bharatpur, Rajasthan</p>
+  </div>
 </footer>
 
-<!-- Floating Buttons -->
+<!-- FLOATING BUTTONS -->
 <div class="float-container">
-<a href="https://www.instagram.com/tkwebsolutions_official" class="float-insta" target="_blank">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="mailto:tkwebsolution1301@gmail.com" class="float-email">
-<i class="fas fa-envelope"></i>
-</a>
-
-<a href="https://www.facebook.com/profile.php?id=61586888301761" class="float-facebook" target="_blank">
-<i class="fab fa-facebook-f"></i>
-</a>
+  <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo%20website." target="_blank" class="float-btn float-wa" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fb-label">WhatsApp Us</span>
+  </a>
+  <a href="tel:+919079368240" class="float-btn float-call" title="Call Us">
+    <i class="fas fa-phone"></i>
+    <span class="fb-label">Call: 9079368240</span>
+  </a>
+  <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="float-btn float-insta" title="Instagram">
+    <i class="fab fa-instagram"></i>
+    <span class="fb-label">Instagram</span>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="float-btn float-facebook" title="Facebook">
+    <i class="fab fa-facebook-f"></i>
+    <span class="fb-label">Facebook</span>
+  </a>
 </div>
+
+<!-- SCROLL TOP -->
+<a href="#home" class="scroll-top" id="scrollTop" title="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</a>
 
 <!-- Tidio Chat -->
 <script src="//code.tidio.co/q2xbvrwatyo0rplblbrvj23k7ear6ljl.js" async></script>
 
+<script>
+  // Navbar scroll + scroll top btn
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+    const st = document.getElementById('scrollTop');
+    if (st) st.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Animated counters
+  function runCounter(el, target, suffix) {
+    let cur = 0;
+    const step = Math.ceil(target / 50);
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.innerHTML = cur + '<em>' + suffix + '</em>';
+      if (cur >= target) clearInterval(t);
+    }, 35);
+  }
+
+  let counted = false;
+  const statsEl = document.querySelector('.hero-stats');
+  const statObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      runCounter(document.getElementById('statProjects'), 10, '+');
+      runCounter(document.getElementById('statSat'), 100, '%');
+    }
+  }, { threshold: 0.5 });
+  if (statsEl) statObserver.observe(statsEl);
+
+  // Contact form — sends to email via Formspree
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const form = document.getElementById('contactForm');
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        btn.innerHTML = '✅ Sent! We will contact you on WhatsApp/Email soon.';
+        btn.style.background = '#16a34a';
+        form.reset();
+        setTimeout(() => {
+          btn.innerHTML = 'Send Message 🚀';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 5000);
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      // Fallback — open WhatsApp with form data
+      const name = data.get('name') || '';
+      const phone = data.get('phone') || '';
+      const service = data.get('service') || '';
+      const msg = `Hi TK Web Solutions!%0AName: ${name}%0APhone: ${phone}%0AService: ${service}`;
+      window.open(`https://wa.me/919079368240?text=${msg}`, '_blank');
+      btn.innerHTML = '📲 Redirected to WhatsApp!';
+      btn.style.background = '#25d366';
+      setTimeout(() => {
+        btn.innerHTML = 'Send Message 🚀';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    }
+  }
+</script>
 </body>
 </html>
