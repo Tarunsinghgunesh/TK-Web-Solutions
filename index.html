@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KDH5BXK1ZB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -19,435 +19,516 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" href="fevicon.png">
-  <style>
+<style>
+:root{--blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;--navy:#060d1f;--white:#ffffff;--gray:#6b7280;--light:#f5f7ff;--accent:#00e5ff;--gold:#f59e0b;--green:#25d366;--tg:#229ed9;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--navy);background:#fff;overflow-x:hidden;}
+a{text-decoration:none;}
+img{max-width:100%;}
 
-/* ===================== VARIABLES ===================== */
-:root {
-  --blue: #1a56ff;
-  --blue2: #0d3acc;
-  --bluel: #e8eeff;
-  --navy: #060d1f;
-  --white: #ffffff;
-  --gray: #6b7280;
-  --light: #f5f7ff;
-  --accent: #00e5ff;
-  --gold: #f59e0b;
-  --green: #25d366;
-  --tg: #229ed9;
-}
+/* ===================== WELCOME MASCOT ===================== */
+#mascot-overlay{position:fixed;inset:0;z-index:99999;background:rgba(6,13,31,.92);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0;opacity:1;transition:opacity .6s;}
+#mascot-overlay.hide{opacity:0;pointer-events:none;}
 
-/* ===================== RESET ===================== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; color: var(--navy); background: #fff; overflow-x: hidden; }
-a { text-decoration: none; }
-img { max-width: 100%; }
+.mascot-wrap{display:flex;flex-direction:column;align-items:center;gap:0;animation:mascotBounceIn .7s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes mascotBounceIn{from{opacity:0;transform:scale(.4) translateY(60px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* Speech bubble */
+.speech-bubble{background:#fff;border-radius:18px;padding:14px 24px;font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy);text-align:center;position:relative;margin-bottom:12px;box-shadow:0 8px 32px rgba(0,0,0,.3);animation:bubblePop .5s .3s cubic-bezier(.34,1.56,.64,1) both;white-space:nowrap;}
+.speech-bubble::after{content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#fff;}
+@keyframes bubblePop{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+.speech-bubble .namaste-text{color:var(--blue);}
+.speech-bubble .sub-text{font-size:.75rem;color:var(--gray);font-weight:500;display:block;margin-top:2px;}
+
+/* SVG Cartoon Character */
+.mascot-svg-wrap{filter:drop-shadow(0 12px 28px rgba(0,229,255,.35));}
+
+/* Namaskar hands animation */
+.hand-l{transform-origin:80% 60%;animation:handNamaskarL 1.2s .5s ease-in-out infinite alternate;}
+.hand-r{transform-origin:20% 60%;animation:handNamaskarR 1.2s .5s ease-in-out infinite alternate;}
+@keyframes handNamaskarL{from{transform:rotate(0deg);}to{transform:rotate(-12deg);}}
+@keyframes handNamaskarR{from{transform:rotate(0deg);}to{transform:rotate(12deg);}}
+.mascot-body-anim{animation:mascotFloat 2s ease-in-out infinite;}
+@keyframes mascotFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* Skip btn */
+.mascot-skip{margin-top:22px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;padding:10px 28px;border-radius:50px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;letter-spacing:1px;animation:fadeIn .5s 1.2s both;}
+.mascot-skip:hover{background:var(--blue);border-color:var(--blue);}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* Mascot exit + website reveal animation */
+#mascot-overlay.slide-out{animation:slideOut .8s forwards;}
+@keyframes slideOut{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-100%);}}
 
 /* ===================== NAVBAR ===================== */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 15px 6%;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(26,86,255,0.07);
-  transition: box-shadow 0.3s;
-}
-.navbar.scrolled { box-shadow: 0 4px 30px rgba(26,86,255,0.1); }
-
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo img { height: 38px; }
-.logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--navy); }
-.logo-text span { color: var(--blue); }
-.logo-badge { background: var(--blue); color: #fff; font-size: 0.54rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.5px; }
-
-.nav-menu { display: flex; align-items: center; gap: 26px; list-style: none; }
-.nav-menu li a { color: var(--navy); font-size: 0.87rem; font-weight: 500; position: relative; transition: color 0.2s; }
-.nav-menu li a:not(.nav-cta):hover { color: var(--blue); }
-.nav-menu li a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--blue); transition: width 0.25s; }
-.nav-menu li a:not(.nav-cta):hover::after { width: 100%; }
-.nav-cta { background: var(--blue); color: #fff !important; padding: 9px 20px; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s !important; }
-.nav-cta:hover { background: var(--blue2) !important; }
-
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 3px; }
-.hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; display: block; }
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:15px 6%;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,86,255,.07);transition:box-shadow .3s;}
+.navbar.scrolled{box-shadow:0 4px 30px rgba(26,86,255,.1);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo img{height:38px;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--navy);}
+.logo-text span{color:var(--blue);}
+.logo-badge{background:var(--blue);color:#fff;font-size:.54rem;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.5px;}
+.nav-menu{display:flex;align-items:center;gap:26px;list-style:none;}
+.nav-menu li a{color:var(--navy);font-size:.87rem;font-weight:500;position:relative;transition:color .2s;}
+.nav-menu li a:not(.nav-cta):hover{color:var(--blue);}
+.nav-menu li a:not(.nav-cta)::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--blue);transition:width .25s;}
+.nav-menu li a:not(.nav-cta):hover::after{width:100%;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:8px;font-weight:600!important;transition:background .2s!important;}
+.nav-cta:hover{background:var(--blue2)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:3px;}
+.hamburger span{width:24px;height:2px;background:var(--navy);border-radius:2px;display:block;}
 
 /* ===================== HERO ===================== */
-.hero {
-  min-height: 100vh;
-  background: var(--navy);
-  display: flex; align-items: center;
-  padding: 120px 6% 80px;
-  position: relative; overflow: hidden;
-}
-.hero-glow1 { position: absolute; top: -200px; right: -150px; width: 680px; height: 680px; background: radial-gradient(circle, rgba(26,86,255,0.22) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-.hero-glow2 { position: absolute; bottom: -150px; left: -120px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:120px 6% 80px;position:relative;overflow:hidden;}
+.hero-glow1{position:absolute;top:-200px;right:-150px;width:680px;height:680px;background:radial-gradient(circle,rgba(26,86,255,.22) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-150px;left:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,255,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-content{position:relative;z-index:1;max-width:700px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.4);color:var(--accent);padding:7px 16px;border-radius:30px;font-size:.78rem;font-weight:600;letter-spacing:.5px;margin-bottom:26px;animation:fadeUp .6s ease both;}
+.pulse-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulseDot 1.5s infinite;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px;animation:fadeUp .7s .1s ease both;}
+.hero h1 .gradient-text{background:linear-gradient(90deg,var(--blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:34px;max-width:520px;animation:fadeUp .7s .2s ease both;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .7s .3s ease both;}
+.btn-blue{background:var(--blue);color:#fff;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 8px 28px rgba(26,86,255,.38);}
+.btn-blue:hover{background:var(--blue2);transform:translateY(-2px);}
+.btn-wa{background:var(--green);color:#fff;padding:13px 28px;border-radius:10px;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 8px 28px rgba(37,211,102,.3);}
+.btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:13px 28px;border-radius:10px;font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;}
+.btn-ghost:hover{border-color:var(--blue);background:rgba(26,86,255,.1);}
+.hero-stats{display:flex;gap:44px;margin-top:52px;flex-wrap:wrap;animation:fadeUp .7s .4s ease both;}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;}
+.stat-num em{color:var(--blue);font-style:normal;}
+.stat-lbl{font-size:.78rem;color:rgba(255,255,255,.44);margin-top:3px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.4;}}
 
-.hero-content { position: relative; z-index: 1; max-width: 700px; }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(26,86,255,0.18); border: 1px solid rgba(26,86,255,0.4);
-  color: var(--accent); padding: 7px 16px; border-radius: 30px;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;
-  margin-bottom: 26px; animation: fadeUp 0.6s ease both;
-}
-.pulse-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulseDot 1.5s infinite; }
-
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 800; color: #fff; line-height: 1.1;
-  margin-bottom: 20px; animation: fadeUp 0.7s 0.1s ease both;
-}
-.hero h1 .gradient-text {
-  background: linear-gradient(90deg, var(--blue), var(--accent));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero p { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 34px; max-width: 520px; animation: fadeUp 0.7s 0.2s ease both; }
-
-.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
-.btn-blue { background: var(--blue); color: #fff; padding: 13px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; box-shadow: 0 8px 28px rgba(26,86,255,0.38); }
-.btn-blue:hover { background: var(--blue2); transform: translateY(-2px); }
-.btn-wa { background: var(--green); color: #fff; padding: 13px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; box-shadow: 0 8px 28px rgba(37,211,102,0.3); }
-.btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); }
-.btn-ghost { border: 1.5px solid rgba(255,255,255,0.22); color: #fff; padding: 13px 28px; border-radius: 10px; font-weight: 500; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; }
-.btn-ghost:hover { border-color: var(--blue); background: rgba(26,86,255,0.1); }
-
-.hero-stats { display: flex; gap: 44px; margin-top: 52px; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
-.stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; }
-.stat-num em { color: var(--blue); font-style: normal; }
-.stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.44); margin-top: 3px; }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulseDot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: 0.4; } }
-
-/* ===================== COMMON SECTION ===================== */
-.section { padding: 88px 6%; }
-.section-light { padding: 88px 6%; background: var(--light); }
-.section-dark { padding: 88px 6%; background: var(--navy); }
-.section-center { text-align: center; }
-
-.tag { display: inline-block; background: var(--bluel); color: var(--blue); font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px; }
-.tag-dark { display: inline-block; background: rgba(26,86,255,0.18); border: 1px solid rgba(26,86,255,0.35); color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px; }
-.sec-h { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: var(--navy); margin-bottom: 10px; line-height: 1.2; }
-.sec-h-w { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.2; }
-.sec-sub { color: var(--gray); font-size: 1rem; max-width: 500px; line-height: 1.7; margin-bottom: 44px; }
-.sec-sub-w { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 500px; line-height: 1.7; margin-bottom: 44px; }
-
-/* reveal */
-.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s, transform 0.6s; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* ===================== SECTIONS ===================== */
+.section{padding:88px 6%;}
+.section-light{padding:88px 6%;background:var(--light);}
+.tag{display:inline-block;background:var(--bluel);color:var(--blue);font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px;}
+.tag-dark{display:inline-block;background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.35);color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px;}
+.sec-h{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3vw,2.5rem);font-weight:800;color:var(--navy);margin-bottom:10px;line-height:1.2;}
+.sec-sub{color:var(--gray);font-size:1rem;max-width:500px;line-height:1.7;margin-bottom:44px;}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
 
 /* ===================== SERVICES ===================== */
-.svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-.svc-card { background: #fff; border-radius: 16px; padding: 28px 24px; border: 1.5px solid transparent; transition: all 0.3s; position: relative; overflow: hidden; }
-.svc-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0; background: var(--blue); transition: height 0.3s; }
-.svc-card:hover { border-color: rgba(26,86,255,0.16); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(26,86,255,0.09); }
-.svc-card:hover::before { height: 100%; }
-.svc-ico { width: 50px; height: 50px; background: var(--bluel); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; transition: background 0.3s; }
-.svc-card:hover .svc-ico { background: var(--blue); }
-.svc-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-.svc-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
-.svc-price { margin-top: 12px; font-weight: 700; color: var(--blue); font-size: 0.88rem; }
-.svc-link { display: inline-flex; align-items: center; gap: 5px; color: var(--blue); font-size: 0.82rem; font-weight: 600; margin-top: 10px; transition: gap 0.2s; }
-.svc-link:hover { gap: 9px; }
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+.svc-card{background:#fff;border-radius:16px;padding:28px 24px;border:1.5px solid transparent;transition:all .3s;position:relative;overflow:hidden;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:var(--blue);transition:height .3s;}
+.svc-card:hover{border-color:rgba(26,86,255,.16);transform:translateY(-4px);box-shadow:0 20px 50px rgba(26,86,255,.09);}
+.svc-card:hover::before{height:100%;}
+.svc-ico{width:50px;height:50px;background:var(--bluel);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;transition:background .3s;}
+.svc-card:hover .svc-ico{background:var(--blue);}
+.svc-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;}
+.svc-card p{font-size:.85rem;color:var(--gray);line-height:1.6;}
+.svc-price{margin-top:12px;font-weight:700;color:var(--blue);font-size:.88rem;}
+.svc-link{display:inline-flex;align-items:center;gap:5px;color:var(--blue);font-size:.82rem;font-weight:600;margin-top:10px;transition:gap .2s;}
+.svc-link:hover{gap:9px;}
 
 /* ===================== WHY US ===================== */
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.why-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.why-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; border-radius: 12px; transition: background 0.2s; }
-.why-item:hover { background: var(--light); }
-.why-icon { width: 42px; height: 42px; background: var(--blue); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; flex-shrink: 0; }
-.why-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 3px; font-size: 0.92rem; }
-.why-item p { font-size: 0.84rem; color: var(--gray); line-height: 1.6; }
-.why-box { background: var(--navy); border-radius: 20px; padding: 32px; }
-.why-box-title { font-family: 'Syne', sans-serif; font-size: 1.02rem; font-weight: 700; color: #fff; margin-bottom: 18px; }
-.check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-.check-list li { display: flex; align-items: center; gap: 11px; color: rgba(255,255,255,0.78); font-size: 0.87rem; }
-.check-list li::before { content: '✓'; width: 22px; height: 22px; background: rgba(26,86,255,0.28); border: 1px solid var(--blue); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; }
-.price-strip { background: var(--blue); border-radius: 12px; padding: 16px; text-align: center; }
-.price-strip p { color: rgba(255,255,255,0.78); font-size: 0.8rem; margin-bottom: 4px; }
-.price-strip strong { font-family: 'Syne', sans-serif; font-size: 1.85rem; font-weight: 800; color: #fff; }
-.why-ctas { display: flex; gap: 10px; margin-top: 14px; }
-.why-btn { flex: 1; padding: 11px; border-radius: 10px; font-weight: 600; font-size: 0.83rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.25s; }
-.why-btn-wa { background: var(--green); color: #fff; } .why-btn-wa:hover { background: #1ebe5d; }
-.why-btn-call { background: rgba(255,255,255,0.09); color: #fff; border: 1px solid rgba(255,255,255,0.14); } .why-btn-call:hover { background: rgba(255,255,255,0.16); }
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.why-item{display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:12px;transition:background .2s;}
+.why-item:hover{background:var(--light);}
+.why-icon{width:42px;height:42px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.05rem;flex-shrink:0;}
+.why-item h4{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:3px;font-size:.92rem;}
+.why-item p{font-size:.84rem;color:var(--gray);line-height:1.6;}
+.why-box{background:var(--navy);border-radius:20px;padding:32px;}
+.why-box-title{font-family:'Syne',sans-serif;font-size:1.02rem;font-weight:700;color:#fff;margin-bottom:18px;}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.check-list li{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.78);font-size:.87rem;}
+.check-list li::before{content:'✓';width:22px;height:22px;background:rgba(26,86,255,.28);border:1px solid var(--blue);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;}
+.price-strip{background:var(--blue);border-radius:12px;padding:16px;text-align:center;}
+.price-strip p{color:rgba(255,255,255,.78);font-size:.8rem;margin-bottom:4px;}
+.price-strip strong{font-family:'Syne',sans-serif;font-size:1.85rem;font-weight:800;color:#fff;}
+.why-ctas{display:flex;gap:10px;margin-top:14px;}
+.why-btn{flex:1;padding:11px;border-radius:10px;font-weight:600;font-size:.83rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .25s;}
+.why-btn-wa{background:var(--green);color:#fff;}.why-btn-wa:hover{background:#1ebe5d;}
+.why-btn-call{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.14);}.why-btn-call:hover{background:rgba(255,255,255,.16);}
 
 /* ===================== PORTFOLIO ===================== */
-.portfolio-section { background: var(--navy); padding: 90px 0 100px; position: relative; overflow: hidden; }
-.port-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,86,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,255,0.04) 1px, transparent 1px); background-size: 55px 55px; pointer-events: none; }
-.port-glow1 { position: absolute; top: -160px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(26,86,255,0.13) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-.port-glow2 { position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-.port-inner { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 0 5%; }
-.port-head { text-align: center; margin-bottom: 50px; }
-.port-title { font-family: 'Syne', sans-serif; font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 12px; }
-.port-title span { background: linear-gradient(90deg, var(--blue), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.port-sub { color: rgba(255,255,255,0.5); font-size: 0.97rem; max-width: 460px; margin: 0 auto; line-height: 1.7; }
-
-/* Port Stats */
-.port-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 42px; }
-.ps-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px; text-align: center; transition: all 0.3s; }
-.ps-card:hover { background: rgba(26,86,255,0.08); border-color: rgba(26,86,255,0.22); }
-.ps-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--gold); }
-.ps-lbl { font-size: 0.73rem; color: rgba(255,255,255,0.44); margin-top: 4px; }
+.portfolio-section{background:var(--navy);padding:90px 0 100px;position:relative;overflow:hidden;}
+.port-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(26,86,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,86,255,.04) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
+.port-glow1{position:absolute;top:-160px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,86,255,.13) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.port-glow2{position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.port-inner{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 5%;}
+.port-head{text-align:center;margin-bottom:50px;}
+.port-title{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;}
+.port-title span{background:linear-gradient(90deg,var(--blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.port-sub{color:rgba(255,255,255,.5);font-size:.97rem;max-width:460px;margin:0 auto;line-height:1.7;}
+.port-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:42px;}
+.ps-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;text-align:center;transition:all .3s;}
+.ps-card:hover{background:rgba(26,86,255,.08);border-color:rgba(26,86,255,.22);}
+.ps-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
+.ps-lbl{font-size:.73rem;color:rgba(255,255,255,.44);margin-top:4px;}
 
 /* Filter tabs */
-.filter-row { display: flex; gap: 9px; justify-content: center; flex-wrap: wrap; margin-bottom: 46px; }
-.ftab { padding: 8px 20px; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.25s; background: transparent; font-family: 'DM Sans', sans-serif; display: inline-flex; align-items: center; gap: 7px; }
-.ftab:hover { border-color: rgba(26,86,255,0.5); color: #fff; background: rgba(26,86,255,0.1); }
-.ftab.active { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: 0 5px 18px rgba(26,86,255,0.4); }
+.filter-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:46px;}
+.ftab{padding:8px 20px;border-radius:50px;border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .25s;background:transparent;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:7px;}
+.ftab:hover{border-color:rgba(26,86,255,.5);color:#fff;background:rgba(26,86,255,.1);}
+.ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 5px 18px rgba(26,86,255,.4);}
 
-/* 3D Carousel */
-.car-stage { perspective: 1100px; position: relative; height: 510px; margin-bottom: 38px; }
-.car-track { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+/* ===== ANIMATED PROJECT CARDS GRID ===== */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:40px;}
 
-.pcard {
-  position: absolute; width: 350px;
-  background: rgba(255,255,255,0.03);
-  border: 1.5px solid rgba(255,255,255,0.08);
-  border-radius: 22px; overflow: hidden;
-  cursor: pointer; left: 50%; top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  backface-visibility: hidden; user-select: none;
+.proj-card{
+  background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:22px;overflow:hidden;
+  position:relative;cursor:pointer;
+  transition:all .45s cubic-bezier(.23,1,.32,1);
+  transform:translateY(40px);opacity:0;
 }
-.pcard.pos-center { transform: translateX(-50%) translateY(-52%) translateZ(0) scale(1); opacity: 1; z-index: 10; border-color: rgba(26,86,255,0.42); box-shadow: 0 28px 75px rgba(0,0,0,0.55), 0 0 55px rgba(26,86,255,0.13); }
-.pcard.pos-left1  { transform: translateX(calc(-50% - 308px)) translateY(-52%) translateZ(-115px) rotateY(17deg) scale(0.87); opacity: 0.6; z-index: 7; }
-.pcard.pos-left2  { transform: translateX(calc(-50% - 558px)) translateY(-52%) translateZ(-235px) rotateY(27deg) scale(0.75); opacity: 0.27; z-index: 5; }
-.pcard.pos-right1 { transform: translateX(calc(-50% + 308px)) translateY(-52%) translateZ(-115px) rotateY(-17deg) scale(0.87); opacity: 0.6; z-index: 7; }
-.pcard.pos-right2 { transform: translateX(calc(-50% + 558px)) translateY(-52%) translateZ(-235px) rotateY(-27deg) scale(0.75); opacity: 0.27; z-index: 5; }
-.pcard.pos-hide   { transform: translateX(-50%) translateY(-52%) translateZ(-400px) scale(0.4); opacity: 0; z-index: 1; pointer-events: none; }
-
-/* Card internals */
-.pc-mockup { height: 190px; display: flex; align-items: center; justify-content: center; padding: 16px; position: relative; overflow: hidden; }
-.pc-mockup::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.26)); pointer-events: none; }
-.pc-cat-badge { position: absolute; top: 12px; right: 12px; z-index: 5; padding: 3px 11px; border-radius: 20px; font-size: 0.64rem; font-weight: 700; }
-
-.browser-mock { width: 88%; background: #1a2030; border-radius: 9px; overflow: hidden; box-shadow: 0 14px 45px rgba(0,0,0,0.5); position: relative; z-index: 2; }
-.brow-top { background: #252d40; padding: 7px 10px; display: flex; align-items: center; gap: 4px; }
-.brow-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.brow-urlbar { flex: 1; background: #1a2030; border-radius: 4px; height: 11px; margin-left: 7px; display: flex; align-items: center; padding: 0 6px; overflow: hidden; }
-.brow-urlbar span { font-size: 0.49rem; color: rgba(255,255,255,0.27); white-space: nowrap; }
-.brow-screen { height: 92px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; padding: 10px; }
-.brow-title { font-family: 'Syne', sans-serif; font-size: 0.63rem; font-weight: 700; text-align: center; line-height: 1.4; }
-.brow-bars { width: 78%; }
-.brow-bar { height: 3px; border-radius: 2px; margin: 2px 0; }
-
-.pc-body { padding: 16px 18px 18px; }
-.pc-client { font-size: 0.71rem; color: rgba(255,255,255,0.38); margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-.pc-client i { color: var(--accent); font-size: 0.65rem; }
-.pc-name { font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.3; }
-.pc-desc { font-size: 0.79rem; color: rgba(255,255,255,0.48); line-height: 1.6; margin-bottom: 11px; }
-
-.tech-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 11px; }
-.tech-tag { padding: 3px 9px; border-radius: 20px; font-size: 0.62rem; font-weight: 600; background: rgba(26,86,255,0.14); border: 1px solid rgba(26,86,255,0.27); color: rgba(255,255,255,0.66); }
-
-.ba-strip { display: flex; gap: 6px; margin-bottom: 13px; }
-.ba-box { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 7px; padding: 6px 8px; }
-.ba-label { font-size: 0.59rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-.ba-label.red { color: #ef4444; } .ba-label.grn { color: #22c55e; }
-.ba-text { font-size: 0.69rem; color: rgba(255,255,255,0.5); }
-
-.pc-footer { display: flex; gap: 8px; align-items: center; }
-.pc-demo-btn { flex: 1; background: var(--blue); color: #fff; padding: 9px 12px; border-radius: 9px; font-weight: 600; font-size: 0.77rem; display: flex; align-items: center; justify-content: center; gap: 5px; transition: background 0.2s; }
-.pc-demo-btn:hover { background: var(--blue2); }
-.pc-wa-btn { width: 34px; height: 34px; background: var(--green); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.88rem; flex-shrink: 0; transition: background 0.2s; }
-.pc-wa-btn:hover { background: #1ebe5d; }
-
-/* Carousel controls */
-.car-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 42px; }
-.car-btn { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); color: #fff; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
-.car-btn:hover { background: var(--blue); border-color: var(--blue); box-shadow: 0 5px 18px rgba(26,86,255,0.4); }
-.car-dots { display: flex; gap: 8px; align-items: center; }
-.cdot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); cursor: pointer; transition: all 0.3s; }
-.cdot.active { background: var(--blue); width: 22px; border-radius: 4px; box-shadow: 0 0 10px rgba(26,86,255,0.6); }
-.car-count { color: rgba(255,255,255,0.36); font-size: 0.79rem; font-weight: 600; min-width: 38px; text-align: center; }
-.swipe-hint { text-align: center; color: rgba(255,255,255,0.2); font-size: 0.73rem; margin-top: 10px; display: none; }
-
-/* Featured panel */
-.feat-panel {
-  background: rgba(255,255,255,0.03);
-  border: 1.5px solid rgba(255,255,255,0.08);
-  border-radius: 18px; padding: 26px 30px;
-  display: grid; grid-template-columns: 1fr auto;
-  gap: 20px; align-items: center;
-  margin-bottom: 42px; transition: all 0.4s;
+.proj-card.card-visible{
+  transform:translateY(0);opacity:1;
 }
-.fp-cat { font-size: 0.67rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
-.fp-name { font-family: 'Syne', sans-serif; font-size: 1.28rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
-.fp-desc { font-size: 0.86rem; color: rgba(255,255,255,0.56); line-height: 1.7; margin-bottom: 14px; }
-.fp-feats { display: flex; gap: 16px; flex-wrap: wrap; }
-.fp-feat { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: rgba(255,255,255,0.66); }
-.fp-feat i { color: var(--blue); font-size: 0.74rem; }
-.fp-right { display: flex; flex-direction: column; gap: 9px; align-items: flex-end; }
-.fp-price { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--gold); white-space: nowrap; }
-.fp-price-note { font-size: 0.68rem; color: rgba(255,255,255,0.36); text-align: right; margin-top: -5px; }
-.fp-action { background: var(--blue); color: #fff; padding: 11px 22px; border-radius: 10px; font-weight: 700; font-size: 0.84rem; display: inline-flex; align-items: center; gap: 7px; transition: all 0.25s; box-shadow: 0 7px 22px rgba(26,86,255,0.35); white-space: nowrap; }
-.fp-action:hover { background: var(--blue2); transform: translateY(-2px); }
+.proj-card:nth-child(1){transition-delay:.05s;}
+.proj-card:nth-child(2){transition-delay:.15s;}
+.proj-card:nth-child(3){transition-delay:.25s;}
+.proj-card:nth-child(4){transition-delay:.35s;}
 
-/* Pricing */
-.port-pricing-head { text-align: center; margin-bottom: 24px; }
-.port-pricing-title { font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
-.port-pricing-sub { color: rgba(255,255,255,0.46); font-size: 0.87rem; }
-.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 42px; }
-.pc-card { background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 24px; position: relative; transition: all 0.3s; }
-.pc-card:hover { transform: translateY(-4px); box-shadow: 0 18px 45px rgba(26,86,255,0.14); }
-.pc-card.featured { border-color: var(--gold); background: rgba(245,158,11,0.06); }
-.pc-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #0a0a0a; font-size: 0.63rem; font-weight: 700; padding: 3px 14px; border-radius: 20px; white-space: nowrap; }
-.pc-icon { font-size: 1.7rem; margin-bottom: 11px; }
-.pc-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 3px; }
-.pc-tagline { font-size: 0.73rem; color: rgba(255,255,255,0.4); margin-bottom: 13px; }
-.pc-price { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--blue); }
-.pc-price.gold { color: var(--gold); }
-.pc-price-note { font-size: 0.68rem; color: rgba(255,255,255,0.36); margin-bottom: 15px; }
-.pc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
-.pc-list li { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.68); }
-.pc-list li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.68rem; flex-shrink: 0; }
-.pc-btn { display: block; text-align: center; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.82rem; transition: all 0.25s; }
-.pc-btn-b { background: var(--blue); color: #fff; } .pc-btn-b:hover { background: var(--blue2); }
-.pc-btn-g { background: var(--gold); color: #0a0a0a; } .pc-btn-g:hover { background: #e88c00; }
-.pc-btn-o { border: 1.5px solid rgba(255,255,255,0.17); color: #fff; } .pc-btn-o:hover { background: rgba(255,255,255,0.07); }
+.proj-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,86,255,.08) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;z-index:1;
+}
+.proj-card:hover{
+  transform:translateY(-14px) rotateX(4deg) rotateY(-3deg) scale(1.02);
+  border-color:rgba(0,229,255,.5);
+  box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(0,229,255,.15),0 0 80px rgba(26,86,255,.1);
+}
+.proj-card:hover::before{opacity:1;}
 
-/* Port bottom */
-.port-bottom { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-.port-doc-btn { background: rgba(26,86,255,0.14); border: 1.5px solid rgba(26,86,255,0.3); color: #fff; padding: 12px 26px; border-radius: 10px; font-weight: 600; font-size: 0.91rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; }
-.port-doc-btn:hover { background: var(--blue); border-color: var(--blue); }
-.port-wa-btn { background: var(--green); color: #fff; padding: 12px 26px; border-radius: 10px; font-weight: 600; font-size: 0.91rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; box-shadow: 0 7px 22px rgba(37,211,102,0.26); }
-.port-wa-btn:hover { background: #1ebe5d; transform: translateY(-2px); }
+/* Shimmer effect on hover */
+.proj-card::after{
+  content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.08),transparent);
+  transform:skewX(-15deg);transition:left .6s ease;z-index:2;
+}
+.proj-card:hover::after{left:130%;}
+
+/* Card top - browser mockup */
+.proj-mock{height:180px;display:flex;align-items:center;justify-content:center;padding:14px;position:relative;overflow:hidden;}
+.proj-mock-glow{position:absolute;inset:0;opacity:.5;transition:opacity .4s;}
+.proj-card:hover .proj-mock-glow{opacity:.8;}
+.proj-cat-pill{position:absolute;top:10px;right:10px;z-index:5;padding:4px 12px;border-radius:20px;font-size:.6rem;font-weight:700;backdrop-filter:blur(8px);letter-spacing:.5px;}
+
+/* Browser window */
+.brow-win{width:85%;background:rgba(20,28,45,.9);border-radius:10px;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,.5);position:relative;z-index:3;border:1px solid rgba(255,255,255,.07);}
+.brow-bar{background:rgba(15,22,38,.95);padding:7px 10px;display:flex;align-items:center;gap:5px;}
+.brow-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.brow-addr{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:10px;margin-left:6px;display:flex;align-items:center;padding:0 7px;overflow:hidden;}
+.brow-addr span{font-size:.48rem;color:rgba(255,255,255,.3);white-space:nowrap;font-family:monospace;}
+.brow-content{height:86px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:8px;}
+.brow-site-name{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;text-align:center;line-height:1.3;}
+.brow-lines{width:76%;}
+.brow-line{height:2.5px;border-radius:2px;margin:3px 0;}
+
+/* Animated progress bar on card hover */
+.proj-card:hover .brow-line:nth-child(1){animation:lineGrow 1s ease forwards;}
+.proj-card:hover .brow-line:nth-child(2){animation:lineGrow .8s .1s ease forwards;}
+.proj-card:hover .brow-line:nth-child(3){animation:lineGrow .6s .2s ease forwards;}
+@keyframes lineGrow{from{transform:scaleX(0);transform-origin:left;}to{transform:scaleX(1);}}
+
+/* Card body */
+.proj-body{padding:16px 18px 18px;position:relative;z-index:3;}
+.proj-type{font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;}
+.proj-name{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;}
+.proj-desc{font-size:.79rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px;}
+.proj-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
+.ptag{padding:3px 9px;border-radius:20px;font-size:.6rem;font-weight:600;background:rgba(26,86,255,.14);border:1px solid rgba(26,86,255,.25);color:rgba(255,255,255,.65);}
+
+/* Before / After strip */
+.ba-row{display:flex;gap:6px;margin-bottom:13px;}
+.ba-cell{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:6px 9px;}
+.ba-lbl{font-size:.57rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.ba-lbl.r{color:#ef4444;}.ba-lbl.g{color:#22c55e;}
+.ba-val{font-size:.68rem;color:rgba(255,255,255,.5);}
+
+/* CTA row */
+.proj-cta{display:flex;gap:8px;}
+.proj-live{flex:1;background:var(--blue);color:#fff;padding:10px 12px;border-radius:10px;font-weight:600;font-size:.78rem;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .25s;position:relative;overflow:hidden;}
+.proj-live::before{content:'';position:absolute;inset:0;background:var(--blue2);transform:translateX(-100%);transition:transform .3s;}
+.proj-live:hover::before{transform:translateX(0);}
+.proj-live span,.proj-live i{position:relative;z-index:1;}
+.proj-live:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,86,255,.4);}
+.proj-wa{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;flex-shrink:0;transition:all .25s;}
+.proj-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+
+/* Floating label on card */
+.proj-float-label{
+  position:absolute;top:14px;left:14px;z-index:6;
+  background:rgba(26,86,255,.9);color:#fff;
+  font-size:.58rem;font-weight:700;padding:3px 10px;border-radius:20px;
+  letter-spacing:.5px;backdrop-filter:blur(6px);
+  opacity:0;transform:translateX(-10px);transition:all .3s;
+}
+.proj-card:hover .proj-float-label{opacity:1;transform:translateX(0);}
+
+/* ===================== PRICING ===================== */
+.port-pricing-head{text-align:center;margin-bottom:24px;}
+.port-pricing-title{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:#fff;margin-bottom:5px;}
+.port-pricing-sub{color:rgba(255,255,255,.46);font-size:.87rem;}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-bottom:42px;}
+.pc-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;position:relative;transition:all .3s;}
+.pc-card:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(26,86,255,.14);}
+.pc-card.featured{border-color:var(--gold);background:rgba(245,158,11,.06);}
+.pc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0a0a;font-size:.63rem;font-weight:700;padding:3px 14px;border-radius:20px;white-space:nowrap;}
+.pc-icon{font-size:1.7rem;margin-bottom:11px;}
+.pc-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:3px;}
+.pc-tagline{font-size:.73rem;color:rgba(255,255,255,.4);margin-bottom:13px;}
+.pc-price{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;color:var(--blue);}
+.pc-price.gold{color:var(--gold);}
+.pc-price-note{font-size:.68rem;color:rgba(255,255,255,.36);margin-bottom:15px;}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+.pc-list li{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.68);}
+.pc-list li::before{content:'✓';color:var(--accent);font-weight:700;font-size:.68rem;flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:10px;border-radius:10px;font-weight:700;font-size:.82rem;transition:all .25s;}
+.pc-btn-b{background:var(--blue);color:#fff;}.pc-btn-b:hover{background:var(--blue2);}
+.pc-btn-g{background:var(--gold);color:#0a0a0a;}.pc-btn-g:hover{background:#e88c00;}
+.pc-btn-o{border:1.5px solid rgba(255,255,255,.17);color:#fff;}.pc-btn-o:hover{background:rgba(255,255,255,.07);}
+
+.port-bottom{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.port-3d-btn{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(26,86,255,.15));border:1.5px solid rgba(0,229,255,.4);color:#fff;padding:13px 26px;border-radius:12px;font-weight:700;font-size:.91rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;position:relative;overflow:hidden;}
+.port-3d-btn:hover{background:linear-gradient(135deg,rgba(0,229,255,.28),rgba(26,86,255,.28));border-color:rgba(0,229,255,.7);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,229,255,.2);}
+.port-wa-btn{background:var(--green);color:#fff;padding:12px 26px;border-radius:10px;font-weight:600;font-size:.91rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 7px 22px rgba(37,211,102,.26);}
+.port-wa-btn:hover{background:#1ebe5d;transform:translateY(-2px);}
 
 /* ===================== PROCESS ===================== */
-.process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 20px; }
-.proc-card { text-align: center; padding: 28px 16px; border-radius: 16px; transition: background 0.3s; }
-.proc-card:hover { background: var(--bluel); }
-.proc-num { width: 54px; height: 54px; background: var(--blue); color: #fff; font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
-.proc-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 0.97rem; }
-.proc-card p { font-size: 0.84rem; color: var(--gray); line-height: 1.6; }
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:20px;}
+.proc-card{text-align:center;padding:28px 16px;border-radius:16px;transition:background .3s;}
+.proc-card:hover{background:var(--bluel);}
+.proc-num{width:54px;height:54px;background:var(--blue);color:#fff;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.proc-card h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;font-size:.97rem;}
+.proc-card p{font-size:.84rem;color:var(--gray);line-height:1.6;}
 
 /* ===================== TESTIMONIALS ===================== */
-.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); gap: 22px; }
-.testi-card { background: #fff; border-radius: 16px; padding: 24px; border: 1.5px solid rgba(26,86,255,0.07); transition: box-shadow 0.3s; }
-.testi-card:hover { box-shadow: 0 12px 40px rgba(26,86,255,0.09); }
-.stars { color: #f59e0b; font-size: 0.92rem; margin-bottom: 11px; }
-.testi-card > p { font-size: 0.87rem; color: #374151; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-.reviewer { display: flex; align-items: center; gap: 11px; }
-.r-av { width: 38px; height: 38px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
-.r-name { font-weight: 700; font-size: 0.85rem; color: var(--navy); }
-.r-role { font-size: 0.74rem; color: var(--gray); }
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:22px;}
+.testi-card{background:#fff;border-radius:16px;padding:24px;border:1.5px solid rgba(26,86,255,.07);transition:box-shadow .3s;}
+.testi-card:hover{box-shadow:0 12px 40px rgba(26,86,255,.09);}
+.stars{color:#f59e0b;font-size:.92rem;margin-bottom:11px;}
+.testi-card>p{font-size:.87rem;color:#374151;line-height:1.7;margin-bottom:16px;font-style:italic;}
+.reviewer{display:flex;align-items:center;gap:11px;}
+.r-av{width:38px;height:38px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;flex-shrink:0;}
+.r-name{font-weight:700;font-size:.85rem;color:var(--navy);}
+.r-role{font-size:.74rem;color:var(--gray);}
 
-/* ===================== CTA BANNER ===================== */
-.cta-outer { padding: 0 6% 80px; }
-.cta-box { background: var(--navy); border-radius: 22px; padding: 58px 50px; text-align: center; position: relative; overflow: hidden; }
-.cta-box::before { content: ''; position: absolute; top: -80px; right: -80px; width: 380px; height: 380px; background: radial-gradient(circle, rgba(26,86,255,0.27) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-.cta-box h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: #fff; margin-bottom: 11px; position: relative; }
-.cta-box > p { color: rgba(255,255,255,0.58); font-size: 1rem; margin-bottom: 30px; position: relative; }
-.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
-.btn-white { background: #fff; color: var(--navy); padding: 13px 26px; border-radius: 10px; font-weight: 700; font-size: 0.93rem; display: inline-flex; align-items: center; gap: 7px; transition: all 0.25s; }
-.btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(255,255,255,0.17); }
-.btn-ghost2 { border: 1.5px solid rgba(255,255,255,0.26); color: #fff; padding: 13px 26px; border-radius: 10px; font-weight: 500; font-size: 0.93rem; display: inline-flex; align-items: center; gap: 7px; transition: all 0.25s; }
-.btn-ghost2:hover { background: rgba(255,255,255,0.09); border-color: #fff; }
+/* ===================== CTA ===================== */
+.cta-outer{padding:0 6% 80px;}
+.cta-box{background:var(--navy);border-radius:22px;padding:58px 50px;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(26,86,255,.27) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.cta-box h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:#fff;margin-bottom:11px;position:relative;}
+.cta-box>p{color:rgba(255,255,255,.58);font-size:1rem;margin-bottom:30px;position:relative;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+.btn-white{background:#fff;color:var(--navy);padding:13px 26px;border-radius:10px;font-weight:700;font-size:.93rem;display:inline-flex;align-items:center;gap:7px;transition:all .25s;}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,255,255,.17);}
+.btn-ghost2{border:1.5px solid rgba(255,255,255,.26);color:#fff;padding:13px 26px;border-radius:10px;font-weight:500;font-size:.93rem;display:inline-flex;align-items:center;gap:7px;transition:all .25s;}
+.btn-ghost2:hover{background:rgba(255,255,255,.09);border-color:#fff;}
 
 /* ===================== CONTACT ===================== */
-.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 55px; align-items: start; }
-.contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.22rem; font-weight: 700; margin-bottom: 10px; }
-.contact-info > p { color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
-.cm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.cm { display: flex; align-items: center; gap: 10px; color: #fff; padding: 11px 13px; border-radius: 11px; font-weight: 600; font-size: 0.8rem; transition: all 0.25s; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
-.cm:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(0,0,0,0.15); }
-.cm i { font-size: 1.02rem; flex-shrink: 0; }
-.cm span { font-size: 0.76rem; line-height: 1.3; }
-.cm-phone { background: linear-gradient(135deg, #1a56ff, #0d3acc); }
-.cm-wa    { background: linear-gradient(135deg, #25d366, #128c50); }
-.cm-tg    { background: linear-gradient(135deg, #229ed9, #1a7ab0); }
-.cm-email { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.cm-insta { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.cm-fb    { background: linear-gradient(135deg, #1877f2, #0d5cbf); }
-
-.cform { display: flex; flex-direction: column; gap: 13px; }
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
-.fg { display: flex; flex-direction: column; gap: 5px; }
-.fg label { font-size: 0.79rem; font-weight: 600; color: var(--navy); }
-.cform input, .cform select, .cform textarea { padding: 11px 13px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--navy); outline: none; transition: border-color 0.2s; width: 100%; }
-.cform input:focus, .cform select:focus, .cform textarea:focus { border-color: var(--blue); }
-.cform textarea { resize: vertical; min-height: 105px; }
-.form-submit { background: var(--blue); color: #fff; border: none; padding: 13px; border-radius: 10px; font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; cursor: pointer; transition: all 0.25s; box-shadow: 0 7px 22px rgba(26,86,255,0.32); width: 100%; }
-.form-submit:hover { background: var(--blue2); transform: translateY(-1px); }
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:55px;align-items:start;}
+.contact-info h3{font-family:'Syne',sans-serif;font-size:1.22rem;font-weight:700;margin-bottom:10px;}
+.contact-info>p{color:var(--gray);line-height:1.7;margin-bottom:24px;}
+.cm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.cm{display:flex;align-items:center;gap:10px;color:#fff;padding:11px 13px;border-radius:11px;font-weight:600;font-size:.8rem;transition:all .25s;box-shadow:0 3px 12px rgba(0,0,0,.1);}
+.cm:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(0,0,0,.15);}
+.cm i{font-size:1.02rem;flex-shrink:0;}
+.cm span{font-size:.76rem;line-height:1.3;}
+.cm-phone{background:linear-gradient(135deg,#1a56ff,#0d3acc);}
+.cm-wa{background:linear-gradient(135deg,#25d366,#128c50);}
+.cm-tg{background:linear-gradient(135deg,#229ed9,#1a7ab0);}
+.cm-email{background:linear-gradient(135deg,#f59e0b,#d97706);}
+.cm-insta{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.cm-fb{background:linear-gradient(135deg,#1877f2,#0d5cbf);}
+.cform{display:flex;flex-direction:column;gap:13px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-size:.79rem;font-weight:600;color:var(--navy);}
+.cform input,.cform select,.cform textarea{padding:11px 13px;border:1.5px solid #e5e7eb;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--navy);outline:none;transition:border-color .2s;width:100%;}
+.cform input:focus,.cform select:focus,.cform textarea:focus{border-color:var(--blue);}
+.cform textarea{resize:vertical;min-height:105px;}
+.form-submit{background:var(--blue);color:#fff;border:none;padding:13px;border-radius:10px;font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700;cursor:pointer;transition:all .25s;box-shadow:0 7px 22px rgba(26,86,255,.32);width:100%;}
+.form-submit:hover{background:var(--blue2);transform:translateY(-1px);}
 
 /* ===================== FOOTER ===================== */
-footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6% 26px; }
-.footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 26px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.09); margin-bottom: 22px; }
-.ft-brand > p { font-size: 0.84rem; margin-top: 9px; max-width: 220px; line-height: 1.6; }
-.ft-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; }
-.ft-logo span { color: var(--blue); }
-.ft-tel { display: flex; align-items: center; gap: 7px; margin-top: 11px; color: rgba(255,255,255,0.76); font-size: 0.87rem; font-weight: 600; }
-.ft-tel:hover { color: var(--green); }
-.ft-tel i { color: var(--green); }
-.socials { display: flex; gap: 9px; margin-top: 13px; }
-.soc { width: 34px; height: 34px; background: rgba(255,255,255,0.07); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.9rem; transition: background 0.2s; }
-.soc:hover { background: var(--blue); }
-.soc.soc-tg:hover { background: var(--tg); }
-.ft-col h4 { font-family: 'Syne', sans-serif; color: #fff; font-weight: 700; margin-bottom: 11px; font-size: 0.86rem; }
-.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.ft-col ul a { color: rgba(255,255,255,0.56); font-size: 0.83rem; transition: color 0.2s; }
-.ft-col ul a:hover { color: #fff; }
-.footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 9px; font-size: 0.79rem; }
-.footer-bottom a { color: rgba(255,255,255,0.43); }
-.footer-bottom a:hover { color: #fff; }
+footer{background:var(--navy);color:rgba(255,255,255,.66);padding:48px 6% 26px;}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.09);margin-bottom:22px;}
+.ft-brand>p{font-size:.84rem;margin-top:9px;max-width:220px;line-height:1.6;}
+.ft-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#fff;}
+.ft-logo span{color:var(--blue);}
+.ft-tel{display:flex;align-items:center;gap:7px;margin-top:11px;color:rgba(255,255,255,.76);font-size:.87rem;font-weight:600;}
+.ft-tel:hover{color:var(--green);}
+.ft-tel i{color:var(--green);}
+.socials{display:flex;gap:9px;margin-top:13px;}
+.soc{width:34px;height:34px;background:rgba(255,255,255,.07);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;transition:background .2s;}
+.soc:hover{background:var(--blue);}
+.soc.soc-tg:hover{background:var(--tg);}
+.ft-col h4{font-family:'Syne',sans-serif;color:#fff;font-weight:700;margin-bottom:11px;font-size:.86rem;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.ft-col ul a{color:rgba(255,255,255,.56);font-size:.83rem;transition:color .2s;}
+.ft-col ul a:hover{color:#fff;}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:9px;font-size:.79rem;}
+.footer-bottom a{color:rgba(255,255,255,.43);}
+.footer-bottom a:hover{color:#fff;}
 
-/* ===================== FLOATING BUTTONS ===================== */
-.floats { position: fixed; right: 18px; bottom: 26px; display: flex; flex-direction: column; gap: 9px; z-index: 999; }
-.fl { display: flex; align-items: center; gap: 8px; padding: 10px 14px 10px 11px; border-radius: 50px; color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); transition: all 0.3s; overflow: hidden; max-width: 50px; white-space: nowrap; }
-.fl:hover { max-width: 185px; transform: translateY(-2px); }
-.fl i { font-size: 1.15rem; flex-shrink: 0; width: 22px; text-align: center; }
-.fl span { font-size: 0.78rem; font-weight: 600; opacity: 0; transition: opacity 0.15s 0.07s; }
-.fl:hover span { opacity: 1; }
-.fl-wa    { background: #25d366; }
-.fl-tg    { background: var(--tg); }
-.fl-call  { background: var(--blue); }
-.fl-insta { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-
-.scroll-top { position: fixed; right: 18px; bottom: 224px; width: 38px; height: 38px; border-radius: 50%; background: var(--navy); border: 1.5px solid rgba(26,86,255,0.4); color: #fff; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; z-index: 998; opacity: 0; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.scroll-top.show { opacity: 1; }
-.scroll-top:hover { background: var(--blue); transform: translateY(-2px); }
+/* ===================== FLOATS ===================== */
+.floats{position:fixed;right:18px;bottom:26px;display:flex;flex-direction:column;gap:9px;z-index:999;}
+.fl{display:flex;align-items:center;gap:8px;padding:10px 14px 10px 11px;border-radius:50px;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all .3s;overflow:hidden;max-width:50px;white-space:nowrap;}
+.fl:hover{max-width:185px;transform:translateY(-2px);}
+.fl i{font-size:1.15rem;flex-shrink:0;width:22px;text-align:center;}
+.fl span{font-size:.78rem;font-weight:600;opacity:0;transition:opacity .15s .07s;}
+.fl:hover span{opacity:1;}
+.fl-wa{background:#25d366;}.fl-tg{background:var(--tg);}.fl-call{background:var(--blue);}
+.fl-insta{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.scroll-top{position:fixed;right:18px;bottom:224px;width:38px;height:38px;border-radius:50%;background:var(--navy);border:1.5px solid rgba(26,86,255,.4);color:#fff;font-size:.82rem;display:flex;align-items:center;justify-content:center;z-index:998;opacity:0;transition:all .3s;box-shadow:0 4px 12px rgba(0,0,0,.2);}
+.scroll-top.show{opacity:1;}
+.scroll-top:hover{background:var(--blue);transform:translateY(-2px);}
 
 /* ===================== RESPONSIVE ===================== */
-@media (max-width: 960px) {
-  .car-stage { height: 545px; }
-  .pcard.pos-left1  { transform: translateX(calc(-50% - 215px)) translateY(-52%) translateZ(-80px) rotateY(13deg) scale(0.82); opacity: 0.4; }
-  .pcard.pos-right1 { transform: translateX(calc(-50% + 215px)) translateY(-52%) translateZ(-80px) rotateY(-13deg) scale(0.82); opacity: 0.4; }
-  .pcard.pos-left2, .pcard.pos-right2 { opacity: 0; pointer-events: none; }
-  .feat-panel { grid-template-columns: 1fr; }
-  .fp-right { align-items: flex-start; }
-  .port-stats { grid-template-columns: repeat(2, 1fr); }
-  .swipe-hint { display: block; }
-  .why-grid, .contact-grid { grid-template-columns: 1fr; }
+@media(max-width:960px){
+  .why-grid,.contact-grid{grid-template-columns:1fr;}
+  .port-stats{grid-template-columns:repeat(2,1fr);}
 }
-@media (max-width: 768px) {
-  .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #fff; padding: 18px 6%; box-shadow: 0 10px 30px rgba(0,0,0,0.09); gap: 14px; }
-  .nav-menu.open { display: flex; }
-  .nav-cta { display: none !important; }
-  .hamburger { display: flex; }
-  .hero { padding: 110px 6% 60px; }
-  .hero-stats { gap: 22px; }
-  .cta-box { padding: 42px 22px; }
-  .cta-outer { padding: 0 4% 60px; }
-  .frow { grid-template-columns: 1fr; }
-  .cm-grid { grid-template-columns: 1fr; }
-  .footer-top { flex-direction: column; }
-  .fl span { display: none; }
-  .fl { max-width: 50px !important; }
+@media(max-width:768px){
+  .nav-menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:18px 6%;box-shadow:0 10px 30px rgba(0,0,0,.09);gap:14px;}
+  .nav-menu.open{display:flex;}
+  .nav-cta{display:none!important;}
+  .hamburger{display:flex;}
+  .hero{padding:100px 5% 60px;}
+  .hero-stats{gap:18px;}
+  .cta-box{padding:36px 20px;}
+  .cta-outer{padding:0 4% 60px;}
+  .frow{grid-template-columns:1fr;}
+  .cm-grid{grid-template-columns:1fr;}
+  .footer-top{flex-direction:column;}
+  .fl span{display:none;}.fl{max-width:50px!important;}
+  .proj-grid{grid-template-columns:1fr;}
+  .speech-bubble{font-size:.88rem;padding:11px 18px;}
 }
-@media (max-width: 600px) {
-  .pcard { width: 295px; }
-  .pcard.pos-left1, .pcard.pos-right1 { opacity: 0; pointer-events: none; }
-  .pricing-grid { grid-template-columns: 1fr; }
+@media(max-width:480px){
+  .hero h1{font-size:1.9rem;}
+  .hero-btns .btn-ghost{display:none;}
+  .port-stats{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid{grid-template-columns:1fr;}
+  .port-bottom{flex-direction:column;align-items:center;}
+  .filter-row .ftab{padding:7px 12px;font-size:.74rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- ==================== NAVBAR ==================== -->
+<!-- ===================== WELCOME MASCOT ===================== -->
+<div id="mascot-overlay">
+  <div class="mascot-wrap">
+
+    <!-- Speech bubble -->
+    <div class="speech-bubble">
+      🙏 <span class="namaste-text">Namaste! Swagat Hai Aapka!</span>
+      <span class="sub-text">TK Web Solutions mein aapka haardik swagat hai ✨</span>
+    </div>
+
+    <!-- SVG Cartoon Character — Namaskar pose -->
+    <div class="mascot-svg-wrap">
+      <svg width="180" height="260" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body floating animation wrapper -->
+        <g class="mascot-body-anim">
+
+          <!-- Shadow -->
+          <ellipse cx="90" cy="252" rx="44" ry="8" fill="rgba(0,229,255,0.15)"/>
+
+          <!-- Legs -->
+          <rect x="68" y="190" width="18" height="52" rx="9" fill="#1a56ff"/>
+          <rect x="94" y="190" width="18" height="52" rx="9" fill="#1a56ff"/>
+          <!-- Shoes -->
+          <ellipse cx="77" cy="244" rx="14" ry="8" fill="#060d1f"/>
+          <ellipse cx="103" cy="244" rx="14" ry="8" fill="#060d1f"/>
+
+          <!-- Body / Shirt -->
+          <rect x="55" y="120" width="70" height="78" rx="18" fill="#1a56ff"/>
+          <!-- Shirt collar -->
+          <path d="M80 120 L90 135 L100 120" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- TK logo on shirt -->
+          <rect x="75" y="148" width="30" height="18" rx="5" fill="rgba(255,255,255,0.15)"/>
+          <text x="90" y="161" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" font-weight="800" fill="white">TK</text>
+
+          <!-- LEFT ARM — Namaskar -->
+          <g class="hand-l">
+            <rect x="28" y="126" width="30" height="14" rx="7" fill="#1a56ff" transform="rotate(40 43 133)"/>
+            <!-- Left hand (prayer position) -->
+            <ellipse cx="22" cy="155" rx="13" ry="11" fill="#fdbcb4" transform="rotate(40 22 155)"/>
+            <line x1="16" y1="152" x2="20" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="20" y1="151" x2="22" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="24" y1="151" x2="24" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="27" y1="152" x2="25" y2="163" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- RIGHT ARM — Namaskar -->
+          <g class="hand-r">
+            <rect x="122" y="126" width="30" height="14" rx="7" fill="#1a56ff" transform="rotate(-40 137 133)"/>
+            <!-- Right hand (prayer position) -->
+            <ellipse cx="158" cy="155" rx="13" ry="11" fill="#fdbcb4" transform="rotate(-40 158 155)"/>
+            <line x1="152" y1="152" x2="154" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="156" y1="151" x2="156" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="160" y1="151" x2="158" y2="164" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="163" y1="152" x2="160" y2="163" stroke="#e8a090" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Neck -->
+          <rect x="82" y="108" width="16" height="16" rx="6" fill="#fdbcb4"/>
+
+          <!-- Head -->
+          <ellipse cx="90" cy="88" rx="34" ry="36" fill="#fdbcb4"/>
+
+          <!-- Hair -->
+          <path d="M56 80 Q60 44 90 42 Q120 44 124 80 Q118 60 90 58 Q62 60 56 80Z" fill="#2d1b00"/>
+          <!-- Hair highlight -->
+          <path d="M70 56 Q80 50 95 54" stroke="#5a3000" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- Eyes — happy squint -->
+          <path d="M74 84 Q78 80 82 84" stroke="#2d1b00" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M98 84 Q102 80 106 84" stroke="#2d1b00" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+          <!-- Rosy cheeks -->
+          <ellipse cx="74" cy="94" rx="8" ry="5" fill="rgba(255,150,130,0.35)"/>
+          <ellipse cx="106" cy="94" rx="8" ry="5" fill="rgba(255,150,130,0.35)"/>
+
+          <!-- Big smile -->
+          <path d="M76 100 Q90 114 104 100" stroke="#cc5533" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Teeth -->
+          <path d="M80 101 Q90 112 100 101" fill="white"/>
+
+          <!-- Earrings (small decor) -->
+          <circle cx="56" cy="90" r="3" fill="#ffd700"/>
+          <circle cx="124" cy="90" r="3" fill="#ffd700"/>
+
+          <!-- Bindi -->
+          <circle cx="90" cy="72" r="3.5" fill="#dc2626"/>
+
+        </g>
+
+        <!-- Sparkles around head -->
+        <g>
+          <text x="30" y="55" font-size="14" fill="#ffd700" style="animation:sparkle 1.5s .2s infinite alternate;">✨</text>
+          <text x="138" y="50" font-size="12" fill="#00e5ff" style="animation:sparkle 1.5s .6s infinite alternate;">⭐</text>
+          <text x="20" y="100" font-size="10" fill="#ffd700" style="animation:sparkle 1.5s .4s infinite alternate;">✦</text>
+          <text x="145" y="95" font-size="10" fill="#ffd700" style="animation:sparkle 1.5s .8s infinite alternate;">✦</text>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+  <button class="mascot-skip" onclick="closeMascot()">
+    <i class="fas fa-arrow-right"></i> Visit Website
+  </button>
+</div>
+
+<style>
+@keyframes sparkle{from{opacity:.4;transform:scale(.8) rotate(-10deg);}to{opacity:1;transform:scale(1.1) rotate(10deg);}}
+</style>
+
+<!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <a href="#" class="logo">
     <img src="logo.png" alt="TK Web Solutions Logo">
@@ -467,7 +548,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
   </button>
 </header>
 
-<!-- ==================== HERO ==================== -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-glow1"></div>
   <div class="hero-glow2"></div>
@@ -478,7 +559,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
     <div class="hero-btns">
       <a href="#contact" class="btn-blue"><i class="fas fa-rocket"></i> Get Free Demo</a>
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
-      <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost"><i class="fab fa-telegram"></i> Telegram Bot</a>
+      <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost"><i class="fab fa-telegram"></i> Telegram</a>
     </div>
     <div class="hero-stats">
       <div><div class="stat-num" id="cnt1">0<em>+</em></div><div class="stat-lbl">Projects Delivered</div></div>
@@ -488,100 +569,43 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
   </div>
 </section>
 
-<!-- ==================== SERVICES ==================== -->
+<!-- SERVICES -->
 <section class="section-light" id="services">
   <div class="tag">Our Services</div>
   <div class="sec-h">What We Build For You</div>
   <p class="sec-sub">Professional websites tailored for your needs — fast, modern, and mobile-friendly.</p>
   <div class="svc-grid reveal">
-    <div class="svc-card">
-      <div class="svc-ico">🎓</div>
-      <h3>Coaching Website</h3>
-      <p>Batch info, results, fee structure, and inquiry forms — everything a coaching institute needs to attract students online.</p>
-      <div class="svc-price">Starting ₹7,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Coaching%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="svc-card">
-      <div class="svc-ico">🏫</div>
-      <h3>School Website</h3>
-      <p>Admission forms, gallery, events calendar, staff pages — a complete website for your school.</p>
-      <div class="svc-price">Starting ₹9,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20School%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="svc-card">
-      <div class="svc-ico">🏢</div>
-      <h3>Business Website</h3>
-      <p>Grow your local business online with a professional website that attracts more customers 24/7.</p>
-      <div class="svc-price">Starting ₹8,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Business%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="svc-card">
-      <div class="svc-ico">🏛️</div>
-      <h3>E-Mitra / Govt Services</h3>
-      <p>Professional websites for E-Mitra centers, CSC, and all government service providers in Rajasthan.</p>
-      <div class="svc-price">Starting ₹6,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20an%20E-Mitra%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="svc-card">
-      <div class="svc-ico">👤</div>
-      <h3>Portfolio Website</h3>
-      <p>Showcase your work, skills, and achievements with a stunning personal portfolio website.</p>
-      <div class="svc-price">Starting ₹5,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Portfolio%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
-    <div class="svc-card">
-      <div class="svc-ico">🔄</div>
-      <h3>Website Redesign</h3>
-      <p>Old website looking outdated? We'll give it a complete modern makeover that converts visitors.</p>
-      <div class="svc-price">Starting ₹6,000</div>
-      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Website%20Redesign." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a>
-    </div>
+    <div class="svc-card"><div class="svc-ico">🎓</div><h3>Coaching Website</h3><p>Batch info, results, fee structure, and inquiry forms — attract students online.</p><div class="svc-price">Starting ₹7,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Coaching%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-ico">🏫</div><h3>School Website</h3><p>Admission forms, gallery, events calendar, staff pages — complete school website.</p><div class="svc-price">Starting ₹9,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20School%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-ico">🏢</div><h3>Business Website</h3><p>Grow your local business online — attract more customers 24/7.</p><div class="svc-price">Starting ₹8,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Business%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-ico">🏛️</div><h3>E-Mitra / Govt Services</h3><p>Professional websites for E-Mitra centers, CSC, and government service providers.</p><div class="svc-price">Starting ₹6,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20an%20E-Mitra%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-ico">👤</div><h3>Portfolio Website</h3><p>Showcase your work, skills, and achievements with a stunning portfolio.</p><div class="svc-price">Starting ₹5,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Portfolio%20Website." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-ico">🔄</div><h3>Website Redesign</h3><p>Old website? Complete modern makeover that converts visitors to customers.</p><div class="svc-price">Starting ₹6,000</div><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Website%20Redesign." target="_blank" class="svc-link">Get This <i class="fas fa-arrow-right"></i></a></div>
   </div>
 </section>
 
-<!-- ==================== WHY US ==================== -->
+<!-- WHY US -->
 <section class="section" id="why">
   <div class="why-grid reveal">
     <div>
       <div class="tag">Why Choose Us</div>
       <div class="sec-h">We Deliver Results, Not Just Websites</div>
-      <p class="sec-sub">Local Bharatpur team that understands your market and builds websites that actually work for you.</p>
+      <p class="sec-sub">Local Bharatpur team that understands your market and builds websites that actually work.</p>
       <ul class="why-list">
-        <li class="why-item">
-          <div class="why-icon"><i class="fas fa-bolt"></i></div>
-          <div><h4>Fast Delivery in 5–7 Days</h4><p>Your website ready in just 5–7 days. No delays, no excuses.</p></div>
-        </li>
-        <li class="why-item">
-          <div class="why-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div><h4>100% Mobile Friendly</h4><p>Looks perfect on every phone, tablet, and computer screen.</p></div>
-        </li>
-        <li class="why-item">
-          <div class="why-icon"><i class="fas fa-headset"></i></div>
-          <div><h4>30 Days Free Support</h4><p>Free support for 30 days after delivery — always there for you.</p></div>
-        </li>
-        <li class="why-item">
-          <div class="why-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div><h4>Based in Bharatpur</h4><p>Local team — meet us in person anytime for face-to-face support!</p></div>
-        </li>
+        <li class="why-item"><div class="why-icon"><i class="fas fa-bolt"></i></div><div><h4>Fast Delivery in 5–7 Days</h4><p>Your website ready in just 5–7 days. No delays, no excuses.</p></div></li>
+        <li class="why-item"><div class="why-icon"><i class="fas fa-mobile-alt"></i></div><div><h4>100% Mobile Friendly</h4><p>Looks perfect on every phone, tablet, and computer screen.</p></div></li>
+        <li class="why-item"><div class="why-icon"><i class="fas fa-headset"></i></div><div><h4>30 Days Free Support</h4><p>Free support for 30 days after delivery — always there for you.</p></div></li>
+        <li class="why-item"><div class="why-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Based in Bharatpur</h4><p>Local team — meet us in person anytime for face-to-face support!</p></div></li>
       </ul>
     </div>
     <div class="why-box">
       <div class="why-box-title">✅ Every Website Includes:</div>
       <ul class="check-list">
-        <li>Mobile Responsive Design</li>
-        <li>Contact / Inquiry Form</li>
-        <li>WhatsApp Button Integration</li>
-        <li>Google Maps Integration</li>
-        <li>Social Media Links</li>
-        <li>SEO Friendly Structure</li>
-        <li>Fast Loading Speed</li>
-        <li>Free Domain Setup Guidance</li>
-        <li>30 Days Free Support</li>
+        <li>Mobile Responsive Design</li><li>Contact / Inquiry Form</li><li>WhatsApp Button Integration</li>
+        <li>Google Maps Integration</li><li>Social Media Links</li><li>SEO Friendly Structure</li>
+        <li>Fast Loading Speed</li><li>Free Domain Setup Guidance</li><li>30 Days Free Support</li>
       </ul>
-      <div class="price-strip">
-        <p>Starting at just</p>
-        <strong>₹7,000 onwards</strong>
-      </div>
+      <div class="price-strip"><p>Starting at just</p><strong>₹7,000 onwards</strong></div>
       <div class="why-ctas">
         <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20free%20demo." target="_blank" class="why-btn why-btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a href="tel:+919079368240" class="why-btn why-btn-call"><i class="fas fa-phone"></i> Call Now</a>
@@ -590,22 +614,19 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
   </div>
 </section>
 
-<!-- ==================== PORTFOLIO (3D CAROUSEL) ==================== -->
+<!-- PORTFOLIO — ANIMATED CARDS -->
 <div class="portfolio-section" id="portfolio">
   <div class="port-grid-bg"></div>
   <div class="port-glow1"></div>
   <div class="port-glow2"></div>
-
   <div class="port-inner">
 
-    <!-- Header -->
     <div class="port-head reveal">
       <div class="tag-dark">Our Work</div>
       <div class="port-title">Live Demo <span>Projects</span></div>
-      <p class="port-sub">Real websites we have built — click any project to see it live!</p>
+      <p class="port-sub">Real websites we have built — hover to see magic, click to view live!</p>
     </div>
 
-    <!-- Stats -->
     <div class="port-stats reveal">
       <div class="ps-card"><div class="ps-num">10+</div><div class="ps-lbl">Projects Delivered</div></div>
       <div class="ps-card"><div class="ps-num">4</div><div class="ps-lbl">Live Demo Sites</div></div>
@@ -613,324 +634,219 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
       <div class="ps-card"><div class="ps-num">5–7</div><div class="ps-lbl">Days Delivery</div></div>
     </div>
 
-    <!-- Filter -->
-    <div class="filter-row">
-      <button class="ftab active" onclick="filterCards('all', this)"><i class="fas fa-th"></i> All</button>
-      <button class="ftab" onclick="filterCards('coaching', this)"><i class="fas fa-graduation-cap"></i> Coaching</button>
-      <button class="ftab" onclick="filterCards('ngo', this)"><i class="fas fa-hands-helping"></i> NGO</button>
-      <button class="ftab" onclick="filterCards('business', this)"><i class="fas fa-briefcase"></i> Business</button>
-      <button class="ftab" onclick="filterCards('emitra', this)"><i class="fas fa-landmark"></i> E-Mitra</button>
+    <div class="filter-row" id="filterRow">
+      <button class="ftab active" onclick="filterProj('all',this)"><i class="fas fa-th"></i> All</button>
+      <button class="ftab" onclick="filterProj('coaching',this)"><i class="fas fa-graduation-cap"></i> Coaching</button>
+      <button class="ftab" onclick="filterProj('ngo',this)"><i class="fas fa-hands-helping"></i> NGO</button>
+      <button class="ftab" onclick="filterProj('business',this)"><i class="fas fa-briefcase"></i> Business</button>
+      <button class="ftab" onclick="filterProj('emitra',this)"><i class="fas fa-landmark"></i> E-Mitra</button>
     </div>
 
-    <!-- 3D Carousel -->
-    <div class="car-stage" id="carStage">
-      <div class="car-track" id="carTrack">
+    <!-- ===== ANIMATED PROJECT CARDS ===== -->
+    <div class="proj-grid" id="projGrid">
 
-        <!-- Card 1: Achievers Point -->
-        <div class="pcard" data-idx="0" data-cat="coaching" onclick="goCard(0)">
-          <div class="pc-mockup" style="background: linear-gradient(135deg, #0a1628 0%, #1565c0 100%);">
-            <div class="pc-cat-badge" style="background:rgba(245,158,11,0.93);color:#0a0a0a;">⭐ Featured</div>
-            <div class="browser-mock">
-              <div class="brow-top">
-                <div class="brow-dot" style="background:#ff5f57"></div>
-                <div class="brow-dot" style="background:#febc2e"></div>
-                <div class="brow-dot" style="background:#28c840"></div>
-                <div class="brow-urlbar"><span>tarunsinghgunesh.github.io/ACHIEVERSPOINT</span></div>
+      <!-- Card 1: Achievers Point -->
+      <div class="proj-card" data-cat="coaching">
+        <div class="proj-float-label">✨ LIVE WEBSITE</div>
+        <div class="proj-mock" style="background:linear-gradient(135deg,#0a1628,#1565c0);">
+          <div class="proj-mock-glow" style="background:radial-gradient(circle at 50% 50%,rgba(0,100,255,.4),transparent);"></div>
+          <div class="proj-cat-pill" style="background:rgba(245,158,11,.9);color:#0a0a0a;">⭐ Featured</div>
+          <div class="brow-win">
+            <div class="brow-bar">
+              <div class="brow-dot" style="background:#ff5f57;"></div>
+              <div class="brow-dot" style="background:#febc2e;"></div>
+              <div class="brow-dot" style="background:#28c840;"></div>
+              <div class="brow-addr"><span>tarunsinghgunesh.github.io/ACHIEVERSPOINT</span></div>
+            </div>
+            <div class="brow-content" style="background:linear-gradient(135deg,#e3f0ff,#c8dcff);">
+              <div class="brow-site-name" style="color:#1565c0;">ACHIEVERS POINT<br>IIT-JEE | NEET | NDA</div>
+              <div class="brow-lines">
+                <div class="brow-line" style="background:#1565c0;width:100%;"></div>
+                <div class="brow-line" style="background:#90caf9;width:70%;"></div>
+                <div class="brow-line" style="background:#90caf9;width:45%;"></div>
               </div>
-              <div class="brow-screen" style="background:linear-gradient(135deg,#e3f0ff,#c8dcff);">
-                <div class="brow-title" style="color:#1565c0;">ACHIEVERS POINT<br>IIT-JEE | NEET | NDA</div>
-                <div class="brow-bars">
-                  <div class="brow-bar" style="background:#1565c0;width:100%;"></div>
-                  <div class="brow-bar" style="background:#90caf9;width:70%;"></div>
-                  <div class="brow-bar" style="background:#90caf9;width:48%;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pc-body">
-            <div class="pc-client"><i class="fas fa-user-tie"></i> Achievers Point Coaching</div>
-            <div class="pc-name">Coaching Institute Website</div>
-            <div class="pc-desc">Full coaching website with courses, results, fee structure, faculty and inquiry form.</div>
-            <div class="tech-tags">
-              <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Responsive</span>
-            </div>
-            <div class="ba-strip">
-              <div class="ba-box"><div class="ba-label red">Before</div><div class="ba-text">No online presence</div></div>
-              <div class="ba-box"><div class="ba-label grn">After</div><div class="ba-text">Professional website live</div></div>
-            </div>
-            <div class="pc-footer">
-              <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="pc-demo-btn"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20coaching%20website." target="_blank" class="pc-wa-btn"><i class="fab fa-whatsapp"></i></a>
             </div>
           </div>
         </div>
-
-        <!-- Card 2: Ek Pahal India -->
-        <div class="pcard" data-idx="1" data-cat="ngo" onclick="goCard(1)">
-          <div class="pc-mockup" style="background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%);">
-            <div class="pc-cat-badge" style="background:rgba(34,197,94,0.9);color:#062010;">🌱 NGO</div>
-            <div class="browser-mock">
-              <div class="brow-top">
-                <div class="brow-dot" style="background:#ff5f57"></div>
-                <div class="brow-dot" style="background:#febc2e"></div>
-                <div class="brow-dot" style="background:#28c840"></div>
-                <div class="brow-urlbar"><span>tarunsinghgunesh.github.io/ekpahalindia</span></div>
-              </div>
-              <div class="brow-screen" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
-                <div class="brow-title" style="color:#2e7d32;">EK PAHAL INDIA<br>Supporting Students</div>
-                <div class="brow-bars">
-                  <div class="brow-bar" style="background:#2e7d32;width:100%;"></div>
-                  <div class="brow-bar" style="background:#81c784;width:58%;"></div>
-                </div>
-              </div>
-            </div>
+        <div class="proj-body">
+          <div class="proj-type" style="color:#f59e0b;">🎓 Coaching Institute</div>
+          <div class="proj-name">Achievers Point Coaching</div>
+          <div class="proj-desc">Full coaching website — courses, results, fee structure, faculty & inquiry form.</div>
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">Responsive</span></div>
+          <div class="ba-row">
+            <div class="ba-cell"><div class="ba-lbl r">Before</div><div class="ba-val">No online presence</div></div>
+            <div class="ba-cell"><div class="ba-lbl g">After</div><div class="ba-val">Professional website live</div></div>
           </div>
-          <div class="pc-body">
-            <div class="pc-client"><i class="fas fa-user-tie"></i> Ek Pahal India — NGO</div>
-            <div class="pc-name">NGO / Non-Profit Website</div>
-            <div class="pc-desc">Complete NGO website with mission, volunteer form, donation section and impact stats.</div>
-            <div class="tech-tags">
-              <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Forms</span>
-            </div>
-            <div class="ba-strip">
-              <div class="ba-box"><div class="ba-label red">Before</div><div class="ba-text">Only social media</div></div>
-              <div class="ba-box"><div class="ba-label grn">After</div><div class="ba-text">Full NGO platform</div></div>
-            </div>
-            <div class="pc-footer">
-              <a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank" class="pc-demo-btn"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20an%20NGO%20website." target="_blank" class="pc-wa-btn"><i class="fab fa-whatsapp"></i></a>
-            </div>
+          <div class="proj-cta">
+            <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="proj-live"><i class="fas fa-external-link-alt"></i><span>View Live Demo</span></a>
+            <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20coaching%20website%20like%20Achievers%20Point." target="_blank" class="proj-wa"><i class="fab fa-whatsapp"></i></a>
           </div>
-        </div>
-
-        <!-- Card 3: Support Small Business -->
-        <div class="pcard" data-idx="2" data-cat="business" onclick="goCard(2)">
-          <div class="pc-mockup" style="background: linear-gradient(135deg, #0f172a 0%, #e65100 100%);">
-            <div class="pc-cat-badge" style="background:rgba(249,115,22,0.92);color:#fff;">🏪 Business</div>
-            <div class="browser-mock">
-              <div class="brow-top">
-                <div class="brow-dot" style="background:#ff5f57"></div>
-                <div class="brow-dot" style="background:#febc2e"></div>
-                <div class="brow-dot" style="background:#28c840"></div>
-                <div class="brow-urlbar"><span>tarunsinghgunesh.github.io/support_small_bussiness</span></div>
-              </div>
-              <div class="brow-screen" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
-                <div class="brow-title" style="color:#e65100;">SUPPORT SMALL<br>BUSINESS</div>
-                <div class="brow-bars">
-                  <div class="brow-bar" style="background:#e65100;width:100%;"></div>
-                  <div class="brow-bar" style="background:#ffb74d;width:66%;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pc-body">
-            <div class="pc-client"><i class="fas fa-user-tie"></i> Support Small Business</div>
-            <div class="pc-name">Local Business Website</div>
-            <div class="pc-desc">Business listing and digital promotion platform for Bharatpur local businesses.</div>
-            <div class="tech-tags">
-              <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">SEO</span>
-            </div>
-            <div class="ba-strip">
-              <div class="ba-box"><div class="ba-label red">Before</div><div class="ba-text">No digital presence</div></div>
-              <div class="ba-box"><div class="ba-label grn">After</div><div class="ba-text">Online and discoverable</div></div>
-            </div>
-            <div class="pc-footer">
-              <a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank" class="pc-demo-btn"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20business%20website." target="_blank" class="pc-wa-btn"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Dhruv E-Mitra -->
-        <div class="pcard" data-idx="3" data-cat="emitra" onclick="goCard(3)">
-          <div class="pc-mockup" style="background: linear-gradient(135deg, #1a237e 0%, #0277bd 100%);">
-            <div class="pc-cat-badge" style="background:rgba(99,179,237,0.9);color:#0a1628;">🏛️ E-Mitra</div>
-            <div class="browser-mock">
-              <div class="brow-top">
-                <div class="brow-dot" style="background:#ff5f57"></div>
-                <div class="brow-dot" style="background:#febc2e"></div>
-                <div class="brow-dot" style="background:#28c840"></div>
-                <div class="brow-urlbar"><span>tarunsinghgunesh.github.io/dhruvemitrasevakendra</span></div>
-              </div>
-              <div class="brow-screen" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);">
-                <div class="brow-title" style="color:#1a237e;">DHRUV E-MITRA<br>SEVA KENDRA</div>
-                <div class="brow-bars">
-                  <div class="brow-bar" style="background:#1a237e;width:100%;"></div>
-                  <div class="brow-bar" style="background:#9fa8da;width:61%;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="pc-body">
-            <div class="pc-client"><i class="fas fa-user-tie"></i> Dhruv E-Mitra Seva Kendra</div>
-            <div class="pc-name">E-Mitra / Govt Services Website</div>
-            <div class="pc-desc">E-Mitra center website with services, UPI QR payment, status checker and contact form.</div>
-            <div class="tech-tags">
-              <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">JavaScript</span><span class="tech-tag">UPI Pay</span>
-            </div>
-            <div class="ba-strip">
-              <div class="ba-box"><div class="ba-label red">Before</div><div class="ba-text">Walk-in customers only</div></div>
-              <div class="ba-box"><div class="ba-label grn">After</div><div class="ba-text">Online service portal</div></div>
-            </div>
-            <div class="pc-footer">
-              <a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank" class="pc-demo-btn"><i class="fas fa-external-link-alt"></i> View Live</a>
-              <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20an%20E-Mitra%20website." target="_blank" class="pc-wa-btn"><i class="fab fa-whatsapp"></i></a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /car-track -->
-    </div><!-- /car-stage -->
-
-    <!-- Controls -->
-    <div class="car-controls">
-      <button class="car-btn" onclick="prevCard()" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-      <div class="car-dots" id="carDots"></div>
-      <span class="car-count" id="carCount">1 / 4</span>
-      <button class="car-btn" onclick="nextCard()" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <p class="swipe-hint"><i class="fas fa-hand-pointer"></i> Swipe or tap side cards to navigate</p>
-
-    <!-- Featured Panel -->
-    <div class="feat-panel" id="featPanel">
-      <div>
-        <div class="fp-cat" id="fpCat" style="color:var(--accent);">COACHING INSTITUTE</div>
-        <div class="fp-name" id="fpName">Achievers Point Coaching Website</div>
-        <div class="fp-desc" id="fpDesc">A modern, fully responsive coaching institute website with courses, results, fee structure, WhatsApp integration, Google Maps, and online inquiry form — everything needed to attract students online.</div>
-        <div class="fp-feats">
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> Mobile Responsive</span>
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> WhatsApp Button</span>
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> Contact Form</span>
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> Google Maps</span>
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> Fast Loading</span>
-          <span class="fp-feat"><i class="fas fa-check-circle"></i> SEO Friendly</span>
         </div>
       </div>
-      <div class="fp-right">
-        <div>
-          <div class="fp-price" id="fpPrice">₹7,000</div>
-          <div class="fp-price-note">Starting price for this type</div>
+
+      <!-- Card 2: Ek Pahal India -->
+      <div class="proj-card" data-cat="ngo">
+        <div class="proj-float-label">✨ LIVE WEBSITE</div>
+        <div class="proj-mock" style="background:linear-gradient(135deg,#1b5e20,#388e3c);">
+          <div class="proj-mock-glow" style="background:radial-gradient(circle at 50% 50%,rgba(0,200,80,.35),transparent);"></div>
+          <div class="proj-cat-pill" style="background:rgba(34,197,94,.9);color:#062010;">🌱 NGO</div>
+          <div class="brow-win">
+            <div class="brow-bar">
+              <div class="brow-dot" style="background:#ff5f57;"></div>
+              <div class="brow-dot" style="background:#febc2e;"></div>
+              <div class="brow-dot" style="background:#28c840;"></div>
+              <div class="brow-addr"><span>tarunsinghgunesh.github.io/ekpahalindia</span></div>
+            </div>
+            <div class="brow-content" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
+              <div class="brow-site-name" style="color:#2e7d32;">EK PAHAL INDIA<br>Supporting Students</div>
+              <div class="brow-lines">
+                <div class="brow-line" style="background:#2e7d32;width:100%;"></div>
+                <div class="brow-line" style="background:#81c784;width:60%;"></div>
+                <div class="brow-line" style="background:#a5d6a7;width:40%;"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20website." target="_blank" class="fp-action" id="fpAction"><i class="fab fa-whatsapp"></i> Get This Website</a>
+        <div class="proj-body">
+          <div class="proj-type" style="color:#22c55e;">🌱 NGO / Non-Profit</div>
+          <div class="proj-name">Ek Pahal India NGO</div>
+          <div class="proj-desc">NGO website with mission, volunteer form, donation section & impact stats.</div>
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">Forms</span></div>
+          <div class="ba-row">
+            <div class="ba-cell"><div class="ba-lbl r">Before</div><div class="ba-val">Only social media</div></div>
+            <div class="ba-cell"><div class="ba-lbl g">After</div><div class="ba-val">Full NGO platform</div></div>
+          </div>
+          <div class="proj-cta">
+            <a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank" class="proj-live"><i class="fas fa-external-link-alt"></i><span>View Live Demo</span></a>
+            <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20an%20NGO%20website." target="_blank" class="proj-wa"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- Card 3: Support Small Business -->
+      <div class="proj-card" data-cat="business">
+        <div class="proj-float-label">✨ LIVE WEBSITE</div>
+        <div class="proj-mock" style="background:linear-gradient(135deg,#0f172a,#e65100);">
+          <div class="proj-mock-glow" style="background:radial-gradient(circle at 50% 50%,rgba(255,100,0,.35),transparent);"></div>
+          <div class="proj-cat-pill" style="background:rgba(249,115,22,.92);color:#fff;">🏪 Business</div>
+          <div class="brow-win">
+            <div class="brow-bar">
+              <div class="brow-dot" style="background:#ff5f57;"></div>
+              <div class="brow-dot" style="background:#febc2e;"></div>
+              <div class="brow-dot" style="background:#28c840;"></div>
+              <div class="brow-addr"><span>tarunsinghgunesh.github.io/support_small_bussiness</span></div>
+            </div>
+            <div class="brow-content" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+              <div class="brow-site-name" style="color:#e65100;">SUPPORT SMALL<br>BUSINESS — Bharatpur</div>
+              <div class="brow-lines">
+                <div class="brow-line" style="background:#e65100;width:100%;"></div>
+                <div class="brow-line" style="background:#ffb74d;width:65%;"></div>
+                <div class="brow-line" style="background:#ffd54f;width:42%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type" style="color:#f97316;">🏪 Local Business</div>
+          <div class="proj-name">Support Small Business</div>
+          <div class="proj-desc">Business promotion platform for local Bharatpur businesses — services & WhatsApp.</div>
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">SEO</span></div>
+          <div class="ba-row">
+            <div class="ba-cell"><div class="ba-lbl r">Before</div><div class="ba-val">No digital presence</div></div>
+            <div class="ba-cell"><div class="ba-lbl g">After</div><div class="ba-val">Online & discoverable</div></div>
+          </div>
+          <div class="proj-cta">
+            <a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank" class="proj-live"><i class="fas fa-external-link-alt"></i><span>View Live Demo</span></a>
+            <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20a%20business%20website." target="_blank" class="proj-wa"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Dhruv E-Mitra -->
+      <div class="proj-card" data-cat="emitra">
+        <div class="proj-float-label">✨ LIVE WEBSITE</div>
+        <div class="proj-mock" style="background:linear-gradient(135deg,#1a237e,#0277bd);">
+          <div class="proj-mock-glow" style="background:radial-gradient(circle at 50% 50%,rgba(0,100,220,.4),transparent);"></div>
+          <div class="proj-cat-pill" style="background:rgba(99,179,237,.9);color:#0a1628;">🏛️ E-Mitra</div>
+          <div class="brow-win">
+            <div class="brow-bar">
+              <div class="brow-dot" style="background:#ff5f57;"></div>
+              <div class="brow-dot" style="background:#febc2e;"></div>
+              <div class="brow-dot" style="background:#28c840;"></div>
+              <div class="brow-addr"><span>tarunsinghgunesh.github.io/dhruvemitrasevakendra</span></div>
+            </div>
+            <div class="brow-content" style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);">
+              <div class="brow-site-name" style="color:#1a237e;">DHRUV E-MITRA<br>SEVA KENDRA</div>
+              <div class="brow-lines">
+                <div class="brow-line" style="background:#1a237e;width:100%;"></div>
+                <div class="brow-line" style="background:#9fa8da;width:62%;"></div>
+                <div class="brow-line" style="background:#c5cae9;width:40%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type" style="color:#63b3ed;">🏛️ E-Mitra / Govt</div>
+          <div class="proj-name">Dhruv E-Mitra Seva Kendra</div>
+          <div class="proj-desc">E-Mitra website with services, UPI QR payment, status checker & Google Maps.</div>
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">UPI Pay</span></div>
+          <div class="ba-row">
+            <div class="ba-cell"><div class="ba-lbl r">Before</div><div class="ba-val">Walk-in only</div></div>
+            <div class="ba-cell"><div class="ba-lbl g">After</div><div class="ba-val">Online service portal</div></div>
+          </div>
+          <div class="proj-cta">
+            <a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank" class="proj-live"><i class="fas fa-external-link-alt"></i><span>View Live Demo</span></a>
+            <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20an%20E-Mitra%20website." target="_blank" class="proj-wa"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /proj-grid -->
 
     <!-- Pricing -->
-    <div class="port-pricing-head">
-      <div class="port-pricing-title">Our Packages</div>
-      <div class="port-pricing-sub">Transparent pricing — no hidden charges</div>
-    </div>
+    <div class="port-pricing-head"><div class="port-pricing-title">Our Packages</div><div class="port-pricing-sub">Transparent pricing — no hidden charges</div></div>
     <div class="pricing-grid">
-      <div class="pc-card">
-        <div class="pc-icon">🌐</div>
-        <div class="pc-name">Starter Website</div>
-        <div class="pc-tagline">Small business and portfolios</div>
-        <div class="pc-price">₹7,000</div>
-        <div class="pc-price-note">One-time payment</div>
-        <ul class="pc-list">
-          <li>Professional Design</li>
-          <li>Mobile Responsive</li>
-          <li>Contact Form</li>
-          <li>WhatsApp Integration</li>
-          <li>Google Maps</li>
-          <li>30 Days Support</li>
-        </ul>
-        <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Starter%20package." target="_blank" class="pc-btn pc-btn-b">Get Started</a>
-      </div>
-      <div class="pc-card featured">
-        <div class="pc-badge">⭐ Most Popular</div>
-        <div class="pc-icon">🏢</div>
-        <div class="pc-name">Business Website</div>
-        <div class="pc-tagline">Coaching, schools and businesses</div>
-        <div class="pc-price gold">₹10,000–₹15,000</div>
-        <div class="pc-price-note">Based on requirements</div>
-        <ul class="pc-list">
-          <li>Everything in Starter</li>
-          <li>Multi-page Website</li>
-          <li>Advanced Design</li>
-          <li>Image Gallery</li>
-          <li>Performance Optimization</li>
-          <li>Technical Support</li>
-          <li>SEO Friendly Structure</li>
-        </ul>
-        <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Business%20package." target="_blank" class="pc-btn pc-btn-g">Get This Package</a>
-      </div>
-      <div class="pc-card">
-        <div class="pc-icon">⚙️</div>
-        <div class="pc-name">Custom and App</div>
-        <div class="pc-tagline">Advanced features and app development</div>
-        <div class="pc-price">Custom</div>
-        <div class="pc-price-note">Pricing based on features</div>
-        <ul class="pc-list">
-          <li>Everything in Business</li>
-          <li>Basic App Development</li>
-          <li>Custom Functionality</li>
-          <li>Website Maintenance</li>
-          <li>Long-term Support</li>
-          <li>Priority Delivery</li>
-        </ul>
-        <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Custom%20project." target="_blank" class="pc-btn pc-btn-o">Discuss Project</a>
-      </div>
+      <div class="pc-card"><div class="pc-icon">🌐</div><div class="pc-name">Starter Website</div><div class="pc-tagline">Small business and portfolios</div><div class="pc-price">₹7,000</div><div class="pc-price-note">One-time payment</div><ul class="pc-list"><li>Professional Design</li><li>Mobile Responsive</li><li>Contact Form</li><li>WhatsApp Integration</li><li>Google Maps</li><li>30 Days Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Starter%20package." target="_blank" class="pc-btn pc-btn-b">Get Started</a></div>
+      <div class="pc-card featured"><div class="pc-badge">⭐ Most Popular</div><div class="pc-icon">🏢</div><div class="pc-name">Business Website</div><div class="pc-tagline">Coaching, schools and businesses</div><div class="pc-price gold">₹10,000–₹15,000</div><div class="pc-price-note">Based on requirements</div><ul class="pc-list"><li>Everything in Starter</li><li>Multi-page Website</li><li>Advanced Design</li><li>Image Gallery</li><li>Performance Optimization</li><li>Technical Support</li><li>SEO Friendly</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Business%20package." target="_blank" class="pc-btn pc-btn-g">Get This Package</a></div>
+      <div class="pc-card"><div class="pc-icon">⚙️</div><div class="pc-name">Custom and App</div><div class="pc-tagline">Advanced features and app development</div><div class="pc-price">Custom</div><div class="pc-price-note">Pricing based on features</div><ul class="pc-list"><li>Everything in Business</li><li>Basic App Development</li><li>Custom Functionality</li><li>Website Maintenance</li><li>Long-term Support</li><li>Priority Delivery</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Custom%20project." target="_blank" class="pc-btn pc-btn-o">Discuss Project</a></div>
     </div>
 
-    <!-- Portfolio Bottom CTA -->
     <div class="port-bottom">
-      <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" class="port-doc-btn"><i class="fas fa-rocket"></i> View 3D Portfolio</a>
+      <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" class="port-3d-btn"><i class="fas fa-cube"></i> View Full 3D Portfolio ✨</a>
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="port-wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp for Free Demo</a>
     </div>
 
-  </div><!-- /port-inner -->
-</div><!-- /portfolio-section -->
+  </div>
+</div>
 
-<!-- ==================== PROCESS ==================== -->
+<!-- PROCESS -->
 <section class="section-light" id="process">
-  <div style="text-align:center; max-width:520px; margin: 0 auto 48px;">
+  <div style="text-align:center;max-width:520px;margin:0 auto 48px;">
     <div class="tag">How It Works</div>
     <div class="sec-h">Simple 4-Step Process</div>
-    <p class="sec-sub" style="margin: 0 auto;">From idea to live website — quick and hassle-free for you.</p>
+    <p class="sec-sub" style="margin:0 auto;">From idea to live website — quick and hassle-free for you.</p>
   </div>
   <div class="process-grid reveal">
-    <div class="proc-card"><div class="proc-num">1</div><h3>Free Consultation</h3><p>Tell us your requirements. We will suggest the best solution — completely free!</p></div>
-    <div class="proc-card"><div class="proc-num">2</div><h3>Design and Review</h3><p>We design your website and share a preview for your feedback before building.</p></div>
-    <div class="proc-card"><div class="proc-num">3</div><h3>Development</h3><p>Full website built — mobile-friendly, fast loading, all features included.</p></div>
-    <div class="proc-card"><div class="proc-num">4</div><h3>Go Live!</h3><p>Live in 5–7 days. Plus 30 days of free support included after delivery!</p></div>
+    <div class="proc-card"><div class="proc-num">1</div><h3>Free Consultation</h3><p>Tell us your requirements. We will suggest the best solution — free!</p></div>
+    <div class="proc-card"><div class="proc-num">2</div><h3>Design and Review</h3><p>We design your website and share a preview for your feedback.</p></div>
+    <div class="proc-card"><div class="proc-num">3</div><h3>Development</h3><p>Full website built — mobile-friendly, fast loading, all features.</p></div>
+    <div class="proc-card"><div class="proc-num">4</div><h3>Go Live!</h3><p>Live in 5–7 days. Plus 30 days of free support after delivery!</p></div>
   </div>
 </section>
 
-<!-- ==================== TESTIMONIALS ==================== -->
+<!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
   <div class="tag">Testimonials</div>
   <div class="sec-h">What Our Clients Say</div>
   <p class="sec-sub">Real feedback from real clients in Bharatpur.</p>
   <div class="testi-grid reveal">
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"TK Web Solutions ne hamare coaching institute ke liye bahut hi professional website banai. Students aur parents dono ko bahut pasand aayi. Highly recommend!"</p>
-      <div class="reviewer">
-        <div class="r-av">R</div>
-        <div><div class="r-name">Ramesh Sir</div><div class="r-role">Achievers Point Coaching, Bharatpur</div></div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Bahut fast delivery thi aur website bilkul waisi bani jaise maine sochi thi. Price bhi reasonable hai aur support bhi bahut achha mila after delivery."</p>
-      <div class="reviewer">
-        <div class="r-av">S</div>
-        <div><div class="r-name">Suresh Kumar</div><div class="r-role">Local Business Owner, Bharatpur</div></div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="stars">★★★★★</div>
-      <p>"Mobile pe perfectly chalti hai website. Bahut saare naye customers aane lage hain website dekhne ke baad. Best investment for my business!"</p>
-      <div class="reviewer">
-        <div class="r-av">P</div>
-        <div><div class="r-name">Priya Sharma</div><div class="r-role">Business Owner, Bharatpur</div></div>
-      </div>
-    </div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"TK Web Solutions ne hamare coaching institute ke liye bahut hi professional website banai. Students aur parents dono ko bahut pasand aayi. Highly recommend!"</p><div class="reviewer"><div class="r-av">R</div><div><div class="r-name">Ramesh Sir</div><div class="r-role">Achievers Point Coaching, Bharatpur</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Bahut fast delivery thi aur website bilkul waisi bani jaise maine sochi thi. Price bhi reasonable hai aur support bhi bahut achha mila."</p><div class="reviewer"><div class="r-av">S</div><div><div class="r-name">Suresh Kumar</div><div class="r-role">Local Business Owner, Bharatpur</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p>"Mobile pe perfectly chalti hai website. Bahut saare naye customers aane lage hain website dekhne ke baad. Best investment!"</p><div class="reviewer"><div class="r-av">P</div><div><div class="r-name">Priya Sharma</div><div class="r-role">Business Owner, Bharatpur</div></div></div></div>
   </div>
 </section>
 
-<!-- ==================== CTA BANNER ==================== -->
+<!-- CTA -->
 <div class="cta-outer">
   <div class="cta-box">
     <h2>Ready to Grow Your Business Online?</h2>
@@ -943,14 +859,14 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
   </div>
 </div>
 
-<!-- ==================== CONTACT ==================== -->
+<!-- CONTACT -->
 <section class="section" id="contact">
   <div class="tag">Contact Us</div>
   <div class="sec-h">Let's Talk!</div>
   <div class="contact-grid reveal">
     <div class="contact-info">
       <h3>Get In Touch</h3>
-      <p>Have questions or want a free demo? Reach out via any channel — we respond fast!</p>
+      <p>Have questions or want a free demo? Reach out — we respond fast!</p>
       <div class="cm-grid">
         <a href="tel:+919079368240" class="cm cm-phone"><i class="fas fa-phone-alt"></i><span>Call Us<br>+91 90793 68240</span></a>
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="cm cm-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp<br>+91 90793 68240</span></a>
@@ -968,26 +884,17 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
           <div class="fg"><label>Phone Number *</label><input type="tel" name="phone" placeholder="+91 98765 43210" required></div>
         </div>
         <div class="fg"><label>Business / Institute Name</label><input type="text" name="business" placeholder="Your Coaching / School / Business Name"></div>
-        <div class="fg">
-          <label>What Do You Need?</label>
-          <select name="service">
-            <option value="">Select a Service</option>
-            <option>Coaching Website — Rs.7,000</option>
-            <option>School Website — Rs.9,000</option>
-            <option>Business Website — Rs.8,000</option>
-            <option>E-Mitra Website — Rs.6,000</option>
-            <option>Portfolio Website — Rs.5,000</option>
-            <option>Website Redesign — Rs.6,000</option>
-          </select>
+        <div class="fg"><label>What Do You Need?</label>
+          <select name="service"><option value="">Select a Service</option><option>Coaching Website — Rs.7,000</option><option>School Website — Rs.9,000</option><option>Business Website — Rs.8,000</option><option>E-Mitra Website — Rs.6,000</option><option>Portfolio Website — Rs.5,000</option><option>Website Redesign — Rs.6,000</option></select>
         </div>
-        <div class="fg"><label>Tell Us More</label><textarea name="message" placeholder="Describe your requirements, features needed, budget..."></textarea></div>
+        <div class="fg"><label>Tell Us More</label><textarea name="message" placeholder="Describe your requirements..."></textarea></div>
         <button type="submit" class="form-submit" id="formBtn">Send Message 🚀</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ==================== FOOTER ==================== -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="ft-brand">
@@ -1002,38 +909,9 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
         <a href="mailto:tkwebsolution1301@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
-    <div class="ft-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Coaching Website</a></li>
-        <li><a href="#services">School Website</a></li>
-        <li><a href="#services">Business Website</a></li>
-        <li><a href="#services">E-Mitra Website</a></li>
-        <li><a href="#services">Portfolio Website</a></li>
-        <li><a href="#services">Website Redesign</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>Live Demos</h4>
-      <ul>
-        <li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li>
-        <li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li>
-        <li><a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank">Support Small Business</a></li>
-        <li><a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank">Dhruv E-Mitra Kendra</a></li>
-        <li><a href="https://docs.google.com/document/d/1pGqLNrjx_UxmZg6DS3QXISMuJOwayGNm_OhToZH3vW8/edit" target="_blank">Full Portfolio Document</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#why">Why Choose Us</a></li>
-        <li><a href="#process">How It Works</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="https://t.me/TKwebsolutions_bot" target="_blank">Telegram Bot</a></li>
-        <li><a href="tel:+919079368240">Call: 9079368240</a></li>
-      </ul>
-    </div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">Portfolio Website</a></li><li><a href="#services">Website Redesign</a></li></ul></div>
+    <div class="ft-col"><h4>Live Demos</h4><ul><li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li><li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li><li><a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank">Support Small Business</a></li><li><a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank">Dhruv E-Mitra Kendra</a></li><li><a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank">✨ 3D Portfolio</a></li></ul></div>
+    <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#why">Why Choose Us</a></li><li><a href="#process">How It Works</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Contact Us</a></li><li><a href="https://t.me/TKwebsolutions_bot" target="_blank">Telegram Bot</a></li><li><a href="tel:+919079368240">Call: 9079368240</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 TK Web Solutions. All rights reserved.</p>
@@ -1041,7 +919,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
   </div>
 </footer>
 
-<!-- ==================== FLOATING BUTTONS ==================== -->
+<!-- FLOATING BUTTONS -->
 <div class="floats">
   <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="fl fl-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp Us</span></a>
   <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="fl fl-tg"><i class="fab fa-telegram"></i><span>Telegram Bot</span></a>
@@ -1050,236 +928,82 @@ footer { background: var(--navy); color: rgba(255,255,255,0.66); padding: 48px 6
 </div>
 <a href="#home" class="scroll-top" id="scrollTop"><i class="fas fa-chevron-up"></i></a>
 
-<!-- ==================== SCRIPTS ==================== -->
 <script>
-/* --- Navbar scroll --- */
-window.addEventListener('scroll', function () {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
-  document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+/* ===== MASCOT ===== */
+function closeMascot(){
+  var el=document.getElementById('mascot-overlay');
+  el.classList.add('slide-out');
+  setTimeout(function(){el.style.display='none';},800);
+}
+// Auto close after 4.5 seconds
+setTimeout(closeMascot, 4500);
+
+/* ===== NAVBAR ===== */
+window.addEventListener('scroll',function(){
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30);
+  document.getElementById('scrollTop').classList.toggle('show',window.scrollY>400);
+});
+document.querySelectorAll('.nav-menu a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navMenu').classList.remove('open');});
 });
 
-/* --- Close menu on link click --- */
-document.querySelectorAll('.nav-menu a').forEach(function (a) {
-  a.addEventListener('click', function () {
-    document.getElementById('navMenu').classList.remove('open');
+/* ===== REVEAL ===== */
+var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+/* ===== ANIMATED CARDS — scroll reveal ===== */
+var cardObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('card-visible');});
+},{threshold:.12});
+document.querySelectorAll('.proj-card').forEach(function(c){cardObs.observe(c);});
+
+/* ===== 3D TILT on proj cards ===== */
+document.querySelectorAll('.proj-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect();
+    var x=(e.clientX-r.left-r.width/2)/(r.width/2);
+    var y=(e.clientY-r.top-r.height/2)/(r.height/2);
+    card.style.transform='translateY(-14px) rotateX('+(-y*8)+'deg) rotateY('+(x*8)+'deg) scale(1.02)';
+    card.style.boxShadow='0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(0,229,255,.15),'+(x*20)+'px '+(y*20)+'px 40px rgba(26,86,255,.1)';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='';
+    card.style.boxShadow='';
   });
 });
 
-/* --- Scroll reveal --- */
-var ro = new IntersectionObserver(function (entries) {
-  entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(function (el) { ro.observe(el); });
-
-/* --- Hero counters --- */
-function runCounter(id, target, suffix) {
-  var c = 0;
-  var el = document.getElementById(id);
-  if (!el) return;
-  var t = setInterval(function () {
-    c = Math.min(c + Math.ceil(target / 50), target);
-    el.innerHTML = c + '<em style="color:var(--blue);font-style:normal;">' + suffix + '</em>';
-    if (c >= target) clearInterval(t);
-  }, 30);
-}
-var counted = false;
-var heroStats = document.querySelector('.hero-stats');
-if (heroStats) {
-  new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting && !counted) {
-      counted = true;
-      runCounter('cnt1', 10, '+');
-      runCounter('cnt2', 100, '%');
-    }
-  }, { threshold: 0.5 }).observe(heroStats);
-}
-
-/* ===================== 3D CAROUSEL ===================== */
-var projects = [
-  {
-    idx: 0, cat: 'coaching',
-    cat_lbl: 'COACHING INSTITUTE', cat_color: '#f59e0b',
-    name: 'Achievers Point Coaching Website',
-    desc: 'Modern, fully responsive coaching website with courses, results, fee structure, WhatsApp, Google Maps, and inquiry form — everything a coaching institute needs to attract students.',
-    price: '₹7,000',
-    wa: 'Hi!%20I%20want%20a%20coaching%20website%20like%20Achievers%20Point.'
-  },
-  {
-    idx: 1, cat: 'ngo',
-    cat_lbl: 'NGO / NON-PROFIT', cat_color: '#22c55e',
-    name: 'Ek Pahal India — NGO Website',
-    desc: 'Complete NGO website with mission, initiatives, volunteer registration, donation section, impact numbers, and student success stories — perfect for non-profits.',
-    price: '₹8,000',
-    wa: 'Hi!%20I%20want%20an%20NGO%20website%20like%20Ek%20Pahal%20India.'
-  },
-  {
-    idx: 2, cat: 'business',
-    cat_lbl: 'LOCAL BUSINESS', cat_color: '#f97316',
-    name: 'Support Small Business Website',
-    desc: 'Business listing and digital promotion platform helping local Bharatpur businesses grow online with service pages, contact form, and WhatsApp integration.',
-    price: '₹8,000',
-    wa: 'Hi!%20I%20want%20a%20local%20business%20website.'
-  },
-  {
-    idx: 3, cat: 'emitra',
-    cat_lbl: 'E-MITRA / GOVT SERVICES', cat_color: '#63b3ed',
-    name: 'Dhruv E-Mitra Seva Kendra Website',
-    desc: 'Professional E-Mitra center website with services list, UPI QR payment, application status checker, Google Maps — ideal for all E-Mitra and CSC centers.',
-    price: '₹6,000',
-    wa: 'Hi!%20I%20want%20an%20E-Mitra%20website.'
-  }
-];
-
-var curCard = 0;
-var visible = [0, 1, 2, 3];
-var autoTimer = null;
-
-function buildDots() {
-  var dc = document.getElementById('carDots');
-  if (!dc) return;
-  dc.innerHTML = '';
-  visible.forEach(function (_, vi) {
-    var d = document.createElement('div');
-    d.className = 'cdot' + (vi === 0 ? ' active' : '');
-    (function (v) { d.onclick = function () { goCard(visible[v]); }; })(vi);
-    dc.appendChild(d);
-  });
-}
-
-function updateUI() {
-  /* Position cards */
-  document.querySelectorAll('.pcard').forEach(function (card) {
-    var ci = parseInt(card.dataset.idx);
-    var vi = visible.indexOf(ci);
-    card.className = 'pcard';
-    if (vi === -1) { card.classList.add('pos-hide'); return; }
-    var rel = vi - visible.indexOf(curCard);
-    if (rel === 0)       card.classList.add('pos-center');
-    else if (rel === -1) card.classList.add('pos-left1');
-    else if (rel === -2) card.classList.add('pos-left2');
-    else if (rel === 1)  card.classList.add('pos-right1');
-    else if (rel === 2)  card.classList.add('pos-right2');
-    else                 card.classList.add('pos-hide');
-  });
-  /* Dots */
-  var curVi = visible.indexOf(curCard);
-  document.querySelectorAll('.cdot').forEach(function (d, i) {
-    d.classList.toggle('active', i === curVi);
-  });
-  /* Counter */
-  var cc = document.getElementById('carCount');
-  if (cc) cc.textContent = (curVi + 1) + ' / ' + visible.length;
-  /* Panel */
-  var p = null;
-  for (var i = 0; i < projects.length; i++) {
-    if (projects[i].idx === curCard) { p = projects[i]; break; }
-  }
-  if (!p) return;
-  var fc = document.getElementById('fpCat');
-  var fn = document.getElementById('fpName');
-  var fd = document.getElementById('fpDesc');
-  var fp = document.getElementById('fpPrice');
-  var fa = document.getElementById('fpAction');
-  if (fc) { fc.textContent = p.cat_lbl; fc.style.color = p.cat_color; }
-  if (fn) fn.textContent = p.name;
-  if (fd) fd.textContent = p.desc;
-  if (fp) fp.textContent = p.price;
-  if (fa) fa.href = 'https://wa.me/919079368240?text=' + p.wa;
-}
-
-function goCard(idx) {
-  if (visible.indexOf(idx) === -1) return;
-  curCard = idx;
-  updateUI();
-  resetAuto();
-}
-function nextCard() {
-  var vi = visible.indexOf(curCard);
-  curCard = visible[(vi + 1) % visible.length];
-  updateUI(); resetAuto();
-}
-function prevCard() {
-  var vi = visible.indexOf(curCard);
-  curCard = visible[(vi - 1 + visible.length) % visible.length];
-  updateUI(); resetAuto();
-}
-function filterCards(cat, btn) {
-  document.querySelectorAll('.ftab').forEach(function (t) { t.classList.remove('active'); });
+/* ===== FILTER ===== */
+function filterProj(cat,btn){
+  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
   btn.classList.add('active');
-  visible = (cat === 'all') ? [0, 1, 2, 3] : projects.filter(function (p) { return p.cat === cat; }).map(function (p) { return p.idx; });
-  curCard = visible[0];
-  buildDots();
-  updateUI();
-}
-function startAuto() { autoTimer = setInterval(nextCard, 4200); }
-function resetAuto() { clearInterval(autoTimer); startAuto(); }
-
-/* Mouse tilt on center card */
-document.addEventListener('mousemove', function (e) {
-  var center = document.querySelector('.pcard.pos-center');
-  if (!center) return;
-  var r = center.getBoundingClientRect();
-  var inside = e.clientX > r.left && e.clientX < r.right && e.clientY > r.top && e.clientY < r.bottom;
-  if (inside) {
-    var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-    var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-    center.style.transform = 'translateX(-50%) translateY(-52%) translateZ(0) scale(1) rotateY(' + (dx * 8) + 'deg) rotateX(' + (-dy * 6) + 'deg)';
-  } else {
-    center.style.transform = '';
-  }
-});
-
-/* Touch swipe */
-var swipeX = 0;
-var stage = document.getElementById('carStage');
-if (stage) {
-  stage.addEventListener('touchstart', function (e) { swipeX = e.touches[0].clientX; }, { passive: true });
-  stage.addEventListener('touchend', function (e) {
-    var dx = e.changedTouches[0].clientX - swipeX;
-    if (Math.abs(dx) > 48) { if (dx < 0) nextCard(); else prevCard(); }
+  document.querySelectorAll('.proj-card').forEach(function(card){
+    var show=cat==='all'||card.dataset.cat===cat;
+    card.style.display=show?'':'none';
+    if(show){
+      card.classList.remove('card-visible');
+      setTimeout(function(){card.classList.add('card-visible');},50);
+    }
   });
 }
 
-/* Keyboard arrows */
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'ArrowRight') nextCard();
-  if (e.key === 'ArrowLeft') prevCard();
-});
-
-/* --- Contact form --- */
-function sendForm(e) {
-  e.preventDefault();
-  var btn = document.getElementById('formBtn');
-  var fd = new FormData(e.target);
-  var name = fd.get('name') || '';
-  var phone = fd.get('phone') || '';
-  var biz = fd.get('business') || '';
-  var svc = fd.get('service') || '';
-  var msg = fd.get('message') || '';
-  var text = 'Hi%20TK%20Web%20Solutions!%0A%0ANew%20Enquiry%3A%0AName%3A%20' + encodeURIComponent(name)
-    + '%0APhone%3A%20' + encodeURIComponent(phone)
-    + '%0ABusiness%3A%20' + encodeURIComponent(biz)
-    + '%0AService%3A%20' + encodeURIComponent(svc)
-    + '%0AMessage%3A%20' + encodeURIComponent(msg);
-  window.open('https://wa.me/919079368240?text=' + text, '_blank');
-  btn.textContent = '✅ Sent! We will contact you soon.';
-  btn.style.background = '#16a34a';
-  btn.disabled = true;
-  setTimeout(function () {
-    btn.textContent = 'Send Message 🚀';
-    btn.style.background = '';
-    btn.disabled = false;
-    e.target.reset();
-  }, 4000);
+/* ===== COUNTERS ===== */
+function runCounter(id,target,suffix){
+  var c=0,el=document.getElementById(id);if(!el)return;
+  var t=setInterval(function(){c=Math.min(c+Math.ceil(target/50),target);el.innerHTML=c+'<em style="color:var(--blue);font-style:normal;">'+suffix+'</em>';if(c>=target)clearInterval(t);},30);
 }
+var counted=false,heroStats=document.querySelector('.hero-stats');
+if(heroStats){new IntersectionObserver(function(entries){if(entries[0].isIntersecting&&!counted){counted=true;runCounter('cnt1',10,'+');runCounter('cnt2',100,'%');}},{threshold:.5}).observe(heroStats);}
 
-/* --- Init --- */
-buildDots();
-updateUI();
-startAuto();
+/* ===== CONTACT FORM ===== */
+function sendForm(e){
+  e.preventDefault();
+  var btn=document.getElementById('formBtn'),fd=new FormData(e.target);
+  var name=fd.get('name')||'',phone=fd.get('phone')||'',biz=fd.get('business')||'',svc=fd.get('service')||'',msg=fd.get('message')||'';
+  var text='Hi%20TK%20Web%20Solutions!%0A%0ANew%20Enquiry%3A%0AName%3A%20'+encodeURIComponent(name)+'%0APhone%3A%20'+encodeURIComponent(phone)+'%0ABusiness%3A%20'+encodeURIComponent(biz)+'%0AService%3A%20'+encodeURIComponent(svc)+'%0AMessage%3A%20'+encodeURIComponent(msg);
+  window.open('https://wa.me/919079368240?text='+text,'_blank');
+  btn.textContent='✅ Sent! We will contact you soon.';btn.style.background='#16a34a';btn.disabled=true;
+  setTimeout(function(){btn.textContent='Send Message 🚀';btn.style.background='';btn.disabled=false;e.target.reset();},4000);
+}
 </script>
 </body>
 </html>
-
-
-
