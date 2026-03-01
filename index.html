@@ -77,35 +77,15 @@ img{max-width:100%;}
   transition:all .2s;
 }
 .guide-x:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
-.guide-av{
-  width:52px;height:52px;border-radius:50%;
-  background:linear-gradient(135deg,var(--blue),#4f46e5);
-  border:3px solid #fff;
-  box-shadow:0 6px 22px rgba(26,86,255,.42);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.45rem;cursor:pointer;
-  transition:transform .2s;position:relative;
-  animation:gAvPulse 3s ease-in-out infinite;
-}
-.guide-av:hover{transform:scale(1.1);}
-@keyframes gAvPulse{
-  0%,100%{box-shadow:0 6px 22px rgba(26,86,255,.42);}
-  50%{box-shadow:0 6px 32px rgba(26,86,255,.7),0 0 0 8px rgba(26,86,255,.08);}
-}
-.guide-av-dot{
-  position:absolute;top:0;right:0;
-  width:14px;height:14px;background:#22c55e;
-  border-radius:50%;border:2px solid #fff;
-  animation:pulseDot 1.5s infinite;
-}
-.guide-av-lbl{
-  position:absolute;right:60px;top:50%;transform:translateY(-50%);
-  background:var(--navy);color:#fff;font-size:.67rem;font-weight:700;
-  padding:4px 10px;border-radius:20px;white-space:nowrap;
-  opacity:0;transition:opacity .2s;pointer-events:none;
-}
-.guide-av:hover .guide-av-lbl{opacity:1;}
+.guide-char{width:72px;height:72px;cursor:pointer;filter:drop-shadow(0 8px 20px rgba(26,86,255,.4));animation:charFloat 3s ease-in-out infinite;transition:transform .2s;}
+.guide-char:hover{transform:scale(1.1);}
+@keyframes charFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+.guide-char-wrap{position:relative;display:inline-flex;}
+.guide-online{position:absolute;top:6px;right:6px;width:13px;height:13px;background:#22c55e;border-radius:50%;border:2px solid #fff;animation:pulseDot 1.5s infinite;z-index:3;}
+.guide-char-lbl{position:absolute;right:80px;top:50%;transform:translateY(-50%);background:var(--navy);color:#fff;font-size:.67rem;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
+.guide-char-wrap:hover .guide-char-lbl{opacity:1;}
 .guide-wrap.hidden .guide-bubble{display:none;}
+.guide-bubble::after{content:'';position:absolute;bottom:-10px;right:22px;border:5px solid transparent;border-top-color:#fff;border-bottom:none;}
 
 /* ══════════════════════════════════════════
    NAVBAR
@@ -341,6 +321,7 @@ img{max-width:100%;}
 .proj-card:nth-child(2){transition-delay:.15s;}
 .proj-card:nth-child(3){transition-delay:.25s;}
 .proj-card:nth-child(4){transition-delay:.35s;}
+.proj-card:nth-child(5){transition-delay:.45s;}
 
 /* ─── THE KEY: All decorative overlays have pointer-events:none ─── */
 .proj-card::before{
@@ -690,10 +671,51 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
       <button class="guide-link" onclick="guideNav('#contact')"><i class="fab fa-whatsapp"></i> Free Demo Lo!</button>
     </div>
   </div>
-  <div class="guide-av" id="guideAv" onclick="guideToggle()">
-    🤖
-    <div class="guide-av-dot"></div>
-    <span class="guide-av-lbl">TK Guide</span>
+  <div class="guide-char-wrap">
+    <svg class="guide-char" onclick="guideToggle()" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="55" r="22" fill="url(#bg1)" opacity=".9"/>
+      <rect x="22" y="50" width="36" height="26" rx="10" fill="url(#sh1)"/>
+      <text x="40" y="65" font-family="Arial Black,sans-serif" font-size="8" font-weight="900" fill="white" text-anchor="middle">TK</text>
+      <rect x="35" y="44" width="10" height="9" rx="4" fill="#FBBF8A"/>
+      <ellipse cx="40" cy="36" rx="17" ry="18" fill="#FBBF8A"/>
+      <ellipse cx="23" cy="37" rx="3.5" ry="4.5" fill="#F59E6A"/>
+      <ellipse cx="57" cy="37" rx="3.5" ry="4.5" fill="#F59E6A"/>
+      <rect x="23" y="18" width="34" height="13" rx="7" fill="#1E293B"/>
+      <ellipse cx="40" cy="18" rx="17" ry="7" fill="#1E293B"/>
+      <ellipse cx="33" cy="36" rx="5" ry="5.5" fill="white"/>
+      <ellipse cx="47" cy="36" rx="5" ry="5.5" fill="white"/>
+      <ellipse cx="33.5" cy="36.5" rx="3" ry="3.5" fill="#1A56FF"/>
+      <ellipse cx="47.5" cy="36.5" rx="3" ry="3.5" fill="#1A56FF"/>
+      <circle cx="34" cy="37" r="1.4" fill="#0A0A0A"/>
+      <circle cx="48" cy="37" r="1.4" fill="#0A0A0A"/>
+      <circle cx="35" cy="35.5" r=".7" fill="white" opacity=".9"/>
+      <circle cx="49" cy="35.5" r=".7" fill="white" opacity=".9"/>
+      <rect x="27.5" y="31.5" width="11" height="10" rx="3.5" fill="none" stroke="#1E293B" stroke-width="1.8"/>
+      <rect x="41.5" y="31.5" width="11" height="10" rx="3.5" fill="none" stroke="#1E293B" stroke-width="1.8"/>
+      <line x1="38.5" y1="36" x2="41.5" y2="36" stroke="#1E293B" stroke-width="1.8"/>
+      <line x1="27.5" y1="36" x2="24" y2="36" stroke="#1E293B" stroke-width="1.8"/>
+      <line x1="52.5" y1="36" x2="56" y2="36" stroke="#1E293B" stroke-width="1.8"/>
+      <path d="M29 30 Q33 28.5 37 30" stroke="#1E293B" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      <path d="M43 30 Q47 28.5 51 30" stroke="#1E293B" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      <path d="M34 44 Q40 48.5 46 44" stroke="#C97A5A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <ellipse cx="27" cy="43" rx="4" ry="2.5" fill="#F87171" opacity=".3"/>
+      <ellipse cx="53" cy="43" rx="4" ry="2.5" fill="#F87171" opacity=".3"/>
+      <path d="M22 55 C15 58 13 64 16 68" stroke="#FBBF8A" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M58 55 C65 52 68 58 64 62" stroke="#FBBF8A" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <circle cx="63" cy="63" r="4" fill="#FBBF8A"/>
+      <defs>
+        <linearGradient id="bg1" x1="18" y1="33" x2="62" y2="77" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#1A56FF" stop-opacity=".15"/>
+          <stop offset="1" stop-color="#4F46E5" stop-opacity=".08"/>
+        </linearGradient>
+        <linearGradient id="sh1" x1="22" y1="50" x2="58" y2="76" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#1A56FF"/>
+          <stop offset="1" stop-color="#4F46E5"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="guide-online"></div>
+    <span class="guide-char-lbl">TK Guide &#128075;</span>
   </div>
 </div>
 
@@ -822,6 +844,14 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
       <div class="svc-price">Starting ₹6,000</div>
       <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Website%20Redesign." target="_blank" class="svc-link">Order Karo <i class="fas fa-arrow-right"></i></a>
     </div>
+    <div class="svc-card">
+      <div class="svc-shine"></div>
+      <div class="svc-ico-wrap">🛒</div>
+      <h3>E-Commerce Website</h3>
+      <p>Apna products online becho — product catalog, WhatsApp ordering, categories, Google Maps sab kuch.</p>
+      <div class="svc-price">Starting ₹9,000</div>
+      <a href="https://wa.me/919079368240?text=Hi!%20I%20need%20an%20E-Commerce%20Website." target="_blank" class="svc-link">Order Karo <i class="fas fa-arrow-right"></i></a>
+    </div>
   </div>
 </section>
 
@@ -872,7 +902,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 
     <div class="port-stats reveal">
       <div class="ps-card"><div class="ps-num">10+</div><div class="ps-lbl">Projects Done</div></div>
-      <div class="ps-card"><div class="ps-num">4</div><div class="ps-lbl">Live Demo Sites</div></div>
+      <div class="ps-card"><div class="ps-num">5</div><div class="ps-lbl">Live Demo Sites</div></div>
       <div class="ps-card"><div class="ps-num">100%</div><div class="ps-lbl">Satisfaction</div></div>
       <div class="ps-card"><div class="ps-num">5–7</div><div class="ps-lbl">Days Delivery</div></div>
     </div>
@@ -1059,6 +1089,49 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
         </div>
       </div>
 
+      <!-- CARD 5: Chirag Handlooms E-Commerce -->
+      <div class="proj-card" data-cat="ecommerce">
+        <div class="proj-float-label">🛒 E-COMMERCE DEMO</div>
+        <div class="proj-mock" style="background:linear-gradient(135deg,#060D30,#0B1F6B);">
+          <div class="proj-mock-glow" style="background:radial-gradient(circle at 50% 50%,rgba(200,154,26,.35),transparent);"></div>
+          <div class="proj-cat-pill" style="background:rgba(200,154,26,.9);color:#04091E;">🛍️ E-Commerce</div>
+          <div class="brow-win">
+            <div class="brow-bar">
+              <div class="brow-dot" style="background:#ff5f57;"></div>
+              <div class="brow-dot" style="background:#febc2e;"></div>
+              <div class="brow-dot" style="background:#28c840;"></div>
+              <div class="brow-addr"><span>tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-</span></div>
+            </div>
+            <div class="brow-content" style="background:linear-gradient(135deg,#0B1F6B,#1A3AA0);">
+              <div class="brow-site-name" style="color:#F5CC44;font-size:.55rem;">CHIRAG<br>HANDLOOMS</div>
+              <div class="brow-lines">
+                <div class="brow-line" style="background:rgba(200,154,26,.6);width:100%;"></div>
+                <div class="brow-line" style="background:rgba(200,154,26,.35);width:70%;"></div>
+                <div class="brow-line" style="background:rgba(200,154,26,.2);width:45%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type" style="color:#C89A1A;">🛒 E-Commerce / Retail</div>
+          <div class="proj-name">Chirag Handlooms — Bharatpur</div>
+          <div class="proj-desc">Premium handloom e-commerce site — 8 product categories, WhatsApp ordering, Google Maps, custom order form & Royal Blue luxury design.</div>
+          <div class="proj-tags"><span class="ptag">E-Commerce</span><span class="ptag">WhatsApp Orders</span><span class="ptag">8 Categories</span><span class="ptag">Google Maps</span></div>
+          <div class="ba-row">
+            <div class="ba-cell"><div class="ba-lbl r">Before</div><div class="ba-val">Walk-in / word of mouth</div></div>
+            <div class="ba-cell"><div class="ba-lbl g">After</div><div class="ba-val">Online store + WA orders</div></div>
+          </div>
+          <div class="proj-cta">
+            <a href="https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/" target="_blank" rel="noopener" class="proj-live">
+              <i class="fas fa-external-link-alt"></i><span>View Live Demo</span>
+            </a>
+            <a href="https://wa.me/919079368240?text=Hi!%20I%20want%20an%20e-commerce%20website%20like%20Chirag%20Handlooms." target="_blank" rel="noopener" class="proj-wa">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div></div><!-- /proj-grid /car-row-wrap -->
     <div class="car-nav-dots" id="carNavDots"></div>
 
@@ -1113,7 +1186,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="btn-white"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Karo</a>
       <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost2"><i class="fab fa-telegram"></i> Telegram Bot</a>
-      <a href="mailto:tkwebsolution1301@gmail.com" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
+      <a href="/cdn-cgi/l/email-protection#b5c1dec2d0d7c6dad9c0c1dcdadb84868584f5d2d8d4dcd99bd6dad8" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
     </div>
   </div>
 </div>
@@ -1130,7 +1203,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
         <a href="tel:+919079368240" class="cm cm-phone"><i class="fas fa-phone-alt"></i><span>Call Karo<br>+91 90793 68240</span></a>
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="cm cm-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp<br>+91 90793 68240</span></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="cm cm-tg"><i class="fab fa-telegram"></i><span>Telegram Bot<br>@TKwebsolutions_bot</span></a>
-        <a href="mailto:tkwebsolution1301@gmail.com" class="cm cm-email"><i class="fas fa-envelope"></i><span>Email<br>tkwebsolution1301@gmail.com</span></a>
+        <a href="/cdn-cgi/l/email-protection#91e5fae6f4f3e2fefde4e5f8feffa0a2a1a0d1f6fcf0f8fdbff2fefc" class="cm cm-email"><i class="fas fa-envelope"></i><span>Email<br><span class="__cf_email__" data-cfemail="82f6e9f5e7e0f1edeef7f6ebedecb3b1b2b3c2e5efe3ebeeace1edef">[email&#160;protected]</span></span></a>
         <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="cm cm-insta"><i class="fab fa-instagram"></i><span>Instagram<br>@tkwebsolutions_official</span></a>
         <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="cm cm-fb"><i class="fab fa-facebook-f"></i><span>Facebook<br>TK Web Solutions</span></a>
       </div>
@@ -1174,11 +1247,11 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
         <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
         <a href="https://wa.me/919079368240" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="soc"><i class="fab fa-telegram"></i></a>
-        <a href="mailto:tkwebsolution1301@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
+        <a href="/cdn-cgi/l/email-protection#1d69766a787f6e727168697472732c2e2d2c5d7a707c7471337e7270" class="soc"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
-    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">Portfolio Website</a></li><li><a href="#services">Website Redesign</a></li></ul></div>
-    <div class="ft-col"><h4>Live Demos</h4><ul><li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li><li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li><li><a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank">Support Small Business</a></li><li><a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank">Dhruv E-Mitra Kendra</a></li><li><a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank">✨ 3D Portfolio</a></li></ul></div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">Portfolio Website</a></li><li><a href="#services">E-Commerce Website</a></li><li><a href="#services">Website Redesign</a></li></ul></div>
+    <div class="ft-col"><h4>Live Demos</h4><ul><li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li><li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li><li><a href="https://tarunsinghgunesh.github.io/support_small_bussiness/" target="_blank">Support Small Business</a></li><li><a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank">Dhruv E-Mitra Kendra</a></li><li><a href="https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/" target="_blank">🛒 Chirag Handlooms</a></li><li><a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank">✨ 3D Portfolio</a></li></ul></div>
     <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#why">Kyun Chunein Hume</a></li><li><a href="#process">Kaise Kaam Karte Hain</a></li><li><a href="#testimonials">Client Reviews</a></li><li><a href="#contact">Contact Karo</a></li><li><a href="https://t.me/TKwebsolutions_bot" target="_blank">Telegram Bot</a></li><li><a href="tel:+919079368240">Call: 9079368240</a></li></ul></div>
   </div>
   <div class="footer-bottom">
@@ -1206,6 +1279,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   <div class="ai-head">
     <div class="ai-av">🤖</div>
     <div><div class="ai-hname">TK Assistant</div><div class="ai-hst"><div class="ai-sdot"></div> Online — TK Web Solutions</div></div>
+    <button onclick="aiForwardToWhatsApp()" title="Chat WA pe forward karo" style="display:flex;align-items:center;gap:4px;background:#25d366;color:#fff;border:none;padding:5px 10px;border-radius:8px;font-size:.63rem;font-weight:700;cursor:pointer;margin-right:4px;"><i class="fab fa-whatsapp"></i> WA</button>
     <button class="ai-close" onclick="aiToggle()"><i class="fas fa-times"></i></button>
   </div>
   <div class="ai-msgs" id="aiMsgs"></div>
@@ -1218,13 +1292,14 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   <div class="ai-inp-row">
     <input class="ai-inp" id="aiInp" placeholder="Kuch bhi poochho..." onkeydown="if(event.key==='Enter')aiSend()">
     <button class="ai-send" onclick="aiSend()"><i class="fas fa-paper-plane"></i></button>
+    <button onclick="aiSendToWhatsApp()" title="Seedha WhatsApp pe bhejo" style="width:36px;height:36px;background:#25d366;border:none;border-radius:9px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;"><i class="fab fa-whatsapp"></i></button>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
      ALL SCRIPTS
 ══════════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── GUIDE MASCOT ── */
 var _gOpen=true;
 var _gSteps=[
@@ -1414,7 +1489,7 @@ window.filterProj=function(cat,btn){
 
 /* ── AI CHATBOT ── */
 var aiOpen=false,aiBooted=false,aiHist=[];
-var AI_SYS="You are TK Assistant — AI helper for TK Web Solutions, a web dev company in Bharatpur, Rajasthan. Owner: Tarun Singh Gunesh.\nPhone: +91 90793 68240, WhatsApp: wa.me/919079368240, Email: tkwebsolution1301@gmail.com\n\nSERVICES:\n- Coaching ₹7,000: batches, results, fee, inquiry form\n- School ₹9,000: admissions, gallery, events\n- Business ₹8,000: local businesses\n- E-Mitra ₹6,000: UPI payment\n- Portfolio ₹5,000\n- Redesign ₹6,000\n\nPACKAGES:\n- Starter ₹7k: design, mobile, form, WhatsApp, maps, 30d support\n- Business ₹10k-15k: multi-page, gallery, SEO\n- Custom: app dev\n\nEVERY SITE: mobile responsive, WhatsApp, form, maps, SEO, 30 days support. Delivery 5-7 days.\n\nDEMOS:\n- Achievers Point: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- Ek Pahal India: tarunsinghgunesh.github.io/ekpahalindia/\n- Support Small Biz: tarunsinghgunesh.github.io/support_small_bussiness/\n- Dhruv E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n\nAnswer in friendly Hinglish. Under 80 words. End with WhatsApp CTA when relevant.";
+var AI_SYS="You are TK Assistant, a friendly AI sales helper for TK Web Solutions in Bharatpur, Rajasthan.\n\nOWNER: Tarun Singh Gunesh | WA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nTelegram: @TKwebsolutions_bot | Instagram: @tkwebsolutions_official\n\nSERVICES:\n- Coaching Website Rs.7000: batches, results, fee, faculty, inquiry form\n- School Website Rs.9000: admissions, gallery, events, staff pages\n- Business Website Rs.8000: product showcase, contact, local SEO\n- E-Mitra Website Rs.6000: service list, UPI QR, status checker\n- Portfolio Website Rs.5000: skills, projects, achievements\n- E-Commerce Website Rs.9000-12000: product catalog, WhatsApp orders, categories, Google Maps\n- Website Redesign Rs.6000: modernize old sites\n\nPACKAGES:\n- Starter Rs.7k: mobile design, form, WhatsApp, maps, 30 days support\n- Business Rs.10k-15k: multi-page, gallery, SEO, optimization\n- Custom: app dev, custom features, maintenance\n\nEVERY SITE INCLUDES: mobile responsive, WhatsApp button, contact form, Google Maps, social links, SEO, fast loading, Google Analytics, 30 days free support. Delivery: 5-7 days.\n\nLIVE DEMOS:\n- Achievers Point: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- Ek Pahal India NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Support Small Biz: tarunsinghgunesh.github.io/support_small_bussiness/\n- Dhruv E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- Chirag Handlooms (E-Commerce): tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nRESPOND: Friendly Hinglish, under 80 words, quote exact prices, suggest WA when user interested. Never invent info.";
 
 function aiToggle(){
   aiOpen=!aiOpen;
@@ -1432,9 +1507,36 @@ function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',mi
 function aiMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg b';
-  d.innerHTML='<div class="abub">'+txt.replace(/\n/g,'<br>')+'</div><div class="atime">'+aiNow()+'</div>';
+  var wt='Hi TK Web Solutions!\n\nBot ne bola:\n'+txt+'\n\n-- TK Assistant';
+  var wa='https://wa.me/919079368240?text='+encodeURIComponent(wt);
+  d.innerHTML='<div class="abub">'+txt.replace(/\n/g,'<br>')+'</div>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin-top:3px;">'+
+    '<div class="atime">'+aiNow()+'</div>'+
+    '<a href="'+wa+'" target="_blank" style="display:inline-flex;align-items:center;gap:3px;background:rgba(37,211,102,.1);color:#25d366;border:1px solid rgba(37,211,102,.25);padding:3px 9px;border-radius:20px;font-size:.62rem;font-weight:700;text-decoration:none;">'+
+    '<i class=\'fab fa-whatsapp\'></i> WA pe bhejo</a>'+
+    '</div>';
   m.appendChild(d);m.scrollTop=m.scrollHeight;
+  aiPlainLog.push({r:'TK Bot',m:txt.substring(0,200)});
 }
+
+/* ── WA HELPERS ── */
+var aiPlainLog=[];
+
+function aiForwardToWhatsApp(){
+  if(!aiPlainLog.length){window.open('https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  var t=['Hi TK Web Solutions! AI Chat conversation:',''];
+  aiPlainLog.forEach(function(e){t.push(e.r+': '+e.m);});
+  t.push('','-- TK Assistant se --');
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent(t.join('\n')),'_blank');
+}
+
+function aiSendToWhatsApp(){
+  var v=document.getElementById('aiInp').value.trim();
+  if(!v){window.open('https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  document.getElementById('aiInp').value='';
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent('Hi TK Web Solutions!\n\n'+v),'_blank');
+}
+
 function aiUsrMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg u';
@@ -1455,18 +1557,20 @@ function aiSend(){
   document.getElementById('qrRow').style.display='none';
   aiUsrMsg(txt);
   aiHist.push({role:'user',content:txt});
+  aiPlainLog.push({r:'Aap',m:txt});
   aiTyping();
   if(typeof gtag!=='undefined')gtag('event','ai_chat',{event_category:'Engagement',event_label:txt.substring(0,50)});
   fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,system:AI_SYS,messages:aiHist})
+    headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:300,system:AI_SYS,messages:aiHist})
   })
   .then(function(r){return r.json();})
   .then(function(data){
     aiStopTyping();
-    var rep=(data.content&&data.content[0]&&data.content[0].text)?data.content[0].text:'Network problem! Seedha WhatsApp karo: +91 90793 68240 😊';
+        var rep=(data.content&&data.content[0]&&data.content[0].text)?data.content[0].text:'Network problem! Seedha WhatsApp karo: +91 90793 68240';
     aiHist.push({role:'assistant',content:rep});
+    aiPlainLog.push({r:'TK Bot',m:rep.substring(0,200)});
     if(aiHist.length>20)aiHist=aiHist.slice(-16);
     aiMsg(rep);
   })
