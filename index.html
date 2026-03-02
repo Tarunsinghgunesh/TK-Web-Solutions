@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TK Web Solutions | #1 Website Developer in Bharatpur, Rajasthan</title>
-<meta name="description" content="Professional Website Development for Coaching, Schools & Businesses in Bharatpur. Mobile Friendly, Fast 5-7 Day Delivery, Starting Rs.7000. 100% Client Satisfaction.">
+<meta name="description" content="TK Web Solutions — From Dreams to Digital Reality. Professional Website Development for Coaching, Schools & Businesses in Bharatpur. Mobile Friendly, Fast 5-7 Day Delivery, Starting Rs.7000.">
 <meta name="keywords" content="website developer bharatpur, web design rajasthan, coaching website, school website, e-mitra website, TK web solutions">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -655,6 +655,98 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   .speech-bub{font-size:.9rem;padding:13px 20px;}
   .marquee-strip{display:none;}
 }
+
+/* ══════════════════════════════════════════
+   SLOGAN STYLES
+══════════════════════════════════════════ */
+.slogan-line{
+  display:inline-flex;align-items:center;gap:0;
+  font-family:'DM Sans',sans-serif;
+  font-size:.82rem;font-weight:400;
+  color:rgba(255,255,255,.42);
+  letter-spacing:.3px;
+  margin-top:6px;
+}
+.slogan-line em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;font-weight:600;
+}
+/* Hero slogan — bigger, more prominent */
+.hero-slogan{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:26px;
+  animation:fadeUp .65s .05s ease both;
+}
+.hero-slogan-text{
+  font-family:'DM Sans',sans-serif;
+  font-size:1.02rem;font-style:italic;
+  color:rgba(255,255,255,.52);
+  letter-spacing:.8px;
+  position:relative;
+}
+.hero-slogan-text em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;font-weight:700;
+}
+.hero-slogan-text::before{
+  content:'';display:inline-block;
+  width:28px;height:1.5px;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  vertical-align:middle;margin-right:10px;
+  border-radius:2px;
+}
+.hero-slogan-text::after{
+  content:'';display:inline-block;
+  width:28px;height:1.5px;
+  background:linear-gradient(90deg,var(--accent),var(--blue));
+  vertical-align:middle;margin-left:10px;
+  border-radius:2px;
+}
+/* Navbar slogan */
+.logo-slogan{
+  font-family:'DM Sans',sans-serif;
+  font-size:.5rem;font-style:italic;
+  color:var(--gray);letter-spacing:.5px;
+  display:block;margin-top:1px;
+  white-space:nowrap;
+}
+.logo-slogan em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;font-weight:600;
+}
+/* Footer slogan */
+.ft-slogan{
+  font-family:'DM Sans',sans-serif;
+  font-size:.75rem;font-style:italic;
+  color:rgba(255,255,255,.28);
+  margin-top:5px;letter-spacing:.3px;
+}
+.ft-slogan em{
+  font-style:italic;
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;font-weight:600;
+}
+/* CTA slogan */
+.cta-slogan{
+  font-family:'DM Sans',sans-serif;
+  font-size:.85rem;font-style:italic;
+  color:rgba(255,255,255,.35);
+  margin-bottom:18px;letter-spacing:.5px;
+  position:relative;z-index:1;
+}
+.cta-slogan em{
+  background:linear-gradient(90deg,var(--blue),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;font-weight:600;font-style:italic;
+}
+
 </style>
 </head>
 <body>
@@ -725,6 +817,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
     <img src="logo.png" alt="TK Web Solutions Logo">
     <span class="logo-text"><span>TK</span> Web Solutions</span>
     <span class="logo-badge">BHARATPUR</span>
+    <span class="logo-slogan">From Dreams.... to <em>Digital Reality</em></span>
   </a>
   <ul class="nav-menu" id="navMenu">
     <li><a href="#services">Services</a></li>
@@ -747,6 +840,9 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   <div class="hero-glow3"></div>
   <div class="hero-content">
     <div class="hero-badge"><div class="pulse-dot"></div> Bharatpur's #1 Web Design Agency</div>
+    <div class="hero-slogan">
+      <span class="hero-slogan-text">From Dreams.... to <em>Digital Reality</em></span>
+    </div>
     <h1>Apna Business Online Lekar<br>Aao <span class="g">Professional Website</span> Se</h1>
     <p>Coaching institutes, schools aur local businesses ke liye fast, modern aur mobile-friendly websites — sirf ₹7,000 se shuru. 5–7 din mein ready.</p>
     <div class="hero-btns">
@@ -775,7 +871,6 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
     <span class="m-item"><i class="fas fa-check"></i> School Website</span><span class="m-dot"></span>
     <span class="m-item"><i class="fas fa-check"></i> Business Website</span><span class="m-dot"></span>
     <span class="m-item"><i class="fas fa-check"></i> E-Mitra Website</span><span class="m-dot"></span>
-    <span class="m-item"><i class="fas fa-check"></i> E-Commerce Website</span><span class="m-dot"></span>
     <span class="m-item"><i class="fas fa-check"></i> Portfolio Website</span><span class="m-dot"></span>
     <span class="m-item"><i class="fas fa-check"></i> Website Redesign</span><span class="m-dot"></span>
     <span class="m-item"><i class="fas fa-check"></i> 5-7 Day Delivery</span><span class="m-dot"></span>
@@ -915,8 +1010,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
       <button class="ftab" onclick="filterProj('business',this)"><i class="fas fa-briefcase"></i> Business</button>
       <button class="ftab" onclick="filterProj('emitra',this)"><i class="fas fa-landmark"></i> E-Mitra</button>
       <button class="ftab" onclick="filterProj('ecommerce',this)"><i class="fas fa-shopping-cart"></i> E-Commerce</button>
-
-   </div>
+    </div>
 
     <div class="car-row-wrap"><div class="proj-grid" id="projGrid">
 
@@ -1185,6 +1279,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 <div class="cta-outer">
   <div class="cta-box">
     <h2>Apna Business Online Lekar Aane Ka Waqt Aa Gaya!</h2>
+    <p class="cta-slogan">— <em>From Dreams.... to Digital Reality</em> —</p>
     <p>24 ghante mein free demo — koi payment nahi, koi commitment nahi.</p>
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="btn-white"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Karo</a>
@@ -1229,7 +1324,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
             <option>E-Mitra Website — ₹6,000</option>
             <option>Portfolio Website — ₹5,000</option>
             <option>Website Redesign — ₹6,000</option>
-            <option>E-Commerce Website — Rs.9,000</option>
+            <option>E-Commerce Website — ₹9,000</option>
           </select>
         </div>
         <div class="fg"><label>Aur Kuch Batao</label><textarea name="message" placeholder="Requirements, features, budget — jo bhi batana ho..."></textarea></div>
@@ -1244,6 +1339,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   <div class="footer-top">
     <div class="ft-brand">
       <div class="ft-logo"><span>TK</span> Web Solutions</div>
+      <div class="ft-slogan">From Dreams.... to <em>Digital Reality</em></div>
       <p>Professional website development for coaching, schools and businesses in Bharatpur, Rajasthan.</p>
       <a href="tel:+919079368240" class="ft-tel"><i class="fas fa-phone"></i> +91 90793 68240</a>
       <div class="socials">
@@ -1586,5 +1682,3 @@ function aiSend(){
 </script>
 </body>
 </html>
-
-
