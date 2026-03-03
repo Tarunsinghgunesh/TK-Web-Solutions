@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tarunsinghgunesh.github.io/TK-Web-Solutions/sitemap.xml
+Sitemap: https://tkwebsolutions.in/sitemap.xml
