@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Speed Optimization - Complete Technical Guide | TK Web Solutions</title>
+<meta name="description" content="Technical guide to making your website load faster. Optimize images, enable caching, use CDN and improve Core Web Vitals for better rankings.">
+<meta name="keywords" content="website speed optimization, page speed, Core Web Vitals, website performance, fast loading website">
+<meta name="author" content="TK Web Solutions">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tkwebsolutions.in/blog/post2.html">
+
+<style>
+:root {
+  --primary: #1a56ff;
+  --primary-dark: #0d3acc;
+  --navy: #060d1f;
+  --light-bg: #f8f9fa;
+  --white: #ffffff;
+  --gray: #666666;
+  --gray-light: #999999;
+  --border: #e2e6f3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', Arial, sans-serif;
+  background: var(--light-bg);
+  color: var(--navy);
+  line-height: 1.8;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* NAVIGATION */
+nav {
+  background: var(--white);
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+nav a {
+  color: var(--navy);
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  padding: 60px 20px;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 0.95em;
+  opacity: 0.95;
+}
+
+/* ARTICLE */
+article {
+  background: var(--white);
+  padding: 50px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+article p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+article h2 {
+  color: var(--primary);
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 10px;
+}
+
+article h3 {
+  color: var(--primary-dark);
+  font-size: 1.3em;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+article ul, article ol {
+  margin: 15px 0 15px 25px;
+}
+
+article li {
+  margin-bottom: 10px;
+}
+
+.highlight {
+  background: #f0f3fb;
+  border-left: 4px solid var(--primary);
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 8px;
+}
+
+code {
+  background: #f0f3fb;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: var(--primary);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background: var(--light-bg);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* NAVIGATION */
+.post-nav {
+  display: flex;
+  gap: 20px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s;
+  text-align: center;
+  font-weight: 700;
+}
+
+.back-btn {
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.back-btn:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.next-btn {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.next-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  padding: 50px 20px 30px;
+  text-align: center;
+}
+
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  article {
+    padding: 30px 20px;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  article h2 {
+    font-size: 1.4em;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .post-nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    margin-left: 10px;
+    font-size: 0.9em;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="container">
+    <a href="../index.html" class="logo">🚀 TK Web Solutions</a>
+    <div style="display: flex;">
+      <a href="../index.html">Home</a>
+      <a href="blog.html">← Back to Blog</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <h1>⚡ Website Speed Optimization - Complete Technical Guide for 2024</h1>
+    <div class="meta">
+      <span>📅 March 4, 2026</span>
+      <span>⏱️ 7 min read</span>
+      <span>✍️ TK Web Solutions</span>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<article class="container">
+
+<p><strong>Did you know?</strong> A 1-second delay in page load time can result in:</p>
+
+<ul>
+<li>7% loss in conversions</li>
+<li>11% fewer page views</li>
+<li>16% decrease in customer satisfaction</li>
+</ul>
+
+<p>Website speed isn't just about user experience - it directly impacts your business revenue, SEO rankings, and brand reputation. In this technical guide, we'll cover everything from basic principles to advanced optimization techniques.</p>
+
+<h2>Why Website Speed is Critical</h2>
+
+<h3>Business Impact</h3>
+
+<p><strong>Industry Statistics:</strong></p>
+<ul>
+<li>47% of users expect pages to load within 2 seconds</li>
+<li>40% abandon sites that take more than 3 seconds</li>
+<li>Fast sites have 50% lower bounce rates</li>
+<li>Every 100ms delay costs 1% in conversions</li>
+<li>Mobile users are 50% more likely to abandon slow sites</li>
+</ul>
+
+<h3>SEO Impact</h3>
+
+<p>Google officially considers page speed as a ranking factor. Fast websites get better rankings, more traffic, and higher visibility in search results.</p>
+
+<h3>Competitive Advantage</h3>
+
+<p>In competitive markets, speed is a differentiator. Faster sites get more leads, better customer retention, and improved user satisfaction.</p>
+
+<h2>Understanding Core Web Vitals</h2>
+
+<p>Google's Core Web Vitals are three critical metrics that measure website performance:</p>
+
+<h3>1. Largest Contentful Paint (LCP)</h3>
+
+<p><strong>What it measures:</strong> How long does it take for the largest content element (image, video, text block) to load?</p>
+
+<p><strong>Target:</strong> Less than 2.5 seconds</p>
+
+<p><strong>How to improve:</strong></p>
+<ul>
+<li>Optimize server response time</li>
+<li>Minimize CSS and JavaScript</li>
+<li>Use CDN for content delivery</li>
+<li>Lazy load images</li>
+<li>Preload critical resources</li>
+</ul>
+
+<h3>2. First Input Delay (FID)</h3>
+
+<p><strong>What it measures:</strong> How long does the page take to respond to user interaction (click, tap)?</p>
+
+<p><strong>Target:</strong> Less than 100ms</p>
+
+<p><strong>How to improve:</strong></p>
+<ul>
+<li>Break long JavaScript tasks</li>
+<li>Use web workers</li>
+<li>Defer non-critical JavaScript</li>
+<li>Optimize third-party scripts</li>
+</ul>
+
+<h3>3. Cumulative Layout Shift (CLS)</h3>
+
+<p><strong>What it measures:</strong> How much does the layout shift as content loads?</p>
+
+<p><strong>Target:</strong> Less than 0.1</p>
+
+<p><strong>How to improve:</strong></p>
+<ul>
+<li>Set explicit dimensions for images and videos</li>
+<li>Avoid inserting content above existing content</li>
+<li>Use transform for animations</li>
+<li>Avoid resize-triggered layout shifts</li>
+</ul>
+
+<h2>Current Website Speed Benchmarks (2024)</h2>
+
+<table>
+<tr>
+<th>Category</th>
+<th>Excellent</th>
+<th>Good</th>
+<th>Poor</th>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>&lt; 1.5s</td>
+<td>1.5 - 2.5s</td>
+<td>&gt; 2.5s</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>&lt; 2s</td>
+<td>2 - 3s</td>
+<td>&gt; 3s</td>
+</tr>
+</table>
+
+<h2>Server-Side Optimization Techniques</h2>
+
+<h3>1. Improve Server Response Time (TTFB)</h3>
+
+<p>TTFB = Time To First Byte (time from request to first response). Target: Less than 200ms</p>
+
+<p><strong>How to optimize:</strong></p>
+<ul>
+<li><strong>Upgrade Hosting:</strong> Shared hosting (❌ slow) → VPS (✅ better) → Dedicated server (✅✅ best)</li>
+<li><strong>Database Optimization:</strong> Index frequently queried columns, optimize SQL queries</li>
+<li><strong>Server Configuration:</strong> Enable Gzip compression, configure HTTP/2</li>
+<li><strong>Application Optimization:</strong> Remove slow plugins, optimize code</li>
+</ul>
+
+<h3>2. Implement Caching Strategy</h3>
+
+<p><strong>Types of caching:</strong></p>
+<ul>
+<li><strong>Browser Caching:</strong> Cache-Control: max-age=31536000 (keep static assets for 1 year)</li>
+<li><strong>Server-Side Caching:</strong> Page caching, object caching, fragment caching</li>
+<li><strong>CDN Caching:</strong> Cache static assets globally, serve from nearest edge server</li>
+</ul>
+
+<h3>3. Database Optimization</h3>
+
+<ul>
+<li>Create proper indexes</li>
+<li>Regular database cleanup</li>
+<li>Archive old data</li>
+<li>Use connection pooling</li>
+<li>Implement query caching</li>
+</ul>
+
+<h2>Client-Side Optimization Techniques</h2>
+
+<h3>1. Image Optimization</h3>
+
+<p>Images typically account for 50% of page weight. Optimization techniques:</p>
+
+<p><strong>Compression:</strong></p>
+<ul>
+<li>Lossy compression (JPEG, WebP) - reduces quality slightly</li>
+<li>Lossless compression (PNG, AVIF) - maintains quality</li>
+<li>Tools: TinyPNG, ImageOptim, Kraken</li>
+</ul>
+
+<p><strong>Format Selection:</strong></p>
+<ul>
+<li>WebP (30% smaller) - modern browsers</li>
+<li>AVIF (20% smaller than WebP) - cutting edge</li>
+<li>JPEG - photographs</li>
+<li>PNG - graphics with transparency</li>
+</ul>
+
+<p><strong>Responsive Images:</strong></p>
+<ul>
+<li>Use srcset for different screen sizes</li>
+<li>Serve mobile-optimized images</li>
+<li>Reduce image dimensions</li>
+<li>Lazy load with <code>loading="lazy"</code></li>
+</ul>
+
+<h3>2. CSS & JavaScript Optimization</h3>
+
+<p><strong>CSS Optimization:</strong></p>
+<ul>
+<li>Minify CSS</li>
+<li>Remove unused CSS (PurgeCSS)</li>
+<li>Inline critical CSS</li>
+<li>Defer non-critical CSS</li>
+</ul>
+
+<p><strong>JavaScript Optimization:</strong></p>
+<ul>
+<li>Minify JavaScript</li>
+<li>Code splitting (split into chunks)</li>
+<li>Defer non-critical scripts</li>
+<li>Async load third-party scripts</li>
+<li>Use Web Workers for heavy tasks</li>
+</ul>
+
+<h2>Tools to Measure Website Speed</h2>
+
+<h3>1. Google PageSpeed Insights</h3>
+<p>Free tool providing Core Web Vitals score and actionable recommendations. <code>https://pagespeed.web.dev/</code></p>
+
+<h3>2. GTmetrix</h3>
+<p>Detailed performance analysis with video recording and waterfall charts.</p>
+
+<h3>3. WebPageTest</h3>
+<p>Most detailed analysis with location-based and device-specific testing.</p>
+
+<h3>4. Lighthouse (Chrome DevTools)</h3>
+<p>Built-in tool for performance, accessibility, and SEO analysis.</p>
+
+<h2>Implementation Checklist</h2>
+
+<h3>Quick Wins (Do First):</h3>
+<ul>
+<li>☑️ Enable Gzip compression</li>
+<li>☑️ Enable browser caching</li>
+<li>☑️ Compress images (TinyPNG)</li>
+<li>☑️ Minify CSS, JavaScript, HTML</li>
+<li>☑️ Remove unused plugins</li>
+</ul>
+
+<h3>Medium Priority:</h3>
+<ul>
+<li>☑️ Implement CDN</li>
+<li>☑️ Lazy load images</li>
+<li>☑️ Code splitting</li>
+<li>☑️ Database optimization</li>
+</ul>
+
+<h3>Long-term Improvements:</h3>
+<ul>
+<li>☑️ Upgrade hosting</li>
+<li>☑️ Implement service workers</li>
+<li>☑️ Use HTTP/3 protocol</li>
+</ul>
+
+<h2>ROI of Speed Optimization</h2>
+
+<div class="highlight">
+<strong>Example: E-commerce Site</strong><br><br>
+Current: 4 second load time, 2% conversion rate, ₹10 lakhs/month<br>
+After optimization: 2 seconds, 3.5% conversion rate (75% improvement)<br>
+Result: ₹17.5 lakhs/month<br><br>
+<strong>Additional monthly revenue: ₹7.5 lakhs!</strong>
+</div>
+
+<h2>Conclusion</h2>
+
+<p>Website speed is not a luxury - it's a necessity for competitive businesses. Every millisecond counts in today's fast-paced digital world.</p>
+
+<p>By implementing these optimization techniques, you can dramatically improve user experience, boost SEO rankings, and increase conversion rates. Start with quick wins today, and you'll see results within weeks!</p>
+
+<!-- NAVIGATION BUTTONS -->
+<div class="post-nav">
+  <a href="post1.html" class="nav-btn back-btn">← Previous Post</a>
+  <a href="post3.html" class="nav-btn next-btn">Next Post →</a>
+</div>
+
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&copy; 2026 TK Web Solutions | Made with ❤️ in Bharatpur, Rajasthan</p>
+    <p><a href="../index.html">Home</a> | <a href="blog.html">Blog</a> | <a href="../index.html#contact">Contact</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
