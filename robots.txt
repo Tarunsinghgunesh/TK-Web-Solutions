@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Host: tkwebsolutions.in
 Sitemap: https://tkwebsolutions.in/sitemap.xml
+
 
