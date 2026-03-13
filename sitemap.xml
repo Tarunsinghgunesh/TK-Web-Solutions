@@ -71,7 +71,57 @@
   <priority>0.90</priority>
 </url>
 
+  <url>
+  <loc>https://tkwebsolutions.in/about.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post10.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post11.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post12.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post13.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post14.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://tkwebsolutions.in/blog/post15.html</loc>
+  <lastmod>2026-03-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
 </urlset>
+
 
 
 
