@@ -947,6 +947,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 }
 
 </style>
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init("ygQhaRBTpL_oM8QYs");</script>
 </head>
 <body>
 
@@ -1801,6 +1803,11 @@ function aiToggle(){
     aiPlainLog.forEach(function(e){t.push((e.r==='Aap'?'👤':'🤖')+' '+e.r+': '+e.m);t.push('');});
     t.push('━━━━━━━━━━━━━━━━━━');t.push('🌐 tkwebsolutions.in');
     window.open('https://wa.me/919079368240?text='+encodeURIComponent(t.join('\n')),'_blank');
+       emailjs.send('service_n1reiw9','template_gg2zxzw',{
+  client_naam: clientNaam,
+  client_phone: clientPhone,
+  chat_log: t.join('\n')
+});
   }
   if(aiOpen&&!aiBooted){
     aiBooted=true;
