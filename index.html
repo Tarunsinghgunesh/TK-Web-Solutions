@@ -1717,6 +1717,11 @@ function sendForm(e){
   var n=fd.get('name')||'',ph=fd.get('phone')||'',biz=fd.get('business')||'',svc=fd.get('service')||'',msg=fd.get('message')||'';
   var txt='Hi%20TK%20Web%20Solutions!%0A%0ANew%20Enquiry%3A%0AName%3A%20'+encodeURIComponent(n)+'%0APhone%3A%20'+encodeURIComponent(ph)+'%0ABusiness%3A%20'+encodeURIComponent(biz)+'%0AService%3A%20'+encodeURIComponent(svc)+'%0AMessage%3A%20'+encodeURIComponent(msg);
   window.open('https://wa.me/919079368240?text='+txt,'_blank');
+     emailjs.send('service_n1reiw9','template_gg2zxzw',{
+  client_naam: n,
+  client_phone: ph,
+  chat_log: 'Business: '+biz+'\nService: '+svc+'\nMessage: '+msg
+});
   btn.textContent='✅ Bhej Diya! Jald contact karenge.';btn.style.background='#16a34a';btn.disabled=true;
   setTimeout(function(){btn.textContent='Message Bhejo 🚀';btn.style.background='';btn.disabled=false;e.target.reset();},4000);
   if(typeof gtag!=='undefined')gtag('event','contact_form',{event_category:'Lead',event_label:svc});
