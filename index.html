@@ -1789,20 +1789,28 @@ window.filterProj=function(cat,btn){
 
 
 /* ── AI CHATBOT ── */
-var aiOpen=false,aiBooted=false,aiHist=[];
+var aiOpen=false,aiBooted=false,aiHist=[],aiPlainLog=[];
+var clientNaam='',clientPhone='',aiStep='contact';
 var AI_SYS="You are TK Assistant, a friendly AI sales helper for TK Web Solutions in Bharatpur, Rajasthan.\n\nOWNER: Tarun Singh Gunesh | WA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nTelegram: @TKwebsolutions_bot | Instagram: @tkwebsolutions_official\n\nSERVICES:\n- Coaching Website Rs.7000: batches, results, fee, faculty, inquiry form\n- School Website Rs.9000: admissions, gallery, events, staff pages\n- Business Website Rs.8000: product showcase, contact, local SEO\n- E-Mitra Website Rs.6000: service list, UPI QR, status checker\n- Portfolio Website Rs.5000: skills, projects, achievements\n- E-Commerce Website Rs.9000-12000: product catalog, WhatsApp orders, categories, Google Maps\n- Website Redesign Rs.6000: modernize old sites\n\nPACKAGES:\n- Starter Rs.7k: mobile design, form, WhatsApp, maps, 30 days support\n- Business Rs.10k-15k: multi-page, gallery, SEO, optimization\n- Custom: app dev, custom features, maintenance\n\nEVERY SITE INCLUDES: mobile responsive, WhatsApp button, contact form, Google Maps, social links, SEO, fast loading, Google Analytics, 30 days free support. Delivery: 5-7 days.\n\nLIVE DEMOS:\n- Achievers Point: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- Ek Pahal India NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Support Small Biz: tarunsinghgunesh.github.io/support_small_business/\n- Dhruv E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- Chirag Handlooms (E-Commerce): tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nRESPOND: Friendly Hinglish, under 80 words, quote exact prices, suggest WA when user interested. Never invent info.";
-
 function aiToggle(){
   aiOpen=!aiOpen;
   document.getElementById('aiWin').classList.toggle('open',aiOpen);
   var d=document.getElementById('aiDot');if(d)d.style.display='none';
+  if(!aiOpen && aiPlainLog.length>1){
+    var t=['🤖 TK Assistant — New Lead!','━━━━━━━━━━━━━━━━━━','👤 Naam: '+clientNaam,'📞 Phone: '+clientPhone,'━━━━━━━━━━━━━━━━━━',''];
+    aiPlainLog.forEach(function(e){t.push((e.r==='Aap'?'👤':'🤖')+' '+e.r+': '+e.m);t.push('');});
+    t.push('━━━━━━━━━━━━━━━━━━');t.push('🌐 tkwebsolutions.in');
+    window.open('https://wa.me/919079368240?text='+encodeURIComponent(t.join('\n')),'_blank');
+  }
   if(aiOpen&&!aiBooted){
     aiBooted=true;
     setTimeout(function(){
-      aiMsg("Namaste! 👋 Main hoon TK Assistant.\n\nKuch bhi poochho — pricing, services, demos, ya contact info. Help karunga! 😊");
+      aiMsg('Namaste! 👋 Main hoon TK Assistant — TK Web Solutions ka helper!\n\nPehle aapka naam batayein? 😊');
+      aiStep='naam';
     },380);
   }
   if(aiOpen)setTimeout(function(){document.getElementById('aiInp').focus();},340);
+}
 }
 function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
 function aiMsg(txt){
