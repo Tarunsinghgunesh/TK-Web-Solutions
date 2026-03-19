@@ -1811,7 +1811,7 @@ function aiToggle(){
   }
   if(aiOpen)setTimeout(function(){document.getElementById('aiInp').focus();},340);
 }
-}
+     
 function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
 function aiMsg(txt){
   var m=document.getElementById('aiMsgs');
@@ -1829,7 +1829,7 @@ function aiMsg(txt){
 }
 
 /* ── WA HELPERS ── */
-var aiPlainLog=[];
+
 
 function aiForwardToWhatsApp(){
   if(!aiPlainLog.length){window.open('https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
@@ -1865,33 +1865,64 @@ function aiSend(){
   inp.value='';
   document.getElementById('qrRow').style.display='none';
   aiUsrMsg(txt);
-  aiHist.push({role:'user',content:txt});
   aiPlainLog.push({r:'Aap',m:txt});
-  aiTyping();
   if(typeof gtag!=='undefined')gtag('event','ai_chat',{event_category:'Engagement',event_label:txt.substring(0,50)});
-  fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','anthropic-version':'2023-06-01','anthropic-dangerous-allow-browser':'true'},
-    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:300,system:AI_SYS,messages:aiHist})
-  })
-  .then(function(r){return r.json();})
-  .then(function(data){
+
+  if(aiStep==='naam'){
+    clientNaam=txt;
+    aiStep='phone';
+    setTimeout(function(){
+      aiMsg('Shukriya '+clientNaam+'! 😊\n\nAb aapka WhatsApp number batayein:');
+    },600);
+    return;
+  }
+
+  if(aiStep==='phone'){
+    clientPhone=txt;
+    aiStep='chat';
+    setTimeout(function(){
+      aiMsg('Perfect! '+clientNaam+' ji ✅\n\nAb batayein main kaise help karun?\n\n💰 Pricing\n🎓 Coaching Website\n🏢 Business Website\n🏛️ E-Mitra Website\n🛒 E-Commerce\n⚡ Delivery Time\n🏆 Kyun Choose Karein');
+    },600);
+    return;
+  }
+
+  aiTyping();
+  setTimeout(function(){
     aiStopTyping();
-        var rep=(data.content&&data.content[0]&&data.content[0].text)?data.content[0].text:'Network problem! Seedha WhatsApp karo: +91 90793 68240';
-    aiHist.push({role:'assistant',content:rep});
-    aiPlainLog.push({r:'TK Bot',m:rep.substring(0,200)});
-    if(aiHist.length>20)aiHist=aiHist.slice(-16);
+    var t=txt.toLowerCase();
+    var rep='';
+    if(t.match(/price|cost|kitna|paisa|rupee|rs|rate|charge|package/)){
+      rep='💰 Hamare Packages:\n\n🎓 Coaching — ₹7,000\n🏫 School — ₹9,000\n🏢 Business — ₹8,000\n🏛️ E-Mitra — ₹6,000\n👤 Portfolio — ₹5,000\n🛒 E-Commerce — ₹9,000\n🔄 Redesign — ₹6,000\n\nSabmein: Mobile+WhatsApp+SEO+30Din Support ✅';
+    } else if(t.match(/coaching|institute|tuition|batch|result|faculty/)){
+      rep='🎓 Coaching Website — ₹7,000\n✅ Batches & Fee Structure\n✅ Results Page\n✅ Faculty Section\n✅ Inquiry Form\n✅ Mobile Friendly\n✅ 5-7 Din Delivery\n✅ 30 Din Support';
+    } else if(t.match(/school|college|admission|student/)){
+      rep='🏫 School Website — ₹9,000\n✅ Admission Form\n✅ Photo Gallery\n✅ Events Calendar\n✅ Staff Pages\n✅ Mobile Friendly\n✅ 5-7 Din Delivery';
+    } else if(t.match(/business|shop|local|store|dukan/)){
+      rep='🏢 Business Website — ₹8,000\n✅ Services Showcase\n✅ WhatsApp Button\n✅ Google Maps\n✅ Local SEO\n✅ 5-7 Din Delivery';
+    } else if(t.match(/emitra|e-mitra|csc|govt/)){
+      rep='🏛️ E-Mitra Website — ₹6,000\n✅ Services List\n✅ UPI QR Payment\n✅ Google Maps\n✅ 5-7 Din Delivery';
+    } else if(t.match(/ecommerce|e-commerce|product|sell|bechna/)){
+      rep='🛒 E-Commerce — ₹9,000\n✅ Product Catalog\n✅ WhatsApp Ordering\n✅ Categories\n✅ 5-7 Din Delivery';
+    } else if(t.match(/demo|example|dekh|dikhao/)){
+      rep='✨ Live Demos:\n🎓 tarunsinghgunesh.github.io/ACHIEVERSPOINT\n🏛️ tarunsinghgunesh.github.io/dhruvemitrasevakendra\n🛒 tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-';
+    } else if(t.match(/time|din|day|delivery|kab|jaldi/)){
+      rep='⚡ Sirf 5-7 Din mein LIVE!\n1️⃣ Day 1: Consultation\n2️⃣ Day 2-3: Design\n3️⃣ Day 4-6: Development\n4️⃣ Day 7: GO LIVE 🚀';
+    } else if(t.match(/special|unique|kyun|kyon|best|better|fark|alag|kya h|kya hai/)){
+      rep='🏆 Hum Kyun Best Hain?\n\n✅ Local Bharatpur Team\n✅ 5-7 Din Fast Delivery\n✅ 100% Mobile Friendly\n✅ SEO Included\n✅ 30 Din Free Support\n✅ Sirf ₹5,000 se\n✅ Real Client Demos — pehle dekho phir order karo\n\nCompetitors sirf promise karte hain — hum deliver karte hain! 💪';
+    } else if(t.match(/support|help|baad|maintenance/)){
+      rep='🛠️ 30 Din FREE Support\n✅ Bug Fixes\n✅ Content Updates\n✅ WhatsApp pe direct help\n\n30 din baad bhi reasonable charges mein!';
+    } else if(t.match(/contact|number|call|phone|whatsapp/)){
+      rep='📞 Sampark:\n💬 WhatsApp: +91 90793 68240\n🤖 Telegram: @TKwebsolutions_bot\n📧 tkwebsolution1301@gmail.com';
+    } else {
+      rep='Samajh gaya '+clientNaam+' ji! 😊\n\nIn topics pe help kar sakta hoon:\n💰 Pricing\n🎓 Coaching/School\n🏢 Business/E-Mitra\n🛒 E-Commerce\n⚡ Delivery Time\n🏆 Kyun Choose Karein\n\nYa seedha WhatsApp: +91 90793 68240';
+    }
     aiMsg(rep);
-  })
-  .catch(function(){
-    aiStopTyping();
-    aiMsg('Network issue! Seedha WhatsApp karo: wa.me/919079368240 🙏');
-  });
+    aiPlainLog.push({r:'TK Bot',m:rep.substring(0,200)});
+  },900);
 }
 </script>
 </body>
 </html>
-
 
 
 
