@@ -1052,8 +1052,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
       <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost"><i class="fab fa-telegram"></i> Telegram</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num" id="cnt1">0<em>+</em></div><div class="stat-lbl">Projects Done</div></div>
-      <div class="stat-item"><div class="stat-num" id="cnt2">0<em>%</em></div><div class="stat-lbl">Satisfied Clients</div></div>
+      <div class="stat-num">10<em style="color:var(--accent);font-style:normal;">+</em></div>
+      <div class="stat-num">100<em style="color:var(--accent);font-style:normal;">%</em></div>
       <div class="stat-item"><div class="stat-num">5–7<em style="color:var(--accent);font-style:normal;">d</em></div><div class="stat-lbl">Delivery Time</div></div>
     </div>
     <div class="hero-trust">
@@ -1705,13 +1705,7 @@ function filterProj(cat,btn){
   });
 }
 
-/* ── COUNTERS ── */
-function runCounter(id,target,sfx){
-  var c=0,el=document.getElementById(id);if(!el)return;
-  var t=setInterval(function(){c=Math.min(c+Math.ceil(target/50),target);el.innerHTML=c+'<em style="color:var(--accent);font-style:normal;">'+sfx+'</em>';if(c>=target)clearInterval(t);},30);
-}
-var counted=false,hs=document.querySelector('.hero-stats');
-if(hs){new IntersectionObserver(function(en){if(en[0].isIntersecting&&!counted){counted=true;runCounter('cnt1',10,'+');runCounter('cnt2',100,'%');}},{threshold:.5}).observe(hs);}
+
 
 _carInit();
 
