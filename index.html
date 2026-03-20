@@ -292,30 +292,36 @@ img{max-width:100%;}
 .navbar{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 6%;
+  padding:12px 4%;
   background:rgba(255,255,255,.96);backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(26,86,255,.07);transition:box-shadow .3s;
+  overflow:hidden;
 }
 .navbar.scrolled{box-shadow:0 4px 30px rgba(26,86,255,.1);}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{height:38px;}
-.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--navy);}
+.logo{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.logo img{height:34px;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--navy);}
 .logo-text span{color:var(--blue);}
-.logo-badge{background:var(--blue);color:#fff;font-size:.54rem;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.5px;}
-.nav-menu{display:flex;align-items:center;gap:26px;list-style:none;}
-.nav-menu li a{color:var(--navy);font-size:.87rem;font-weight:500;position:relative;transition:color .2s;}
+.logo-badge{background:var(--blue);color:#fff;font-size:.5rem;font-weight:700;padding:2px 6px;border-radius:20px;letter-spacing:.5px;}
+.logo-slogan{font-size:.72rem;color:rgba(100,116,139,.7);font-style:italic;}
+@media(max-width:960px){.logo-slogan{display:none;}}
+.nav-menu{display:flex;align-items:center;gap:20px;list-style:none;}
+.nav-menu li a{color:var(--navy);font-size:.85rem;font-weight:500;position:relative;transition:color .2s;}
 .nav-menu li a:not(.nav-cta):hover{color:var(--blue);}
 .nav-menu li a:not(.nav-cta)::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--blue);transition:width .25s;}
 .nav-menu li a:not(.nav-cta):hover::after{width:100%;}
-.nav-cta{background:var(--blue);color:#fff!important;padding:9px 20px;border-radius:8px;font-weight:600!important;transition:background .2s!important;box-shadow:0 4px 16px rgba(26,86,255,.3);}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 16px;border-radius:8px;font-weight:600!important;transition:background .2s!important;box-shadow:0 4px 16px rgba(26,86,255,.3);}
 .nav-cta:hover{background:var(--blue2)!important;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:3px;}
-.hamburger span{width:24px;height:2px;background:var(--navy);border-radius:2px;display:block;transition:all .3s;}
+.hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;display:block;transition:all .3s;}
 
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
 .hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;padding:120px 6% 80px;position:relative;overflow:hidden;}
+@media(max-width:768px){
+  .hero{min-height:auto;padding:90px 5% 50px;}
+}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,86,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(26,86,255,.035) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;}
 .hero-glow1{position:absolute;top:-200px;right:-150px;width:680px;height:680px;background:radial-gradient(circle,rgba(26,86,255,.22) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
 .hero-glow2{position:absolute;bottom:-150px;left:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,255,.07) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
@@ -1687,7 +1693,7 @@ if('serviceWorker' in navigator){
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="btn-white"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Karo</a>
       <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost2"><i class="fab fa-telegram"></i> Telegram Bot</a>
-      <a href="mailto:tkwebsolution1301@gmail.com" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
+      <a href="/cdn-cgi/l/email-protection#b5c1dec2d0d7c6dad9c0c1dcdadb84868584f5d2d8d4dcd99bd6dad8" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
     </div>
   </div>
 </div>
@@ -1704,9 +1710,9 @@ if('serviceWorker' in navigator){
         <a href="tel:+919079368240" class="cm cm-phone"><i class="fas fa-phone-alt"></i><span>Call Karo<br>+91 90793 68240</span></a>
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="cm cm-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp<br>+91 90793 68240</span></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="cm cm-tg"><i class="fab fa-telegram"></i><span>Telegram Bot<br>@TKwebsolutions_bot</span></a>
-        <a href="mailto:tkwebsolution1301@gmail.com" class="cm cm-email">
+        <a href="/cdn-cgi/l/email-protection#a4d0cfd3c1c6d7cbc8d1d0cdcbca95979495e4c3c9c5cdc88ac7cbc9" class="cm cm-email">
   <i class="fas fa-envelope"></i>
-  <span>Email<br>tkwebsolution1301@gmail.com
+  <span>Email<br><span class="__cf_email__" data-cfemail="5c28372b393e2f333029283533326d6f6c6d1c3b313d3530723f3331">[email&#160;protected]</span></span>
 </a>
         <a href="https://in.pinterest.com/tkwebsolution1301/" target="_blank" class="cm" style="background: linear-gradient(135deg, #E60023, #BD081C);">
   <i class="fab fa-pinterest"></i>
@@ -1757,7 +1763,7 @@ if('serviceWorker' in navigator){
         <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
         <a href="https://wa.me/919079368240" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="soc"><i class="fab fa-telegram"></i></a>
-        <a href="mailto:tkwebsolution1301@gmail.com"
+        <a href="/cdn-cgi/l/email-protection#1d69766a787f6e727168697472732c2e2d2c5d7a707c7471337e7270" class="soc"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
     <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">Portfolio Website</a></li><li><a href="#services">E-Commerce Website</a></li><li><a href="#services">Website Redesign</a></li></ul></div>
@@ -1809,6 +1815,7 @@ if('serviceWorker' in navigator){
 <!-- ══════════════════════════════════════════
      ALL SCRIPTS
 ══════════════════════════════════════════ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── GUIDE MASCOT ── */
 var _gOpen=true;
 var _gSteps=[
