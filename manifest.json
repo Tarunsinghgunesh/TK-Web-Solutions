@@ -1,0 +1,57 @@
+{
+  "name": "TK Web Solutions",
+  "short_name": "TK Web",
+  "description": "Bharatpur ka trusted web design agency. Professional websites ₹5,000 se. 5-7 din mein LIVE!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060d1f",
+  "theme_color": "#1a56ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/logo.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "hi",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Free Demo Lo",
+      "short_name": "Demo",
+      "description": "Free demo ke liye WhatsApp karo",
+      "url": "https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye.",
+      "icons": [{"src": "/logo.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Blog Padho",
+      "short_name": "Blog",
+      "description": "Free web design tips Hindi mein",
+      "url": "/blog/blog.html",
+      "icons": [{"src": "/logo.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Services Dekho",
+      "short_name": "Services",
+      "description": "Hamare website packages",
+      "url": "/#services",
+      "icons": [{"src": "/logo.png", "sizes": "192x192"}]
+    }
+  ]
+}
