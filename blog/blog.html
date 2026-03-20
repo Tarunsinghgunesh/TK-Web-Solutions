@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog — TK Web Solutions | Free Tips & Guides Hindi</title>
-<meta name="description" content="TK Web Solutions ka free blog — web design, local SEO, e-commerce, digital marketing tips Hindi mein. Bharatpur ke businesses ke liye.">
-<meta name="keywords" content="web design tips hindi, local seo bharatpur, website kaise banaye, digital marketing hindi, tk web solutions blog">
+<meta name="description" content="TK Web Solutions ka free blog — web design, local SEO, digital marketing tips Hindi mein. Bharatpur ke businesses ke liye.">
 <link rel="canonical" href="https://tkwebsolutions.in/blog/blog.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,51 +16,51 @@
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:#f8faff;color:var(--navy);overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
-
-/* NAVBAR */
-.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(26,86,255,0.06);}
-.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--navy);}
+.navbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(26,86,255,.06);}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--navy);}
 .nav-logo-text span{color:var(--blue);}
-.nav-badge{background:var(--blue);color:#fff;font-size:.52rem;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:8px;}
-.nav-links{display:flex;align-items:center;gap:24px;}
-.nav-links a{font-size:.87rem;font-weight:500;color:var(--gray);transition:color .2s;}
+.nav-badge{background:var(--blue);color:#fff;font-size:.5rem;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:8px;}
+.nav-links{display:flex;align-items:center;gap:20px;}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--gray);transition:color .2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--blue);}
-.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
-.nav-cta:hover{background:var(--blue2)!important;}
-
-/* HERO */
-.blog-hero{background:var(--navy);padding:70px 6% 60px;position:relative;overflow:hidden;text-align:center;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:7px 16px;border-radius:8px;font-weight:600!important;}
+.blog-hero{background:var(--navy);padding:50px 6% 40px;position:relative;overflow:hidden;text-align:center;}
 .blog-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,86,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,86,255,.04) 1px,transparent 1px);background-size:50px 50px;}
-.blog-hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(26,86,255,.25) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.blog-hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(circle,rgba(26,86,255,.22) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
 .blog-hero-content{position:relative;z-index:1;}
-.blog-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.4);color:var(--accent);padding:6px 16px;border-radius:30px;font-size:.75rem;font-weight:700;letter-spacing:.5px;margin-bottom:20px;}
+.blog-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.4);color:var(--accent);padding:5px 14px;border-radius:30px;font-size:.72rem;font-weight:700;letter-spacing:.5px;margin-bottom:14px;}
 .pulse{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.4;}}
-.blog-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:14px;line-height:1.1;}
+.blog-hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:800;color:#fff;margin-bottom:10px;line-height:1.1;}
 .blog-hero h1 span{color:var(--accent);}
-.blog-hero p{color:rgba(255,255,255,.55);font-size:1rem;max-width:500px;margin:0 auto 30px;line-height:1.7;}
-.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
-.h-stat-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;}
+.blog-hero p{color:rgba(255,255,255,.5);font-size:.92rem;max-width:480px;margin:0 auto 18px;line-height:1.6;}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;}
+.h-stat-num{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;}
 .h-stat-num em{color:var(--accent);font-style:normal;}
-.h-stat-lbl{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
-
-/* FILTER */
-.filter-section{padding:32px 6% 20px;background:#fff;border-bottom:1px solid var(--border);}
-.filter-wrap{max-width:1100px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;}
-.ftab{padding:7px 18px;border-radius:30px;font-size:.8rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--gray);transition:all .2s;font-family:'DM Sans',sans-serif;}
+.h-stat-lbl{font-size:.63rem;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.filter-section{padding:18px 6%;background:#fff;border-bottom:1px solid var(--border);}
+.filter-wrap{max-width:1200px;margin:0 auto;display:flex;gap:7px;flex-wrap:wrap;}
+.ftab{padding:5px 14px;border-radius:30px;font-size:.76rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--gray);transition:all .2s;font-family:'DM Sans',sans-serif;}
 .ftab:hover{border-color:var(--blue);color:var(--blue);}
 .ftab.active{background:var(--blue);color:#fff;border-color:var(--blue);}
-
-/* MAIN */
-.main-wrap{max-width:1100px;margin:0 auto;padding:40px 6% 60px;display:grid;grid-template-columns:1fr 300px;gap:36px;}
+.main-wrap{max-width:1200px;margin:0 auto;padding:28px 6% 50px;display:grid;grid-template-columns:1fr 270px;gap:28px;}
 @media(max-width:900px){.main-wrap{grid-template-columns:1fr;}.sidebar{display:none;}}
-
-/* BLOG GRID */
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;}
-.blog-card{background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid var(--border);transition:all .3s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column;}
-.blog-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(26,86,255,.12);border-color:rgba(26,86,255,.3);}
-.card-top{padding:22px 22px 0;}
-.card-cat{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px;}
+.featured-post{background:var(--navy);border-radius:14px;padding:26px;display:flex;align-items:center;gap:22px;border:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;margin-bottom:22px;}
+.featured-post::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(26,86,255,.28) 0%,transparent 70%);border-radius:50%;}
+.featured-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(26,86,255,.2);border:1px solid rgba(26,86,255,.4);color:var(--accent);padding:3px 9px;border-radius:20px;font-size:.62rem;font-weight:700;margin-bottom:9px;}
+.featured-post h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:7px;line-height:1.25;}
+.featured-post p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.55;margin-bottom:14px;max-width:460px;}
+.featured-meta{color:rgba(255,255,255,.28);font-size:.7rem;margin-bottom:12px;}
+.featured-btn{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:#fff;padding:8px 16px;border-radius:8px;font-weight:700;font-size:.8rem;transition:all .2s;}
+.featured-btn:hover{background:var(--blue2);transform:translateY(-2px);}
+.featured-icon{font-size:3rem;flex-shrink:0;}
+/* 2 column grid */
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media(max-width:600px){.blog-grid{grid-template-columns:1fr;}}
+.blog-card{background:#fff;border-radius:12px;overflow:hidden;border:1.5px solid var(--border);transition:all .3s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column;}
+.blog-card:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(26,86,255,.1);border-color:rgba(26,86,255,.22);}
+.card-top{padding:16px 16px 0;}
+.card-cat{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-bottom:9px;}
 .cat-coaching{background:#e8eeff;color:var(--blue);}
 .cat-seo{background:#fef3e2;color:#d97706;}
 .cat-business{background:#e8fdf0;color:#16a34a;}
@@ -71,72 +70,54 @@ a{text-decoration:none;color:inherit;}
 .cat-ecommerce{background:#fff8e8;color:#ca8a04;}
 .cat-emitra{background:#f0fff4;color:#059669;}
 .cat-school{background:#fdf4ff;color:#7c3aed;}
-.blog-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.35;}
+.blog-card h3{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.3;}
 .blog-card h3 a{color:inherit;transition:color .2s;}
 .blog-card h3 a:hover{color:var(--blue);}
-.blog-card p{color:var(--gray);font-size:.85rem;line-height:1.6;padding:0 22px;flex-grow:1;}
-.card-footer{padding:16px 22px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);margin-top:16px;}
-.card-meta{font-size:.72rem;color:var(--gray);}
-.read-more{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:700;color:var(--blue);transition:gap .2s;}
-.read-more:hover{gap:8px;}
-
-/* FEATURED */
-.featured-post{background:var(--navy);border-radius:16px;padding:36px;display:flex;align-items:center;gap:30px;border:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;margin-bottom:28px;}
-.featured-post::before{content:'';position:absolute;top:-50px;right:-50px;width:250px;height:250px;background:radial-gradient(circle,rgba(26,86,255,.3) 0%,transparent 70%);border-radius:50%;}
-.featured-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,86,255,.2);border:1px solid rgba(26,86,255,.4);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:700;margin-bottom:14px;}
-.featured-post h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.25;}
-.featured-post p{color:rgba(255,255,255,.55);font-size:.88rem;line-height:1.6;margin-bottom:20px;max-width:500px;}
-.featured-meta{color:rgba(255,255,255,.3);font-size:.75rem;margin-bottom:20px;}
-.featured-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:11px 22px;border-radius:8px;font-weight:700;font-size:.85rem;transition:all .2s;box-shadow:0 6px 20px rgba(26,86,255,.35);}
-.featured-btn:hover{background:var(--blue2);transform:translateY(-2px);}
-.featured-icon{font-size:4rem;}
-
-/* SIDEBAR */
-.sidebar{display:flex;flex-direction:column;gap:24px;}
-.sidebar-box{background:#fff;border-radius:14px;padding:22px;border:1.5px solid var(--border);}
-.sidebar-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--bluel);}
-.popular-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.blog-card p{color:var(--gray);font-size:.8rem;line-height:1.52;padding:0 16px;flex-grow:1;}
+.card-footer{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);margin-top:10px;}
+.card-meta{font-size:.68rem;color:var(--gray);}
+.read-more{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--blue);transition:gap .2s;}
+.read-more:hover{gap:7px;}
+.sidebar{display:flex;flex-direction:column;gap:18px;}
+.sidebar-box{background:#fff;border-radius:12px;padding:16px;border:1.5px solid var(--border);}
+.sidebar-title{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;color:var(--navy);margin-bottom:12px;padding-bottom:7px;border-bottom:2px solid var(--bluel);}
+.popular-item{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--border);}
 .popular-item:last-child{border-bottom:none;}
-.pop-num{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--bluel);min-width:28px;}
-.pop-title{font-size:.82rem;font-weight:600;color:var(--navy);line-height:1.4;}
+.pop-num{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--bluel);min-width:22px;}
+.pop-title{font-size:.76rem;font-weight:600;color:var(--navy);line-height:1.4;}
 .pop-title:hover{color:var(--blue);}
-.pop-meta{font-size:.7rem;color:var(--gray);margin-top:3px;}
-.cat-list{display:flex;flex-direction:column;gap:8px;}
-.cat-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--light);cursor:pointer;transition:all .2s;}
+.pop-meta{font-size:.66rem;color:var(--gray);margin-top:2px;}
+.cat-list{display:flex;flex-direction:column;gap:5px;}
+.cat-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:8px;background:var(--light);cursor:pointer;transition:all .2s;}
 .cat-item:hover{background:var(--bluel);}
-.cat-item-name{font-size:.82rem;font-weight:600;color:var(--navy);}
-.cat-count{font-size:.72rem;color:var(--gray);background:#fff;padding:2px 8px;border-radius:20px;}
-.cta-sidebar{background:var(--blue);border-radius:14px;padding:24px;text-align:center;}
-.cta-sidebar h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px;}
-.cta-sidebar p{color:rgba(255,255,255,.7);font-size:.8rem;line-height:1.5;margin-bottom:16px;}
-.cta-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:.83rem;transition:all .2s;}
+.cat-item-name{font-size:.76rem;font-weight:600;color:var(--navy);}
+.cat-count{font-size:.66rem;color:var(--gray);background:#fff;padding:1px 6px;border-radius:20px;}
+.cta-sidebar{background:var(--blue);border-radius:12px;padding:18px;text-align:center;}
+.cta-sidebar h3{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff;margin-bottom:6px;}
+.cta-sidebar p{color:rgba(255,255,255,.7);font-size:.76rem;line-height:1.5;margin-bottom:12px;}
+.cta-wa{display:flex;align-items:center;justify-content:center;gap:7px;background:var(--green);color:#fff;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.78rem;transition:all .2s;}
 .cta-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
-
-/* NEWSLETTER */
-.newsletter{background:var(--navy);padding:60px 6%;text-align:center;position:relative;overflow:hidden;}
+.newsletter{background:var(--navy);padding:50px 6%;text-align:center;position:relative;overflow:hidden;}
 .newsletter::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,86,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,86,255,.04) 1px,transparent 1px);background-size:50px 50px;}
-.newsletter-content{position:relative;z-index:1;max-width:500px;margin:0 auto;}
-.newsletter h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:10px;}
-.newsletter p{color:rgba(255,255,255,.5);margin-bottom:28px;line-height:1.6;}
-.nl-form{display:flex;flex-direction:column;gap:12px;}
-.nl-row{display:flex;gap:10px;}
-.nl-input{flex:1;padding:12px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:.88rem;font-family:'DM Sans',sans-serif;transition:border-color .2s;}
+.newsletter-content{position:relative;z-index:1;max-width:480px;margin:0 auto;}
+.newsletter h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:9px;}
+.newsletter p{color:rgba(255,255,255,.45);margin-bottom:22px;line-height:1.6;font-size:.92rem;}
+.nl-form{display:flex;flex-direction:column;gap:9px;}
+.nl-row{display:flex;gap:8px;}
+.nl-input{flex:1;padding:10px 13px;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:.84rem;font-family:'DM Sans',sans-serif;transition:border-color .2s;}
 .nl-input:focus{outline:none;border-color:var(--blue);}
-.nl-input::placeholder{color:rgba(255,255,255,.3);}
-.nl-btn{background:var(--blue);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:700;font-size:.88rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;}
-.nl-btn:hover{background:var(--blue2);transform:translateY(-1px);}
-.nl-note{font-size:.72rem;color:rgba(255,255,255,.25);margin-top:8px;}
-.nl-success{display:none;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);color:#25d366;padding:14px 20px;border-radius:8px;font-size:.88rem;font-weight:600;margin-top:12px;}
-
-/* FOOTER */
-.footer{background:var(--navy2);color:rgba(255,255,255,.5);padding:24px 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.82rem;}
-.footer a{color:var(--blue);transition:color .2s;}
-.footer-links{display:flex;gap:18px;}
+.nl-input::placeholder{color:rgba(255,255,255,.28);}
+.nl-btn{background:var(--blue);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;font-size:.84rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;}
+.nl-btn:hover{background:var(--blue2);}
+.nl-note{font-size:.68rem;color:rgba(255,255,255,.22);margin-top:5px;}
+.nl-success{display:none;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);color:#25d366;padding:11px 16px;border-radius:8px;font-size:.84rem;font-weight:600;margin-top:9px;}
+.footer{background:var(--navy2);color:rgba(255,255,255,.45);padding:18px 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem;}
+.footer a{color:var(--blue);}
+.footer-links{display:flex;gap:14px;}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div style="display:flex;align-items:center;">
     <span class="nav-logo-text"><span>TK</span> Web Solutions</span>
@@ -150,22 +131,20 @@ a{text-decoration:none;color:inherit;}
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="blog-hero">
   <div class="blog-hero-glow"></div>
   <div class="blog-hero-content">
     <div class="blog-hero-tag"><div class="pulse"></div> Free Knowledge Hub</div>
     <h1>TK Web Solutions <span>Blog</span></h1>
-    <p>Web design, SEO, digital marketing — sab kuch Hindi mein. Bharatpur ke businesses ke liye free tips aur guides!</p>
+    <p>Web design, SEO, digital marketing — sab kuch Hindi mein. Bharatpur ke businesses ke liye!</p>
     <div class="hero-stats">
-      <div class="h-stat"><div class="h-stat-num">20<em>+</em></div><div class="h-stat-lbl">Articles</div></div>
+      <div class="h-stat"><div class="h-stat-num">21<em>+</em></div><div class="h-stat-lbl">Articles</div></div>
       <div class="h-stat"><div class="h-stat-num">100<em>%</em></div><div class="h-stat-lbl">Free</div></div>
       <div class="h-stat"><div class="h-stat-num">Hindi</div><div class="h-stat-lbl">Language</div></div>
     </div>
   </div>
 </section>
 
-<!-- FILTER -->
 <div class="filter-section">
   <div class="filter-wrap">
     <button class="ftab active" onclick="filterPosts('all',this)">🗂️ Sab</button>
@@ -180,161 +159,72 @@ a{text-decoration:none;color:inherit;}
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main-wrap">
   <div>
-    <!-- FEATURED -->
     <div class="featured-post">
       <div style="flex:1;position:relative;z-index:1;">
         <div class="featured-badge">⭐ Featured Post</div>
         <h2>Bina Website Ke Kitna Nuksaan Ho Raha Hai Aapke Business Ko?</h2>
-        <p>Har din jo aapka competitor Google pe dikh raha hai aur aap nahi — wo leads aapke paas nahi aa rahi. Jaaniye exact nuksaan aur solution.</p>
-        <div class="featured-meta">📅 March 2026 · ⏱️ 10 min read · Tarun Singh</div>
+        <p>Har din aapka competitor Google pe dikh raha hai — aur aap nahi. Real numbers ke saath jaaniye exact nuksaan.</p>
+        <div class="featured-meta">📅 March 2026 · ⏱️ 10 min · Tarun Singh</div>
         <a href="post-nuksaan.html" class="featured-btn">Poora Padho →</a>
       </div>
       <div class="featured-icon">💸</div>
     </div>
 
-    <!-- BLOG GRID -->
     <div class="blog-grid" id="blogGrid">
 
-      <div class="blog-card" data-cat="business">
-        <div class="card-top"><span class="card-cat cat-business">💰 Business Growth</span><h3><a href="post-nuksaan.html">Bina Website Ke Kitna Nuksaan? — Real Calculation</a></h3></div>
-        <p>Agar aapke area mein roz 50 log "coaching near me" search karte hain aur aap online nahi ho — mahine mein kitne leads kho rahe ho? Real numbers ke saath.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post-nuksaan.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="business"><div class="card-top"><span class="card-cat cat-business">💰 Business Growth</span><h3><a href="post-nuksaan.html">Bina Website Ke Kitna Nuksaan? — Real Calculation</a></h3></div><p>Roz 50 log "coaching near me" search karte hain — aap online nahi ho toh mahine mein kitne leads kho rahe ho?</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post-nuksaan.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="emitra">
-        <div class="card-top"><span class="card-cat cat-emitra">🏛️ E-Mitra</span><h3><a href="post-emitra.html">E-Mitra Center Ki Website Kyun Zaruri Hai — 7 Bade Fayde</a></h3></div>
-        <p>Sirf counter pe baithne se kaam nahi chalta — jo E-Mitra ki website hai, uske paas 3x zyada customers aate hain. Jaaniye kyun aur kaise.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 9 min</span><a href="post-emitra.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="emitra"><div class="card-top"><span class="card-cat cat-emitra">🏛️ E-Mitra</span><h3><a href="post-emitra.html">E-Mitra Center Ki Website Kyun Zaruri Hai — 7 Fayde</a></h3></div><p>Sirf counter pe baithne se nahi chalta — website wale E-Mitra ke paas 3x zyada customers aate hain.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 9 min</span><a href="post-emitra.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="school">
-        <div class="card-top"><span class="card-cat cat-school">🏫 School Website</span><h3><a href="post-school.html">School Website Kaise Banaye — Admissions 2x Kaise Badhayein</a></h3></div>
-        <p>Online school profile hone se parents trust karte hain. Admission form, gallery, events — sab online hona chahiye. Complete guide Hindi mein.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-school.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="school"><div class="card-top"><span class="card-cat cat-school">🏫 School Website</span><h3><a href="post-school.html">School Website Kaise Banaye — Admissions 2x Kaise Badhayein</a></h3></div><p>Online profile hone se parents trust karte hain. Admission form, gallery, events — sab online hona chahiye.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-school.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="coaching">
-        <div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching</span><h3><a href="post-coaching-leads.html">Coaching Institute Mein Online Leads Kaise Aayein — 5 Proven Tips</a></h3></div>
-        <p>Website + Google + WhatsApp + Instagram — ye 4 cheezein sahi se set karo toh coaching mein roz naye students enquiry karenge.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post-coaching-leads.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="coaching"><div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching</span><h3><a href="post-coaching-leads.html">Coaching Institute Mein Online Leads Kaise Aayein — 5 Tips</a></h3></div><p>Website + Google + WhatsApp + Instagram — ye 4 cheezein sahi set karo toh roz naye students enquiry karenge.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post-coaching-leads.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="business">
-        <div class="card-top"><span class="card-cat cat-business">🏆 Local Business</span><h3><a href="post-competitor.html">Aapka Competitor Online Aa Gaya — Abhi Kya Karein?</a></h3></div>
-        <p>Jab competition online ho jaaye toh sirf ek hi rasta hai — tum bhi online aao, aur unse better aao. Ye guide tumhare liye hi hai.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-competitor.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="business"><div class="card-top"><span class="card-cat cat-business">🏆 Local Business</span><h3><a href="post-competitor.html">Aapka Competitor Online Aa Gaya — Abhi Kya Karein?</a></h3></div><p>Jab competition online ho jaaye — ek hi rasta hai. Tum bhi aao aur unse better aao. Ye guide tumhare liye.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-competitor.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="digital">
-        <div class="card-top"><span class="card-cat cat-digital">📍 Digital Marketing</span><h3><a href="post-gmb.html">Google My Business Setup Guide — Free Mein Google Pe Aao</a></h3></div>
-        <p>Google Maps pe aapka business dikhna chahiye — ye bilkul free hai. 15 minute mein Google My Business setup karo aur local customers attract karo.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-gmb.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="digital"><div class="card-top"><span class="card-cat cat-digital">📍 Digital Marketing</span><h3><a href="post-gmb.html">Google My Business Setup — Free Mein Google Pe Aao</a></h3></div><p>Google Maps pe dikhna chahiye — bilkul free hai. 15 minute mein setup karo aur local customers attract karo.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post-gmb.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="coaching">
-        <div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching Website</span><h3><a href="post1.html">Coaching Website Design — Complete Guide 2026</a></h3></div>
-        <p>Professional coaching websites kaise banaye? Features, pricing, benefits aur step-by-step guide institutes ke liye.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 8 min</span><a href="post1.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="coaching"><div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching Website</span><h3><a href="post1.html">Coaching Website Design — Complete Guide 2026</a></h3></div><p>Professional coaching websites kaise banaye? Features, pricing, benefits aur step-by-step guide institutes ke liye.</p><div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 8 min</span><a href="post1.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="tips">
-        <div class="card-top"><span class="card-cat cat-tips">⚡ Website Tips</span><h3><a href="post2.html">Website Speed Optimization — Fast Loading Kaise Karein</a></h3></div>
-        <p>Website ko fast banao — images optimize karo, caching enable karo, CDN use karo. Core Web Vitals improve karo.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 7 min</span><a href="post2.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="tips"><div class="card-top"><span class="card-cat cat-tips">⚡ Website Tips</span><h3><a href="post2.html">Website Speed Optimization — Fast Loading Kaise Karein</a></h3></div><p>Website ko fast banao — images optimize karo, caching enable karo, CDN use karo.</p><div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 7 min</span><a href="post2.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="tips">
-        <div class="card-top"><span class="card-cat cat-tips">📱 Website Tips</span><h3><a href="post3.html">Mobile Friendly Website Design — Kyun Zaruri Hai 2026</a></h3></div>
-        <p>Mobile-first design kyun zaroori hai? Responsive design principles, mobile UX best practices aur optimization tips.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 8 min</span><a href="post3.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="tips"><div class="card-top"><span class="card-cat cat-tips">📱 Website Tips</span><h3><a href="post3.html">Mobile Friendly Website Design — Kyun Zaruri Hai 2026</a></h3></div><p>Mobile-first design kyun zaroori hai? Responsive design principles aur optimization techniques.</p><div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 8 min</span><a href="post3.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="ecommerce">
-        <div class="card-top"><span class="card-cat cat-ecommerce">🛒 E-Commerce</span><h3><a href="post4.html">E-Commerce Website Development — Online Store Kaise Banaye</a></h3></div>
-        <p>Online store banane ka complete guide. Platform selection, payment integration, inventory management aur scaling tips.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 9 min</span><a href="post4.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="ecommerce"><div class="card-top"><span class="card-cat cat-ecommerce">🛒 E-Commerce</span><h3><a href="post4.html">E-Commerce Website — Online Store Kaise Banaye</a></h3></div><p>Online store banane ka complete guide. Platform, payment integration, inventory management tips.</p><div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 9 min</span><a href="post4.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="seo">
-        <div class="card-top"><span class="card-cat cat-seo">🗺️ SEO Guide</span><h3><a href="post5.html">Global & Local SEO Master Guide — Google #1 Kaise Aayein</a></h3></div>
-        <p>Technical SEO, on-page optimization, link building, local search strategies — Google pe top rank karne ka complete guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 10 min</span><a href="post5.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="seo"><div class="card-top"><span class="card-cat cat-seo">🗺️ SEO Guide</span><h3><a href="post5.html">Global & Local SEO Master Guide — Google #1 Kaise Aayein</a></h3></div><p>Technical SEO, on-page optimization, link building — Google pe top rank karne ka complete guide.</p><div class="card-footer"><span class="card-meta">📅 March 4, 2026 · 10 min</span><a href="post5.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="business">
-        <div class="card-top"><span class="card-cat cat-business">📈 Business Growth</span><h3><a href="post6.html">Website Se Business Kaise Badhta Hai — Real Examples</a></h3></div>
-        <p>Kaise ek professional website business ko 3x badhaa sakti hai. Bharatpur ke actual businesses ki success stories.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 6, 2026 · 10 min</span><a href="post6.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="business"><div class="card-top"><span class="card-cat cat-business">📈 Business Growth</span><h3><a href="post6.html">Website Se Business Kaise Badhta Hai — Real Examples</a></h3></div><p>Kaise ek professional website business ko 3x badhaa sakti hai. Bharatpur ki success stories.</p><div class="card-footer"><span class="card-meta">📅 March 6, 2026 · 10 min</span><a href="post6.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="business">
-        <div class="card-top"><span class="card-cat cat-business">🌐 Local Business</span><h3><a href="post7.html">Bharatpur Mein Website Kaise Banwayein — 2026 Guide</a></h3></div>
-        <p>Bharatpur ke business owners ke liye complete guide — kitna kharcha, kya milta hai, kaise banwayein.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 7, 2026 · 10 min</span><a href="post7.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="business"><div class="card-top"><span class="card-cat cat-business">🌐 Local Business</span><h3><a href="post7.html">Bharatpur Mein Website Kaise Banwayein — 2026 Guide</a></h3></div><p>Bharatpur ke business owners ke liye complete guide — kitna kharcha, kya milta hai.</p><div class="card-footer"><span class="card-meta">📅 March 7, 2026 · 10 min</span><a href="post7.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="business">
-        <div class="card-top"><span class="card-cat cat-business">💻 Web Design</span><h3><a href="post8.html">Web Designer Bharatpur — Best Affordable Options 2026</a></h3></div>
-        <p>Bharatpur mein best web designer dhundh rahe hain? Complete guide — kya dekhein, pricing, portfolio aur contact.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 8, 2026 · 8 min</span><a href="post8.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="business"><div class="card-top"><span class="card-cat cat-business">💻 Web Design</span><h3><a href="post8.html">Web Designer Bharatpur — Best Affordable Options 2026</a></h3></div><p>Bharatpur mein best web designer dhundh rahe hain? Kya dekhein, pricing, portfolio aur direct contact.</p><div class="card-footer"><span class="card-meta">📅 March 8, 2026 · 8 min</span><a href="post8.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="seo">
-        <div class="card-top"><span class="card-cat cat-seo">📍 Local SEO</span><h3><a href="post9.html">Google Pe Business Kaise Laayein — Complete 2026 Guide</a></h3></div>
-        <p>Google Business Profile, Local SEO, aur website se apna business Google pe kaise laayein — step by step guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 12, 2026 · 10 min</span><a href="post9.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="seo"><div class="card-top"><span class="card-cat cat-seo">📍 Local SEO</span><h3><a href="post9.html">Google Pe Business Kaise Laayein — Complete 2026 Guide</a></h3></div><p>Google Business Profile, Local SEO — apna business Google pe kaise laayein step by step.</p><div class="card-footer"><span class="card-meta">📅 March 12, 2026 · 10 min</span><a href="post9.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="digital">
-        <div class="card-top"><span class="card-cat cat-digital">📸 Social Media</span><h3><a href="post10.html">Instagram Se Business Kaise Badhao — Complete Guide 2026</a></h3></div>
-        <p>Instagram se business grow karo — Reels, hashtags, bio setup, story tips. Bharatpur ke local businesses ke liye.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post10.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="digital"><div class="card-top"><span class="card-cat cat-digital">📸 Social Media</span><h3><a href="post10.html">Instagram Se Business Kaise Badhao — Complete Guide 2026</a></h3></div><p>Reels, hashtags, bio setup, story tips. Bharatpur ke local businesses ke liye complete Hindi guide.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post10.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="digital">
-        <div class="card-top"><span class="card-cat cat-digital">💬 Digital Marketing</span><h3><a href="post11.html">WhatsApp Se Business Leads Kaise Generate Kare 2026</a></h3></div>
-        <p>WhatsApp Business setup, broadcast list, status tips — leads generate karne ka complete guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 7 min</span><a href="post11.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="digital"><div class="card-top"><span class="card-cat cat-digital">💬 Digital Marketing</span><h3><a href="post11.html">WhatsApp Se Business Leads Kaise Generate Kare 2026</a></h3></div><p>WhatsApp Business setup, broadcast list, status tips — leads generate karne ka complete guide.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 7 min</span><a href="post11.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="tips">
-        <div class="card-top"><span class="card-cat cat-tips">✅ Website Tips</span><h3><a href="post12.html">Website Launch Ke Baad Kya Kare — 10 Zaroori Steps</a></h3></div>
-        <p>Website live hone ke baad kya karna chahiye? Google submit, SEO, social media, Google Maps — 10 step guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 9 min</span><a href="post12.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="tips"><div class="card-top"><span class="card-cat cat-tips">✅ Website Tips</span><h3><a href="post12.html">Website Launch Ke Baad Kya Kare — 10 Zaroori Steps</a></h3></div><p>Google submit, SEO, social media, Google Maps — website live hone ke baad 10 step guide.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 9 min</span><a href="post12.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="seo">
-        <div class="card-top"><span class="card-cat cat-seo">🔍 SEO Guide</span><h3><a href="post13.html">Local SEO Kya Hai — Bharatpur Business ke liye Guide</a></h3></div>
-        <p>Local SEO kya hota hai aur Bharatpur ke businesses ke liye kyun zaruri hai? Google Maps ranking, local keywords.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post13.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="seo"><div class="card-top"><span class="card-cat cat-seo">🔍 SEO Guide</span><h3><a href="post13.html">Local SEO Kya Hai — Bharatpur Business ke liye Guide</a></h3></div><p>Local SEO kya hota hai? Google Maps ranking, local keywords — Bharatpur businesses ke liye.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 10 min</span><a href="post13.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="basics">
-        <div class="card-top"><span class="card-cat cat-basics">📖 Website Basics</span><h3><a href="post14.html">Domain aur Hosting Kya Hota Hai — Beginners Guide Hindi</a></h3></div>
-        <p>Domain name aur web hosting kya hota hai? Kaise kharidein, kya fark hai? Beginners ke liye simple Hindi guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post14.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="basics"><div class="card-top"><span class="card-cat cat-basics">📖 Website Basics</span><h3><a href="post14.html">Domain aur Hosting Kya Hota Hai — Beginners Guide Hindi</a></h3></div><p>Domain name aur web hosting kya hota hai? Kaise kharidein, kya fark hai? Simple Hindi guide.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post14.html" class="read-more">Padho →</a></div></div>
 
-      <div class="blog-card" data-cat="coaching">
-        <div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching Website</span><h3><a href="post15.html">Coaching Center Ka Online Admission Form Kaise Banaye</a></h3></div>
-        <p>Coaching center ke liye online admission form kaise banayein? Benefits, features, complete guide.</p>
-        <div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post15.html" class="read-more">Padho →</a></div>
-      </div>
+      <div class="blog-card" data-cat="coaching"><div class="card-top"><span class="card-cat cat-coaching">🎓 Coaching Website</span><h3><a href="post15.html">Coaching Center Ka Online Admission Form Kaise Banaye</a></h3></div><p>Online admission form kaise banayein? Benefits, features, complete guide for coaching centers.</p><div class="card-footer"><span class="card-meta">📅 March 2026 · 8 min</span><a href="post15.html" class="read-more">Padho →</a></div></div>
 
     </div>
   </div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="cta-sidebar">
       <h3>Website Chahiye? 🚀</h3>
       <p>Professional website sirf ₹5,000 se. 5-7 din mein LIVE!</p>
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Blog%20se%20aaya%20hoon." class="cta-wa">💬 WhatsApp Karo</a>
     </div>
-
     <div class="sidebar-box">
       <div class="sidebar-title">🔥 Popular Posts</div>
       <div class="popular-item"><div class="pop-num">01</div><div><div class="pop-title"><a href="post-nuksaan.html">Bina Website Kitna Nuksaan?</a></div><div class="pop-meta">10 min · March 2026</div></div></div>
@@ -342,7 +232,6 @@ a{text-decoration:none;color:inherit;}
       <div class="popular-item"><div class="pop-num">03</div><div><div class="pop-title"><a href="post7.html">Bharatpur Mein Website Kaise Banwayein</a></div><div class="pop-meta">10 min · March 2026</div></div></div>
       <div class="popular-item"><div class="pop-num">04</div><div><div class="pop-title"><a href="post9.html">Google Pe Business Kaise Laayein</a></div><div class="pop-meta">10 min · March 2026</div></div></div>
     </div>
-
     <div class="sidebar-box">
       <div class="sidebar-title">📂 Categories</div>
       <div class="cat-list">
@@ -351,22 +240,20 @@ a{text-decoration:none;color:inherit;}
         <div class="cat-item" onclick="filterPosts('emitra',null)"><span class="cat-item-name">🏛️ E-Mitra</span><span class="cat-count">1</span></div>
         <div class="cat-item" onclick="filterPosts('seo',null)"><span class="cat-item-name">🔍 SEO</span><span class="cat-count">3</span></div>
         <div class="cat-item" onclick="filterPosts('business',null)"><span class="cat-item-name">🏢 Business</span><span class="cat-count">5</span></div>
-        <div class="cat-item" onclick="filterPosts('digital',null)"><span class="cat-item-name">📱 Digital Marketing</span><span class="cat-count">3</span></div>
+        <div class="cat-item" onclick="filterPosts('digital',null)"><span class="cat-item-name">📱 Digital</span><span class="cat-count">3</span></div>
         <div class="cat-item" onclick="filterPosts('tips',null)"><span class="cat-item-name">💡 Tips</span><span class="cat-count">3</span></div>
         <div class="cat-item" onclick="filterPosts('ecommerce',null)"><span class="cat-item-name">🛒 E-Commerce</span><span class="cat-count">1</span></div>
       </div>
     </div>
-
     <div class="sidebar-box">
       <div class="sidebar-title">📞 Contact Karo</div>
-      <p style="font-size:.82rem;color:var(--gray);margin-bottom:14px;line-height:1.6;">Koi sawaal? Seedha baat karo!</p>
-      <a href="https://wa.me/919079368240" style="display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;color:#25d366;">💬 +91 90793 68240</a>
-      <a href="https://tkwebsolutions.in" style="display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--blue);margin-top:8px;">🌐 tkwebsolutions.in</a>
+      <p style="font-size:.76rem;color:var(--gray);margin-bottom:10px;line-height:1.5;">Koi sawaal? Seedha baat karo!</p>
+      <a href="https://wa.me/919079368240" style="display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;color:#25d366;">💬 +91 90793 68240</a>
+      <a href="https://tkwebsolutions.in" style="display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;color:var(--blue);margin-top:7px;">🌐 tkwebsolutions.in</a>
     </div>
   </aside>
 </div>
 
-<!-- NEWSLETTER -->
 <section class="newsletter">
   <div class="newsletter-content">
     <h2>📬 Free Tips Subscribe Karo!</h2>
@@ -380,11 +267,10 @@ a{text-decoration:none;color:inherit;}
       <input class="nl-input" type="text" id="subBiz" placeholder="Business Type (optional)">
     </div>
     <div class="nl-note">✅ Spam nahi karenge · Kabhi bhi unsubscribe kar sakte ho</div>
-    <div class="nl-success" id="nlSuccess">🎉 Shukriya! Aapko subscribe kar liya gaya hai. Jald hi updates milenge!</div>
+    <div class="nl-success" id="nlSuccess">🎉 Shukriya! Subscribe ho gaye. Jald updates milenge!</div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <span>© 2026 TK Web Solutions · Made with ❤️ in Bharatpur</span>
   <div class="footer-links">
@@ -402,27 +288,14 @@ function filterPosts(cat,btn){
     card.style.display=(cat==='all'||card.dataset.cat===cat)?'flex':'none';
   });
 }
-
 function subscribeNow(){
   var naam=document.getElementById('subNaam').value.trim();
   var phone=document.getElementById('subPhone').value.trim();
   var biz=document.getElementById('subBiz').value.trim()||'Nahi bataya';
-
   if(!naam){alert('Naam daalna zaroori hai!');return;}
   if(!phone||phone.length<10){alert('Sahi WhatsApp number daalo!');return;}
-
-  // WhatsApp pe notify karo
-  var waMsg='📬 New Blog Subscriber!\n\n👤 Naam: '+naam+'\n📞 Phone: '+phone+'\n🏢 Business: '+biz+'\n📍 Source: Blog Newsletter\n🌐 tkwebsolutions.in/blog';
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent(waMsg),'_blank');
-
-  // Gmail pe email bhejo
-  emailjs.send('service_n1reiw9','template_gg2zxzw',{
-    client_naam: naam,
-    client_phone: phone,
-    chat_log: '📬 NEW BLOG SUBSCRIBER!\n\nBusiness: '+biz+'\nSource: Blog Newsletter\nSite: tkwebsolutions.in/blog'
-  });
-
-  // Reset form
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent('📬 New Blog Subscriber!\n\n👤 Naam: '+naam+'\n📞 Phone: '+phone+'\n🏢 Business: '+biz+'\n📍 Source: Blog Newsletter'),'_blank');
+  emailjs.send('service_n1reiw9','template_gg2zxzw',{client_naam:naam,client_phone:phone,chat_log:'📬 NEW BLOG SUBSCRIBER!\nBusiness: '+biz+'\nSource: Blog Newsletter'});
   document.getElementById('subNaam').value='';
   document.getElementById('subPhone').value='';
   document.getElementById('subBiz').value='';
