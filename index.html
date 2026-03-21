@@ -13,22 +13,7 @@
   gtag('js', new Date());
   gtag('config', 'G-KDH5BXK1ZB');
 </script>
-     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "TK Web Solutions",
-  "logo": "https://tkwebsolutions.in/logo.png",
-  "url": "https://tkwebsolutions.in",
-  "telephone": "+919079368240",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Bharatpur",
-    "addressRegion": "Rajasthan",
-    "addressCountry": "IN"
-  }
-}
-</script>
+<!-- Schema in main block below -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Designer Bharatpur | TK Web Solutions | ₹5,000 Se</title>
@@ -86,7 +71,7 @@
   },
   "areaServed": ["Bharatpur", "Rajasthan", "India"],
   "priceRange": "₹7000 - ₹20000",
-  "openingHours": "Mo-Sa 09:00-20:00",
+  "openingHours": ["Mo-Sa 09:00-20:00"],
   "sameAs": [
     "https://www.instagram.com/tkwebsolutions_official",
     "https://www.facebook.com/profile.php?id=61586888301761",
@@ -151,7 +136,7 @@
   },
   "sameAs": [
     "https://www.instagram.com/tkwebsolutions_official",
-    "https://www.facebook.com/profile.php?id=61586888301761",
+    "https://www.facebook.com/profile.php?id=61586888301761"
   ]
 }
 </script>
@@ -1132,6 +1117,58 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .d-1{transition-delay:.1s!important;}.d-2{transition-delay:.2s!important;}
 .d-3{transition-delay:.3s!important;}.d-4{transition-delay:.4s!important;}
 .d-5{transition-delay:.5s!important;}.d-6{transition-delay:.6s!important;}
+
+/* ══════════════════════════════════════════
+   PREMIUM 3D DIGITAL CLOCK — BOTTOM CENTER
+══════════════════════════════════════════ */
+#tk-clock{
+  position:fixed;
+  bottom:28px;left:50%;
+  transform:translateX(-50%);
+  z-index:900;
+  background:rgba(6,13,31,.92);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(26,86,255,.3);
+  border-radius:50px;
+  padding:10px 22px;
+  box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 30px rgba(26,86,255,.1),inset 0 1px 0 rgba(255,255,255,.07);
+  cursor:pointer;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+  text-align:center;
+  animation:clockEntry .8s .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes clockEntry{from{opacity:0;transform:translateX(-50%) translateY(50px) scale(.8);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
+#tk-clock:hover{
+  border-color:rgba(0,229,255,.5);
+  box-shadow:0 16px 50px rgba(0,0,0,.6),0 0 40px rgba(0,229,255,.15);
+  transform:translateX(-50%) translateY(-4px);
+}
+#tk-clock::after{
+  content:'';position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,229,255,.7),transparent);
+  top:0;border-radius:50px;
+  animation:scanLine 3s ease-in-out infinite;
+}
+@keyframes scanLine{0%{top:0;opacity:0;}15%{opacity:1;}85%{opacity:.2;}100%{top:100%;opacity:0;}}
+.clk-inner{display:flex;align-items:center;gap:12px;}
+.clk-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0;animation:clkDot 1.5s ease-in-out infinite;}
+@keyframes clkDot{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,.7);transform:scale(1);}50%{box-shadow:0 0 0 7px rgba(0,229,255,0);transform:scale(1.3);}}
+.clk-time{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:800;color:#fff;letter-spacing:2px;line-height:1;display:flex;align-items:center;gap:2px;}
+.clk-colon{color:var(--accent);animation:colonBlink .9s step-end infinite;font-size:1.2rem;margin:0 1px;line-height:1;}
+@keyframes colonBlink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.1;transform:scale(.7);}}
+.clk-seg{display:inline-block;background:rgba(26,86,255,.15);border:1px solid rgba(26,86,255,.25);border-radius:7px;padding:3px 8px;letter-spacing:1px;text-shadow:0 0 16px rgba(0,229,255,.8);transition:all .3s;}
+.clk-seg.flip{animation:digitFlip .2s ease both;}
+@keyframes digitFlip{0%{transform:rotateX(90deg);opacity:0;}100%{transform:rotateX(0);opacity:1;}}
+.clk-ampm{font-size:.52rem;color:var(--accent);font-weight:700;letter-spacing:2px;align-self:flex-start;margin-top:1px;background:rgba(0,229,255,.1);padding:2px 5px;border-radius:4px;}
+.clk-divider{width:1px;height:26px;background:linear-gradient(to bottom,transparent,rgba(26,86,255,.5),transparent);flex-shrink:0;}
+.clk-right{display:flex;flex-direction:column;gap:2px;text-align:left;}
+.clk-day{font-size:.58rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Syne',sans-serif;}
+.clk-date{font-size:.55rem;color:rgba(255,255,255,.38);letter-spacing:1px;text-transform:uppercase;font-family:'DM Sans',sans-serif;}
+@media(max-width:768px){
+  #tk-clock{bottom:88px;padding:7px 16px;border-radius:40px;}
+  .clk-time{font-size:1rem;}
+  .clk-divider,.clk-right{display:none;}
+}
 </style>
      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>emailjs.init("ygQhaRBTpL_oM8QYs");</script>
@@ -1821,7 +1858,7 @@ var _gOpen=true;
 var _gSteps=[
   {t:'<strong>Services</strong> dekho — coaching, school, business websites ke prices yahan hain!',s:'#services'},
   {t:'<strong>Portfolio</strong> mein hamare live demo projects hain — click karo!',s:'#portfolio'},
-  {t:'<strong>Free Demo</strong> chahiye? Abhi WhatsApp karo — fast reply milega!',s:'#contact'},
+  {t:'<strong>Free Demo</strong> chahiye? Abhi WhatsApp karo — fast reply milega!',s:'#contact'}
 ];
 var _gIdx=0;
 
@@ -2279,19 +2316,75 @@ window.addEventListener('scroll',function(){
   if(nb)nb.classList.add('glass');
 })();
 
-/* 9. HERO H1 GLITCH */
-(function(){
-  var h1=document.querySelector('.hero h1');
-  if(!h1)return;
-  h1.classList.add('glitch');
-  h1.setAttribute('data-text',h1.textContent);
-})();
+/* 9. STATS STATIC */
+(function(){})();
 
-/* 10. STATS STATIC — no count up needed */
-(function(){
-  /* Stats already show correct values */
-})();
+</script>
 
+<!-- ══════════════════════════════════════════
+     PREMIUM 3D DIGITAL CLOCK
+══════════════════════════════════════════ -->
+<div id="tk-clock" title="Click to toggle 12/24h">
+  <div class="clk-inner">
+    <div class="clk-dot"></div>
+    <div class="clk-time">
+      <span class="clk-seg" id="clk-h">12</span>
+      <span class="clk-colon">:</span>
+      <span class="clk-seg" id="clk-m">00</span>
+      <span class="clk-colon">:</span>
+      <span class="clk-seg" id="clk-s">00</span>
+      <span class="clk-ampm" id="clk-ap">AM</span>
+    </div>
+    <div class="clk-divider"></div>
+    <div class="clk-right">
+      <div class="clk-day" id="clk-day">Monday</div>
+      <div class="clk-date" id="clk-date">01 Jan 2026</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var is24=false;
+  function pad(n){return n<10?'0'+n:''+n;}
+  function flipSeg(id,val){
+    var el=document.getElementById(id);
+    if(!el||el.textContent===val)return;
+    el.classList.remove('flip');
+    void el.offsetWidth;
+    el.textContent=val;
+    el.classList.add('flip');
+  }
+  function tick(){
+    var now=new Date();
+    var h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
+    var ampm=h>=12?'PM':'AM';
+    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
+    flipSeg('clk-m',pad(m));
+    flipSeg('clk-s',pad(s));
+    var ap=document.getElementById('clk-ap');
+    if(ap)ap.textContent=ampm;
+    document.getElementById('clk-day').textContent=days[now.getDay()];
+    document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
+    /* Glow pulse every second */
+    document.querySelectorAll('.clk-seg').forEach(function(el){
+      el.style.textShadow=s%2===0
+        ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
+        :'0 0 10px rgba(0,229,255,.5)';
+    });
+  }
+  tick();
+  setInterval(tick,1000);
+  /* Click = toggle 12h / 24h */
+  document.getElementById('tk-clock').addEventListener('click',function(){
+    is24=!is24;
+    var ap=document.getElementById('clk-ap');
+    if(ap)ap.style.display=is24?'none':'';
+    tick();
+  });
+})();
 </script>
 </body>
 </html>
