@@ -2001,6 +2001,7 @@ function _generatePDF(receiptNo){
 }
 
 function sendReceiptWhatsApp(data){
+     _lastReceiptData=data;
   var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
   var msg='🧾 *PAYMENT RECEIPT — TK Web Solutions*\n\n'+
     '━━━━━━━━━━━━━━━━━━━━\n'+
