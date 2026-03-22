@@ -2069,23 +2069,23 @@ function notifyPayment(){
 }
   
   
-function sendOwnerAlert(data){var msg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n━━━━━━━━━━━━━━━━━━━━\n🧾 Receipt: '+data.receiptNo+'\n📅 Time: '+data.datetime+'\n👤 Name: '+data.name+'\n📱 Phone: '+(data.phone||'N/A')+'\n💰 Amount: ₹'+data.amount+'\n📝 Purpose: '+data.purpose+'\n🌐 Service: '+data.service+'\n━━━━━━━━━━━━━━━━━━━━\n⚡ Verify & start project!';window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');}
-function sendEmailAlert(data){
-  if(typeof emailjs==='undefined')return;
-  emailjs.send('service_n1reiw9','template_gg2zxzw',{
-    client_naam:data.name+' — Payment Rs.'+data.amount,
-    client_phone:data.phone||'UPI Payment',
-    chat_log:'Receipt No: '+data.receiptNo+
-             '\nAmount: Rs.'+data.amount+
-             '\nPurpose: '+data.purpose+
-             '\nService: '+data.service+
-             '\nTime: '+data.datetime+
-             '\nUPI ID: tarun.8240@ptyes'
-  }).then(function(){
-    console.log('Email sent!');
-  }).catch(function(err){
-    console.log('Email error:',err);
-  });
+function sendOwnerAlert(data){
+  var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
+  var msg='💰 *PAYMENT RECEIVED — TK Web Solutions*\n\n'+
+    '━━━━━━━━━━━━━━━━━━━━━━\n'+
+    '🧾 Receipt: *'+data.receiptNo+'*\n'+
+    '📅 Time: '+data.datetime+'\n'+
+    '━━━━━━━━━━━━━━━━━━━━━━\n'+
+    '👤 Name: *'+data.name+'*\n'+
+    '📱 Phone: '+(data.phone||'N/A')+'\n'+
+    '💰 Amount: *₹'+amtFmt+'*\n'+
+    '📝 Purpose: '+data.purpose+'\n'+
+    '🌐 Service: '+data.service+'\n'+
+    '🔖 UPI Ref: *'+(data.upiRef||'N/A')+'*\n'+
+    '━━━━━━━━━━━━━━━━━━━━━━\n'+
+    '✅ Payment verify karke project start karo!\n'+
+    '⚡ Delivery: 5-7 Working Days';
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
 }
 function showReceipt(data){
   var ex=document.getElementById('rx-modal');
