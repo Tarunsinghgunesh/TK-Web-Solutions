@@ -2021,6 +2021,7 @@ function sendReceiptWhatsApp(data){
   window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
 }
      function saveToSheet(data){
+  function saveToSheet(data){
   fetch(APPS_SCRIPT_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -2039,8 +2040,12 @@ function sendReceiptWhatsApp(data){
     ])
   })
   .then(function(r){return r.json();})
-  .then(function(res){console.log('Sheet saved:',res);})
-  .catch(function(err){console.log('Sheet error:',err);});
+  .then(function(res){
+    console.log('✅ Sheet saved + Email sent:',res);
+  })
+  .catch(function(err){
+    console.log('❌ Error:',err);
+  });
 }
 function notifyPayment(){
   var n=document.getElementById('payerName').value.trim();
