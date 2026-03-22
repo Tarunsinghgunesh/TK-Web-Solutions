@@ -1934,16 +1934,16 @@ if('serviceWorker' in navigator){
       <!-- PURPOSE -->
       <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Payment Purpose:</div>
       <select id="payPurpose" style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 14px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;">
-        <option value="Website Payment">💻 Website Payment</option>
-        <option value="Advance Payment">💰 Advance Payment</option>
-        <option value="Full Payment">✅ Full Payment</option>
-        <option value="Remaining Payment">🔄 Remaining Payment</option>
-        <option value="Extra Tip">🙏 Extra Tip / Shukriya</option>
-        <option value="Other">📝 Other</option>
+      <option value="Website Payment">Website Payment</option>
+      <option value="Advance Payment">Advance Payment</option>
+      <option value="Full Payment">Full Payment</option>
+      <option value="Remaining Payment">Remaining Payment</option>
+      <option value="Extra Tip">Extra Tip / Shukriya</option>
+      <option value="Other">Other</option>
       </select>
 
       <!-- NAME -->
-      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Aapka Naam (optional):</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Aapka Naam * (cumpolsary):</div>
       <input type="text" id="payerName" placeholder="Naam daalo..."
         style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:18px;font-family:'DM Sans',sans-serif;outline:none;font-weight:500;">
 
@@ -2003,7 +2003,6 @@ if('serviceWorker' in navigator){
   #payment [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
 }
 </style>
-```
 
 <script>
 function setPayAmt(a){
@@ -2034,29 +2033,78 @@ function notifyPayment(){
   sendPayNotify(a,p,n);
 }
 function sendPayNotify(amt,purpose,name){
-  var msg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n'
-    +'👤 Name: '+name+'\n'
-    +'💰 Amount: ₹'+amt+'\n'
-    +'📝 Purpose: '+purpose+'\n'
-    +'⏰ Time: '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+'\n'
-    +'🌐 Via: tkwebsolutions.in\n\n'
-    +'✅ Verify & confirm receipt!';
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
+ var rno='TK-WEB-'+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'2-digit',year:'2-digit'}).replace(/\//g,'')+'-'+Math.floor(1000+Math.random()*9000);
+  var time=new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+  var ownerMsg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n━━━━━━━━━━━━━━━━━━━━\n🧾 Receipt: '+rno+'\n📅 Time: '+time+'\n👤 Name: '+name+'\n💰 Amount: ₹'+amt+'\n📝 Purpose: '+purpose+'\n━━━━━━━━━━━━━━━━━━━━\n⚡ Verify & start project!';
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent(ownerMsg),'_blank');
+  fetch('https://script.google.com/macros/s/AKfycbyVfusJHVNKKdadB8qXpu9iytSHZ3GjmITZ3FHbinMVIA87sSPrktqsEFgYKNvrng/exec',{
+    method:'POST',mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify([rno,time,name,'N/A','Rs.'+amt,purpose,'UPI','Website','Confirmed','tkwebsolutions.in',''])
+  }).catch(function(){});
   if(typeof emailjs!=='undefined'){
     emailjs.send('service_n1reiw9','template_gg2zxzw',{
-      client_naam:name,
-      client_phone:'UPI Payment Alert',
-      chat_log:'PAYMENT ALERT\nAmount: Rs.'+amt+'\nPurpose: '+purpose+'\nTime: '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
+      client_naam:'PAYMENT: '+name+' Rs.'+amt,
+      client_phone:'UPI Payment',
+      chat_log:'Receipt: '+rno+'\nAmount: Rs.'+amt+'\nPurpose: '+purpose+'\nTime: '+time
     });
   }
+  showReceipt(rno,time,name,amt,purpose);
 }
-</script>
 
-<!-- FOOTER -->
-<footer></parameter>
-<parameter name="old_str"><!-- FOOTER -->
-<footer></parameter>
-<parameter name="path">/home/claude/index_final2.html</parameter>
+function showReceipt(rno,time,name,amt,purpose){
+  var ex=document.getElementById('rx-modal');
+  if(ex)ex.remove();
+  var modal=document.createElement('div');
+  modal.id='rx-modal';
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';
+  var amtFmt=parseInt(amt).toLocaleString('en-IN');
+  var rows=[
+    ['Date & Time',time],
+    ['Customer',name],
+    ['Purpose',purpose],
+    ['Method','UPI — tarun.8240@ptyes'],
+    ['Status','Confirmed'],
+    ['Delivery','5-7 Working Days']
+  ];
+  var rowsHTML=rows.map(function(r){
+    return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f5f5f5;">'
+    +'<span style="font-size:12px;color:#9ca3af;">'+r[0]+'</span>'
+    +'<span style="font-size:12px;font-weight:600;color:'+(r[0]==='Status'?'#7c3aed':'#111827')+';">'+r[1]+'</span>'
+    +'</div>';
+  }).join('');
+  modal.innerHTML='<div style="background:#fff;border-radius:20px;max-width:400px;width:100%;max-height:90vh;overflow-y:auto;">'
+    +'<div style="background:linear-gradient(135deg,#7c3aed,#db2777,#ec4899);padding:22px;text-align:center;border-radius:20px 20px 0 0;">'
+    +'<img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/logo.png" style="width:48px;height:48px;border-radius:10px;background:#fff;padding:4px;margin-bottom:8px;object-fit:contain;" onerror="this.style.display=\'none\'">'
+    +'<div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:2px;">TK Web Solutions</div>'
+    +'<div style="font-size:11px;color:rgba(255,255,255,.7);">Bharatpur, Rajasthan</div>'
+    +'<div style="margin-top:10px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:20px;">'
+    +'<span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;"></span>'
+    +'<span style="font-size:11px;color:#fff;font-weight:600;">Payment Confirmed</span>'
+    +'</div></div>'
+    +'<div style="padding:18px 22px;text-align:center;border-bottom:1px dashed #e5e7eb;">'
+    +'<div style="font-size:10px;letter-spacing:2px;color:#9ca3af;margin-bottom:6px;text-transform:uppercase;">Amount Paid</div>'
+    +'<div style="font-size:38px;font-weight:800;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&#8377;'+amtFmt+'</div>'
+    +'<div style="font-size:11px;color:#9ca3af;margin-top:4px;">Receipt No: <strong style="color:#374151;">'+rno+'</strong></div>'
+    +'</div>'
+    +'<div style="padding:12px 22px;">'+rowsHTML+'</div>'
+    +'<div style="margin:0 18px 16px;border-radius:12px;padding:14px;text-align:center;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(219,39,119,.05));border:1px solid rgba(124,58,237,.15);">'
+    +'<div style="font-size:20px;margin-bottom:6px;">🎉</div>'
+    +'<div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;">Shukriya aapka vishwas aur support ka!</div>'
+    +'<div style="font-size:12px;color:#6b7280;line-height:1.7;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div>'
+    +'</div>'
+    +'<div style="padding:0 18px 14px;">'
+    +'<button onclick="document.getElementById(\'rx-modal\').remove()" style="width:100%;background:#f3f4f6;color:#374151;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">Close</button>'
+    +'</div>'
+    +'<div style="background:#f9fafb;padding:10px 22px;text-align:center;border-radius:0 0 20px 20px;border-top:1px solid #f3f4f6;">'
+    +'<p style="font-size:10px;color:#9ca3af;margin:1px 0;">tkwebsolutions.in · +91 90793 68240</p>'
+    +'<p style="font-size:10px;font-style:italic;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:3px;">"From Dreams.... to Digital Reality"</p>'
+    +'</div>'
+    +'</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});
+}
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
