@@ -2061,7 +2061,7 @@ function notifyPayment(){
   .then(function(r){return r.json();})
   .then(function(res){console.log('Sheet saved:',res);})
   .catch(function(err){console.log('Sheet error:',err);});
-}
+
 function sendOwnerAlert(data){var msg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n━━━━━━━━━━━━━━━━━━━━\n🧾 Receipt: '+data.receiptNo+'\n📅 Time: '+data.datetime+'\n👤 Name: '+data.name+'\n📱 Phone: '+(data.phone||'N/A')+'\n💰 Amount: ₹'+data.amount+'\n📝 Purpose: '+data.purpose+'\n🌐 Service: '+data.service+'\n━━━━━━━━━━━━━━━━━━━━\n⚡ Verify & start project!';window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');}
 function sendEmailAlert(data){
   if(typeof emailjs==='undefined')return;
