@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -1788,6 +1787,131 @@ if('serviceWorker' in navigator){
   </div>
 </section>
 
+<!-- PAYMENT SECTION -->
+<section id="payment" style="background:linear-gradient(135deg,#060d1f 0%,#0d1635 50%,#060d1f 100%);padding:80px 6%;position:relative;overflow:hidden;">
+<div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(26,86,255,.12),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+<div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,229,255,.08),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+<div style="max-width:1000px;margin:0 auto;position:relative;z-index:1;">
+  <div style="text-align:center;margin-bottom:48px;">
+    <span style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(26,86,255,.2),rgba(0,229,255,.1));border:1px solid rgba(0,229,255,.3);color:#00e5ff;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:14px;">💳 Secure Payment</span>
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:#fff;margin-bottom:10px;">Online Payment Karo</h2>
+    <p style="color:rgba(255,255,255,.45);font-size:.95rem;max-width:450px;margin:0 auto;line-height:1.7;">UPI, Bank Transfer — sabse fast & safe tarika. Kisi bhi app se pay karo!</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+    <!-- LEFT -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(0,229,255,.15);border-radius:24px;padding:30px;text-align:center;">
+      <div style="font-size:.62rem;color:rgba(0,229,255,.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:700;">📱 Scan & Pay</div>
+      <div style="background:linear-gradient(135deg,#fff,#f0f4ff);border-radius:20px;padding:14px;display:inline-block;margin-bottom:18px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
+        <img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/qr.png" alt="UPI QR Code" style="width:185px;height:185px;display:block;border-radius:8px;">
+      </div>
+      <div style="font-size:.65rem;color:rgba(255,255,255,.35);margin-bottom:4px;">UPI ID</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:linear-gradient(135deg,#00e5ff,#1a56ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;">tarun.8240@ptyes</div>
+      <button onclick="navigator.clipboard.writeText('tarun.8240@ptyes');this.innerHTML='✅ Copied!';this.style.color='#25d366';setTimeout(()=>{this.innerHTML='📋 UPI ID Copy Karo';this.style.color='';},2000)" style="width:100%;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.25);color:#00e5ff;padding:10px;border-radius:10px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:22px;">📋 UPI ID Copy Karo</button>
+      <div style="font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:700;">Direct App Se Pay Karo</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:22px;">
+        <a href="paytmmp://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" style="display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;font-family:'DM Sans',sans-serif;"><svg width="22" height="22" viewBox="0 0 100 100"><rect width="100" height="100" rx="12" fill="#00BAF2"/><text y="68" x="8" font-size="44" font-weight="900" fill="white" font-family="Arial">P</text><text y="68" x="32" font-size="44" font-weight="900" fill="#1b3a6b" font-family="Arial">ay</text></svg>Paytm</a>
+        <a href="tez://upi/pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" style="display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;font-family:'DM Sans',sans-serif;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="white"/><text y="66" x="16" font-size="50" font-weight="900" fill="#4285F4" font-family="Arial">G</text></svg>GPay</a>
+        <a href="phonepe://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" style="display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(83,0,216,.12);border:1px solid rgba(83,0,216,.35);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;font-family:'DM Sans',sans-serif;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#5f259f"/><text y="66" x="28" font-size="52" font-weight="900" fill="white" font-family="Arial">P</text></svg>PhonePe</a>
+        <a href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" style="display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,153,0,.1);border:1px solid rgba(255,153,0,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;font-family:'DM Sans',sans-serif;"><svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FF9900"/><text y="68" x="14" font-size="38" font-weight="900" fill="white" font-family="Arial">UPI</text></svg>BHIM/UPI</a>
+      </div>
+      <div style="background:rgba(26,86,255,.1);border:1px solid rgba(26,86,255,.2);border-radius:16px;padding:18px;text-align:left;">
+        <div style="text-align:center;font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:14px;">🏦 Bank Transfer (NEFT/RTGS/IMPS)</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div style="display:flex;justify-content:space-between;"><span style="color:rgba(255,255,255,.35);font-size:.72rem;">Account Name</span><span style="color:#fff;font-weight:700;font-size:.8rem;">Tarun Singh</span></div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:rgba(255,255,255,.35);font-size:.72rem;">Account No.</span><div style="display:flex;align-items:center;gap:6px;"><span style="color:#00e5ff;font-weight:800;font-size:.82rem;">38896794692</span><button onclick="navigator.clipboard.writeText('38896794692');this.textContent='✅';setTimeout(()=>this.textContent='📋',1500)" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:#00e5ff;padding:2px 7px;border-radius:5px;font-size:.65rem;cursor:pointer;">📋</button></div></div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:rgba(255,255,255,.35);font-size:.72rem;">IFSC Code</span><div style="display:flex;align-items:center;gap:6px;"><span style="color:#00e5ff;font-weight:800;font-size:.82rem;">SBIN0031855</span><button onclick="navigator.clipboard.writeText('SBIN0031855');this.textContent='✅';setTimeout(()=>this.textContent='📋',1500)" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:#00e5ff;padding:2px 7px;border-radius:5px;font-size:.65rem;cursor:pointer;">📋</button></div></div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:rgba(255,255,255,.35);font-size:.72rem;">Bank</span><span style="color:#fff;font-weight:700;font-size:.8rem;">State Bank of India</span></div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:rgba(255,255,255,.35);font-size:.72rem;">Transfer Type</span><span style="color:#25d366;font-weight:700;font-size:.78rem;">NEFT / RTGS / IMPS</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(26,86,255,.2);border-radius:24px;padding:30px;">
+      <div style="font-size:.62rem;color:rgba(0,229,255,.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;text-align:center;font-weight:700;">💰 Custom Amount</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:8px;font-weight:600;">Quick Select:</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;">
+        <button onclick="setPayAmt(5000)" class="pamtbtn">₹5,000</button>
+        <button onclick="setPayAmt(6000)" class="pamtbtn">₹6,000</button>
+        <button onclick="setPayAmt(7000)" class="pamtbtn">₹7,000</button>
+        <button onclick="setPayAmt(8000)" class="pamtbtn">₹8,000</button>
+        <button onclick="setPayAmt(9000)" class="pamtbtn">₹9,000</button>
+        <button onclick="setPayAmt(10000)" class="pamtbtn">₹10,000</button>
+      </div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Ya apni amount daalo:</div>
+      <div style="display:flex;align-items:center;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:12px 16px;margin-bottom:14px;">
+        <span style="background:linear-gradient(135deg,#00e5ff,#1a56ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;font-size:1.2rem;margin-right:8px;">₹</span>
+        <input type="number" id="payAmt" placeholder="Amount daalo..." min="1" style="background:transparent;border:none;color:#fff;font-size:.95rem;width:100%;outline:none;font-family:'DM Sans',sans-serif;font-weight:600;" oninput="updatePayBtn()">
+      </div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Payment Purpose:</div>
+      <select id="payPurpose" style="width:100%;background:#0d1635;border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 14px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;">
+        <option value="Website Payment">Website Payment</option>
+        <option value="Advance Payment">Advance Payment</option>
+        <option value="Full Payment">Full Payment</option>
+        <option value="Remaining Payment">Remaining Payment</option>
+        <option value="Extra Tip">Extra Tip / Shukriya</option>
+        <option value="Other">Other</option>
+      </select>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Aapka Naam <span style="color:#ef4444;">*</span> (Compulsory):</div>
+      <input type="text" id="payerName" placeholder="Apna naam daalo..." required style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;font-weight:500;">
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Phone Number (optional):</div>
+      <input type="tel" id="payerPhone" placeholder="+91 XXXXX XXXXX" style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;">
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Service Type:</div>
+      <select id="payService" style="width:100%;background:#0d1635;border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 14px;color:#fff;font-size:.82rem;margin-bottom:18px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;">
+        <option value="Coaching Website">Coaching Website</option>
+        <option value="School Website">School Website</option>
+        <option value="Business Website">Business Website</option>
+        <option value="E-Mitra Website">E-Mitra Website</option>
+        <option value="Portfolio Website">Portfolio Website</option>
+        <option value="E-Commerce Website">E-Commerce Website</option>
+        <option value="Other">Other</option>
+      </select>
+      <a id="payNowBtn" href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" onclick="doPayment(event)" style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;padding:15px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;margin-bottom:10px;box-shadow:0 8px 28px rgba(26,86,255,.45);font-family:'Syne',sans-serif;">💳 Abhi Pay Karo</a>
+      <button onclick="notifyPayment()" style="width:100%;background:rgba(37,211,102,.1);border:1.5px solid rgba(37,211,102,.3);color:#25d366;padding:13px;border-radius:14px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:16px;">📲 Payment Ho Gayi? Notify Karo</button>
+      <p style="font-size:.68rem;color:rgba(255,255,255,.2);text-align:center;line-height:1.7;margin-bottom:16px;">Payment ke baad screenshot zaroor bhejo:<br><a href="https://wa.me/919079368240" style="color:#00e5ff;font-weight:700;">+91 90793 68240</a></p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;margin-bottom:5px;">🔒</div><div style="font-size:.72rem;font-weight:700;color:#fff;">100% Secure</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;margin-bottom:5px;">⚡</div><div style="font-size:.72rem;font-weight:700;color:#fff;">Instant</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;margin-bottom:5px;">📱</div><div style="font-size:.72rem;font-weight:700;color:#fff;">Sabhi Apps</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;margin-bottom:5px;">🧾</div><div style="font-size:.72rem;font-weight:700;color:#fff;">Receipt</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<style>
+.pamtbtn{background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.25);color:rgba(255,255,255,.65);padding:10px 4px;border-radius:10px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.pamtbtn:hover{background:rgba(26,86,255,.2);border-color:rgba(26,86,255,.5);color:#fff;}
+.pamtbtn.pactive{background:linear-gradient(135deg,#1a56ff,#0d3acc);border-color:#1a56ff;color:#fff;box-shadow:0 4px 14px rgba(26,86,255,.4);}
+@media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
+</style>
+<script>
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyVfusJHVNKKdadB8qXpu9iytSHZ3GjmITZ3FHbinMVIA87sSPrktqsEFgYKNvrng/exec';
+function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
+function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});}
+function setPayAmt(a){document.getElementById('payAmt').value=a;document.querySelectorAll('.pamtbtn').forEach(function(b){b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);});updatePayBtn();}
+function updatePayBtn(){var a=document.getElementById('payAmt').value;var p=document.getElementById('payPurpose').value;var btn=document.getElementById('payNowBtn');if(btn)btn.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';}
+function doPayment(e){var a=document.getElementById('payAmt').value;if(!a){e.preventDefault();alert('Pehle amount select karo!');return;}var n=document.getElementById('payerName').value;if(!n){e.preventDefault();alert('Apna naam daalna zaroori hai!');return;}var p=document.getElementById('payPurpose').value;var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';e.currentTarget.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};setTimeout(function(){saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);},1500);}
+function notifyPayment(){var a=document.getElementById('payAmt').value||'?';var p=document.getElementById('payPurpose').value;var n=document.getElementById('payerName').value||'Customer';var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);}
+function saveToSheet(data){try{fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify([data.receiptNo,data.datetime,data.name,data.phone||'N/A','Rs.'+data.amount,data.purpose,'UPI',data.service,'Confirmed','tkwebsolutions.in',''])}).catch(function(){});}catch(ex){}}
+function sendOwnerAlert(data){var msg='💳 *PAYMENT ALERT — TK Web Solutions*
+
+━━━━━━━━━━━━━━━━━━━━
+🧾 Receipt: '+data.receiptNo+'
+📅 Time: '+data.datetime+'
+👤 Name: '+data.name+'
+📱 Phone: '+(data.phone||'N/A')+'
+💰 Amount: ₹'+data.amount+'
+📝 Purpose: '+data.purpose+'
+🌐 Service: '+data.service+'
+━━━━━━━━━━━━━━━━━━━━
+⚡ Verify & start project!';window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');}
+function sendEmailAlert(data){if(typeof emailjs==='undefined')return;emailjs.send('service_n1reiw9','template_gg2zxzw',{client_naam:'PAYMENT: '+data.name+' Rs.'+data.amount,client_phone:data.phone||'UPI',chat_log:'Receipt: '+data.receiptNo+'\nAmount: Rs.'+data.amount+'\nPurpose: '+data.purpose+'\nService: '+data.service+'\nTime: '+data.datetime});}
+function showReceipt(data){var ex=document.getElementById('rx-modal');if(ex)ex.remove();var modal=document.createElement('div');modal.id='rx-modal';modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';var amtFmt=parseInt(data.amount).toLocaleString('en-IN');var rows=[['Date & Time',data.datetime],['Customer',data.name],['Phone',data.phone||'N/A'],['Purpose',data.purpose],['Method','UPI — tarun.8240@ptyes'],['Service',data.service],['Status','Confirmed'],['Delivery','5-7 Working Days']];var rowsHTML=rows.map(function(r){return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f5f5f5;"><span style="font-size:12px;color:#9ca3af;">'+r[0]+'</span><span style="font-size:12px;font-weight:600;color:'+(r[0]==='Status'?'#7c3aed':'#111827')+';">'+r[1]+'</span></div>';}).join('');modal.innerHTML='<div style="background:#fff;border-radius:20px;max-width:400px;width:100%;max-height:90vh;overflow-y:auto;"><div style="background:linear-gradient(135deg,#7c3aed,#db2777,#ec4899);padding:22px;text-align:center;border-radius:20px 20px 0 0;"><img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/logo.png" style="width:48px;height:48px;border-radius:10px;background:#fff;padding:4px;margin-bottom:8px;object-fit:contain;" onerror="this.style.display='none'"><div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:2px;">TK Web Solutions</div><div style="font-size:11px;color:rgba(255,255,255,.7);">Bharatpur, Rajasthan</div><div style="margin-top:10px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:20px;"><span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;"></span><span style="font-size:11px;color:#fff;font-weight:600;">Payment Confirmed</span></div></div><div style="padding:18px 22px;text-align:center;border-bottom:1px dashed #e5e7eb;"><div style="font-size:10px;letter-spacing:2px;color:#9ca3af;margin-bottom:6px;text-transform:uppercase;">Amount Paid</div><div style="font-size:38px;font-weight:800;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&#8377;'+amtFmt+'</div><div style="font-size:11px;color:#9ca3af;margin-top:4px;">Receipt No: <strong style="color:#374151;">'+data.receiptNo+'</strong></div></div><div style="padding:12px 22px;">'+rowsHTML+'</div><div style="margin:0 18px 16px;border-radius:12px;padding:14px;text-align:center;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(219,39,119,.05));border:1px solid rgba(124,58,237,.15);"><div style="font-size:20px;margin-bottom:6px;">🎉</div><div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;">Shukriya aapka vishwas aur support ka!</div><div style="font-size:12px;color:#6b7280;line-height:1.7;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div></div><div style="padding:0 18px 14px;"><button onclick="document.getElementById('rx-modal').remove()" style="width:100%;background:#f3f4f6;color:#374151;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">Close</button></div><div style="background:#f9fafb;padding:10px 22px;text-align:center;border-radius:0 0 20px 20px;"><p style="font-size:10px;color:#9ca3af;margin:1px 0;">tkwebsolutions.in · +91 90793 68240</p><p style="font-size:10px;font-style:italic;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">"From Dreams.... to Digital Reality"</p></div></div>';document.body.appendChild(modal);modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});}
+</script>
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -2367,18 +2491,16 @@ window.addEventListener('scroll',function(){
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
     if(ap)ap.textContent=ampm;
-    document.getElementById('clk-day').textContent=days[now.getDay()];
-    document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
+    document.getElementById('clk-day').textContent=days[ist.getDay()];
+    document.getElementById('clk-date').textContent=pad(ist.getDate())+' '+months[ist.getMonth()]+' '+ist.getFullYear();
     /* Glow pulse every second */
     document.querySelectorAll('.clk-seg').forEach(function(el){
       el.style.textShadow=s%2===0
-        ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
-        :'0 0 10px rgba(0,229,255,.5)';
+                :'0 0 10px rgba(0,229,255,.5)';
     });
   }
   tick();
   setInterval(tick,1000);
-  /* Click = toggle 12h / 24h */
   document.getElementById('tk-clock').addEventListener('click',function(){
     is24=!is24;
     var ap=document.getElementById('clk-ap');
