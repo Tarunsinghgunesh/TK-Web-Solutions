@@ -1928,6 +1928,7 @@ function searchAndShowReceipt(){
       purpose:row[5],
       service:row[7]
     };
+       _lastReceiptData=data;
     showReceipt(data);
   })
   .catch(function(){
