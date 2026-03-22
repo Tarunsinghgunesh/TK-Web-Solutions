@@ -1948,58 +1948,173 @@ function downloadReceiptPDF(receiptNo){
 }
 
 function _generatePDF(receiptNo){
-  var modal=document.getElementById('rx-modal');
-  if(!modal)return;
-  var items=modal.querySelectorAll('div[style*="justify-content:space-between"]');
+  var data=_lastReceiptData;
+  if(!data)return;
   var jsPDF=window.jspdf.jsPDF;
   var doc=new jsPDF({unit:'mm',format:'a5'});
-  doc.setFillColor(26,86,255);
-  doc.rect(0,0,148,32,'F');
+  var W=148,H=210;
+
+  // ── Background ──
+  doc.setFillColor(19,17,26);
+  doc.rect(0,0,W,H,'F');
+
+  // ── Header gradient simulation ──
+  doc.setFillColor(124,58,237);
+  doc.rect(0,0,W,42,'F');
+  doc.setFillColor(219,39,119);
+  doc.rect(80,0,68,42,'F');
+  doc.setFillColor(140,48,250);
+  doc.rect(60,0,40,42,'F');
+
+  // ── Header overlay circles ──
+  doc.setFillColor(255,255,255);
+  doc.setGState(new doc.GState({opacity:0.07}));
+  doc.circle(130,-10,25,'F');
+  doc.circle(10,50,20,'F');
+  doc.setGState(new doc.GState({opacity:1}));
+
+  // ── Logo box ──
+  doc.setFillColor(255,255,255);
+  doc.setGState(new doc.GState({opacity:0.18}));
+  doc.roundedRect(62,5,24,18,4,4,'F');
+  doc.setGState(new doc.GState({opacity:1}));
   doc.setTextColor(255,255,255);
-  doc.setFontSize(16);
+  doc.setFontSize(10);
   doc.setFont('helvetica','bold');
-  doc.text('TK Web Solutions',74,13,{align:'center'});
-  doc.setFontSize(9);
+  doc.text('TK',74,17,{align:'center'});
+
+  // ── Company name ──
+  doc.setFontSize(14);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(255,255,255);
+  doc.text('TK Web Solutions',74,28,{align:'center'});
+
+  // ── Tagline ──
+  doc.setFontSize(7);
   doc.setFont('helvetica','normal');
-  doc.text('Bharatpur, Rajasthan | +91 90793 68240',74,20,{align:'center'});
-  doc.text('tkwebsolutions.in',74,26,{align:'center'});
-  doc.setTextColor(26,86,255);
-  doc.setFontSize(13);
+  doc.setTextColor(220,200,255);
+  doc.text('Bharatpur, Rajasthan  |  tkwebsolutions.in',74,34,{align:'center'});
+
+  // ── Payment Confirmed badge ──
+  doc.setFillColor(255,255,255);
+  doc.setGState(new doc.GState({opacity:0.18}));
+  doc.roundedRect(49,36,50,7,3,3,'F');
+  doc.setGState(new doc.GState({opacity:1}));
+  doc.setFontSize(6.5);
   doc.setFont('helvetica','bold');
-  doc.text('PAYMENT RECEIPT',74,44,{align:'center'});
-  doc.setFontSize(9);
-  doc.setTextColor(100,100,100);
-  doc.text(receiptNo,74,51,{align:'center'});
-  doc.setDrawColor(26,86,255);
-  doc.setLineWidth(0.4);
-  doc.line(10,55,138,55);
-  doc.setTextColor(0,0,0);
-  var y=63;
-  items.forEach(function(row){
-    var spans=row.querySelectorAll('span');
-    if(spans.length>=2){
-      doc.setFontSize(9);
-      doc.setFont('helvetica','normal');
-      doc.setTextColor(130,130,130);
-      doc.text(spans[0].textContent,12,y);
-      doc.setTextColor(0,0,0);
-      doc.setFont('helvetica','bold');
-      doc.text(spans[1].textContent,136,y,{align:'right'});
-      y+=9;
-    }
-  });
-  doc.setFillColor(240,243,255);
-  doc.rect(0,178,148,22,'F');
-  doc.setTextColor(26,86,255);
+  doc.setTextColor(74,222,128);
+  doc.text('● Payment Confirmed',74,41,{align:'center'});
+
+  // ── Amount section ──
+  doc.setFillColor(26,22,37);
+  doc.rect(0,42,W,32,'F');
   doc.setFontSize(8);
-  doc.setFont('helvetica','italic');
-  doc.text('"From Dreams.... to Digital Reality"',74,186,{align:'center'});
-  doc.setTextColor(120,120,120);
   doc.setFont('helvetica','normal');
-  doc.text('tkwebsolutions.in | +91 90793 68240',74,193,{align:'center'});
+  doc.setTextColor(180,160,220);
+  doc.text('AMOUNT PAID',74,52,{align:'center'});
+
+  var amtFmt='Rs.'+parseInt(data.amount||0).toLocaleString('en-IN');
+  doc.setFontSize(22);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(167,139,250);
+  doc.text(amtFmt,74,64,{align:'center'});
+
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(150,130,180);
+  doc.text(data.purpose||'Website Payment',74,70,{align:'center'});
+
+  // ── Receipt No badge ──
+  doc.setFillColor(124,58,237);
+  doc.setGState(new doc.GState({opacity:0.25}));
+  doc.roundedRect(34,72,80,8,3,3,'F');
+  doc.setGState(new doc.GState({opacity:1}));
+  doc.setFontSize(7);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(196,181,253);
+  doc.text('Receipt No.  '+receiptNo,74,77,{align:'center'});
+
+  // ── Divider ──
+  doc.setDrawColor(60,40,100);
+  doc.setLineWidth(0.3);
+  doc.line(10,82,138,82);
+
+  // ── Details rows ──
+  var rows=[
+    ['Date & Time', data.datetime||'N/A'],
+    ['Customer Name', data.name||'N/A'],
+    ['Phone', data.phone||'N/A'],
+    ['Service', data.service||'N/A'],
+    ['UPI Reference', data.upiRef||'N/A'],
+    ['Payment Method', 'UPI — tarun.8240@ptyes'],
+    ['Delivery', '5-7 Working Days'],
+    ['Status', 'Confirmed']
+  ];
+
+  var y=90;
+  rows.forEach(function(row,i){
+    // Alternate row background
+    if(i%2===0){
+      doc.setFillColor(30,16,48);
+      doc.setGState(new doc.GState({opacity:0.6}));
+      doc.rect(10,y-4,128,9,'F');
+      doc.setGState(new doc.GState({opacity:1}));
+    }
+
+    doc.setFontSize(8);
+    doc.setFont('helvetica','normal');
+    doc.setTextColor(160,140,200);
+    doc.text(row[0],14,y);
+
+    doc.setFont('helvetica','bold');
+    doc.setTextColor(row[0]==='Status'?[74,222,128]:[255,255,255]);
+    doc.text(String(row[1]),134,y,{align:'right'});
+
+    doc.setDrawColor(50,30,80);
+    doc.setLineWidth(0.2);
+    doc.line(10,y+3,138,y+3);
+
+    y+=10;
+  });
+
+  // ── Thank you box ──
+  doc.setFillColor(124,58,237);
+  doc.setGState(new doc.GState({opacity:0.12}));
+  doc.roundedRect(10,y+2,128,20,4,4,'F');
+  doc.setGState(new doc.GState({opacity:1}));
+  doc.setDrawColor(124,58,237);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(10,y+2,128,20,4,4,'S');
+
+  doc.setFontSize(8.5);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(255,255,255);
+  doc.text('Shukriya aapka vishwas aur support ka!',74,y+10,{align:'center'});
+  doc.setFontSize(7);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(180,160,220);
+  doc.text('Aapka digital safar aaj se shuru hota hai!',74,y+17,{align:'center'});
+
+  // ── Footer ──
+  doc.setFillColor(13,11,20);
+  doc.rect(0,185,W,25,'F');
+  doc.setDrawColor(60,40,100);
+  doc.setLineWidth(0.3);
+  doc.line(0,185,W,185);
+
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(200,180,240);
+  doc.text('TK Web Solutions  |  Bharatpur, Rajasthan',74,192,{align:'center'});
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(150,130,180);
+  doc.text('tkwebsolutions.in  |  +91 90793 68240  |  tkwebsolution1301@gmail.com',74,198,{align:'center'});
+  doc.setFont('helvetica','italic');
+  doc.setTextColor(167,139,250);
+  doc.text('"From Dreams.... to Digital Reality"',74,205,{align:'center'});
+
   doc.save('TK-Receipt-'+receiptNo+'.pdf');
 }
-
 function sendReceiptWhatsApp(data){
      _lastReceiptData=data;
   var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
