@@ -1871,6 +1871,13 @@ if('serviceWorker' in navigator){
       </select>
       <a id="payNowBtn" href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR" onclick="doPayment(event)" style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;padding:15px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;margin-bottom:10px;box-shadow:0 8px 28px rgba(26,86,255,.45);font-family:'Syne',sans-serif;">💳 Abhi Pay Karo</a>
       <button onclick="notifyPayment()" style="width:100%;background:rgba(37,211,102,.1);border:1.5px solid rgba(37,211,102,.3);color:#25d366;padding:13px;border-radius:14px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:16px;">📲 Payment Ho Gayi? Notify Karo</button>
+         <div style="margin-top:8px;background:rgba(255,255,255,.03);border:1px solid rgba(26,86,255,.2);border-radius:14px;padding:16px;">
+  <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;">🔍 Purani Receipt Dhundho</div>
+  <div style="display:flex;gap:8px;">
+    <input type="text" id="searchReceiptInput" placeholder="Receipt No. ya Phone No." style="flex:1;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;">
+    <button onclick="searchAndShowReceipt()" style="background:#1a56ff;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;">🔍 Dhundho</button>
+  </div>
+</div>
       <p style="font-size:.68rem;color:rgba(255,255,255,.2);text-align:center;line-height:1.7;margin-bottom:16px;">Payment ke baad screenshot zaroor bhejo:<br><a href="https://wa.me/919079368240" style="color:#00e5ff;font-weight:700;">+91 90793 68240</a></p>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
         <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;margin-bottom:5px;">🔒</div><div style="font-size:.72rem;font-weight:700;color:#fff;">100% Secure</div></div>
