@@ -2491,16 +2491,18 @@ window.addEventListener('scroll',function(){
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
     if(ap)ap.textContent=ampm;
-    document.getElementById('clk-day').textContent=days[ist.getDay()];
-    document.getElementById('clk-date').textContent=pad(ist.getDate())+' '+months[ist.getMonth()]+' '+ist.getFullYear();
+    document.getElementById('clk-day').textContent=days[now.getDay()];
+    document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
     /* Glow pulse every second */
     document.querySelectorAll('.clk-seg').forEach(function(el){
       el.style.textShadow=s%2===0
-                :'0 0 10px rgba(0,229,255,.5)';
+        ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
+        :'0 0 10px rgba(0,229,255,.5)';
     });
   }
   tick();
   setInterval(tick,1000);
+  /* Click = toggle 12h / 24h */
   document.getElementById('tk-clock').addEventListener('click',function(){
     is24=!is24;
     var ap=document.getElementById('clk-ap');
