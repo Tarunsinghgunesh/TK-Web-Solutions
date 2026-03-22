@@ -1945,19 +1945,8 @@ function downloadReceiptPDF(receiptNo){
   } else {
     _generatePDF(receiptNo);
   }
-}
 
-function _generatePDF(receiptNo){
-  var data=_lastReceiptData;
-  if(!data){alert('Receipt data nahi mila!');return;}
-  
-  try{
-    var jsPDF=window.jspdf.jsPDF;
-    var doc=new jsPDF({unit:'mm',format:'a5'});
-    var W=148;
 
-    // Background
-    doc.setFillColor(19,17,26);
     doc.rect(0,0,W,210,'F');
 
     // Header
