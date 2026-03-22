@@ -2020,6 +2020,28 @@ function sendReceiptWhatsApp(data){
   if(num.length===10)num='91'+num;
   window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
 }
+     function saveToSheet(data){
+  fetch(APPS_SCRIPT_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify([
+      data.receiptNo,
+      data.datetime,
+      data.name,
+      data.phone||'N/A',
+      'Rs.'+data.amount,
+      data.purpose,
+      'UPI',
+      data.service,
+      'Confirmed',
+      'tkwebsolutions.in',
+      ''
+    ])
+  })
+  .then(function(r){return r.json();})
+  .then(function(res){console.log('Sheet saved:',res);})
+  .catch(function(err){console.log('Sheet error:',err);});
+}
 function notifyPayment(){
   var n=document.getElementById('payerName').value.trim();
   if(!n){alert('Pehle apna naam daalo!');return;}
