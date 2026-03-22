@@ -2069,7 +2069,11 @@ function _generatePDF(receiptNo){
     doc.text(row[0],14,y);
 
     doc.setFont('helvetica','bold');
-    doc.setTextColor(row[0]==='Status'?[74,222,128]:[255,255,255]);
+    if(row[0]==='Status'){
+  doc.setTextColor(74,222,128);
+} else {
+  doc.setTextColor(255,255,255);
+}
     doc.text(String(row[1]),134,y,{align:'right'});
 
     doc.setDrawColor(50,30,80);
