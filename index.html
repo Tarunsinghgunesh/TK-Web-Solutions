@@ -1787,76 +1787,133 @@ if('serviceWorker' in navigator){
   </div>
 </section>
 <!-- PAYMENT SECTION -->
-<section style="background:#0b0f1e;padding:60px 6%;" id="payment">
-<div style="max-width:1000px;margin:0 auto;">
+<section id="payment" style="background:linear-gradient(135deg,#060d1f 0%,#0d1635 50%,#060d1f 100%);padding:80px 6%;position:relative;overflow:hidden;">
+<div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(26,86,255,.12),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+<div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,229,255,.08),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+<div style="max-width:1000px;margin:0 auto;position:relative;z-index:1;">
 
-  <div style="text-align:center;margin-bottom:36px;">
-    <span style="background:rgba(26,86,255,.15);border:1px solid rgba(26,86,255,.3);color:#00e5ff;font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:20px;">💳 Quick Payment</span>
-    <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;margin:10px 0 8px;">Online Payment Karo</h2>
-    <p style="color:rgba(255,255,255,.4);font-size:.9rem;">UPI ya Bank Transfer — kisi bhi tarike se. 100% safe!</p>
+  <!-- HEADING -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <span style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(26,86,255,.2),rgba(0,229,255,.1));border:1px solid rgba(0,229,255,.3);color:#00e5ff;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:14px;">💳 Secure Payment</span>
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:#fff;margin-bottom:10px;line-height:1.2;">Online Payment Karo</h2>
+    <p style="color:rgba(255,255,255,.45);font-size:.95rem;max-width:450px;margin:0 auto;line-height:1.7;">UPI, Bank Transfer — sabse fast & safe tarika. Kisi bhi app se pay karo!</p>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+  <!-- GRID -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
 
-    <!-- LEFT: QR + UPI Apps -->
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.2);border-radius:20px;padding:28px;text-align:center;">
-      <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Scan & Pay — Kisi Bhi UPI App Se</div>
+    <!-- ══ LEFT: QR + APPS ══ -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(0,229,255,.15);border-radius:24px;padding:30px;text-align:center;backdrop-filter:blur(10px);">
 
-      <!-- QR IMAGE -->
-      <div style="background:#fff;border-radius:16px;padding:12px;display:inline-block;margin-bottom:16px;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+      <div style="font-size:.62rem;color:rgba(0,229,255,.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:700;">📱 Scan & Pay</div>
+
+      <!-- QR -->
+      <div style="background:linear-gradient(135deg,#fff,#f0f4ff);border-radius:20px;padding:14px;display:inline-block;margin-bottom:18px;box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 0 1px rgba(0,229,255,.2);">
         <img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/qr.png"
-             alt="UPI QR Code — TK Web Solutions"
-             style="width:180px;height:180px;display:block;border-radius:6px;">
+             alt="UPI QR Code"
+             style="width:185px;height:185px;display:block;border-radius:8px;">
       </div>
 
-      <!-- UPI ID + COPY -->
-      <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:4px;">UPI ID</div>
-      <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#00e5ff;margin-bottom:12px;">tarun.8240@ptyes</div>
-      <button onclick="navigator.clipboard.writeText('tarun.8240@ptyes');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='📋 UPI ID Copy Karo',2000)"
-        style="width:100%;background:rgba(26,86,255,.15);border:1px solid rgba(26,86,255,.3);color:#00e5ff;padding:9px;border-radius:9px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;">
+      <!-- UPI ID -->
+      <div style="font-size:.65rem;color:rgba(255,255,255,.35);margin-bottom:4px;letter-spacing:1px;">UPI ID</div>
+      <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:linear-gradient(135deg,#00e5ff,#1a56ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;letter-spacing:.5px;">tarun.8240@ptyes</div>
+
+      <button onclick="navigator.clipboard.writeText('tarun.8240@ptyes');this.innerHTML='✅ Copied!';this.style.background='rgba(37,211,102,.2)';this.style.borderColor='rgba(37,211,102,.4)';this.style.color='#25d366';setTimeout(()=>{this.innerHTML='📋 UPI ID Copy Karo';this.style.background='';this.style.borderColor='';this.style.color='';},2000)"
+        style="width:100%;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.25);color:#00e5ff;padding:10px;border-radius:10px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:22px;transition:all .2s;">
         📋 UPI ID Copy Karo
       </button>
 
-      <!-- UPI APP BUTTONS -->
-      <div style="font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Direct App Se Pay Karo</div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+      <!-- APP BUTTONS -->
+      <div style="font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:700;">Direct App Se Pay Karo</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:22px;">
+
+        <!-- Paytm -->
         <a href="paytmmp://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
-           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" style="height:18px;filter:brightness(10);">Paytm
+           style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(0,184,212,.12),rgba(0,184,212,.06));border:1px solid rgba(0,184,212,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .2s;font-family:'DM Sans',sans-serif;"
+           onmouseover="this.style.borderColor='rgba(0,184,212,.6)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(0,184,212,.25)';this.style.transform=''">
+          <svg width="22" height="22" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="12" fill="#00BAF2"/><text y="68" x="8" font-size="44" font-weight="900" fill="white" font-family="Arial">P</text><text y="68" x="32" font-size="44" font-weight="900" fill="#1b3a6b" font-family="Arial">ay</text></svg>
+          Paytm
         </a>
+
+        <!-- GPay -->
         <a href="tez://upi/pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
-           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" style="height:18px;">GPay
+           style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(66,133,244,.12),rgba(66,133,244,.06));border:1px solid rgba(66,133,244,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .2s;font-family:'DM Sans',sans-serif;"
+           onmouseover="this.style.borderColor='rgba(66,133,244,.6)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(66,133,244,.25)';this.style.transform=''">
+          <svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="white"/><text y="66" x="16" font-size="50" font-weight="900" fill="#4285F4" font-family="Arial">G</text></svg>
+          GPay
         </a>
+
+        <!-- PhonePe -->
         <a href="phonepe://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
-           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(83,0,216,.1);border:1px solid rgba(83,0,216,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" style="height:18px;filter:brightness(10);">PhonePe
+           style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(83,0,216,.15),rgba(83,0,216,.08));border:1px solid rgba(83,0,216,.35);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .2s;font-family:'DM Sans',sans-serif;"
+           onmouseover="this.style.borderColor='rgba(83,0,216,.7)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(83,0,216,.35)';this.style.transform=''">
+          <svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#5f259f"/><text y="66" x="28" font-size="52" font-weight="900" fill="white" font-family="Arial">P</text></svg>
+          PhonePe
         </a>
+
+        <!-- BHIM -->
         <a href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
-           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
-          🏦 BHIM / Any UPI
+           style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(255,153,0,.12),rgba(255,153,0,.06));border:1px solid rgba(255,153,0,.25);color:#fff;padding:11px 8px;border-radius:12px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .2s;font-family:'DM Sans',sans-serif;"
+           onmouseover="this.style.borderColor='rgba(255,153,0,.6)';this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.borderColor='rgba(255,153,0,.25)';this.style.transform=''">
+          <svg width="22" height="22" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FF9900"/><text y="68" x="14" font-size="38" font-weight="900" fill="white" font-family="Arial">UPI</text></svg>
+          BHIM/UPI
         </a>
       </div>
 
-      <!-- BANK DETAILS -->
-      <div style="margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.15);border-radius:12px;padding:14px;text-align:left;">
-        <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;">🏦 Bank Transfer</div>
-        <div style="display:flex;flex-direction:column;gap:7px;">
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Name</span><span style="color:#fff;font-weight:600;">Tarun Singh</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Account No.</span><span style="color:#00e5ff;font-weight:700;letter-spacing:.5px;">38896794692</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">IFSC</span><span style="color:#00e5ff;font-weight:700;">SBIN0031855</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Bank</span><span style="color:#fff;font-weight:600;">State Bank of India</span></div>
+      <!-- BANK TRANSFER -->
+      <div style="background:linear-gradient(135deg,rgba(26,86,255,.1),rgba(0,229,255,.05));border:1px solid rgba(26,86,255,.2);border-radius:16px;padding:18px;text-align:left;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;">
+          <span style="font-size:1rem;">🏦</span>
+          <span style="font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;font-weight:700;">Bank Transfer (NEFT/RTGS/IMPS)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:rgba(255,255,255,.35);font-size:.72rem;">Account Name</span>
+            <span style="color:#fff;font-weight:700;font-size:.8rem;">Tarun Singh</span>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:rgba(255,255,255,.35);font-size:.72rem;">Account No.</span>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span id="accNum" style="color:#00e5ff;font-weight:800;font-size:.82rem;letter-spacing:.5px;">38896794692</span>
+              <button onclick="navigator.clipboard.writeText('38896794692');this.textContent='✅';setTimeout(()=>this.textContent='📋',1500)" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:#00e5ff;padding:2px 7px;border-radius:5px;font-size:.65rem;cursor:pointer;">📋</button>
+            </div>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:rgba(255,255,255,.35);font-size:.72rem;">IFSC Code</span>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="color:#00e5ff;font-weight:800;font-size:.82rem;">SBIN0031855</span>
+              <button onclick="navigator.clipboard.writeText('SBIN0031855');this.textContent='✅';setTimeout(()=>this.textContent='📋',1500)" style="background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.2);color:#00e5ff;padding:2px 7px;border-radius:5px;font-size:.65rem;cursor:pointer;">📋</button>
+            </div>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:rgba(255,255,255,.35);font-size:.72rem;">Bank</span>
+            <span style="color:#fff;font-weight:700;font-size:.8rem;">State Bank of India</span>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,.05);"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:rgba(255,255,255,.35);font-size:.72rem;">Transfer Type</span>
+            <span style="color:#25d366;font-weight:700;font-size:.78rem;">NEFT / RTGS / IMPS</span>
+          </div>
         </div>
       </div>
+
     </div>
 
-    <!-- RIGHT: Custom Amount -->
-    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.2);border-radius:20px;padding:28px;">
-      <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center;">💰 Amount Select Karo</div>
+    <!-- ══ RIGHT: CUSTOM AMOUNT ══ -->
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(26,86,255,.2);border-radius:24px;padding:30px;backdrop-filter:blur(10px);">
+
+      <div style="font-size:.62rem;color:rgba(0,229,255,.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;text-align:center;font-weight:700;">💰 Custom Amount</div>
 
       <!-- QUICK AMOUNTS -->
-      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:8px;">Quick Select:</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:8px;font-weight:600;">Quick Select:</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;">
         <button onclick="setPayAmt(5000)" class="pamtbtn">₹5,000</button>
         <button onclick="setPayAmt(6000)" class="pamtbtn">₹6,000</button>
         <button onclick="setPayAmt(7000)" class="pamtbtn">₹7,000</button>
@@ -1865,57 +1922,71 @@ if('serviceWorker' in navigator){
         <button onclick="setPayAmt(10000)" class="pamtbtn">₹10,000</button>
       </div>
 
-      <!-- CUSTOM AMOUNT -->
-      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Ya Custom Amount:</div>
-      <div style="display:flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px;">
-        <span style="color:#00e5ff;font-weight:800;font-size:1.1rem;margin-right:8px;">₹</span>
+      <!-- CUSTOM INPUT -->
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Ya apni amount daalo:</div>
+      <div style="display:flex;align-items:center;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:12px 16px;margin-bottom:14px;transition:border-color .2s;" onfocusin="this.style.borderColor='rgba(0,229,255,.5)'" onfocusout="this.style.borderColor='rgba(26,86,255,.3)'">
+        <span style="background:linear-gradient(135deg,#00e5ff,#1a56ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900;font-size:1.2rem;margin-right:8px;">₹</span>
         <input type="number" id="payAmt" placeholder="Amount daalo..." min="1"
-          style="background:transparent;border:none;color:#fff;font-size:.95rem;width:100%;outline:none;font-family:'DM Sans',sans-serif;"
+          style="background:transparent;border:none;color:#fff;font-size:.95rem;width:100%;outline:none;font-family:'DM Sans',sans-serif;font-weight:600;"
           oninput="updatePayBtn()">
       </div>
 
       <!-- PURPOSE -->
-      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Payment Purpose:</div>
-      <select id="payPurpose" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;">
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Payment Purpose:</div>
+      <select id="payPurpose" style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 14px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;">
         <option value="Website Payment">💻 Website Payment</option>
         <option value="Advance Payment">💰 Advance Payment</option>
         <option value="Full Payment">✅ Full Payment</option>
         <option value="Remaining Payment">🔄 Remaining Payment</option>
-        <option value="Extra Tip">🙏 Extra Tip</option>
+        <option value="Extra Tip">🙏 Extra Tip / Shukriya</option>
         <option value="Other">📝 Other</option>
       </select>
 
       <!-- NAME -->
-      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Aapka Naam (optional):</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Aapka Naam (optional):</div>
       <input type="text" id="payerName" placeholder="Naam daalo..."
-        style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;margin-bottom:16px;font-family:'DM Sans',sans-serif;outline:none;">
+        style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:18px;font-family:'DM Sans',sans-serif;outline:none;font-weight:500;">
 
       <!-- PAY BUTTON -->
       <a id="payNowBtn" href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
          onclick="doPayment(event)"
-         style="display:flex;align-items:center;justify-content:center;gap:8px;background:#1a56ff;color:#fff;padding:14px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;margin-bottom:10px;box-shadow:0 6px 20px rgba(26,86,255,.4);font-family:'DM Sans',sans-serif;">
+         style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;padding:15px;border-radius:14px;font-weight:800;font-size:1rem;text-decoration:none;margin-bottom:10px;box-shadow:0 8px 28px rgba(26,86,255,.45);font-family:'Syne',sans-serif;letter-spacing:.3px;transition:all .2s;"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 35px rgba(26,86,255,.6)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 8px 28px rgba(26,86,255,.45)'">
         💳 Abhi Pay Karo
       </a>
 
-      <!-- NOTIFY BUTTON -->
+      <!-- NOTIFY -->
       <button onclick="notifyPayment()"
-        style="width:100%;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25d366;padding:12px;border-radius:12px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:14px;">
+        style="width:100%;background:linear-gradient(135deg,rgba(37,211,102,.12),rgba(37,211,102,.06));border:1.5px solid rgba(37,211,102,.3);color:#25d366;padding:13px;border-radius:14px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:16px;transition:all .2s;"
+        onmouseover="this.style.borderColor='rgba(37,211,102,.6)'"
+        onmouseout="this.style.borderColor='rgba(37,211,102,.3)'">
         📲 Payment Ho Gayi? Notify Karo
       </button>
 
-      <p style="font-size:.68rem;color:rgba(255,255,255,.25);text-align:center;line-height:1.6;">Payment ke baad screenshot bhejo: <a href="https://wa.me/919079368240" style="color:#00e5ff;">+91 90793 68240</a></p>
+      <p style="font-size:.68rem;color:rgba(255,255,255,.2);text-align:center;line-height:1.7;margin-bottom:16px;">Payment ke baad screenshot zaroor bhejo:<br><a href="https://wa.me/919079368240" style="color:#00e5ff;font-weight:700;">+91 90793 68240</a></p>
 
-      <!-- TRUST BADGES -->
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px;">
-        <div style="text-align:center;background:rgba(255,255,255,.03);border-radius:10px;padding:12px;">
-          <div style="font-size:1.3rem;">🔒</div>
-          <div style="font-size:.7rem;font-weight:700;color:#fff;margin-top:4px;">100% Secure</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.3);">UPI Safe Payment</div>
+      <!-- TRUST -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;">
+          <div style="font-size:1.4rem;margin-bottom:5px;">🔒</div>
+          <div style="font-size:.72rem;font-weight:700;color:#fff;">100% Secure</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:2px;">UPI Encrypted</div>
         </div>
-        <div style="text-align:center;background:rgba(255,255,255,.03);border-radius:10px;padding:12px;">
-          <div style="font-size:1.3rem;">⚡</div>
-          <div style="font-size:.7rem;font-weight:700;color:#fff;margin-top:4px;">Instant Transfer</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.3);">Seedha Account Mein</div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;">
+          <div style="font-size:1.4rem;margin-bottom:5px;">⚡</div>
+          <div style="font-size:.72rem;font-weight:700;color:#fff;">Instant</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:2px;">Seedha Account Mein</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;">
+          <div style="font-size:1.4rem;margin-bottom:5px;">📱</div>
+          <div style="font-size:.72rem;font-weight:700;color:#fff;">Sabhi Apps</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:2px;">GPay, Paytm, PhonePe</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;">
+          <div style="font-size:1.4rem;margin-bottom:5px;">🧾</div>
+          <div style="font-size:.72rem;font-weight:700;color:#fff;">Receipt</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);margin-top:2px;">WhatsApp Confirm</div>
         </div>
       </div>
     </div>
@@ -1925,12 +1996,14 @@ if('serviceWorker' in navigator){
 </section>
 
 <style>
-.pamtbtn{background:rgba(255,255,255,.05);border:1px solid rgba(26,86,255,.2);color:rgba(255,255,255,.7);padding:9px 4px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
-.pamtbtn:hover,.pamtbtn.pactive{background:#1a56ff;border-color:#1a56ff;color:#fff;}
+.pamtbtn{background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.25);color:rgba(255,255,255,.65);padding:10px 4px;border-radius:10px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.pamtbtn:hover{background:rgba(26,86,255,.2);border-color:rgba(26,86,255,.5);color:#fff;transform:translateY(-1px);}
+.pamtbtn.pactive{background:linear-gradient(135deg,#1a56ff,#0d3acc);border-color:#1a56ff;color:#fff;box-shadow:0 4px 14px rgba(26,86,255,.4);}
 @media(max-width:700px){
-  #payment>div>div:nth-child(2){grid-template-columns:1fr!important;}
+  #payment [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
 }
 </style>
+```
 
 <script>
 function setPayAmt(a){
