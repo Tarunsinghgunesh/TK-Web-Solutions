@@ -1875,7 +1875,9 @@ if('serviceWorker' in navigator){
   <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;">🔍 Purani Receipt Dhundho</div>
   <div style="display:flex;gap:8px;">
     <input type="text" id="searchReceiptInput" placeholder="Receipt No. ya Phone No." style="flex:1;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;">
-    <button onclick="searchAndShowReceipt()" style="background:#1a56ff;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;">🔍 Dhundho</button>
+    '<button onclick="downloadReceiptPDF(\''+data.receiptNo+'\')" style="width:100%;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;">📥 PDF Download Karo</button>'+
+'<button onclick="sendReceiptWhatsApp('+JSON.stringify(data)+')" style="width:100%;background:#25d366;color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;">📲 WhatsApp pe Bhejo</button>'+
+       <button onclick="searchAndShowReceipt()" style="background:#1a56ff;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;">🔍 Dhundho</button>
   </div>
 </div>
       <p style="font-size:.68rem;color:rgba(255,255,255,.2);text-align:center;line-height:1.7;margin-bottom:16px;">Payment ke baad screenshot zaroor bhejo:<br><a href="https://wa.me/919079368240" style="color:#00e5ff;font-weight:700;">+91 90793 68240</a></p>
