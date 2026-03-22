@@ -2045,8 +2045,11 @@ function sendReceiptWhatsApp(data){
 function notifyPayment(){
   var n=document.getElementById('payerName').value.trim();
   if(!n){alert('Pehle apna naam daalo!');return;}
-  var a=document.getElementById('payAmt').value||'?';
-  var p=document.getElementById('payPurpose').value;
+  var a=document.getElementById('payAmt').value||'0';
+  if(!a||a==='0'){alert('Amount daalo!');return;}
+  var upi=document.getElementById('upiRef')?document.getElementById('upiRef').value.trim():'';
+  if(!upi){alert('UPI Reference Number daalna zaroori hai!\n\nYe aapki payment ki confirmation ke liye zaroori hai.');return;}
+  var p=document.getElementById('payPurpose')?document.getElementById('payPurpose').value:'Website Payment';
   var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';
   var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';
   var data={
@@ -2056,7 +2059,8 @@ function notifyPayment(){
     phone:ph,
     amount:a,
     purpose:p,
-    service:sv
+    service:sv,
+    upiRef:upi
   };
   saveToSheet(data);
   showReceipt(data);
