@@ -1954,7 +1954,6 @@ function _generatePDF(receiptNo){
   if(!data)return;
   var jsPDF=window.jspdf.jsPDF;
 
-  // Logo ko base64 mein convert karo pehle
   function getLogoBase64(callback){
     var img=new Image();
     img.crossOrigin='anonymous';
@@ -1965,7 +1964,7 @@ function _generatePDF(receiptNo){
       callback(canvas.toDataURL('image/png'));
     };
     img.onerror=function(){callback(null);};
-    img.src='https://tkwebsolutions.in/logo.png';  // ✅ Fixed: full URL
+    img.src='https://tkwebsolutions.in/logo.png';
   }
 
   getLogoBase64(function(logoBase64){
@@ -1978,109 +1977,111 @@ function _generatePDF(receiptNo){
 
     // ── Header gradient ──
     doc.setFillColor(100,40,200);
-    doc.rect(0,0,W,45,'F');
+    doc.rect(0,0,W,40,'F');
     doc.setFillColor(219,39,119);
-    doc.rect(90,0,58,45,'F');
+    doc.rect(90,0,58,40,'F');
     doc.setFillColor(140,48,250);
-    doc.rect(65,0,45,45,'F');
+    doc.rect(65,0,45,40,'F');
 
-    // ── Header decoration circles ──
+    // ── Decoration circles ──
     doc.setFillColor(255,255,255);
     doc.setGState(new doc.GState({opacity:0.07}));
     doc.circle(135,-8,28,'F');
-    doc.circle(8,52,22,'F');
+    doc.circle(8,48,20,'F');
     doc.setGState(new doc.GState({opacity:1}));
 
-    // ── Logo box background ──
+    // ── Logo box ──
     doc.setFillColor(255,255,255);
     doc.setGState(new doc.GState({opacity:0.2}));
-    doc.roundedRect(63,5,22,17,4,4,'F');
+    doc.roundedRect(63,4,22,16,4,4,'F');
     doc.setGState(new doc.GState({opacity:1}));
 
-    // ── Logo image (ya fallback "TK" text) ──
+    // ── Logo image ya fallback ──
     if(logoBase64){
-      try{
-        doc.addImage(logoBase64,'PNG',64,6,20,15);
-      }catch(e){
+      try{ doc.addImage(logoBase64,'PNG',64,5,20,14); }
+      catch(e){
         doc.setFontSize(11);doc.setFont('helvetica','bold');
         doc.setTextColor(255,255,255);
-        doc.text('TK',74,16,{align:'center'});
+        doc.text('TK',74,14,{align:'center'});
       }
     } else {
       doc.setFontSize(11);doc.setFont('helvetica','bold');
       doc.setTextColor(255,255,255);
-      doc.text('TK',74,16,{align:'center'});
+      doc.text('TK',74,14,{align:'center'});
     }
 
     // ── Company name ──
-    doc.setFontSize(13);doc.setFont('helvetica','bold');
+    doc.setFontSize(12);doc.setFont('helvetica','bold');
     doc.setTextColor(255,255,255);
-    doc.text('TK Web Solutions',74,28,{align:'center'});
+    doc.text('TK Web Solutions',74,25,{align:'center'});
 
     // ── Tagline ──
-    doc.setFontSize(7);doc.setFont('helvetica','normal');
+    doc.setFontSize(6.5);doc.setFont('helvetica','normal');
     doc.setTextColor(220,200,255);
-    doc.text('Bharatpur, Rajasthan  |  tkwebsolutions.in',74,34,{align:'center'});
+    doc.text('Bharatpur, Rajasthan  |  tkwebsolutions.in',74,31,{align:'center'});
 
     // ── Payment Confirmed badge ──
     doc.setFillColor(255,255,255);
     doc.setGState(new doc.GState({opacity:0.15}));
-    doc.roundedRect(50,36,48,7,3,3,'F');
+    doc.roundedRect(50,33,48,6,3,3,'F');
     doc.setGState(new doc.GState({opacity:1}));
-    doc.setFontSize(7);doc.setFont('helvetica','bold');
+    doc.setFontSize(6.5);doc.setFont('helvetica','bold');
     doc.setTextColor(74,222,128);
-    doc.text('● Payment Confirmed',74,41,{align:'center'});
+    doc.text('● Payment Confirmed',74,37,{align:'center'});
 
     // ── Amount section ──
     doc.setFillColor(26,22,37);
-    doc.rect(0,45,W,30,'F');
-    doc.setFontSize(7.5);doc.setFont('helvetica','normal');
+    doc.rect(0,40,W,28,'F');
+
+    doc.setFontSize(7);doc.setFont('helvetica','normal');
     doc.setTextColor(180,160,220);
-    doc.text('AMOUNT PAID',74,53,{align:'center'});
+    doc.text('AMOUNT PAID',74,48,{align:'center'});
 
     var amtFmt='Rs.'+parseInt(data.amount||0).toLocaleString('en-IN');
-    doc.setFontSize(20);doc.setFont('helvetica','bold');
+    doc.setFontSize(19);doc.setFont('helvetica','bold');
     doc.setTextColor(167,139,250);
-    doc.text(amtFmt,74,64,{align:'center'});
+    doc.text(amtFmt,74,59,{align:'center'});
 
-    doc.setFontSize(7.5);doc.setFont('helvetica','normal');
+    doc.setFontSize(7);doc.setFont('helvetica','normal');
     doc.setTextColor(150,130,180);
-    doc.text(data.purpose||'Website Payment',74,70,{align:'center'});
+    doc.text(data.purpose||'Website Payment',74,65,{align:'center'});
 
     // ── Receipt No badge ──
     doc.setFillColor(124,58,237);
     doc.setGState(new doc.GState({opacity:0.25}));
-    doc.roundedRect(34,72,80,8,3,3,'F');
+    doc.roundedRect(34,67,80,7,3,3,'F');
     doc.setGState(new doc.GState({opacity:1}));
-    doc.setFontSize(7);doc.setFont('helvetica','bold');
+    doc.setFontSize(6.5);doc.setFont('helvetica','bold');
     doc.setTextColor(196,181,253);
-    doc.text('Receipt No.  '+receiptNo,74,77,{align:'center'});
+    doc.text('Receipt No.  '+receiptNo,74,72,{align:'center'});
 
     // ── Divider ──
     doc.setDrawColor(60,40,100);doc.setLineWidth(0.3);
-    doc.line(10,82,138,82);
+    doc.line(10,76,138,76);
 
-    // ── Detail rows ──
+    // ── Detail rows (8 rows x 9mm = 72mm, starts at 77, ends at 149) ──
     var rows=[
-      ['Date & Time',data.datetime||'N/A'],
-      ['Customer Name',data.name||'N/A'],
-      ['Phone',data.phone||'N/A'],
-      ['Service',data.service||'N/A'],
-      ['UPI Reference',data.upiRef||'N/A'],
-      ['Payment Method','UPI — tarun.8240@ptyes'],
-      ['Delivery','5-7 Working Days'],
-      ['Status','Confirmed']
+      ['Date & Time',    data.datetime||'N/A'],
+      ['Customer Name',  data.name||'N/A'],
+      ['Phone',          data.phone||'N/A'],
+      ['Service',        data.service||'N/A'],
+      ['UPI Reference',  data.upiRef||'N/A'],
+      ['Payment Method', 'UPI — tarun.8240@ptyes'],
+      ['Delivery',       '5-7 Working Days'],
+      ['Status',         'Confirmed']
     ];
 
-    var y=90;
+    var y=84;
+    var rowH=9; // compact row height
     rows.forEach(function(row,i){
+      // Alternate background
       if(i%2===0){
         doc.setFillColor(30,16,48);
         doc.setGState(new doc.GState({opacity:0.55}));
-        doc.rect(10,y-4.5,128,9,'F');
+        doc.rect(10,y-4,128,rowH,'F');
         doc.setGState(new doc.GState({opacity:1}));
       }
-      doc.setFontSize(7.5);doc.setFont('helvetica','normal');
+      doc.setFontSize(7);doc.setFont('helvetica','normal');
       doc.setTextColor(160,140,200);
       doc.text(row[0],14,y);
       doc.setFont('helvetica','bold');
@@ -2090,42 +2091,53 @@ function _generatePDF(receiptNo){
         doc.setTextColor(255,255,255);
       }
       var val=String(row[1]);
-      if(val.length>28)val=val.substring(0,26)+'..';
+      if(val.length>30)val=val.substring(0,28)+'..';
       doc.text(val,134,y,{align:'right'});
       doc.setDrawColor(50,30,80);doc.setLineWidth(0.2);
-      doc.line(10,y+3,138,y+3);
-      y+=10;
+      doc.line(10,y+3.5,138,y+3.5);
+      y+=rowH;
     });
+    // y is now ~157mm
 
-    // ── Thank you box ──  ✅ Fixed: dynamic position, nahi katega
-    var tyY=y+3;
+    // ── Thank you box (157 to 175mm) ──
+    var tyY=y+2;
     doc.setFillColor(124,58,237);
     doc.setGState(new doc.GState({opacity:0.14}));
-    doc.roundedRect(10,tyY,128,18,4,4,'F');
+    doc.roundedRect(10,tyY,128,16,4,4,'F');
     doc.setGState(new doc.GState({opacity:1}));
     doc.setDrawColor(124,58,237);doc.setLineWidth(0.4);
-    doc.roundedRect(10,tyY,128,18,4,4,'S');
+    doc.roundedRect(10,tyY,128,16,4,4,'S');
 
-    doc.setFontSize(8.5);doc.setFont('helvetica','bold');
+    doc.setFontSize(8);doc.setFont('helvetica','bold');
     doc.setTextColor(255,255,255);
-    doc.text('Shukriya aapka vishwas aur support ka!',74,tyY+8,{align:'center'});
-    doc.setFontSize(7);doc.setFont('helvetica','normal');
+    doc.text('Shukriya aapka vishwas aur support ka!',74,tyY+7,{align:'center'});
+    doc.setFontSize(6.5);doc.setFont('helvetica','normal');
     doc.setTextColor(180,160,220);
-    doc.text('Aapka digital safar aaj se shuru hota hai — hum milke isko yaadgaar banayenge!',74,tyY+15,{align:'center'});
+    doc.text('Aapka digital safar aaj se shuru hota hai — hum milke isko yaadgaar banayenge!',74,tyY+13,{align:'center'});
+    // tyY+16 = ~175mm
 
-    // ── Footer (fixed at bottom) ──  ✅ Fixed: page ke bilkul end mein
+    // ── Footer (177mm to 210mm) — guaranteed visible ──
+    var ftY=178;
     doc.setFillColor(13,11,20);
-    doc.rect(0,185,W,25,'F');
-    doc.setDrawColor(60,40,100);doc.setLineWidth(0.3);
-    doc.line(0,185,W,185);
+    doc.rect(0,ftY,W,H-ftY,'F');
+    doc.setDrawColor(80,50,130);doc.setLineWidth(0.4);
+    doc.line(0,ftY,W,ftY);
+
+    // Gradient line effect
+    doc.setDrawColor(124,58,237);doc.setLineWidth(0.3);
+    doc.line(20,ftY,128,ftY);
 
     doc.setFontSize(7.5);doc.setFont('helvetica','bold');
     doc.setTextColor(200,180,240);
-    doc.text('TK Web Solutions  |  Bharatpur, Rajasthan',74,192,{align:'center'});
-    doc.setFont('helvetica','normal');doc.setTextColor(150,130,180);
-    doc.text('tkwebsolutions.in  |  +91 90793 68240  |  tkwebsolution1301@gmail.com',74,198,{align:'center'});
-    doc.setFont('helvetica','italic');doc.setTextColor(167,139,250);
-    doc.text('"From Dreams.... to Digital Reality"',74,205,{align:'center'});
+    doc.text('TK Web Solutions  |  Bharatpur, Rajasthan',74,ftY+8,{align:'center'});
+
+    doc.setFontSize(6.5);doc.setFont('helvetica','normal');
+    doc.setTextColor(150,130,180);
+    doc.text('tkwebsolutions.in  |  +91 90793 68240  |  tkwebsolution1301@gmail.com',74,ftY+15,{align:'center'});
+
+    doc.setFontSize(7);doc.setFont('helvetica','italic');
+    doc.setTextColor(167,139,250);
+    doc.text('"From Dreams.... to Digital Reality"',74,ftY+22,{align:'center'});
 
     doc.save('TK-Receipt-'+receiptNo+'.pdf');
   });
