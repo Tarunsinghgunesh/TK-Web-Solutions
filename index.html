@@ -2041,22 +2041,7 @@ function notifyPayment(){
   sendOwnerAlert(data);
   sendEmailAlert(data);
 }
-  fetch(APPS_SCRIPT_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify([
-      data.receiptNo,
-      data.datetime,
-      data.name,
-      data.phone||'N/A',
-      'Rs.'+data.amount,
-      data.purpose,
-      'UPI',
-      data.service,
-      'Confirmed',
-      'tkwebsolutions.in',
-      ''
-    ])
+  
   })
   .then(function(r){return r.json();})
   .then(function(res){console.log('Sheet saved:',res);})
