@@ -1786,7 +1786,204 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </section>
+<!-- PAYMENT SECTION -->
+<section style="background:#0b0f1e;padding:60px 6%;" id="payment">
+<div style="max-width:1000px;margin:0 auto;">
 
+  <div style="text-align:center;margin-bottom:36px;">
+    <span style="background:rgba(26,86,255,.15);border:1px solid rgba(26,86,255,.3);color:#00e5ff;font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:20px;">💳 Quick Payment</span>
+    <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;margin:10px 0 8px;">Online Payment Karo</h2>
+    <p style="color:rgba(255,255,255,.4);font-size:.9rem;">UPI ya Bank Transfer — kisi bhi tarike se. 100% safe!</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+    <!-- LEFT: QR + UPI Apps -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.2);border-radius:20px;padding:28px;text-align:center;">
+      <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Scan & Pay — Kisi Bhi UPI App Se</div>
+
+      <!-- QR IMAGE -->
+      <div style="background:#fff;border-radius:16px;padding:12px;display:inline-block;margin-bottom:16px;box-shadow:0 8px 24px rgba(0,0,0,.4);">
+        <img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/qr.png"
+             alt="UPI QR Code — TK Web Solutions"
+             style="width:180px;height:180px;display:block;border-radius:6px;">
+      </div>
+
+      <!-- UPI ID + COPY -->
+      <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:4px;">UPI ID</div>
+      <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#00e5ff;margin-bottom:12px;">tarun.8240@ptyes</div>
+      <button onclick="navigator.clipboard.writeText('tarun.8240@ptyes');this.textContent='✅ Copied!';setTimeout(()=>this.textContent='📋 UPI ID Copy Karo',2000)"
+        style="width:100%;background:rgba(26,86,255,.15);border:1px solid rgba(26,86,255,.3);color:#00e5ff;padding:9px;border-radius:9px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;">
+        📋 UPI ID Copy Karo
+      </button>
+
+      <!-- UPI APP BUTTONS -->
+      <div style="font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;">Direct App Se Pay Karo</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">
+        <a href="paytmmp://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
+           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(0,184,212,.1);border:1px solid rgba(0,184,212,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" style="height:18px;filter:brightness(10);">Paytm
+        </a>
+        <a href="tez://upi/pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
+           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" style="height:18px;">GPay
+        </a>
+        <a href="phonepe://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
+           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(83,0,216,.1);border:1px solid rgba(83,0,216,.2);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" style="height:18px;filter:brightness(10);">PhonePe
+        </a>
+        <a href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
+           style="display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-size:.78rem;font-weight:600;">
+          🏦 BHIM / Any UPI
+        </a>
+      </div>
+
+      <!-- BANK DETAILS -->
+      <div style="margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.15);border-radius:12px;padding:14px;text-align:left;">
+        <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;">🏦 Bank Transfer</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Name</span><span style="color:#fff;font-weight:600;">Tarun Singh</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Account No.</span><span style="color:#00e5ff;font-weight:700;letter-spacing:.5px;">38896794692</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">IFSC</span><span style="color:#00e5ff;font-weight:700;">SBIN0031855</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;"><span style="color:rgba(255,255,255,.4);">Bank</span><span style="color:#fff;font-weight:600;">State Bank of India</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Custom Amount -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(26,86,255,.2);border-radius:20px;padding:28px;">
+      <div style="font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center;">💰 Amount Select Karo</div>
+
+      <!-- QUICK AMOUNTS -->
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:8px;">Quick Select:</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+        <button onclick="setPayAmt(5000)" class="pamtbtn">₹5,000</button>
+        <button onclick="setPayAmt(6000)" class="pamtbtn">₹6,000</button>
+        <button onclick="setPayAmt(7000)" class="pamtbtn">₹7,000</button>
+        <button onclick="setPayAmt(8000)" class="pamtbtn">₹8,000</button>
+        <button onclick="setPayAmt(9000)" class="pamtbtn">₹9,000</button>
+        <button onclick="setPayAmt(10000)" class="pamtbtn">₹10,000</button>
+      </div>
+
+      <!-- CUSTOM AMOUNT -->
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Ya Custom Amount:</div>
+      <div style="display:flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px;">
+        <span style="color:#00e5ff;font-weight:800;font-size:1.1rem;margin-right:8px;">₹</span>
+        <input type="number" id="payAmt" placeholder="Amount daalo..." min="1"
+          style="background:transparent;border:none;color:#fff;font-size:.95rem;width:100%;outline:none;font-family:'DM Sans',sans-serif;"
+          oninput="updatePayBtn()">
+      </div>
+
+      <!-- PURPOSE -->
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Payment Purpose:</div>
+      <select id="payPurpose" style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;">
+        <option value="Website Payment">💻 Website Payment</option>
+        <option value="Advance Payment">💰 Advance Payment</option>
+        <option value="Full Payment">✅ Full Payment</option>
+        <option value="Remaining Payment">🔄 Remaining Payment</option>
+        <option value="Extra Tip">🙏 Extra Tip</option>
+        <option value="Other">📝 Other</option>
+      </select>
+
+      <!-- NAME -->
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Aapka Naam (optional):</div>
+      <input type="text" id="payerName" placeholder="Naam daalo..."
+        style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(26,86,255,.25);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;margin-bottom:16px;font-family:'DM Sans',sans-serif;outline:none;">
+
+      <!-- PAY BUTTON -->
+      <a id="payNowBtn" href="upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&cu=INR"
+         onclick="doPayment(event)"
+         style="display:flex;align-items:center;justify-content:center;gap:8px;background:#1a56ff;color:#fff;padding:14px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;margin-bottom:10px;box-shadow:0 6px 20px rgba(26,86,255,.4);font-family:'DM Sans',sans-serif;">
+        💳 Abhi Pay Karo
+      </a>
+
+      <!-- NOTIFY BUTTON -->
+      <button onclick="notifyPayment()"
+        style="width:100%;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25d366;padding:12px;border-radius:12px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:14px;">
+        📲 Payment Ho Gayi? Notify Karo
+      </button>
+
+      <p style="font-size:.68rem;color:rgba(255,255,255,.25);text-align:center;line-height:1.6;">Payment ke baad screenshot bhejo: <a href="https://wa.me/919079368240" style="color:#00e5ff;">+91 90793 68240</a></p>
+
+      <!-- TRUST BADGES -->
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px;">
+        <div style="text-align:center;background:rgba(255,255,255,.03);border-radius:10px;padding:12px;">
+          <div style="font-size:1.3rem;">🔒</div>
+          <div style="font-size:.7rem;font-weight:700;color:#fff;margin-top:4px;">100% Secure</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);">UPI Safe Payment</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border-radius:10px;padding:12px;">
+          <div style="font-size:1.3rem;">⚡</div>
+          <div style="font-size:.7rem;font-weight:700;color:#fff;margin-top:4px;">Instant Transfer</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);">Seedha Account Mein</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<style>
+.pamtbtn{background:rgba(255,255,255,.05);border:1px solid rgba(26,86,255,.2);color:rgba(255,255,255,.7);padding:9px 4px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.pamtbtn:hover,.pamtbtn.pactive{background:#1a56ff;border-color:#1a56ff;color:#fff;}
+@media(max-width:700px){
+  #payment>div>div:nth-child(2){grid-template-columns:1fr!important;}
+}
+</style>
+
+<script>
+function setPayAmt(a){
+  document.getElementById('payAmt').value=a;
+  document.querySelectorAll('.pamtbtn').forEach(function(b){
+    b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);
+  });
+  updatePayBtn();
+}
+function updatePayBtn(){
+  var a=document.getElementById('payAmt').value;
+  var p=document.getElementById('payPurpose').value;
+  var btn=document.getElementById('payNowBtn');
+  if(btn)btn.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';
+}
+function doPayment(e){
+  var a=document.getElementById('payAmt').value;
+  if(!a){e.preventDefault();alert('Pehle amount select karo!');return;}
+  var p=document.getElementById('payPurpose').value;
+  var n=document.getElementById('payerName').value||'Customer';
+  e.currentTarget.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';
+  setTimeout(function(){sendPayNotify(a,p,n);},1500);
+}
+function notifyPayment(){
+  var a=document.getElementById('payAmt').value||'?';
+  var p=document.getElementById('payPurpose').value;
+  var n=document.getElementById('payerName').value||'Customer';
+  sendPayNotify(a,p,n);
+}
+function sendPayNotify(amt,purpose,name){
+  var msg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n'
+    +'👤 Name: '+name+'\n'
+    +'💰 Amount: ₹'+amt+'\n'
+    +'📝 Purpose: '+purpose+'\n'
+    +'⏰ Time: '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+'\n'
+    +'🌐 Via: tkwebsolutions.in\n\n'
+    +'✅ Verify & confirm receipt!';
+  window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
+  if(typeof emailjs!=='undefined'){
+    emailjs.send('service_n1reiw9','template_gg2zxzw',{
+      client_naam:name,
+      client_phone:'UPI Payment Alert',
+      chat_log:'PAYMENT ALERT\nAmount: Rs.'+amt+'\nPurpose: '+purpose+'\nTime: '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
+    });
+  }
+}
+</script>
+
+<!-- FOOTER -->
+<footer></parameter>
+<parameter name="old_str"><!-- FOOTER -->
+<footer></parameter>
+<parameter name="path">/home/claude/index_final2.html</parameter>
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
