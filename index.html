@@ -1904,6 +1904,122 @@ function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/K
 function setPayAmt(a){document.getElementById('payAmt').value=a;document.querySelectorAll('.pamtbtn').forEach(function(b){b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);});updatePayBtn();}
 function updatePayBtn(){var a=document.getElementById('payAmt').value;var p=document.getElementById('payPurpose').value;var btn=document.getElementById('payNowBtn');if(btn)btn.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';}
 function doPayment(e){var a=document.getElementById('payAmt').value;if(!a){e.preventDefault();alert('Pehle amount select karo!');return;}var n=document.getElementById('payerName').value;if(!n){e.preventDefault();alert('Apna naam daalna zaroori hai!');return;}var p=document.getElementById('payPurpose').value;var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';e.currentTarget.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};setTimeout(function(){saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);},1500);}
+function searchAndShowReceipt(){
+  var q=document.getElementById('searchReceiptInput').value.trim();
+  if(!q){alert('Receipt number ya phone number daalo!');return;}
+  var btn=document.querySelector('[onclick="searchAndShowReceipt()"]');
+  if(btn){btn.textContent='🔍 Dhuundh raha...';btn.disabled=true;}
+  fetch(APPS_SCRIPT_URL+'?q='+encodeURIComponent(q))
+  .then(function(r){return r.json();})
+  .then(function(rows){
+    if(btn){btn.textContent='🔍 Dhundho';btn.disabled=false;}
+    if(!rows||rows.length===0){
+      alert('Koi record nahi mila!\nReceipt No: '+q+'\n\nSahi receipt number ya registered phone number daalo.');
+      return;
+    }
+    var row=rows[0];
+    var data={
+      receiptNo:row[0],
+      datetime:row[1],
+      name:row[2],
+      phone:row[3],
+      amount:(row[4]||'').toString().replace('Rs.',''),
+      purpose:row[5],
+      service:row[7]
+    };
+    showReceipt(data);
+  })
+  .catch(function(){
+    if(btn){btn.textContent='🔍 Dhundho';btn.disabled=false;}
+    alert('Connection error! Internet check karo.');
+  });
+}
+
+function downloadReceiptPDF(receiptNo){
+  if(typeof window.jspdf==='undefined'){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload=function(){_generatePDF(receiptNo);};
+    document.head.appendChild(s);
+  } else {
+    _generatePDF(receiptNo);
+  }
+}
+
+function _generatePDF(receiptNo){
+  var modal=document.getElementById('rx-modal');
+  if(!modal)return;
+  var items=modal.querySelectorAll('div[style*="justify-content:space-between"]');
+  var jsPDF=window.jspdf.jsPDF;
+  var doc=new jsPDF({unit:'mm',format:'a5'});
+  doc.setFillColor(26,86,255);
+  doc.rect(0,0,148,32,'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(16);
+  doc.setFont('helvetica','bold');
+  doc.text('TK Web Solutions',74,13,{align:'center'});
+  doc.setFontSize(9);
+  doc.setFont('helvetica','normal');
+  doc.text('Bharatpur, Rajasthan | +91 90793 68240',74,20,{align:'center'});
+  doc.text('tkwebsolutions.in',74,26,{align:'center'});
+  doc.setTextColor(26,86,255);
+  doc.setFontSize(13);
+  doc.setFont('helvetica','bold');
+  doc.text('PAYMENT RECEIPT',74,44,{align:'center'});
+  doc.setFontSize(9);
+  doc.setTextColor(100,100,100);
+  doc.text(receiptNo,74,51,{align:'center'});
+  doc.setDrawColor(26,86,255);
+  doc.setLineWidth(0.4);
+  doc.line(10,55,138,55);
+  doc.setTextColor(0,0,0);
+  var y=63;
+  items.forEach(function(row){
+    var spans=row.querySelectorAll('span');
+    if(spans.length>=2){
+      doc.setFontSize(9);
+      doc.setFont('helvetica','normal');
+      doc.setTextColor(130,130,130);
+      doc.text(spans[0].textContent,12,y);
+      doc.setTextColor(0,0,0);
+      doc.setFont('helvetica','bold');
+      doc.text(spans[1].textContent,136,y,{align:'right'});
+      y+=9;
+    }
+  });
+  doc.setFillColor(240,243,255);
+  doc.rect(0,178,148,22,'F');
+  doc.setTextColor(26,86,255);
+  doc.setFontSize(8);
+  doc.setFont('helvetica','italic');
+  doc.text('"From Dreams.... to Digital Reality"',74,186,{align:'center'});
+  doc.setTextColor(120,120,120);
+  doc.setFont('helvetica','normal');
+  doc.text('tkwebsolutions.in | +91 90793 68240',74,193,{align:'center'});
+  doc.save('TK-Receipt-'+receiptNo+'.pdf');
+}
+
+function sendReceiptWhatsApp(data){
+  var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
+  var msg='🧾 *PAYMENT RECEIPT — TK Web Solutions*\n\n'+
+    '━━━━━━━━━━━━━━━━━━━━\n'+
+    '📋 Receipt No: *'+data.receiptNo+'*\n'+
+    '📅 Date & Time: '+data.datetime+'\n'+
+    '👤 Name: '+data.name+'\n'+
+    '📱 Phone: '+(data.phone||'N/A')+'\n'+
+    '💰 Amount Paid: *₹'+amtFmt+'*\n'+
+    '📝 Purpose: '+data.purpose+'\n'+
+    '🌐 Service: '+data.service+'\n'+
+    '✅ Status: *Payment Confirmed*\n'+
+    '⚡ Delivery: 5-7 Working Days\n'+
+    '━━━━━━━━━━━━━━━━━━━━\n'+
+    '🙏 Shukriya! Aapka digital safar shuru hota hai!\n'+
+    '🌐 tkwebsolutions.in | ☎️ +91 90793 68240\n'+
+    '_"From Dreams.... to Digital Reality"_';
+  var num=data.phone?data.phone.replace(/\D/g,''):'919079368240';
+  if(num.length===10)num='91'+num;
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
+}
 function notifyPayment(){
   var n=document.getElementById('payerName').value.trim();
   if(!n){alert('Pehle apna naam daalo!');return;}
