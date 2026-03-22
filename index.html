@@ -1902,8 +1902,27 @@ function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/K
 function setPayAmt(a){document.getElementById('payAmt').value=a;document.querySelectorAll('.pamtbtn').forEach(function(b){b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);});updatePayBtn();}
 function updatePayBtn(){var a=document.getElementById('payAmt').value;var p=document.getElementById('payPurpose').value;var btn=document.getElementById('payNowBtn');if(btn)btn.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';}
 function doPayment(e){var a=document.getElementById('payAmt').value;if(!a){e.preventDefault();alert('Pehle amount select karo!');return;}var n=document.getElementById('payerName').value;if(!n){e.preventDefault();alert('Apna naam daalna zaroori hai!');return;}var p=document.getElementById('payPurpose').value;var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';e.currentTarget.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};setTimeout(function(){saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);},1500);}
-function notifyPayment(){var a=document.getElementById('payAmt').value||'?';var p=document.getElementById('payPurpose').value;var n=document.getElementById('payerName').value||'Customer';var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);}
-function saveToSheet(data){
+function notifyPayment(){
+  var n=document.getElementById('payerName').value.trim();
+  if(!n){alert('Pehle apna naam daalo!');return;}
+  var a=document.getElementById('payAmt').value||'?';
+  var p=document.getElementById('payPurpose').value;
+  var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';
+  var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';
+  var data={
+    receiptNo:generateReceiptNo(),
+    datetime:getISTTime(),
+    name:n,
+    phone:ph,
+    amount:a,
+    purpose:p,
+    service:sv
+  };
+  saveToSheet(data);
+  showReceipt(data);
+  sendOwnerAlert(data);
+  sendEmailAlert(data);
+}
   fetch(APPS_SCRIPT_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
