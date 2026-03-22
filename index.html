@@ -2127,7 +2127,7 @@ function showReceipt(data){
     '<div style="padding:12px 22px;">'+rowsHTML+'</div>'+
     '<div style="padding:0 18px 14px;">'+
     '<button onclick="downloadReceiptPDF(\''+data.receiptNo+'\')" style="width:100%;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;">📥 PDF Download Karo</button>'+
-    '<button onclick="sendReceiptWhatsApp('+JSON.stringify(data)+')" style="width:100%;background:#25d366;color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;">📲 WhatsApp pe Bhejo</button>'+
+    '<button onclick="sendReceiptWhatsApp(_lastReceiptData)" style="width:100%;background:#25d366;color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px;">📲 WhatsApp pe Bhejo</button>'+
     '<button onclick="document.getElementById(\'rx-modal\').remove()" style="width:100%;background:#f3f4f6;color:#374151;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">Close</button>'+
     '</div>'+
     '<div style="background:#f9fafb;padding:10px 22px;text-align:center;border-radius:0 0 20px 20px;">'+
