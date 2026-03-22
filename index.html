@@ -2291,7 +2291,7 @@ function sendReceiptWhatsApp(data){
     '🙏 Shukriya!\n'+
     '🌐 tkwebsolutions.in | +91 90793 68240\n'+
     '"From Dreams.... to Digital Reality"';
-  var num=data.phone?data.phone.replace(/\D/g,''):'919079368240';
+  var num=data.phone?String(data.phone).replace(/\D/g,''):'919079368240';
   if(num.length===10)num='91'+num;
   if(!num||num.length<10)num='919079368240';
   window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
