@@ -1896,7 +1896,7 @@ if('serviceWorker' in navigator){
 @media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
 </style>
 <script>
-var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyVfusJHVNKKdadB8qXpu9iytSHZ3GjmITZ3FHbinMVIA87sSPrktqsEFgYKNvrng/exec';
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
 function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
 function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});}
 function setPayAmt(a){document.getElementById('payAmt').value=a;document.querySelectorAll('.pamtbtn').forEach(function(b){b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);});updatePayBtn();}
