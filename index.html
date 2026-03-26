@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -1860,9 +1859,7 @@ if('serviceWorker' in navigator){
       <input type="text" id="payerName" placeholder="Apna naam daalo..." required style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;font-weight:500;">
       <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Phone Number (optional):</div>
       <input type="tel" id="payerPhone" placeholder="+91 XXXXX XXXXX" style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;">
-      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">UPI Reference Number <span style="color:#ef4444;">*</span>:</div>
-<input type="text" id="upiRef" placeholder="UPI Transaction ID daalo..." style="width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 16px;color:#fff;font-size:.82rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;outline:none;font-weight:500;">
-         <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Service Type:</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:600;">Service Type:</div>
       <select id="payService" style="width:100%;background:#0d1635;border:1.5px solid rgba(26,86,255,.3);border-radius:12px;padding:11px 14px;color:#fff;font-size:.82rem;margin-bottom:18px;font-family:'DM Sans',sans-serif;outline:none;cursor:pointer;">
         <option value="Coaching Website">Coaching Website</option>
         <option value="School Website">School Website</option>
@@ -1899,387 +1896,50 @@ if('serviceWorker' in navigator){
 @media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
 </style>
 <script>
-     var _lastReceiptData=null;
-var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyVfusJHVNKKdadB8qXpu9iytSHZ3GjmITZ3FHbinMVIA87sSPrktqsEFgYKNvrng/exec';
 function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
 function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});}
 function setPayAmt(a){document.getElementById('payAmt').value=a;document.querySelectorAll('.pamtbtn').forEach(function(b){b.classList.toggle('pactive',b.textContent.replace(/[₹,]/g,'')==a);});updatePayBtn();}
 function updatePayBtn(){var a=document.getElementById('payAmt').value;var p=document.getElementById('payPurpose').value;var btn=document.getElementById('payNowBtn');if(btn)btn.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';}
 function doPayment(e){var a=document.getElementById('payAmt').value;if(!a){e.preventDefault();alert('Pehle amount select karo!');return;}var n=document.getElementById('payerName').value;if(!n){e.preventDefault();alert('Apna naam daalna zaroori hai!');return;}var p=document.getElementById('payPurpose').value;var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';e.currentTarget.href='upi://pay?pa=tarun.8240@ptyes&pn=TK+Web+Solutions&am='+a+'&tn='+encodeURIComponent(p)+'&cu=INR';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};setTimeout(function(){saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);},1500);}
+function notifyPayment(){var a=document.getElementById('payAmt').value||'?';var p=document.getElementById('payPurpose').value;var n=document.getElementById('payerName').value||'Customer';var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';var data={receiptNo:generateReceiptNo(),datetime:getISTTime(),name:n,phone:ph,amount:a,purpose:p,service:sv};saveToSheet(data);showReceipt(data);sendOwnerAlert(data);sendEmailAlert(data);}
+function saveToSheet(data){try{fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify([data.receiptNo,data.datetime,data.name,data.phone||'N/A','Rs.'+data.amount,data.purpose,'UPI',data.service,'Confirmed','tkwebsolutions.in',''])}).catch(function(){});}catch(ex){}}
+function sendOwnerAlert(data){var msg='💳 *PAYMENT ALERT — TK Web Solutions*\n\n━━━━━━━━━━━━━━━━━━━━\n🧾 Receipt: '+data.receiptNo+'\n📅 Time: '+data.datetime+'\n👤 Name: '+data.name+'\n📱 Phone: '+(data.phone||'N/A')+'\n💰 Amount: ₹'+data.amount+'\n📝 Purpose: '+data.purpose+'\n🌐 Service: '+data.service+'\n━━━━━━━━━━━━━━━━━━━━\n⚡ Verify & start project!';window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');}
+function sendEmailAlert(data){if(typeof emailjs==='undefined')return;emailjs.send('service_n1reiw9','template_gg2zxzw',{client_naam:'PAYMENT: '+data.name+' Rs.'+data.amount,client_phone:data.phone||'UPI',chat_log:'Receipt: '+data.receiptNo+'\nAmount: Rs.'+data.amount+'\nPurpose: '+data.purpose+'\nService: '+data.service+'\nTime: '+data.datetime});}
+function showReceipt(data){var ex=document.getElementById('rx-modal');if(ex)ex.remove();var modal=document.createElement('div');modal.id='rx-modal';modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';var amtFmt=parseInt(data.amount).toLocaleString('en-IN');var rows=[['Date & Time',data.datetime],['Customer',data.name],['Phone',data.phone||'N/A'],['Purpose',data.purpose],['Method','UPI — tarun.8240@ptyes'],['Service',data.service],['Status','Confirmed'],['Delivery','5-7 Working Days']];var rowsHTML=rows.map(function(r){return '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f5f5f5;"><span style="font-size:12px;color:#9ca3af;">'+r[0]+'</span><span style="font-size:12px;font-weight:600;color:'+(r[0]==='Status'?'#7c3aed':'#111827')+';">'+r[1]+'</span></div>';}).join('');modal.innerHTML='<div style="background:#fff;border-radius:20px;max-width:400px;width:100%;max-height:90vh;overflow-y:auto;"><div style="background:linear-gradient(135deg,#7c3aed,#db2777,#ec4899);padding:22px;text-align:center;border-radius:20px 20px 0 0;"><img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/logo.png" style="width:48px;height:48px;border-radius:10px;background:#fff;padding:4px;margin-bottom:8px;object-fit:contain;" onerror="this.style.display='none'"><div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:2px;">TK Web Solutions</div><div style="font-size:11px;color:rgba(255,255,255,.7);">Bharatpur, Rajasthan</div><div style="margin-top:10px;display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:20px;"><span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;"></span><span style="font-size:11px;color:#fff;font-weight:600;">Payment Confirmed</span></div></div><div style="padding:18px 22px;text-align:center;border-bottom:1px dashed #e5e7eb;"><div style="font-size:10px;letter-spacing:2px;color:#9ca3af;margin-bottom:6px;text-transform:uppercase;">Amount Paid</div><div style="font-size:38px;font-weight:800;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&#8377;'+amtFmt+'</div><div style="font-size:11px;color:#9ca3af;margin-top:4px;">Receipt No: <strong style="color:#374151;">'+data.receiptNo+'</strong></div></div><div style="padding:12px 22px;">'+rowsHTML+'</div><div style="margin:0 18px 16px;border-radius:12px;padding:14px;text-align:center;background:linear-gradient(135deg,rgba(124,58,237,.07),rgba(219,39,119,.05));border:1px solid rgba(124,58,237,.15);"><div style="font-size:20px;margin-bottom:6px;">🎉</div><div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;">Shukriya aapka vishwas aur support ka!</div><div style="font-size:12px;color:#6b7280;line-height:1.7;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div></div><div style="padding:0 18px 14px;"><button +'<button onclick="printReceipt()" style="width:100%;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:8px;">🖨️ Receipt Print/Download Karo</button>'onclick="document.getElementById('rx-modal').remove()" style="width:100%;background:#f3f4f6;color:#374151;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">Close</button></div><div style="background:#f9fafb;padding:10px 22px;text-align:center;border-radius:0 0 20px 20px;"><p style="font-size:10px;color:#9ca3af;margin:1px 0;">tkwebsolutions.in · +91 90793 68240</p><p style="font-size:10px;font-style:italic;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">"From Dreams.... to Digital Reality"</p></div></div>';document.body.appendChild(modal);modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});}
 function searchAndShowReceipt(){
-  var q=document.getElementById('searchReceiptInput').value.trim();
-  if(!q){alert('Receipt number ya phone number daalo!');return;}
-  var btn=document.querySelector('[onclick="searchAndShowReceipt()"]');
-  if(btn){btn.textContent='🔍 Dhuundh raha...';btn.disabled=true;}
-  fetch(APPS_SCRIPT_URL+'?q='+encodeURIComponent(q))
-  .then(function(r){return r.json();})
-  .then(function(rows){
-    if(btn){btn.textContent='🔍 Dhundho';btn.disabled=false;}
-    if(!rows||rows.length===0){
-      alert('Koi record nahi mila!\nReceipt No: '+q+'\n\nSahi receipt number ya registered phone number daalo.');
-      return;
-    }
-    var row=rows[0];
+  var query=document.getElementById('searchReceiptInput').value.trim();
+  if(!query){alert('Receipt number ya phone number daalo!');return;}
+  var url='https://docs.google.com/spreadsheets/d/1MEpLHMm4ShYWsaJBH7jN1L59WKA81JwMsP_mmmRU06M/gviz/tq?tqx=out:json&tq='+encodeURIComponent("select * where A contains '"+query+"' or D contains '"+query+"'");
+  fetch(url).then(function(r){return r.text();}).then(function(text){
+    var json=JSON.parse(text.replace('/*O_o*/\ngoogle.visualization.Query.setResponse(','').replace(');',''));
+    var rows=json.table.rows;
+    if(!rows||rows.length===0){alert('Koi record nahi mila! Receipt number ya phone check karo.');return;}
+    var r=rows[0].c;
     var data={
-  receiptNo:row[0],
-  datetime:row[1],
-  name:row[2],
-  phone:row[3],
-  amount:(row[4]||'').toString().replace('Rs.',''),
-  purpose:row[5]||'Website Payment',
-  service:row[7]||'N/A',
-  upiRef:row[10]||'N/A'
-};
-       _lastReceiptData=data;
+      receiptNo:r[0]?r[0].v:'N/A',
+      datetime:r[1]?r[1].v:'N/A',
+      name:r[2]?r[2].v:'N/A',
+      phone:r[3]?r[3].v:'N/A',
+      amount:(r[4]?r[4].v:'0').replace('Rs.',''),
+      purpose:r[5]?r[5].v:'N/A',
+      service:r[7]?r[7].v:'N/A'
+    };
     showReceipt(data);
-  })
-  .catch(function(){
-    if(btn){btn.textContent='🔍 Dhundho';btn.disabled=false;}
-    alert('Connection error! Internet check karo.');
-  });
+  }).catch(function(){alert('Sheet se data nahi aa raha. Thodi der baad try karo!');});
 }
 
-function downloadReceiptPDF(receiptNo){
-  if(typeof window.jspdf==='undefined'){
-    var s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-    s.onload=function(){_generatePDF(receiptNo);};
-    document.head.appendChild(s);
-  } else {
-    _generatePDF(receiptNo);
-  }
+function printReceipt(){
+  var modal=document.getElementById('rx-modal');
+  if(!modal)return;
+  var content=modal.querySelector('div').innerHTML;
+  var win=window.open('','_blank');
+  win.document.write('<html><head><title>TK Receipt</title><style>body{font-family:sans-serif;max-width:400px;margin:0 auto;padding:20px;}@media print{button{display:none!important;}}</style></head><body>'+content+'<br><button onclick="window.print()" style="width:100%;padding:12px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer;">🖨️ Print / Save PDF</button></body></html>');
+  win.document.close();
 }
-   
-function downloadReceiptPDF(receiptNo){
-  var data = _lastReceiptData;
-  if(!data) return;
-
-  // ── Step 1: Load libraries if needed ──
-  function loadScript(src, cb){
-    if(document.querySelector('script[src="'+src+'"]')){ cb(); return; }
-    var s = document.createElement('script');
-    s.src = src; s.onload = cb; document.head.appendChild(s);
-  }
-
-  var btn = document.querySelector('[onclick*="downloadReceiptPDF"]');
-  if(btn){ btn.innerHTML = '⏳ PDF ban rahi hai...'; btn.disabled = true; }
-
-  loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', function(){
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', function(){
-
-      // ── Step 2: Build receipt HTML (same as modal but in hidden div) ──
-      var amtFmt = parseInt(data.amount||0).toLocaleString('en-IN');
-      var rows = [
-        ['Date & Time',    data.datetime||'N/A'],
-        ['Customer Name',  data.name||'N/A'],
-        ['Phone',          data.phone||'N/A'],
-        ['Service',        data.service||'N/A'],
-        ['UPI Reference',  data.upiRef||'N/A'],
-        ['Payment Method', 'UPI — tarun.8240@ptyes'],
-        ['Delivery',       '5-7 Working Days'],
-        ['Status',         'Confirmed']
-      ];
-
-      var rowsHTML = rows.map(function(r, i){
-        var isStatus = r[0] === 'Status';
-        var bg = i%2===0 ? 'background:rgba(255,255,255,0.03);' : '';
-        return '<div style="display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid rgba(255,255,255,0.06);'+bg+'">'+
-          '<span style="font-size:13px;color:rgba(255,255,255,0.45);font-family:Arial,sans-serif;">'+r[0]+'</span>'+
-          '<span style="font-size:13px;font-weight:700;color:'+(isStatus?'#4ade80':'rgba(255,255,255,0.9)')+';font-family:Arial,sans-serif;text-align:right;max-width:55%;">'+r[1]+'</span>'+
-        '</div>';
-      }).join('');
-
-      var receiptHTML =
-        '<div id="pdf-receipt-render" style="width:420px;background:#13111a;border-radius:0;overflow:hidden;font-family:Arial,sans-serif;">'+
-
-        // Header
-        '<div style="background:linear-gradient(135deg,#7c3aed 0%,#a855f7 40%,#db2777 100%);padding:30px 22px 24px;text-align:center;position:relative;overflow:hidden;">'+
-          '<div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,0.08);border-radius:50%;"></div>'+
-          '<div style="position:absolute;bottom:-30px;left:-30px;width:100px;height:100px;background:rgba(255,255,255,0.05);border-radius:50%;"></div>'+
-          // Logo box
-          '<div style="width:68px;height:68px;background:rgba(255,255,255,0.18);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;border:2px solid rgba(255,255,255,0.28);position:relative;z-index:1;overflow:hidden;">'+
-            '<img src="https://tkwebsolutions.in/logo.png" style="width:52px;height:52px;object-fit:contain;" crossorigin="anonymous">'+
-          '</div>'+
-          '<div style="font-size:20px;font-weight:900;color:#fff;margin-bottom:3px;position:relative;z-index:1;letter-spacing:0.5px;">TK Web Solutions</div>'+
-          '<div style="font-size:11px;color:rgba(255,255,255,0.65);position:relative;z-index:1;">Professional Web Design — Bharatpur, Rajasthan</div>'+
-          '<div style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);padding:6px 18px;border-radius:20px;border:1px solid rgba(255,255,255,0.22);position:relative;z-index:1;">'+
-            '<span style="width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;"></span>'+
-            '<span style="font-size:12px;color:#fff;font-weight:700;letter-spacing:0.5px;">Payment Confirmed</span>'+
-          '</div>'+
-        '</div>'+
-
-        // Amount
-        '<div style="padding:22px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.06);background:#1a1625;">'+
-          '<div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.3);margin-bottom:8px;text-transform:uppercase;">AMOUNT PAID</div>'+
-          '<div style="font-size:46px;font-weight:900;color:#a78bfa;line-height:1;">&#8377;'+amtFmt+'</div>'+
-          '<div style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:6px;">'+( data.purpose||'Website Payment')+'</div>'+
-          '<div style="margin-top:12px;background:rgba(124,58,237,0.2);display:inline-block;padding:5px 18px;border-radius:20px;border:1px solid rgba(124,58,237,0.4);">'+
-            '<span style="font-size:12px;color:#c4b5fd;">Receipt No. &nbsp;<strong>'+receiptNo+'</strong></span>'+
-          '</div>'+
-        '</div>'+
-
-        // Detail rows
-        '<div style="background:#1a1625;">'+rowsHTML+'</div>'+
-
-        // Thank you
-        '<div style="margin:16px 18px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:16px;padding:22px;text-align:center;">'+
-          '<div style="font-size:26px;margin-bottom:10px;">&#127881;</div>'+
-          '<div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:7px;">Shukriya aapka vishwas aur support ka!</div>'+
-          '<div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.8;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div>'+
-        '</div>'+
-
-        // Footer
-        '<div style="padding:16px 22px 20px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);background:#0d0b14;">'+
-          '<p style="font-size:11px;color:rgba(255,255,255,0.3);margin:3px 0;">TK Web Solutions · Bharatpur, Rajasthan</p>'+
-          '<p style="font-size:11px;color:rgba(255,255,255,0.3);margin:3px 0;">tkwebsolutions.in · +91 90793 68240</p>'+
-          '<p style="font-size:11px;font-style:italic;color:#a78bfa;margin-top:8px;">"From Dreams.... to Digital Reality"</p>'+
-        '</div>'+
-
-        '</div>';
-
-      // ── Step 3: Append hidden div, capture, remove ──
-      var wrap = document.createElement('div');
-      wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1;';
-      wrap.innerHTML = receiptHTML;
-      document.body.appendChild(wrap);
-
-      var el = document.getElementById('pdf-receipt-render');
-
-      html2canvas(el, {
-        scale: 3,              // High resolution
-        useCORS: true,         // Logo load hoga
-        allowTaint: false,
-        backgroundColor: '#13111a',
-        logging: false
-      }).then(function(canvas){
-        document.body.removeChild(wrap);
-
-        var imgData = canvas.toDataURL('image/png');
-        var jsPDF = window.jspdf.jsPDF;
-
-        // A5 size mein fit karo
-        var pdfW = 148;
-        var pdfH = (canvas.height * pdfW) / canvas.width;
-
-        var doc = new jsPDF({
-          unit: 'mm',
-          format: [pdfW, pdfH],
-          orientation: 'portrait'
-        });
-
-        doc.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
-        doc.save('TK-Receipt-' + receiptNo + '.pdf');
-
-        if(btn){ btn.innerHTML = '✅ PDF Download Ho Gayi!'; btn.disabled = false;
-          setTimeout(function(){ btn.innerHTML = '&#128229; PDF Download Karo'; }, 3000);
-        }
-      }).catch(function(err){
-        document.body.removeChild(wrap);
-        console.error('PDF error:', err);
-        if(btn){ btn.innerHTML = '❌ Error! Retry karo'; btn.disabled = false; }
-      });
-
-    });
-  });
-}
-function showReceipt(data){
-  _lastReceiptData=data;
-  // Date fix karo agar ISO format hai
-  if(data.datetime && data.datetime.includes('T')){
-    data.datetime=new Date(data.datetime).toLocaleString('en-IN',{
-      timeZone:'Asia/Kolkata',day:'2-digit',month:'short',
-      year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true
-    });
-  }
-  var ex=document.getElementById('rx-modal');
-  if(ex)ex.remove();
-  var modal=document.createElement('div');
-  modal.id='rx-modal';
-  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;';
-  var amtFmt=parseInt(data.amount||0).toLocaleString('en-IN');
-  var rows=[
-    ['Date & Time',data.datetime||'N/A'],
-    ['Customer Name',data.name||'N/A'],
-    ['Phone',data.phone||'N/A'],
-    ['Service',data.service||'N/A'],
-    ['UPI Reference',data.upiRef||'N/A'],
-    ['Payment Method','UPI — tarun.8240@ptyes'],
-    ['Delivery','5-7 Working Days'],
-    ['Status','Confirmed']
-  ];
-  var rowsHTML=rows.map(function(r){
-    var isStatus=r[0]==='Status';
-    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);">'+
-      '<span style="font-size:12px;color:rgba(255,255,255,.45);font-family:sans-serif;">'+r[0]+'</span>'+
-      '<span style="font-size:12px;font-weight:700;color:'+(isStatus?'#4ade80':'rgba(255,255,255,.9)')+';font-family:sans-serif;text-align:right;max-width:55%;">'+r[1]+'</span>'+
-      '</div>';
-  }).join('');
-
-  modal.innerHTML=
-    '<div style="background:#13111a;border-radius:24px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(124,58,237,.25);">'+
-
-    // Header
-    '<div style="background:linear-gradient(135deg,#7c3aed,#db2777,#ec4899);padding:28px 22px 22px;text-align:center;border-radius:24px 24px 0 0;position:relative;overflow:hidden;">'+
-    '<div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,.07);border-radius:50%;"></div>'+
-    '<div style="position:absolute;bottom:-30px;left:-30px;width:100px;height:100px;background:rgba(255,255,255,.05);border-radius:50%;"></div>'+
-    '<div style="width:64px;height:64px;background:rgba(255,255,255,.15);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:2px solid rgba(255,255,255,.25);position:relative;z-index:1;">'+
-    '<img src="logo.png" alt="TK" style="width:40px;height:40px;object-fit:contain;" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'inline\'"><span style="font-family:Arial Black,sans-serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;display:none;">TK</span>'+
-    '</div>'+
-    '<div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:2px;position:relative;z-index:1;font-family:Arial Black,sans-serif;">TK Web Solutions</div>'+
-    '<div style="font-size:11px;color:rgba(255,255,255,.65);position:relative;z-index:1;">Professional Web Design — Bharatpur, Rajasthan</div>'+
-    '<div style="margin-top:12px;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);padding:5px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.2);position:relative;z-index:1;">'+
-    '<span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;"></span>'+
-    '<span style="font-size:11px;color:#fff;font-weight:700;letter-spacing:.5px;">Payment Confirmed</span>'+
-    '</div></div>'+
-
-    // Amount
-    '<div style="padding:22px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);background:#1a1625;">'+
-    '<div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:8px;text-transform:uppercase;font-family:sans-serif;">AMOUNT PAID</div>'+
-    '<div style="font-size:44px;font-weight:900;color:#a78bfa;line-height:1;font-family:Arial Black,sans-serif;">&#8377;'+amtFmt+'</div>'+
-    '<div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;font-family:sans-serif;">'+data.purpose+'</div>'+
-    '<div style="margin-top:10px;background:rgba(124,58,237,.2);display:inline-block;padding:5px 16px;border-radius:20px;border:1px solid rgba(124,58,237,.4);">'+
-    '<span style="font-size:11px;color:#c4b5fd;font-family:sans-serif;">Receipt No. &nbsp;<strong>'+data.receiptNo+'</strong></span>'+
-    '</div></div>'+
-
-    // Rows
-    '<div style="padding:4px 22px 8px;background:#1a1625;">'+rowsHTML+'</div>'+
-
-    // Thank you
-    '<div style="margin:16px 18px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:16px;padding:20px;text-align:center;">'+
-    '<div style="font-size:24px;margin-bottom:8px;">&#127881;</div>'+
-    '<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;font-family:sans-serif;">Shukriya aapka vishwas aur support ka!</div>'+
-    '<div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.8;font-family:sans-serif;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div>'+
-    '</div>'+
-
-    // 3 Buttons
-    '<div style="padding:0 18px 16px;display:flex;flex-direction:column;gap:8px;">'+
-    '<button onclick="downloadReceiptPDF(\''+data.receiptNo+'\')" style="width:100%;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128229; PDF Download Karo</button>'+
-    '<button onclick="sendReceiptWhatsApp(_lastReceiptData)" style="width:100%;background:linear-gradient(135deg,#25d366,#128c50);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128242; WhatsApp pe Bhejo</button>'+
-    '<button onclick="document.getElementById(\'rx-modal\').remove()" style="width:100%;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;font-size:12px;font-weight:600;cursor:pointer;font-family:sans-serif;">&#10005; Close</button>'+
-    '</div>'+
-
-    // Footer
-    '<div style="padding:14px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.05);background:#0d0b14;border-radius:0 0 24px 24px;">'+
-    '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">TK Web Solutions · Bharatpur, Rajasthan</p>'+
-    '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">tkwebsolutions.in · +91 90793 68240</p>'+
-    '<p style="font-size:10px;font-style:italic;color:#a78bfa;margin-top:6px;font-family:sans-serif;">"From Dreams.... to Digital Reality"</p>'+
-    '</div></div>';
-
-  document.body.appendChild(modal);
-  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});
-}
-     function saveToSheet(data){
-  var params=[
-    data.receiptNo,
-    data.datetime,
-    data.name,
-    data.phone||'N/A',
-    'Rs.'+data.amount,
-    data.purpose,
-    'UPI',
-    data.service,
-    'Confirmed',
-    'tkwebsolutions.in',
-    data.upiRef||'N/A'
-  ];
-  var url=APPS_SCRIPT_URL+'?action=save&data='+encodeURIComponent(JSON.stringify(params));
-  fetch(url)
-  .then(function(r){return r.json();})
-  .then(function(res){console.log('✅ Sheet saved:',res);})
-  .catch(function(err){console.log('❌ Sheet error:',err);});
-}
-function notifyPayment(){
-  var n=document.getElementById('payerName').value.trim();
-  if(!n){alert('Pehle apna naam daalo!');return;}
-  var a=document.getElementById('payAmt').value||'0';
-  if(!a||a==='0'){alert('Amount daalo!');return;}
-  var upi=document.getElementById('upiRef')?document.getElementById('upiRef').value.trim():'';
-  if(!upi){alert('UPI Reference Number daalna zaroori hai!\n\nYe aapki payment ki confirmation ke liye zaroori hai.');return;}
-  var p=document.getElementById('payPurpose')?document.getElementById('payPurpose').value:'Website Payment';
-  var ph=document.getElementById('payerPhone')?document.getElementById('payerPhone').value:'';
-  var sv=document.getElementById('payService')?document.getElementById('payService').value:'Website';
-  var data={
-    receiptNo:generateReceiptNo(),
-    datetime:getISTTime(),
-    name:n,
-    phone:ph,
-    amount:a,
-    purpose:p,
-    service:sv,
-    upiRef:upi
-  };
-  saveToSheet(data);
-  showReceipt(data);
-  sendOwnerAlert(data);
-  sendEmailAlert(data);
-}
-  
-  function sendEmailAlert(data){
-  if(typeof emailjs==='undefined')return;
-  emailjs.send('service_n1reiw9','template_gg2zxzw',{
-    client_naam:data.name+' — Payment Rs.'+data.amount,
-    client_phone:data.phone||'UPI Payment',
-    chat_log:'Receipt No: '+data.receiptNo+
-             '\nAmount: Rs.'+data.amount+
-             '\nPurpose: '+data.purpose+
-             '\nService: '+data.service+
-             '\nUPI Ref: '+(data.upiRef||'N/A')+
-             '\nTime: '+data.datetime
-  }).then(function(){
-    console.log('Email sent!');
-  }).catch(function(err){
-    console.log('Email error:',err);
-  });
-}
-
-function sendReceiptWhatsApp(data){
-  if(!data){data=_lastReceiptData;}
-  if(!data){alert('Receipt data nahi mila!');return;}
-  var amtFmt=parseInt(data.amount||0).toLocaleString('en-IN');
-  var msg='🧾 *PAYMENT RECEIPT — TK Web Solutions*\n\n'+
-    '━━━━━━━━━━━━━━━━━━━━\n'+
-    '📋 Receipt No: *'+data.receiptNo+'*\n'+
-    '📅 Date & Time: '+data.datetime+'\n'+
-    '👤 Name: '+data.name+'\n'+
-    '📱 Phone: '+(data.phone||'N/A')+'\n'+
-    '💰 Amount Paid: *Rs.'+amtFmt+'*\n'+
-    '📝 Purpose: '+data.purpose+'\n'+
-    '🌐 Service: '+data.service+'\n'+
-    '🔖 UPI Ref: '+(data.upiRef||'N/A')+'\n'+
-    '✅ Status: *Payment Confirmed*\n'+
-    '⚡ Delivery: 5-7 Working Days\n'+
-    '━━━━━━━━━━━━━━━━━━━━\n'+
-    '🙏 Shukriya!\n'+
-    '🌐 tkwebsolutions.in | +91 90793 68240\n'+
-    '"From Dreams.... to Digital Reality"';
-  var num=data.phone?String(data.phone).replace(/\D/g,''):'919079368240';
-  if(num.length===10)num='91'+num;
-  if(!num||num.length<10)num='919079368240';
-  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
-}
-function sendOwnerAlert(data){
-  var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
-  var msg='💰 *PAYMENT RECEIVED — TK Web Solutions*\n\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '🧾 Receipt: *'+data.receiptNo+'*\n'+
-    '📅 Time: '+data.datetime+'\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '👤 Name: *'+data.name+'*\n'+
-    '📱 Phone: '+(data.phone||'N/A')+'\n'+
-    '💰 Amount: *₹'+amtFmt+'*\n'+
-    '📝 Purpose: '+data.purpose+'\n'+
-    '🌐 Service: '+data.service+'\n'+
-    '🔖 UPI Ref: *'+(data.upiRef||'N/A')+'*\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '✅ Payment verify karke project start karo!\n'+
-    '⚡ Delivery: 5-7 Working Days';
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
-}
-
 </script>
-
-<footer>
 <!-- FOOTER -->
+<footer>
   <div class="footer-top">
     <div class="ft-brand">
       <div class="ft-logo"><span>TK</span> Web Solutions</div>
