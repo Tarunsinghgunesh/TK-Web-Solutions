@@ -1146,6 +1146,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   transition:all .4s cubic-bezier(.23,1,.32,1);
   text-align:center;
   animation:clockEntry .8s .5s cubic-bezier(.34,1.56,.64,1) both;
+     contain:layout;
+min-width:240px;
 }
 @keyframes clockEntry{from{opacity:0;transform:translateX(-50%) translateY(50px) scale(.8);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
 #tk-clock:hover{
