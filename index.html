@@ -15,6 +15,11 @@
 </script>
 <!-- Schema in main block below -->
 <meta charset="UTF-8">
+<!-- DNS Prefetch for faster external resource load -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Designer Bharatpur | TK Web Solutions | ₹5,000 Se</title>
 <!-- ═══ SEO — GOOGLE TOP RANKING ═══ -->
@@ -198,8 +203,12 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Google Fonts — non-blocking -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"></noscript>
+<!-- Font Awesome — non-blocking load -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -1170,7 +1179,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   .clk-divider,.clk-right{display:none;}
 }
 </style>
-     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
 <script>emailjs.init("ygQhaRBTpL_oM8QYs");</script>
      <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#1a56ff">
@@ -1257,7 +1266,7 @@ if('serviceWorker' in navigator){
 <!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <a href="#home" class="logo" aria-label="TK Web Solutions - Home">
-    <img src="logo.png" alt="TK Web Solutions Logo">
+    <img src="logo.png" alt="TK Web Solutions Logo" width="48" height="48" fetchpriority="high">
     <span class="logo-text"><span>TK</span> Web Solutions</span>
     <span class="logo-badge">BHARATPUR</span>
     <span class="logo-slogan">From Dreams.... to <em>Digital Reality</em></span>
@@ -1858,7 +1867,7 @@ if('serviceWorker' in navigator){
         <div class="tk-fp-frame">
           <div class="tk-fp-ring"></div>
           <div class="tk-fp-box" id="tkFpBox">
-            <img src="YOUR_PHOTO.jpg" alt="Tarun Singh — Founder TK Web Solutions"/>
+            <img src="YOUR_PHOTO.jpg" alt="Tarun Singh — Founder TK Web Solutions" loading="lazy" width="400" height="500"/>
             <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,13,31,0.95), transparent 52%);"></div>
             <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 25px 20px; z-index: 2;">
               <div style="color: #00e5ff; font-size: .65rem; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase;">FOUNDER & DEV</div>
@@ -1953,7 +1962,7 @@ if('serviceWorker' in navigator){
     <div class="cta-btns">
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="btn-white"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Karo</a>
       <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="btn-ghost2"><i class="fab fa-telegram"></i> Telegram Bot</a>
-      <a href="/cdn-cgi/l/email-protection#d2a6b9a5b7b0a1bdbea7a6bbbdbce3e1e2e392b5bfb3bbbefcb1bdbf" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
+      <a href="mailto:tkwebsolution1301@gmail.com" class="btn-ghost2"><i class="fas fa-envelope"></i> Email Karo</a>
     </div>
   </div>
 </div>
@@ -1970,9 +1979,9 @@ if('serviceWorker' in navigator){
         <a href="tel:+919079368240" class="cm cm-phone"><i class="fas fa-phone-alt"></i><span>Call Karo<br>+91 90793 68240</span></a>
         <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!" target="_blank" class="cm cm-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp<br>+91 90793 68240</span></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="cm cm-tg"><i class="fab fa-telegram"></i><span>Telegram Bot<br>@TKwebsolutions_bot</span></a>
-        <a href="/cdn-cgi/l/email-protection#691d021e0c0b1a06051c1d000607585a5958290e04080005470a0604" class="cm cm-email">
+        <a href="mailto:tkwebsolution1301@gmail.com" class="cm cm-email">
   <i class="fas fa-envelope"></i>
-  <span>Email<br><span class="__cf_email__" data-cfemail="c3b7a8b4a6a1b0acafb6b7aaacadf2f0f3f283a4aea2aaafeda0acae">[email&#160;protected]</span></span>
+  <span>Email<br>tkwebsolution1301@gmail.com</span>
 </a>
         <a href="https://in.pinterest.com/tkwebsolution1301/" target="_blank" class="cm" style="background: linear-gradient(135deg, #E60023, #BD081C);">
   <i class="fab fa-pinterest"></i>
@@ -2025,7 +2034,7 @@ if('serviceWorker' in navigator){
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(0,229,255,.15);border-radius:24px;padding:30px;text-align:center;">
       <div style="font-size:.62rem;color:rgba(0,229,255,.6);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:700;">📱 Scan & Pay</div>
       <div style="background:linear-gradient(135deg,#fff,#f0f4ff);border-radius:20px;padding:14px;display:inline-block;margin-bottom:18px;box-shadow:0 12px 40px rgba(0,0,0,.5);">
-        <img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/qr.png" alt="UPI QR Code" style="width:185px;height:185px;display:block;border-radius:8px;">
+        <img src="https://tarunsinghgunesh.github.io/TK-Web-Solutions/qr.png" loading="lazy" width="200" height="200" alt="UPI QR Code" style="width:185px;height:185px;display:block;border-radius:8px;">
       </div>
       <div style="font-size:.65rem;color:rgba(255,255,255,.35);margin-bottom:4px;">UPI ID</div>
       <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;background:linear-gradient(135deg,#00e5ff,#1a56ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;">tarun.8240@ptyes</div>
@@ -2120,7 +2129,7 @@ if('serviceWorker' in navigator){
 .pamtbtn.pactive{background:linear-gradient(135deg,#1a56ff,#0d3acc);border-color:#1a56ff;color:#fff;box-shadow:0 4px 14px rgba(26,86,255,.4);}
 @media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
 </style>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
      var _lastReceiptData=null;
 var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
 function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
@@ -2513,7 +2522,7 @@ function sendOwnerAlert(data){
         <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="soc"><i class="fab fa-facebook-f"></i></a>
         <a href="https://wa.me/919079368240" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="soc"><i class="fab fa-telegram"></i></a>
-        <a href="/cdn-cgi/l/email-protection#a0d4cbd7c5c2d3cfccd5d4c9cfce91939091e0c7cdc1c9cc8ec3cfcd" class="soc"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:tkwebsolution1301@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
     <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">Portfolio Website</a></li><li><a href="#services">E-Commerce Website</a></li><li><a href="#services">Website Redesign</a></li></ul></div>
@@ -2565,7 +2574,7 @@ function sendOwnerAlert(data){
 <!-- ══════════════════════════════════════════
      ALL SCRIPTS
 ══════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
 /* ── GUIDE MASCOT ── */
 var _gOpen=true;
 var _gSteps=[
@@ -2928,7 +2937,8 @@ window.addEventListener('scroll',function(){
   resize();
   window.addEventListener('resize',resize);
   var particles=[];
-  for(var i=0;i<60;i++){
+  var particleCount=window.innerWidth<768?25:60;
+  for(var i=0;i<particleCount;i++){
     particles.push({
       x:Math.random()*canvas.width,
       y:Math.random()*canvas.height,
@@ -3076,12 +3086,13 @@ window.addEventListener('scroll',function(){
     var ampm=h>=12?'PM':'AM';
     flipSeg('clk-h',is24?pad(h):pad(h%12||12));
     flipSeg('clk-m',pad(m));
+    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
+    flipSeg('clk-m',pad(m));
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
     if(ap)ap.textContent=ampm;
     document.getElementById('clk-day').textContent=days[now.getDay()];
     document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
-    /* Glow pulse every second */
     document.querySelectorAll('.clk-seg').forEach(function(el){
       el.style.textShadow=s%2===0
         ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
@@ -3090,7 +3101,6 @@ window.addEventListener('scroll',function(){
   }
   tick();
   setInterval(tick,1000);
-  /* Click = toggle 12h / 24h */
   document.getElementById('tk-clock').addEventListener('click',function(){
     is24=!is24;
     var ap=document.getElementById('clk-ap');
