@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -28,15 +27,21 @@
 <meta name="author" content="TK Web Solutions — Tarun Singh ">
 <meta name="geo.region" content="IN-RJ">
 <meta name="geo.placename" content="Bharatpur, Rajasthan">
-<meta name="geo.position" content="27.2152;77.4841">
-<meta name="ICBM" content="27.2152, 77.4841">
+<meta name="geo.position" content="27.2152;77.4941">
+<meta name="ICBM" content="27.2152, 77.4941">
 
-<!-- Open Graph (Facebook, WhatsApp preview) -->
+<!-- Open Graph (Facebook, WhatsApp, Instagram preview) -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://tkwebsolutions.in/">
 <meta property="og:title" content="TK Web Solutions | Website Designer Bharatpur | Web Developer Rajasthan">
+<meta property="og:description" content="Bharatpur ka best web designer. Coaching, school, business websites ₹5,000 se. 5-7 din LIVE, SEO included. Free demo: +91 90793 68240">
 <meta name="description" content="Bharatpur ka best web designer. Coaching, school, business websites ₹5,000 se. 5-7 din LIVE, SEO included. Free demo: +91 90793 68240">
 <meta property="og:site_name" content="TK Web Solutions Bharatpur">
 <meta property="og:locale" content="en_IN">
+<meta property="og:image:alt" content="TK Web Solutions — Bharatpur ka best web design agency">
+<!-- Instagram / Facebook Page link (helps AI recognize social authority) -->
+<meta property="article:publisher" content="https://www.facebook.com/profile.php?id=61586888301761">
+<meta name="instagram:account" content="tkwebsolutions_official">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
@@ -50,18 +55,33 @@
 <link rel="canonical" href="https://tkwebsolutions.in/">
 <meta name="keywords" content="web designer bharatpur, website developer bharatpur, coaching website bharatpur, school website rajasthan, business website bharatpur, affordable website design bharatpur, TK Web Solutions, website banana bharatpur">
 
-<!-- ═══ LOCAL BUSINESS SCHEMA — GOOGLE KA SABSE BADA FACTOR ═══ -->
+<!-- ═══ SCHEMA BLOCK — GOOGLE AI MODE OPTIMIZED ═══ -->
+
+<!-- 1. LocalBusiness — Complete with @id, founder object, correct coords, correct price -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://tkwebsolutions.in/#business",
   "name": "TK Web Solutions",
   "alternateName": "TK Web Solutions Bharatpur",
-  "description": "Professional website development for coaching institutes, schools, businesses and e-commerce in Bharatpur, Rajasthan. Starting ₹7000.",
+  "description": "Bharatpur ka best web design agency. Coaching institutes, schools, local businesses ke liye professional website sirf ₹5,000 se. 5-7 din mein live delivery, SEO included, 30 din free support.",
   "url": "https://tkwebsolutions.in/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://tkwebsolutions.in/logo.png",
+    "width": 300,
+    "height": 100
+  },
+  "image": "https://tkwebsolutions.in/logo.png",
   "telephone": "+919079368240",
   "email": "tkwebsolution1301@gmail.com",
-  "founder": "Tarun Singh",
+  "founder": {
+    "@type": "Person",
+    "name": "Tarun Singh",
+    "jobTitle": "Founder & Web Developer",
+    "url": "https://tarunsinghgunesh.github.io/portfolio_3d/"
+  },
   "foundingDate": "2024",
   "address": {
     "@type": "PostalAddress",
@@ -73,29 +93,109 @@
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 27.2152,
-    "longitude": 77.4841
+    "longitude": 77.4941
   },
-  "areaServed": ["Bharatpur", "Rajasthan", "India"],
-  "priceRange": "₹7000 - ₹20000",
-  "openingHours": ["Mo-Sa 09:00-20:00"],
+  "areaServed": [
+    {"@type": "City", "name": "Bharatpur"},
+    {"@type": "State", "name": "Rajasthan"},
+    {"@type": "Country", "name": "India"}
+  ],
+  "priceRange": "₹5,000 - ₹15,000",
+  "currenciesAccepted": "INR",
+  "paymentAccepted": "UPI, NEFT, RTGS, IMPS",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  ],
   "sameAs": [
     "https://www.instagram.com/tkwebsolutions_official",
     "https://www.facebook.com/profile.php?id=61586888301761",
-    "https://t.me/TKwebsolutions_bot"
+    "https://t.me/TKwebsolutions_bot",
+    "https://in.pinterest.com/tkwebsolution1301/",
+    "https://github.com/tarunsinghgunesh/TK-Web-Solutions"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Web Design Services",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coaching Website"}, "price": "7000", "priceCurrency": "INR"},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Commerce Website"}, "price": "9000", "priceCurrency": "INR"},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business Website"}, "price": "8000", "priceCurrency": "INR"},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School Website"}, "price": "9000", "priceCurrency": "INR"}
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coaching Website", "description": "Coaching institute ke liye professional website — batches, results, fee structure, faculty, inquiry form included."}, "price": "7000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School Website", "description": "School ke liye complete digital identity — admission forms, gallery, events calendar, staff pages."}, "price": "9000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Business Website", "description": "Local business ko online lekar aao — 24/7 customers attract karne wali professional website."}, "price": "8000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Commerce Website", "description": "Online store — product catalog, WhatsApp ordering, categories, Google Maps integration."}, "price": "9000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Portfolio Website", "description": "Personal portfolio — skills, projects, achievements showcase."}, "price": "5000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Mitra Website", "description": "E-Mitra centers aur Rajasthan government services ke liye professional website."}, "price": "6000", "priceCurrency": "INR"},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Website Redesign", "description": "Purani outdated website ka complete modern makeover."}, "price": "6000", "priceCurrency": "INR"}
     ]
-  }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "10",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Ramesh Sir"},
+      "datePublished": "2025-06-15",
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "TK Web Solutions ne hamare coaching institute ke liye professional website banai. Students aur parents dono ko pasand aayi. Highly recommend!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Suresh Kumar"},
+      "datePublished": "2025-07-20",
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Fast delivery aur reasonable price. Website bilkul waisi bani jaise socha tha. Support bhi bahut achha mila."
+    }
+  ]
 }
 </script>
-<!-- FAQ SCHEMA FOR RICH SNIPPETS -->
+
+<!-- 2. WebSite Schema — Google Sitelinks ke liye -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://tkwebsolutions.in/#website",
+  "name": "TK Web Solutions",
+  "url": "https://tkwebsolutions.in/",
+  "description": "Bharatpur ka best web design agency — professional websites for coaching, schools, businesses at affordable prices.",
+  "inLanguage": ["hi", "en"],
+  "publisher": {"@id": "https://tkwebsolutions.in/#business"}
+}
+</script>
+
+<!-- 3. Person Schema — Tarun Singh E-E-A-T Authority -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://tkwebsolutions.in/#founder",
+  "name": "Tarun Singh",
+  "jobTitle": "Web Developer & Founder",
+  "worksFor": {"@id": "https://tkwebsolutions.in/#business"},
+  "url": "https://tarunsinghgunesh.github.io/portfolio_3d/",
+  "sameAs": [
+    "https://www.instagram.com/tkwebsolutions_official",
+    "https://github.com/tarunsinghgunesh"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bharatpur",
+    "addressRegion": "Rajasthan",
+    "addressCountry": "IN"
+  },
+  "knowsAbout": ["Web Design", "Web Development", "HTML", "CSS", "JavaScript", "SEO", "E-Commerce Development", "Local Business Websites", "Coaching Institute Websites"]
+}
+</script>
+
+<!-- 4. FAQ Schema — 8 Questions (Google AI Mode cite karta hai inhe) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -103,102 +203,45 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Coaching Website ka price kya hai?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Professional Coaching Website sirf ₹7,000 se start hota hai. Mobile friendly, contact form, WhatsApp button, aur 30 din free support included."}
+      "name": "Bharatpur mein website banwane ka kharcha kitna hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions mein Bharatpur ke liye website ki starting price sirf ₹5,000 hai. Portfolio website ₹5,000 se, E-Mitra website ₹6,000 mein, Coaching website ₹7,000 mein, Business website ₹8,000 mein, aur School ya E-Commerce website ₹9,000 mein. Sabhi websites mein mobile-friendly design, SEO, WhatsApp integration aur 30 din free support included hai. Koi hidden charges nahi."}
     },
     {
       "@type": "Question",
-      "name": "Website kitne din mein ready hoga?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Aapka website bilkul 5-7 din mein ready ho jayega. Hum fast delivery guarantee karte hain."}
+      "name": "Website banwane mein kitna time lagta hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions sirf 5 se 7 din mein website live kar deta hai. Free consultation ke baad design preview share kiya jata hai, feedback ke baad development hoti hai, aur 5-7 din mein complete website live — bina kisi delay ke. Yeh Bharatpur ka fastest web delivery guarantee hai."}
     },
     {
       "@type": "Question",
-      "name": "Kya website mobile friendly hoga?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Haan! 100% mobile friendly website banate hain. Har phone, tablet aur computer pe perfectly kaam karti hai."}
+      "name": "Kya coaching institute ke liye website zaroori hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Haan, coaching institute ke liye website bahut zaroori hai. Aajkal students aur parents pehle Google pe search karte hain. Website hone se aap 24/7 visible rehte ho, batch schedule aur fee structure online dikhta hai, Google Maps pe location show hoti hai, online inquiries aati hain aur competition se alag dikhai dete ho. TK Web Solutions Bharatpur mein coaching websites ₹7,000 se banata hai jisme batches, results, faculty, fee structure sab included hai."}
     },
     {
       "@type": "Question",
-      "name": "Kya Support milega delivery ke baad?",
-      "acceptedAnswer": {"@type": "Answer", "text": "30 din free technical support milta hai. Iske baad bhi aap contact kar sakte ho, reasonable fees mein help denge."}
+      "name": "TK Web Solutions kaunsi websites banata hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions Bharatpur, Rajasthan mein yeh websites banata hai: Coaching Institute Website (₹7,000), School Website (₹9,000), Local Business Website (₹8,000), E-Commerce Website (₹9,000), Portfolio Website (₹5,000), E-Mitra Website (₹6,000), aur Website Redesign (₹6,000). Sabhi websites mobile-friendly, SEO optimized aur fast loading hoti hain."}
+    },
+    {
+      "@type": "Question",
+      "name": "Website mein kya kya features milenge?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions ki har website mein yeh features included hain: Mobile Responsive Design, Contact/Inquiry Form, WhatsApp Button Integration, Google Maps Integration, Social Media Links, SEO Friendly Structure, Fast Loading Speed, Free Domain Setup Guide, Google Analytics Setup, aur 30 Days Free Support. Koi extra charge nahi."}
+    },
+    {
+      "@type": "Question",
+      "name": "Website delivery ke baad support milega?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Haan! TK Web Solutions delivery ke baad 30 din free support deta hai. Koi bhi changes ya fixes chahiye ho to WhatsApp pe +91 90793 68240 pe contact karo. Hum fast respond karte hain. Bharatpur mein based hone ki wajah se personally bhi milke baat kar sakte ho."}
+    },
+    {
+      "@type": "Question",
+      "name": "Website ke liye payment kaise karni hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions mein payment bahut aasaan hai — UPI, Google Pay, PhonePe, Paytm, BHIM se direct pay kar sakte ho. Bank transfer (NEFT/RTGS/IMPS) ka option bhi hai. UPI ID: tarun.8240@ptyes. Payment ke baad WhatsApp pe screenshot bhejo aur receipt mil jaati hai."}
+    },
+    {
+      "@type": "Question",
+      "name": "Kya website mobile phone pe sahi chalegi?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Bilkul! TK Web Solutions ki saari websites 100% mobile-first design ke saath banti hain. Ye har phone, tablet aur computer pe perfectly display hoti hain. Aajkal 80% se zyada users mobile pe website dekhte hain isliye mobile-friendly design sabse badi priority hai. Koi extra charge nahi iske liye."}
     }
   ]
-}
-</script>
-<!-- ORGANIZATION SCHEMA -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://tkwebsolutions.in/",
-  "name": "TK Web Solutions",
-  "url": "https://tkwebsolutions.in/",
-  "logo": "https://tkwebsolutions.in/logo.png",
-  "description": "Professional website development for coaching institutes, schools, businesses in Bharatpur, Rajasthan",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "Customer Support",
-    "telephone": "+919079368240",
-    "email": "tkwebsolution1301@gmail.com"
-  },
-  "sameAs": [
-    "https://www.instagram.com/tkwebsolutions_official",
-    "https://www.facebook.com/profile.php?id=61586888301761"
-  ]
-}
-</script>
-<!-- AGGREGATE RATING SCHEMA -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "TK Web Solutions",
-  "url": "https://tkwebsolutions.in/",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": 4.8,
-    "reviewCount": 15,
-    "bestRating": 5,
-    "worstRating": 1
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "author": {"@type": "Person", "name": "Abhinav Sir"},
-      "datePublished": "2024-06-15",
-      "reviewRating": {"@type": "Rating", "ratingValue": 5},
-      "reviewBody": "TK Web Solutions ne hamare coaching institute ke liye professional website banai. Students aur parents dono ko pasand aayi."
-    },
-    {
-      "@type": "Review",
-      "author": {"@type": "Person", "name": "Suresh Kumar"},
-      "datePublished": "2024-07-20",
-      "reviewRating": {"@type": "Rating", "ratingValue": 5},
-      "reviewBody": "Fast delivery aur reasonable price. Website bilkul waisi bani jaise socha tha."
-    }
-  ]
-}
-</script>
-<!-- SERVICE SCHEMA -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Website Development Service",
-  "provider": {
-    "@type": "LocalBusiness",
-    "name": "TK Web Solutions",
-    "telephone": "+919079368240"
-  },
-  "serviceType": ["Coaching Website", "School Website", "Business Website", "E-Commerce Website"],
-  "areaServed": {
-    "@type": "City",
-    "name": "Bharatpur, Rajasthan, India"
-  },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "INR",
-    "price": "7000"
-  }
 }
 </script>
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2049,6 +2092,43 @@ if('serviceWorker' in navigator){
         <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="cm cm-insta"><i class="fab fa-instagram"></i><span>Instagram<br>@tkwebsolutions_official</span></a>
         <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" class="cm cm-fb"><i class="fab fa-facebook-f"></i><span>Facebook<br>TK Web Solutions</span></a>
       </div>
+
+      <!-- ✅ INSTAGRAM + FACEBOOK FOLLOW CARDS — NEW ADDITION -->
+      <div style="margin-top:28px;">
+        <p style="font-size:.78rem;font-weight:700;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;">📲 Follow Karo — Updates & Tips Milenge!</p>
+
+        <!-- Instagram Card -->
+        <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" rel="noopener"
+          style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(240,148,51,.12),rgba(220,39,67,.12),rgba(188,24,136,.12));border:1.5px solid rgba(220,39,67,.25);text-decoration:none;margin-bottom:10px;transition:all .25s;"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 30px rgba(220,39,67,.2)'"
+          onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;color:#fff;">
+            <i class="fab fa-instagram"></i>
+          </div>
+          <div style="flex:1;">
+            <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--navy);font-size:.9rem;">@tkwebsolutions_official</div>
+            <div style="font-size:.74rem;color:var(--gray);margin-top:2px;">Web design tips, demos & updates</div>
+          </div>
+          <div style="font-size:.72rem;font-weight:700;color:#dc2743;white-space:nowrap;">Follow →</div>
+        </a>
+
+        <!-- Facebook Card -->
+        <a href="https://www.facebook.com/profile.php?id=61586888301761" target="_blank" rel="noopener"
+          style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:rgba(24,119,242,.08);border:1.5px solid rgba(24,119,242,.22);text-decoration:none;transition:all .25s;"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 30px rgba(24,119,242,.2)'"
+          onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#1877f2,#0d5cbf);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;color:#fff;">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <div style="flex:1;">
+            <div style="font-family:'Syne',sans-serif;font-weight:800;color:var(--navy);font-size:.9rem;">TK Web Solutions</div>
+            <div style="font-size:.74rem;color:var(--gray);margin-top:2px;">Projects, client stories & offers</div>
+          </div>
+          <div style="font-size:.72rem;font-weight:700;color:#1877f2;white-space:nowrap;">Like Page →</div>
+        </a>
+      </div>
+      <!-- END SOCIAL CARDS -->
+
     </div>
     <div>
       <form class="cform" id="cform" onsubmit="sendForm(event)">
