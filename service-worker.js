@@ -1,70 +1,48 @@
-// TK Web Solutions — Service Worker
-// Version: 1.0
-
-const CACHE_NAME = 'tkwebsolutions-v1';
-const OFFLINE_URL = '/offline.html';
-
-// Files to cache
-const CACHE_FILES = [
+/* TK Web Solutions — Service Worker v2 (Error-Free) */
+var CACHE_NAME = 'tk-web-v2';
+var CACHE_URLS = [
   '/',
   '/index.html',
   '/logo.png',
-  '/favicon.ico',
-  '/blog/blog.html',
-  '/about.html',
-  '/manifest.json'
+  '/favicon.ico'
 ];
 
-// Install
-self.addEventListener('install', function(event) {
-  event.waitUntil(
+self.addEventListener('install', function(e) {
+  e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(CACHE_FILES);
+      // Only cache same-origin URLs — chrome-extension URLs skip hongi
+      var safeurls = CACHE_URLS.filter(function(url) {
+        return !url.startsWith('chrome-extension') && !url.startsWith('http');
+      });
+      return cache.addAll(safeurls).catch(function() {
+        // Silent fail — cache optional hai
+      });
     })
   );
-  self.skipWaiting();
 });
 
-// Activate
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+self.addEventListener('fetch', function(e) {
+  // Chrome extension requests ignore karo — yahi line 55 error fix karta hai
+  if (e.request.url.startsWith('chrome-extension://')) return;
+  if (e.request.url.startsWith('chrome://')) return;
+  if (!e.request.url.startsWith('http')) return;
+
+  e.respondWith(
+    caches.match(e.request).then(function(cached) {
+      return cached || fetch(e.request).catch(function() {
+        return cached;
+      });
+    })
+  );
+});
+
+self.addEventListener('activate', function(e) {
+  e.waitUntil(
+    caches.keys().then(function(keys) {
       return Promise.all(
-        cacheNames.filter(function(cacheName) {
-          return cacheName !== CACHE_NAME;
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
-        })
+        keys.filter(function(k) { return k !== CACHE_NAME; })
+            .map(function(k) { return caches.delete(k); })
       );
     })
-  );
-  self.clients.claim();
-});
-
-// Fetch — Network first, cache fallback
-self.addEventListener('fetch', function(event) {
-  if (event.request.method !== 'GET') return;
-
-  event.respondWith(
-    fetch(event.request)
-      .then(function(response) {
-        // Cache fresh response
-        if (response && response.status === 200) {
-          var responseClone = response.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, responseClone);
-          });
-        }
-        return response;
-      })
-      .catch(function() {
-        // Offline — serve from cache
-        return caches.match(event.request)
-          .then(function(cachedResponse) {
-            if (cachedResponse) return cachedResponse;
-            // Return homepage if nothing cached
-            return caches.match('/index.html');
-          });
-      })
   );
 });
