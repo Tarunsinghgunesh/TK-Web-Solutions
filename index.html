@@ -23,20 +23,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Designer Bharatpur | TK Web Solutions | ₹5,000 Se</title>
 <!-- ═══ SEO — GOOGLE TOP RANKING ═══ -->
-
+ 
 <meta name="author" content="TK Web Solutions — Tarun Singh ">
 <meta name="geo.region" content="IN-RJ">
 <meta name="geo.placename" content="Bharatpur, Rajasthan">
 <meta name="geo.position" content="27.2152;77.4841">
 <meta name="ICBM" content="27.2152, 77.4841">
-
+ 
 <!-- Open Graph (Facebook, WhatsApp preview) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="TK Web Solutions | Website Designer Bharatpur | Web Developer Rajasthan">
 <meta name="description" content="Bharatpur ka best web designer. Coaching, school, business websites ₹5,000 se. 5-7 din LIVE, SEO included. Free demo: +91 90793 68240">
 <meta property="og:site_name" content="TK Web Solutions Bharatpur">
 <meta property="og:locale" content="en_IN">
-
+ 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TK Web Solutions | Best Web Designer Bharatpur | ₹5,000 Se">
@@ -48,7 +48,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://tkwebsolutions.in/">
 <meta name="keywords" content="web designer bharatpur, website developer bharatpur, coaching website bharatpur, school website rajasthan, business website bharatpur, affordable website design bharatpur, TK Web Solutions, website banana bharatpur">
-
+ 
 <!-- ═══ LOCAL BUSINESS SCHEMA — GOOGLE KA SABSE BADA FACTOR ═══ -->
 <script type="application/ld+json">
 {
@@ -203,6 +203,9 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<!-- Preload critical fonts to reduce CLS -->
+<link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uQ.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/dmsans/v15/rP2Yp2ywxg089UriI5-g4vlH9VoD8CmcqZG40F9JaA.woff2" crossorigin>
 <!-- Google Fonts — non-blocking -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap&display=swap">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap&display=swap" rel="stylesheet"></noscript>
@@ -231,7 +234,7 @@ img{max-width:100%;}
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--navy);}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
-
+ 
 /* ══════════════════════════════════════════
    GUIDE MASCOT
 ══════════════════════════════════════════ */
@@ -285,7 +288,7 @@ img{max-width:100%;}
 .guide-char-wrap:hover .guide-char-lbl{opacity:1;}
 .guide-wrap.hidden .guide-bubble{display:none;}
 .guide-bubble::after{content:'';position:absolute;bottom:-10px;right:22px;border:5px solid transparent;border-top-color:#fff;border-bottom:none;}
-
+ 
 /* ══════════════════════════════════════════
    NAVBAR
 ══════════════════════════════════════════ */
@@ -314,7 +317,7 @@ img{max-width:100%;}
 .nav-cta:hover{background:var(--blue2)!important;}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:3px;}
 .hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px;display:block;transition:all .3s;}
-
+ 
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
@@ -335,7 +338,7 @@ img{max-width:100%;}
   margin-bottom:26px;animation:fadeUp .6s ease both;
 }
 .pulse-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulseDot 1.5s infinite;}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px;animation:fadeUp .7s .1s ease both;letter-spacing:-.3px;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px;animation:fadeUp .7s .1s ease both;letter-spacing:-.3px;min-height:1.1em;contain:layout;}
 .hero h1 .g{background:linear-gradient(90deg,var(--blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .hero p{font-size:1.05rem;color:rgba(255,255,255,.58);line-height:1.75;margin-bottom:34px;max-width:520px;animation:fadeUp .7s .2s ease both;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .7s .3s ease both;}
@@ -345,28 +348,29 @@ img{max-width:100%;}
 .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
 .btn-ghost{border:1.5px solid rgba(255,255,255,.22);color:#fff;padding:13px 28px;border-radius:10px;font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;}
 .btn-ghost:hover{border-color:var(--blue);background:rgba(26,86,255,.1);}
-
+ 
 /* Hero stats — premium */
 .hero-stats{
   display:flex;gap:0;margin-top:52px;
   animation:fadeUp .7s .4s ease both;
   background:rgba(255,255,255,.03);border:1px solid var(--border);
   border-radius:16px;overflow:hidden;width:fit-content;
+  min-height:90px;contain:layout;
 }
-.stat-item{padding:18px 30px;text-align:center;position:relative;}
+.stat-item{padding:18px 30px;text-align:center;position:relative;min-width:100px;}
 .stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border);}
 .stat-num{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:#fff;line-height:1;min-height:2rem;}
 .stat-num em{color:var(--accent);font-style:normal;}
-.stat-lbl{font-size:.73rem;color:rgba(255,255,255,.36);margin-top:4px;text-transform:uppercase;letter-spacing:.4px;}
-
+.stat-lbl{font-size:.73rem;color:rgba(255,255,255,.36);margin-top:4px;text-transform:uppercase;letter-spacing:.4px;min-height:1em;}
+ 
 /* Hero trust badges */
 .hero-trust{display:flex;align-items:center;gap:18px;margin-top:24px;animation:fadeUp .7s .5s ease both;flex-wrap:wrap;}
 .trust-b{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.45);font-size:.77rem;}
 .trust-b i{color:var(--accent);font-size:.75rem;}
-
+ 
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.4;}}
-
+ 
 /* ══════════════════════════════════════════
    MARQUEE STRIP
 ══════════════════════════════════════════ */
@@ -375,7 +379,7 @@ img{max-width:100%;}
 .m-item{display:inline-flex;align-items:center;gap:9px;padding:0 24px;color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.4px;opacity:.9;}
 .m-dot{width:4px;height:4px;background:rgba(255,255,255,.5);border-radius:50%;flex-shrink:0;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
+ 
 /* ══════════════════════════════════════════
    SECTIONS
 ══════════════════════════════════════════ */
@@ -387,12 +391,12 @@ img{max-width:100%;}
 .sec-sub{color:var(--gray);font-size:1rem;max-width:500px;line-height:1.7;margin-bottom:44px;}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-
+ 
 /* ══════════════════════════════════════════
    SERVICES — ANIMATED CARDS WITH HOVER FLIP EFFECT
 ══════════════════════════════════════════ */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:22px;}
-
+ 
 .svc-card{
   background:#fff;border-radius:18px;padding:30px 26px;
   border:1.5px solid rgba(26,86,255,.07);
@@ -409,7 +413,7 @@ img{max-width:100%;}
 .svc-card:nth-child(4){transition-delay:.26s;}
 .svc-card:nth-child(5){transition-delay:.33s;}
 .svc-card:nth-child(6){transition-delay:.40s;}
-
+ 
 /* Animated gradient border on hover */
 .svc-card::before{
   content:'';position:absolute;inset:0;
@@ -430,7 +434,7 @@ img{max-width:100%;}
 }
 .svc-card:hover::before{opacity:1;}
 .svc-card:hover::after{height:100%;}
-
+ 
 /* Shimmer on hover */
 .svc-shine{
   position:absolute;top:0;left:-80%;width:60%;height:100%;
@@ -438,7 +442,7 @@ img{max-width:100%;}
   transform:skewX(-15deg);transition:left .6s ease;pointer-events:none;
 }
 .svc-card:hover .svc-shine{left:130%;}
-
+ 
 .svc-ico-wrap{
   width:54px;height:54px;background:var(--bluel);border-radius:14px;
   display:flex;align-items:center;justify-content:center;font-size:1.5rem;
@@ -453,7 +457,7 @@ img{max-width:100%;}
 .svc-price{margin-top:13px;font-weight:800;color:var(--blue);font-size:.9rem;font-family:'Syne',sans-serif;position:relative;z-index:1;}
 .svc-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:.82rem;font-weight:700;margin-top:12px;transition:gap .2s;position:relative;z-index:1;}
 .svc-link:hover{gap:11px;}
-
+ 
 /* ══════════════════════════════════════════
    WHY US
 ══════════════════════════════════════════ */
@@ -476,7 +480,7 @@ img{max-width:100%;}
 .why-btn{flex:1;padding:11px;border-radius:10px;font-weight:700;font-size:.83rem;text-align:center;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .25s;}
 .why-btn-wa{background:var(--green);color:#fff;}.why-btn-wa:hover{background:#1ebe5d;}
 .why-btn-call{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.14);}.why-btn-call:hover{background:rgba(255,255,255,.16);}
-
+ 
 /* ══════════════════════════════════════════
    PORTFOLIO — ANIMATED CARDS
    THE CORE FIX: Links have pointer-events:all
@@ -496,16 +500,16 @@ img{max-width:100%;}
 .ps-card:hover{background:rgba(26,86,255,.08);border-color:rgba(26,86,255,.22);}
 .ps-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
 .ps-lbl{font-size:.73rem;color:rgba(255,255,255,.44);margin-top:4px;}
-
+ 
 /* Filter tabs */
 .filter-row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;}
 .ftab{padding:8px 20px;border-radius:50px;border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.58);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .25s;background:transparent;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:7px;}
 .ftab:hover{border-color:rgba(26,86,255,.5);color:#fff;background:rgba(26,86,255,.1);}
 .ftab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 5px 18px rgba(26,86,255,.4);}
-
+ 
 /* ── Project cards grid ── */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:42px;}
-
+ 
 .proj-card{
   background:rgba(255,255,255,.03);
   border:1.5px solid rgba(255,255,255,.08);
@@ -520,7 +524,7 @@ img{max-width:100%;}
 .proj-card:nth-child(3){transition-delay:.31s;}
 .proj-card:nth-child(4){transition-delay:.44s;}
 .proj-card:nth-child(5){transition-delay:.57s;}
-
+ 
 /* ─── THE KEY: All decorative overlays have pointer-events:none ─── */
 .proj-card::before{
   content:'';position:absolute;inset:0;
@@ -534,7 +538,7 @@ img{max-width:100%;}
   box-shadow:0 28px 55px rgba(0,0,0,.5),0 0 35px rgba(0,229,255,.12);
 }
 .proj-card:hover::before{opacity:1;}
-
+ 
 /* Shimmer — pointer-events:none */
 .proj-card::after{
   content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;
@@ -543,12 +547,12 @@ img{max-width:100%;}
   pointer-events:none; /* ← CRITICAL */
 }
 .proj-card:hover::after{left:130%;}
-
+ 
 .proj-mock{height:182px;display:flex;align-items:center;justify-content:center;padding:14px;position:relative;overflow:hidden;}
 .proj-mock-glow{position:absolute;inset:0;opacity:.5;transition:opacity .4s;pointer-events:none;}
 .proj-card:hover .proj-mock-glow{opacity:.8;}
 .proj-cat-pill{position:absolute;top:10px;right:10px;z-index:5;padding:4px 12px;border-radius:20px;font-size:.6rem;font-weight:700;backdrop-filter:blur(8px);letter-spacing:.5px;pointer-events:none;}
-
+ 
 /* Browser mockup */
 .brow-win{width:86%;background:rgba(20,28,45,.9);border-radius:11px;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,.5);position:relative;z-index:3;border:1px solid rgba(255,255,255,.07);}
 .brow-bar{background:rgba(14,20,38,.96);padding:7px 10px;display:flex;align-items:center;gap:5px;}
@@ -563,7 +567,7 @@ img{max-width:100%;}
 .proj-card:hover .brow-line:nth-child(2){animation:lineGrow .8s .1s ease forwards;}
 .proj-card:hover .brow-line:nth-child(3){animation:lineGrow .6s .2s ease forwards;}
 @keyframes lineGrow{from{transform:scaleX(0);transform-origin:left;}to{transform:scaleX(1);}}
-
+ 
 .proj-body{padding:16px 18px 18px;position:relative;z-index:3;}
 .proj-type{font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;}
 .proj-name{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;}
@@ -575,7 +579,7 @@ img{max-width:100%;}
 .ba-lbl{font-size:.57rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
 .ba-lbl.r{color:#ef4444;}.ba-lbl.g{color:#22c55e;}
 .ba-val{font-size:.68rem;color:rgba(255,255,255,.48);}
-
+ 
 /* ─── CTA ROW — z-index above everything, pointer-events:all ─── */
 .proj-cta{
   display:flex;gap:8px;
@@ -602,7 +606,7 @@ img{max-width:100%;}
   cursor:pointer;
 }
 .proj-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
-
+ 
 /* Floating label */
 .proj-float-label{
   position:absolute;top:14px;left:14px;z-index:6;
@@ -613,7 +617,7 @@ img{max-width:100%;}
   pointer-events:none; /* ← doesn't block clicks below */
 }
 .proj-card:hover .proj-float-label{opacity:1;transform:translateX(0);}
-
+ 
 /* ══════════════════════════════════════════
    PRICING
 ══════════════════════════════════════════ */
@@ -638,13 +642,13 @@ img{max-width:100%;}
 .pc-btn-b{background:var(--blue);color:#fff;}.pc-btn-b:hover{background:var(--blue2);}
 .pc-btn-g{background:var(--gold);color:#0a0a0a;}.pc-btn-g:hover{background:var(--gold2);}
 .pc-btn-o{border:1.5px solid rgba(255,255,255,.16);color:#fff;}.pc-btn-o:hover{background:rgba(255,255,255,.07);}
-
+ 
 .port-bottom{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:42px;}
 .port-3d-btn{background:linear-gradient(135deg,rgba(0,229,255,.14),rgba(26,86,255,.14));border:1.5px solid rgba(0,229,255,.4);color:#fff;padding:13px 26px;border-radius:12px;font-weight:700;font-size:.91rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;}
 .port-3d-btn:hover{background:linear-gradient(135deg,rgba(0,229,255,.28),rgba(26,86,255,.28));transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,229,255,.2);}
 .port-wa-btn{background:var(--green);color:#fff;padding:12px 26px;border-radius:10px;font-weight:700;font-size:.91rem;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 7px 22px rgba(37,211,102,.26);}
 .port-wa-btn:hover{background:#1ebe5d;transform:translateY(-2px);}
-
+ 
 /* ══════════════════════════════════════════
    PROCESS
 ══════════════════════════════════════════ */
@@ -655,7 +659,7 @@ img{max-width:100%;}
 .proc-num{width:56px;height:56px;background:linear-gradient(135deg,var(--blue),#4f46e5);color:#fff;font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;box-shadow:0 8px 22px rgba(26,86,255,.3);}
 .proc-card h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;font-size:.97rem;}
 .proc-card p{font-size:.84rem;color:var(--gray);line-height:1.65;}
-
+ 
 /* ══════════════════════════════════════════
    TESTIMONIALS
 ══════════════════════════════════════════ */
@@ -669,7 +673,7 @@ img{max-width:100%;}
 .r-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#4f46e5);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;flex-shrink:0;}
 .r-name{font-weight:700;font-size:.85rem;color:var(--navy);}
 .r-role{font-size:.74rem;color:var(--gray);}
-
+ 
 /* ══════════════════════════════════════════
    CTA BANNER
 ══════════════════════════════════════════ */
@@ -684,7 +688,7 @@ img{max-width:100%;}
 .btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,255,255,.15);}
 .btn-ghost2{border:1.5px solid rgba(255,255,255,.24);color:#fff;padding:13px 26px;border-radius:10px;font-weight:500;font-size:.93rem;display:inline-flex;align-items:center;gap:7px;transition:all .25s;}
 .btn-ghost2:hover{background:rgba(255,255,255,.08);border-color:#fff;}
-
+ 
 /* ══════════════════════════════════════════
    CONTACT
 ══════════════════════════════════════════ */
@@ -711,7 +715,7 @@ img{max-width:100%;}
 .cform textarea{resize:vertical;min-height:105px;}
 .form-submit{background:linear-gradient(135deg,var(--blue),#4f46e5);color:#fff;border:none;padding:13px;border-radius:10px;font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700;cursor:pointer;transition:all .25s;box-shadow:0 7px 22px rgba(26,86,255,.32);width:100%;}
 .form-submit:hover{opacity:.92;transform:translateY(-1px);}
-
+ 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
@@ -733,12 +737,12 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:9px;font-size:.79rem;}
 .footer-bottom a{color:rgba(255,255,255,.38);}
 .footer-bottom a:hover{color:#fff;}
-
+ 
 /* ══════════════════════════════════════════
    FLOATS
 ══════════════════════════════════════════ */
-.floats{position:fixed;right:18px;bottom:26px;display:flex;flex-direction:column;gap:9px;z-index:999;}
-.fl{display:flex;align-items:center;gap:8px;padding:10px 14px 10px 11px;border-radius:50px;color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.2);transition:all .3s;overflow:hidden;max-width:50px;white-space:nowrap;}
+.floats{position:fixed;right:18px;bottom:26px;display:flex;flex-direction:column;gap:9px;z-index:999;contain:layout style;will-change:transform;}
+.fl{display:flex;align-items:center;gap:8px;padding:10px 14px 10px 11px;border-radius:50px;color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.2);transition:all .3s;overflow:hidden;max-width:50px;white-space:nowrap;min-height:44px;}
 .fl:hover{max-width:185px;transform:translateY(-2px);}
 .fl i{font-size:1.15rem;flex-shrink:0;width:22px;text-align:center;}
 .fl span{font-size:.78rem;font-weight:600;opacity:0;transition:opacity .15s .07s;}
@@ -748,7 +752,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .scroll-top{position:fixed;right:18px;bottom:224px;width:38px;height:38px;border-radius:50%;background:var(--navy);border:1.5px solid rgba(26,86,255,.4);color:#fff;font-size:.82rem;display:flex;align-items:center;justify-content:center;z-index:998;opacity:0;transition:all .3s;box-shadow:0 4px 12px rgba(0,0,0,.2);}
 .scroll-top.show{opacity:1;}
 .scroll-top:hover{background:var(--blue);transform:translateY(-2px);}
-
+ 
 /* ══════════════════════════════════════════
    AI CHATBOT
 ══════════════════════════════════════════ */
@@ -789,8 +793,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .ai-inp:focus{border-color:var(--blue);}
 .ai-send{width:36px;height:36px;background:var(--blue);border:none;border-radius:9px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:background .2s;flex-shrink:0;}
 .ai-send:hover{background:var(--blue2);}
-
-
+ 
+ 
 /* ══════════════════════════════════════════
    PORTFOLIO CAROUSEL
 ══════════════════════════════════════════ */
@@ -818,7 +822,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   border:none;padding:0;
 }
 .c-dot.on{background:var(--blue);width:22px;border-radius:4px;box-shadow:0 0 8px rgba(26,86,255,.6);}
-
+ 
 /* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
@@ -855,7 +859,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   .speech-bub{font-size:.9rem;padding:13px 20px;}
   .marquee-strip{display:none;}
 }
-
+ 
 /* ══════════════════════════════════════════
    SLOGAN STYLES
 ══════════════════════════════════════════ */
@@ -946,8 +950,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;font-weight:600;font-style:italic;
 }
-
-
+ 
+ 
 /* ══════════════════════════════════════════
    PAGE LOADER
 ══════════════════════════════════════════ */
@@ -963,7 +967,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .loader-bar-wrap{width:200px;height:2px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;}
 .loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:2px;transition:width .05s linear;}
 .loader-pct{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:12px;letter-spacing:2px;}
-
+ 
 /* ══════════════════════════════════════════
    CUSTOM CURSOR
 ══════════════════════════════════════════ */
@@ -984,7 +988,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 #tk-cursor.hover{transform:translate(-50%,-50%) scale(2.5);background:var(--accent);}
 #tk-cursor-ring.hover{width:56px;height:56px;border-color:rgba(0,229,255,.6);}
 @media(max-width:768px){#tk-cursor,#tk-cursor-ring{display:none;}}
-
+ 
 /* ══════════════════════════════════════════
    SCROLL PROGRESS BAR
 ══════════════════════════════════════════ */
@@ -993,25 +997,25 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   background:linear-gradient(90deg,var(--blue),var(--accent));
   z-index:10001;transition:width .1s linear;
 }
-
+ 
 /* ══════════════════════════════════════════
    PARTICLE CANVAS
 ══════════════════════════════════════════ */
 #particle-canvas{
   position:absolute;inset:0;pointer-events:none;z-index:0;
 }
-
+ 
 /* ══════════════════════════════════════════
    HERO TEXT ANIMATION
 ══════════════════════════════════════════ */
 .char{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-90deg);animation:charIn .6s ease forwards;}
 @keyframes charIn{to{opacity:1;transform:translateY(0) rotateX(0);}}
-
+ 
 /* ══════════════════════════════════════════
    MAGNETIC BUTTON
 ══════════════════════════════════════════ */
 .magnetic{transition:transform .3s cubic-bezier(.23,1,.32,1);}
-
+ 
 /* ══════════════════════════════════════════
    SECTION REVEAL
 ══════════════════════════════════════════ */
@@ -1030,13 +1034,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   transition:opacity .8s ease, transform .8s ease;
 }
 .reveal-right.in-view{opacity:1;transform:translateX(0);}
-
+ 
 /* ══════════════════════════════════════════
    TILT CARDS
 ══════════════════════════════════════════ */
 .tilt-card{transform-style:preserve-3d;transition:transform .1s ease;}
 .tilt-card:hover{box-shadow:0 20px 60px rgba(26,86,255,.2)!important;}
-
+ 
 /* ══════════════════════════════════════════
    GLITCH TEXT
 ══════════════════════════════════════════ */
@@ -1056,25 +1060,25 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 }
 @keyframes glitch1{0%,90%,100%{transform:translate(0);}92%{transform:translate(-3px,1px);}94%{transform:translate(3px,-1px);}96%{transform:translate(-2px,2px);}}
 @keyframes glitch2{0%,90%,100%{transform:translate(0);}92%{transform:translate(3px,-1px);}94%{transform:translate(-3px,1px);}96%{transform:translate(2px,-2px);}}
-
+ 
 /* ══════════════════════════════════════════
    TYPEWRITER
 ══════════════════════════════════════════ */
 .typewriter-wrap{display:inline-flex;align-items:center;gap:4px;}
 .typewriter-cursor{display:inline-block;width:3px;height:1em;background:var(--accent);animation:blink .7s infinite;vertical-align:middle;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-
+ 
 /* ══════════════════════════════════════════
    FLOATING ELEMENTS
 ══════════════════════════════════════════ */
 .float-badge{animation:floatBadge 4s ease-in-out infinite;}
 @keyframes floatBadge{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
+ 
 /* ══════════════════════════════════════════
    SMOOTH NUMBER COUNT
 ══════════════════════════════════════════ */
 .count-up{transition:all .5s ease;}
-
+ 
 /* ══════════════════════════════════════════
    SERVICE CARD SHIMMER
 ══════════════════════════════════════════ */
@@ -1085,7 +1089,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   transition:left .5s ease;
 }
 .svc-card:hover::after{left:150%;}
-
+ 
 /* ══════════════════════════════════════════
    HERO GRADIENT ANIMATION
 ══════════════════════════════════════════ */
@@ -1093,7 +1097,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .hero-glow2{animation:glow2Move 10s ease-in-out infinite alternate;}
 @keyframes glow1Move{0%{transform:translate(0,0);}100%{transform:translate(-60px,40px);}}
 @keyframes glow2Move{0%{transform:translate(0,0);}100%{transform:translate(40px,-30px);}}
-
+ 
 /* ══════════════════════════════════════════
    NAV UNDERLINE ANIMATION
 ══════════════════════════════════════════ */
@@ -1106,7 +1110,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 .navbar.glass .nav-menu li a{color:rgba(255,255,255,.7)!important;}
 .navbar.glass .nav-menu li a:hover{color:#fff!important;}
 .navbar.glass .hamburger span{background:#fff!important;}
-
+ 
 /* ══════════════════════════════════════════
    PREMIUM CARD SLIDE-IN
 ══════════════════════════════════════════ */
@@ -1115,24 +1119,24 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 @keyframes slideInUp{from{opacity:0;transform:translateY(60px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}
 @keyframes slideInDown{from{opacity:0;transform:translateY(-40px);}to{opacity:1;transform:translateY(0);}}
 @keyframes zoomIn{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
-
+ 
 .proj-card.card-visible:nth-child(odd){animation:slideInLeft .65s cubic-bezier(.23,1,.32,1) forwards;}
 .proj-card.card-visible:nth-child(even){animation:slideInRight .65s cubic-bezier(.23,1,.32,1) forwards;}
-
+ 
 .svc-card.svc-visible{animation:zoomIn .5s cubic-bezier(.23,1,.32,1) forwards!important;}
-
+ 
 .proj-card{transition:all .55s cubic-bezier(.23,1,.32,1),box-shadow .3s ease,border-color .3s ease!important;}
 .proj-card:hover{border-color:rgba(0,229,255,.5)!important;box-shadow:0 0 0 1px rgba(0,229,255,.2),0 28px 55px rgba(0,0,0,.5),0 0 40px rgba(0,229,255,.1)!important;}
-
+ 
 /* Light sections — subtle gradient background instead of plain white */
 .section{background:linear-gradient(180deg,#fff 0%,#f8faff 100%);}
 .section-light{background:linear-gradient(180deg,#f4f7ff 0%,#eef2ff 100%);}
-
+ 
 /* Stagger delays */
 .d-1{transition-delay:.1s!important;}.d-2{transition-delay:.2s!important;}
 .d-3{transition-delay:.3s!important;}.d-4{transition-delay:.4s!important;}
 .d-5{transition-delay:.5s!important;}.d-6{transition-delay:.6s!important;}
-
+ 
 /* ══════════════════════════════════════════
    PREMIUM 3D DIGITAL CLOCK — BOTTOM CENTER
 ══════════════════════════════════════════ */
@@ -1151,8 +1155,9 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   transition:all .4s cubic-bezier(.23,1,.32,1);
   text-align:center;
   animation:clockEntry .8s .5s cubic-bezier(.34,1.56,.64,1) both;
-     contain:layout;
-min-width:240px;
+  contain:layout style;
+  min-width:360px;
+  min-height:52px;
 }
 @keyframes clockEntry{from{opacity:0;transform:translateX(-50%) translateY(50px) scale(.8);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
 #tk-clock:hover{
@@ -1207,14 +1212,14 @@ if('serviceWorker' in navigator){
 </script>
 </head>
 <body>
-
+ 
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
-
+ 
 <!-- CUSTOM CURSOR -->
 <div id="tk-cursor"></div>
 <div id="tk-cursor-ring"></div>
-
+ 
 <!-- GUIDE MASCOT -->
 <div class="guide-wrap" id="guideWrap">
   <div class="guide-bubble" id="guideBubble">
@@ -1281,7 +1286,7 @@ if('serviceWorker' in navigator){
     <span class="guide-char-lbl">TK Guide &#128075;</span>
   </div>
 </div>
-
+ 
 <!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <a href="#home" class="logo" aria-label="TK Web Solutions - Home">
@@ -1304,7 +1309,7 @@ if('serviceWorker' in navigator){
     <span></span><span></span><span></span>
   </button>
 </header>
-
+ 
 <!-- HERO -->
 <section class="hero" id="home">
   <canvas id="particle-canvas"></canvas>
@@ -1337,7 +1342,7 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </section>
-
+ 
 <!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-track">
@@ -1359,7 +1364,7 @@ if('serviceWorker' in navigator){
     <span class="m-item"><i class="fas fa-check"></i> 100% Mobile Friendly</span><span class="m-dot"></span>
   </div>
 </div>
-
+ 
 <!-- SERVICES — Animated Cards -->
 <section class="section-light" id="services">
   <div class="tag">Our Services</div>
@@ -1424,7 +1429,7 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </section>
-
+ 
 <!-- WHY US -->
 <section class="section" id="why">
   <div class="why-grid reveal">
@@ -1456,27 +1461,27 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </section>
-
+ 
 <!-- PORTFOLIO — ANIMATED CARDS with WORKING links -->
 <div class="portfolio-section" id="portfolio">
   <div class="port-grid-bg"></div>
   <div class="port-glow1"></div>
   <div class="port-glow2"></div>
   <div class="port-inner">
-
+ 
     <div class="port-head reveal">
       <div class="tag-dark">Our Work</div>
       <div class="port-title">Live Demo <span>Projects</span></div>
       <p class="port-sub">Real websites hamne banaayi hain — hover karo magic dekho, click karo live site khulegi!</p>
     </div>
-
+ 
     <div class="port-stats reveal">
       <div class="ps-card"><div class="ps-num">10+</div><div class="ps-lbl">Projects Done</div></div>
       <div class="ps-card"><div class="ps-num">5</div><div class="ps-lbl">Live Demo Sites</div></div>
       <div class="ps-card"><div class="ps-num">100%</div><div class="ps-lbl">Satisfaction</div></div>
       <div class="ps-card"><div class="ps-num">5–7</div><div class="ps-lbl">Days Delivery</div></div>
     </div>
-
+ 
     <div class="filter-row">
       <button class="ftab active" onclick="filterProj('all',this)"><i class="fas fa-th"></i> All</button>
       <button class="ftab" onclick="filterProj('coaching',this)"><i class="fas fa-graduation-cap"></i> Coaching</button>
@@ -1486,9 +1491,9 @@ if('serviceWorker' in navigator){
       <button class="ftab" onclick="filterProj('ecommerce',this)"><i class="fas fa-shopping-cart"></i> E-Commerce</button>
       <button class="ftab" onclick="filterProj('school',this)"><i class="fas fa-school"></i> School</button>
     </div>
-
+ 
     <div class="car-row-wrap"><div class="proj-grid" id="projGrid">
-
+ 
       <!-- CARD 1: Achievers Point -->
       <div class="proj-card" data-cat="coaching">
         <div class="proj-float-label">✨ LIVE WEBSITE</div>
@@ -1531,7 +1536,7 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
       <!-- CARD 2: Ek Pahal India -->
       <div class="proj-card" data-cat="ngo">
         <div class="proj-float-label">✨ LIVE WEBSITE</div>
@@ -1574,7 +1579,7 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
       <!-- CARD 3: Support Small Business -->
       <div class="proj-card" data-cat="business">
         <div class="proj-float-label">✨ LIVE WEBSITE</div>
@@ -1617,7 +1622,7 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
       <!-- CARD 4: Dhruv E-Mitra -->
       <div class="proj-card" data-cat="emitra">
         <div class="proj-float-label">✨ LIVE WEBSITE</div>
@@ -1660,7 +1665,7 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
       <!-- CARD 5: Chirag Handlooms E-Commerce -->
       <div class="proj-card" data-cat="ecommerce">
         <div class="proj-float-label">🛒 E-COMMERCE DEMO</div>
@@ -1703,7 +1708,7 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
       <!-- CARD 6: New Tagore Public School -->
       <div class="proj-card" data-cat="school">
         <div class="proj-float-label">✨ LIVE WEBSITE</div>
@@ -1746,10 +1751,10 @@ if('serviceWorker' in navigator){
           </div>
         </div>
       </div>
-
+ 
     </div></div><!-- /proj-grid /car-row-wrap -->
     <div class="car-nav-dots" id="carNavDots"></div>
-
+ 
     <!-- Pricing -->
     <div class="port-pricing-head"><div class="port-pricing-title">Hamare Packages</div><div class="port-pricing-sub">Transparent pricing — koi hidden charges nahi</div></div>
     <div class="pricing-grid">
@@ -1757,15 +1762,15 @@ if('serviceWorker' in navigator){
       <div class="pc-card featured"><div class="pc-badge">⭐ Most Popular</div><div class="pc-icon">🏢</div><div class="pc-name">Business Website</div><div class="pc-tagline">Coaching, schools & businesses</div><div class="pc-price gold">₹10,000–₹15,000</div><div class="pc-price-note">Based on requirements</div><ul class="pc-list"><li>Everything in Starter</li><li>Multi-page Website</li><li>Advanced Design</li><li>Image Gallery</li><li>Performance Optimization</li><li>SEO Friendly</li><li>Technical Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Business%20package." target="_blank" class="pc-btn pc-btn-g">Get This Package</a></div>
       <div class="pc-card"><div class="pc-icon">⚙️</div><div class="pc-name">Custom & App</div><div class="pc-tagline">Advanced features & app dev</div><div class="pc-price">Custom</div><div class="pc-price-note">Pricing based on features</div><ul class="pc-list"><li>Everything in Business</li><li>App Development</li><li>Custom Functionality</li><li>Website Maintenance</li><li>Long-term Support</li><li>Priority Delivery</li></ul><a href="https://wa.me/919079368240?text=Hi!%20Custom%20project%20discuss%20karna%20hai." target="_blank" class="pc-btn pc-btn-o">Discuss Project</a></div>
     </div>
-
+ 
     <div class="port-bottom">
       <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" class="port-3d-btn"><i class="fas fa-cube"></i> View Full 3D Portfolio ✨</a>
       <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="port-wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp for Free Demo</a>
     </div>
-
+ 
   </div>
 </div>
-
+ 
 <!-- PROCESS -->
 <section class="section-light" id="process">
   <div style="text-align:center;max-width:520px;margin:0 auto 48px;">
@@ -1794,7 +1799,7 @@ if('serviceWorker' in navigator){
       border-bottom: 1px solid rgba(26,86,255,0.08);
       box-sizing: border-box;
     }
-
+ 
     /* Background decoration */
     .tk-mesh-bg {
       position: absolute; inset: 0; pointer-events: none; z-index: 0;
@@ -1803,7 +1808,7 @@ if('serviceWorker' in navigator){
         linear-gradient(90deg, rgba(26,86,255,.015) 1px, transparent 1px);
       background-size: 60px 60px;
     }
-
+ 
     /* Staggered Reveal Animation classes */
     .fi-fade-up {
       opacity: 0;
@@ -1818,7 +1823,7 @@ if('serviceWorker' in navigator){
     .fi-fade-up.d2 { transition-delay: 0.3s; }
     .fi-fade-up.d3 { transition-delay: 0.5s; }
     .fi-fade-up.d-btn { transition-delay: 0.7s; }
-
+ 
     /* Layout */
     .tk-founder-sec {
       padding: 100px 6%;
@@ -1832,7 +1837,7 @@ if('serviceWorker' in navigator){
       max-width: 1240px;
       margin: 0 auto;
     }
-
+ 
     /* Photo with Aura & 3D Tilt */
     .tk-fp-col { text-align: center; max-width: 380px; margin: 0 auto; }
     .tk-fp-frame { position: relative; margin-bottom: 25px; }
@@ -1844,7 +1849,7 @@ if('serviceWorker' in navigator){
     }
     @keyframes tkHue { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(20deg); } }
     @keyframes tkGlowPulse { 0%, 100% { box-shadow: 0 0 20px rgba(26,86,255,0.3); } 50% { box-shadow: 0 0 45px rgba(0,229,255,0.4); } }
-
+ 
     .tk-fp-box {
       position: relative; z-index: 1;
       border-radius: 24px; overflow: hidden;
@@ -1859,7 +1864,7 @@ if('serviceWorker' in navigator){
       font-family: 'Syne', sans-serif;
       font-size: 1.6rem; font-weight: 900; color: #fff;
     }
-
+ 
     /* Instagram Button */
     .tk-ig-btn {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -1872,7 +1877,7 @@ if('serviceWorker' in navigator){
     .tk-ig-btn:hover {
       transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,39,67,0.45);
     }
-
+ 
     /* Title Gradient & Story */
     .tk-story-title {
       font-family: 'Syne', sans-serif;
@@ -1897,7 +1902,7 @@ if('serviceWorker' in navigator){
       line-height: 1.85; margin-bottom: 18px; text-align: justify;
     }
     .tk-stl-txt strong { color: #fff; font-weight: 700; }
-
+ 
     /* New: Floating Target features */
     .tk-f-target-card {
       position: absolute; padding: 15px; background: rgba(0,229,255,0.06);
@@ -1907,7 +1912,7 @@ if('serviceWorker' in navigator){
       animation: tkFloat 4s ease-in-out infinite; z-index: 10;
     }
     @keyframes tkFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
+ 
     /* Responsive */
     @media (max-width: 1024px) {
       .tk-founder-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -1920,9 +1925,9 @@ if('serviceWorker' in navigator){
       .tk-f-target-card { position: static; margin-bottom: 10px; width: 100%; justify-content: start; }
     }
   </style>
-
+ 
   <div class="tk-mesh-bg"></div>
-
+ 
   <section class="tk-founder-sec">
     <div class="tk-founder-layout">
       
@@ -1950,7 +1955,7 @@ if('serviceWorker' in navigator){
           <i class="fab fa-instagram"></i> Follow My Journey
         </a>
       </div>
-
+ 
       <div class="tk-story-col">
         <div class="tk-f-highlights fi-fade-up d1">“ Why not build something of my own? ”</div>
         <h2 class="tk-story-title fi-fade-up d2">The Journey Behind <br><span style="background: linear-gradient(135deg, #7c3aed, #1a56ff, #ff0080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">TK Web Solutions</span></h2>
@@ -1962,7 +1967,7 @@ if('serviceWorker' in navigator){
         <p class="tk-stl-txt fi-fade-up d3">Maine notice kiya ki bahut se local businesses achha kaam kar rahe hain, par **online presence na hone ki wajah se unki growth ruki hui hai.** Isi gap ko bharne ke liye **TK Web Solutions** ka idea aaya. Mera goal simple hai: Businesses ko online lana aur unhe **digital reality me badalna.**</p>
         
         <div class="tk-f-highlights fi-fade-up d-quote" style="background:none; border:none; padding:0; font-style:italic; text-align:center; font-size:1.25rem;">From Dreams… To Digital Reality. 🚀</div>
-
+ 
         <div class="tk-f-btn-row fi-fade-up d-btn" style="display:flex; gap:15px; flex-wrap:wrap; margin-top: 30px;">
           <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" style="background: #1a56ff; color: #fff; padding: 15px 30px; border-radius: 12px; font-weight: 800; font-family: 'Syne'; text-decoration: none; transition: 0.3s;" onmouseover="this.style.transform='scale(1.03)';" onmouseout="this.style.transform='scale(1)';">View Full Work</a>
           <a href="https://wa.me/919079368240" target="_blank" style="border: 2px solid #25d366; color: #25d366; padding: 15px 30px; border-radius: 12px; font-weight: 800; font-family: 'Syne'; text-decoration: none; transition: 0.3s;" onmouseover="this.style.transform='scale(1.03)';" onmouseout="this.style.transform='scale(1)';">Chat on WhatsApp</a>
@@ -1971,7 +1976,7 @@ if('serviceWorker' in navigator){
     </div>
   </section>
 </div>
-
+ 
 <script>
 (function () {
   /* ── Staggered Scroll Reveal Animation ── */
@@ -1984,7 +1989,7 @@ if('serviceWorker' in navigator){
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fi-fade-up').forEach(el => fRevealObs.observe(el));
-
+ 
   /* ── Founder Photo 3D Parallax Tilt ── */
   const fTiltBox = document.getElementById('tkFpBox');
   if (fTiltBox) {
@@ -2002,7 +2007,7 @@ if('serviceWorker' in navigator){
 })();
 </script>
 </section>
-
+ 
 <!-- TESTIMONIALS -->
 <section class="section" id="testimonials">
   <div class="tag">Testimonials</div>
@@ -2013,9 +2018,9 @@ if('serviceWorker' in navigator){
     <div class="testi-card"><div class="testi-quote">"</div><div class="stars">★★★★★</div><p>"Bahut fast delivery thi aur website bilkul waisi bani jaise maine sochi thi. Price bhi reasonable hai aur support bhi bahut achha mila after delivery."</p><div class="reviewer"><div class="r-av">S</div><div><div class="r-name">Suresh Kumar</div><div class="r-role">Local Business Owner, Bharatpur</div></div></div></div>
     <div class="testi-card"><div class="testi-quote">"</div><div class="stars">★★★★★</div><p>"Mobile pe perfectly chalti hai website. Bahut saare naye customers aane lage hain website dekhne ke baad. Best investment for my business!"</p><div class="reviewer"><div class="r-av">P</div><div><div class="r-name">Priya Sharma</div><div class="r-role">Business Owner, Bharatpur</div></div></div></div>
   </div>
-
+ 
 </section>
-
+ 
 <!-- CTA -->
 <div class="cta-outer">
   <div class="cta-box">
@@ -2029,7 +2034,7 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </div>
-
+ 
 <!-- CONTACT -->
 <section class="section" id="contact">
   <div class="tag">Contact Us</div>
@@ -2078,7 +2083,7 @@ if('serviceWorker' in navigator){
     </div>
   </div>
 </section>
-
+ 
 <!-- PAYMENT SECTION -->
 <section id="payment" style="background:linear-gradient(135deg,#060d1f 0%,#0d1635 50%,#060d1f 100%);padding:80px 6%;position:relative;overflow:hidden;">
 <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(26,86,255,.12),transparent 70%);border-radius:50%;pointer-events:none;"></div>
@@ -2229,7 +2234,7 @@ function searchAndShowReceipt(){
     alert('Connection error! Internet check karo.');
   });
 }
-
+ 
 function downloadReceiptPDF(receiptNo){
   if(typeof window.jspdf==='undefined'){
     var s=document.createElement('script');
@@ -2244,20 +2249,20 @@ function downloadReceiptPDF(receiptNo){
 function downloadReceiptPDF(receiptNo){
   var data = _lastReceiptData;
   if(!data) return;
-
+ 
   // ── Step 1: Load libraries if needed ──
   function loadScript(src, cb){
     if(document.querySelector('script[src="'+src+'"]')){ cb(); return; }
     var s = document.createElement('script');
     s.src = src; s.onload = cb; document.head.appendChild(s);
   }
-
+ 
   var btn = document.querySelector('[onclick*="downloadReceiptPDF"]');
   if(btn){ btn.innerHTML = '⏳ PDF ban rahi hai...'; btn.disabled = true; }
-
+ 
   loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js', function(){
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', function(){
-
+ 
       // ── Step 2: Build receipt HTML (same as modal but in hidden div) ──
       var amtFmt = parseInt(data.amount||0).toLocaleString('en-IN');
       var rows = [
@@ -2270,7 +2275,7 @@ function downloadReceiptPDF(receiptNo){
         ['Delivery',       '5-7 Working Days'],
         ['Status',         'Confirmed']
       ];
-
+ 
       var rowsHTML = rows.map(function(r, i){
         var isStatus = r[0] === 'Status';
         var bg = i%2===0 ? 'background:rgba(255,255,255,0.03);' : '';
@@ -2279,10 +2284,10 @@ function downloadReceiptPDF(receiptNo){
           '<span style="font-size:13px;font-weight:700;color:'+(isStatus?'#4ade80':'rgba(255,255,255,0.9)')+';font-family:Arial,sans-serif;text-align:right;max-width:55%;">'+r[1]+'</span>'+
         '</div>';
       }).join('');
-
+ 
       var receiptHTML =
         '<div id="pdf-receipt-render" style="width:420px;background:#13111a;border-radius:0;overflow:hidden;font-family:Arial,sans-serif;">'+
-
+ 
         // Header
         '<div style="background:linear-gradient(135deg,#7c3aed 0%,#a855f7 40%,#db2777 100%);padding:30px 22px 24px;text-align:center;position:relative;overflow:hidden;">'+
           '<div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,0.08);border-radius:50%;"></div>'+
@@ -2298,7 +2303,7 @@ function downloadReceiptPDF(receiptNo){
             '<span style="font-size:12px;color:#fff;font-weight:700;letter-spacing:0.5px;">Payment Confirmed</span>'+
           '</div>'+
         '</div>'+
-
+ 
         // Amount
         '<div style="padding:22px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.06);background:#1a1625;">'+
           '<div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.3);margin-bottom:8px;text-transform:uppercase;">AMOUNT PAID</div>'+
@@ -2308,34 +2313,34 @@ function downloadReceiptPDF(receiptNo){
             '<span style="font-size:12px;color:#c4b5fd;">Receipt No. &nbsp;<strong>'+receiptNo+'</strong></span>'+
           '</div>'+
         '</div>'+
-
+ 
         // Detail rows
         '<div style="background:#1a1625;">'+rowsHTML+'</div>'+
-
+ 
         // Thank you
         '<div style="margin:16px 18px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.25);border-radius:16px;padding:22px;text-align:center;">'+
           '<div style="font-size:26px;margin-bottom:10px;">&#127881;</div>'+
           '<div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:7px;">Shukriya aapka vishwas aur support ka!</div>'+
           '<div style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.8;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div>'+
         '</div>'+
-
+ 
         // Footer
         '<div style="padding:16px 22px 20px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);background:#0d0b14;">'+
           '<p style="font-size:11px;color:rgba(255,255,255,0.3);margin:3px 0;">TK Web Solutions · Bharatpur, Rajasthan</p>'+
           '<p style="font-size:11px;color:rgba(255,255,255,0.3);margin:3px 0;">tkwebsolutions.in · +91 90793 68240</p>'+
           '<p style="font-size:11px;font-style:italic;color:#a78bfa;margin-top:8px;">"From Dreams.... to Digital Reality"</p>'+
         '</div>'+
-
+ 
         '</div>';
-
+ 
       // ── Step 3: Append hidden div, capture, remove ──
       var wrap = document.createElement('div');
       wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1;';
       wrap.innerHTML = receiptHTML;
       document.body.appendChild(wrap);
-
+ 
       var el = document.getElementById('pdf-receipt-render');
-
+ 
       html2canvas(el, {
         scale: 3,              // High resolution
         useCORS: true,         // Logo load hoga
@@ -2344,23 +2349,23 @@ function downloadReceiptPDF(receiptNo){
         logging: false
       }).then(function(canvas){
         document.body.removeChild(wrap);
-
+ 
         var imgData = canvas.toDataURL('image/png');
         var jsPDF = window.jspdf.jsPDF;
-
+ 
         // A5 size mein fit karo
         var pdfW = 148;
         var pdfH = (canvas.height * pdfW) / canvas.width;
-
+ 
         var doc = new jsPDF({
           unit: 'mm',
           format: [pdfW, pdfH],
           orientation: 'portrait'
         });
-
+ 
         doc.addImage(imgData, 'PNG', 0, 0, pdfW, pdfH);
         doc.save('TK-Receipt-' + receiptNo + '.pdf');
-
+ 
         if(btn){ btn.innerHTML = '✅ PDF Download Ho Gayi!'; btn.disabled = false;
           setTimeout(function(){ btn.innerHTML = '&#128229; PDF Download Karo'; }, 3000);
         }
@@ -2369,7 +2374,7 @@ function downloadReceiptPDF(receiptNo){
         console.error('PDF error:', err);
         if(btn){ btn.innerHTML = '❌ Error! Retry karo'; btn.disabled = false; }
       });
-
+ 
     });
   });
 }
@@ -2405,10 +2410,10 @@ function showReceipt(data){
       '<span style="font-size:12px;font-weight:700;color:'+(isStatus?'#4ade80':'rgba(255,255,255,.9)')+';font-family:sans-serif;text-align:right;max-width:55%;">'+r[1]+'</span>'+
       '</div>';
   }).join('');
-
+ 
   modal.innerHTML=
     '<div style="background:#13111a;border-radius:24px;max-width:420px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(124,58,237,.25);">'+
-
+ 
     // Header
     '<div style="background:linear-gradient(135deg,#7c3aed,#db2777,#ec4899);padding:28px 22px 22px;text-align:center;border-radius:24px 24px 0 0;position:relative;overflow:hidden;">'+
     '<div style="position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(255,255,255,.07);border-radius:50%;"></div>'+
@@ -2422,7 +2427,7 @@ function showReceipt(data){
     '<span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;"></span>'+
     '<span style="font-size:11px;color:#fff;font-weight:700;letter-spacing:.5px;">Payment Confirmed</span>'+
     '</div></div>'+
-
+ 
     // Amount
     '<div style="padding:22px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);background:#1a1625;">'+
     '<div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:8px;text-transform:uppercase;font-family:sans-serif;">AMOUNT PAID</div>'+
@@ -2431,31 +2436,31 @@ function showReceipt(data){
     '<div style="margin-top:10px;background:rgba(124,58,237,.2);display:inline-block;padding:5px 16px;border-radius:20px;border:1px solid rgba(124,58,237,.4);">'+
     '<span style="font-size:11px;color:#c4b5fd;font-family:sans-serif;">Receipt No. &nbsp;<strong>'+data.receiptNo+'</strong></span>'+
     '</div></div>'+
-
+ 
     // Rows
     '<div style="padding:4px 22px 8px;background:#1a1625;">'+rowsHTML+'</div>'+
-
+ 
     // Thank you
     '<div style="margin:16px 18px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:16px;padding:20px;text-align:center;">'+
     '<div style="font-size:24px;margin-bottom:8px;">&#127881;</div>'+
     '<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;font-family:sans-serif;">Shukriya aapka vishwas aur support ka!</div>'+
     '<div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.8;font-family:sans-serif;">Aapka digital safar aaj se shuru hota hai —<br>hum milke isko yaadgaar banayenge!</div>'+
     '</div>'+
-
+ 
     // 3 Buttons
     '<div style="padding:0 18px 16px;display:flex;flex-direction:column;gap:8px;">'+
     '<button onclick="downloadReceiptPDF(\''+data.receiptNo+'\')" style="width:100%;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128229; PDF Download Karo</button>'+
     '<button onclick="sendReceiptWhatsApp(_lastReceiptData)" style="width:100%;background:linear-gradient(135deg,#25d366,#128c50);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128242; WhatsApp pe Bhejo</button>'+
     '<button onclick="document.getElementById(\'rx-modal\').remove()" style="width:100%;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;font-size:12px;font-weight:600;cursor:pointer;font-family:sans-serif;">&#10005; Close</button>'+
     '</div>'+
-
+ 
     // Footer
     '<div style="padding:14px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.05);background:#0d0b14;border-radius:0 0 24px 24px;">'+
     '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">TK Web Solutions · Bharatpur, Rajasthan</p>'+
     '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">tkwebsolutions.in · +91 90793 68240</p>'+
     '<p style="font-size:10px;font-style:italic;color:#a78bfa;margin-top:6px;font-family:sans-serif;">"From Dreams.... to Digital Reality"</p>'+
     '</div></div>';
-
+ 
   document.body.appendChild(modal);
   modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});
 }
@@ -2522,7 +2527,7 @@ function notifyPayment(){
     console.log('Email error:',err);
   });
 }
-
+ 
 function sendReceiptWhatsApp(data){
   if(!data){data=_lastReceiptData;}
   if(!data){alert('Receipt data nahi mila!');return;}
@@ -2566,9 +2571,9 @@ function sendOwnerAlert(data){
     '⚡ Delivery: 5-7 Working Days';
   window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
 }
-
+ 
 </script>
-
+ 
 <footer>
 <!-- FOOTER -->
   <div class="footer-top">
@@ -2594,7 +2599,7 @@ function sendOwnerAlert(data){
     <p>Made with ❤️ in Bharatpur, Rajasthan | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
   </div>
 </footer>
-
+ 
 <!-- FLOATING BUTTONS -->
 <div class="floats">
   <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20I%20want%20a%20free%20demo." target="_blank" class="fl fl-wa"><i class="fab fa-whatsapp"></i><span>WhatsApp Us</span></a>
@@ -2603,7 +2608,7 @@ function sendOwnerAlert(data){
   <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="fl fl-insta"><i class="fab fa-instagram"></i><span>Instagram</span></a>
 </div>
 <a href="#home" class="scroll-top" id="scrollTop"><i class="fas fa-chevron-up"></i></a>
-
+ 
 <!-- AI CHATBOT -->
 <button class="ai-fab" id="aiFab" onclick="aiToggle()">
   <i class="fas fa-robot"></i>
@@ -2630,7 +2635,7 @@ function sendOwnerAlert(data){
     <button onclick="aiSendToWhatsApp()" title="Seedha WhatsApp pe bhejo" style="width:36px;height:36px;background:#25d366;border:none;border-radius:9px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;"><i class="fab fa-whatsapp"></i></button>
   </div>
 </div>
-
+ 
 <!-- ══════════════════════════════════════════
      ALL SCRIPTS
 ══════════════════════════════════════════ -->
@@ -2643,7 +2648,7 @@ var _gSteps=[
   {t:'<strong>Free Demo</strong> chahiye? Abhi WhatsApp karo — fast reply milega!',s:'#contact'}
 ];
 var _gIdx=0;
-
+ 
 function guideToggle(){
   _gOpen=!_gOpen;
   var b=document.getElementById('guideBubble');
@@ -2680,7 +2685,7 @@ function guideNav(sec){
 setTimeout(function(){
   if(_gOpen){_gOpen=false;var b=document.getElementById('guideBubble');if(b)b.style.display='none';}
 },10000);
-
+ 
 /* ── NAVBAR ── */
 window.addEventListener('scroll',function(){
   document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>30);
@@ -2689,11 +2694,11 @@ window.addEventListener('scroll',function(){
 document.querySelectorAll('.nav-menu a').forEach(function(a){
   a.addEventListener('click',function(){document.getElementById('navMenu').classList.remove('open');});
 });
-
+ 
 /* ── REVEAL ── */
 var ro=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
-
+ 
 /* ── SERVICE CARDS ANIMATION (scroll reveal with stagger) ── */
 var svcObs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){
@@ -2703,13 +2708,13 @@ var svcObs=new IntersectionObserver(function(entries){
   });
 },{threshold:.12});
 document.querySelectorAll('.svc-card').forEach(function(c){svcObs.observe(c);});
-
+ 
 /* ── PROJECT CARDS (scroll reveal) ── */
 var cardObs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('card-visible');});
 },{threshold:.1});
 document.querySelectorAll('.proj-card').forEach(function(c){cardObs.observe(c);});
-
+ 
 /* ── 3D TILT on project cards ──
    IMPORTANT: Only tilt the card wrapper visually.
    The inner links (.proj-live, .proj-wa) have z-index:10
@@ -2726,7 +2731,7 @@ document.querySelectorAll('.proj-card').forEach(function(card){
     card.style.transform='';
   });
 });
-
+ 
 /* ── FILTER ── */
 function filterProj(cat,btn){
   document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
@@ -2740,11 +2745,11 @@ function filterProj(cat,btn){
     }
   });
 }
-
-
-
+ 
+ 
+ 
 _carInit();
-
+ 
 /* ── CONTACT FORM ── */
 function sendForm(e){
   e.preventDefault();
@@ -2761,19 +2766,19 @@ function sendForm(e){
   setTimeout(function(){btn.textContent='Message Bhejo 🚀';btn.style.background='';btn.disabled=false;e.target.reset();},4000);
   if(typeof gtag!=='undefined')gtag('event','contact_form',{event_category:'Lead',event_label:svc});
 }
-
-
+ 
+ 
 /* ── PORTFOLIO CAROUSEL ── */
 var _cIdx=0,_cPause=false,_cTmr=null;
-
+ 
 function _carInit(){
   var grid=document.getElementById('projGrid');
   var dotsEl=document.getElementById('carNavDots');
   if(!grid||!dotsEl||window.innerWidth<769)return;
-
+ 
   var cards=function(){return Array.from(grid.querySelectorAll('.proj-card')).filter(function(c){return c.style.display!=='none';});};
   var SPEED=3000;
-
+ 
   function makeDots(){
     dotsEl.innerHTML='';
     cards().forEach(function(_,i){
@@ -2783,12 +2788,12 @@ function _carInit(){
       dotsEl.appendChild(d);
     });
   }
-
+ 
   function updDots(){
     var all=dotsEl.querySelectorAll('.c-dot');
     all.forEach(function(d,i){d.classList.toggle('on',i===_cIdx);});
   }
-
+ 
   window._carGo=function(idx){
     var cs=cards();
     _cIdx=((idx%cs.length)+cs.length)%cs.length;
@@ -2796,14 +2801,14 @@ function _carInit(){
     grid.style.transform='translateX(-'+(_cIdx*w)+'px)';
     updDots();
   };
-
+ 
   function _carNext(){if(!_cPause)window._carGo(_cIdx+1);}
   function _carReset(){clearInterval(_cTmr);_cTmr=setInterval(_carNext,SPEED);}
-
+ 
   // Pause on hover over carousel
   grid.parentElement.addEventListener('mouseenter',function(){_cPause=true;});
   grid.parentElement.addEventListener('mouseleave',function(){_cPause=false;});
-
+ 
   // Touch
   var _tx=0;
   grid.addEventListener('touchstart',function(e){_tx=e.touches[0].clientX;},{passive:true});
@@ -2811,12 +2816,12 @@ function _carInit(){
     var dx=e.changedTouches[0].clientX-_tx;
     if(Math.abs(dx)>50){window._carGo(_cIdx+(dx<0?1:-1));_carReset();}
   });
-
+ 
   makeDots();
   _cIdx=0;
   _carReset();
 }
-
+ 
 // Override filter to reset carousel after filter
 var _origFilterFn=window.filterProj;
 window.filterProj=function(cat,btn){
@@ -2828,12 +2833,12 @@ window.filterProj=function(cat,btn){
     _carInit();
   },100);
 };
-
-
+ 
+ 
 /* ── TK SMART CHATBOT — Gemini AI Powered ── */
 var APPS_SCRIPT_URL_BOT='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
 var WA_NUM='919079368240';
-
+ 
 /* ============================================
    👇 SIRF YAHAN APNI GEMINI API KEY DAALO
    aistudio.google.com se copy karo
@@ -2842,9 +2847,9 @@ var aiOpen=false,aiBooted=false,aiThinking=false;
 var aiHist=[],aiPlainLog=[];
 var clientNaam='',clientPhone='',aiStep='naam';
 var _receiptStep=null,_demoData={},_demoStep=null;
-
+ 
 var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\nSERVICES & PRICING:\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form\n- School Website Rs.9000 — admission, gallery, events, staff\n- Business Website Rs.8000 — showcase, contact, local SEO\n- E-Mitra Website Rs.6000 — services, UPI QR, status checker\n- Portfolio Website Rs.5000 — skills, projects, achievements\n- E-Commerce Website Rs.9000 — catalog, WhatsApp ordering, categories\n- Website Redesign Rs.6000 — modern makeover\n\nHAR WEBSITE MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support. DELIVERY: 5-7 din.\n\nLIVE DEMOS:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI IFSC SBIN0031855\n\nRULES: Friendly Hinglish mein jawab do. Max 80 words. Exact prices quote karo. WA suggest karo jab interested ho. Kabhi galat info mat do.';
-
+ 
 function aiToggle(){
   aiOpen=!aiOpen;
   document.getElementById('aiWin').classList.toggle('open',aiOpen);
@@ -2859,9 +2864,9 @@ function aiToggle(){
   }
   if(aiOpen)setTimeout(function(){document.getElementById('aiInp').focus();},340);
 }
-
+ 
 function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
-
+ 
 function _aiMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg b';
@@ -2875,16 +2880,16 @@ function _aiMsg(txt){
   m.appendChild(d);m.scrollTop=m.scrollHeight;
   aiPlainLog.push({r:'TK Bot',m:txt.substring(0,300)});
 }
-
+ 
 function aiMsg(txt){_aiMsg(txt);}
-
+ 
 function _aiUsrMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg u';
   d.innerHTML='<div class="abub">'+txt+'</div><div class="atime">'+aiNow()+'</div>';
   m.appendChild(d);m.scrollTop=m.scrollHeight;
 }
-
+ 
 function aiTyping(){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg b';d.id='aiType';
@@ -2892,7 +2897,7 @@ function aiTyping(){
   m.appendChild(d);m.scrollTop=m.scrollHeight;
 }
 function aiStopTyping(){var t=document.getElementById('aiType');if(t)t.remove();}
-
+ 
 function _showQR(btns){
   var qr=document.getElementById('qrRow');if(!qr)return;
   qr.innerHTML='';
@@ -2904,9 +2909,9 @@ function _showQR(btns){
   });
   qr.style.display='flex';
 }
-
+ 
 function aiQ(txt){document.getElementById('aiInp').value=txt;aiSend();}
-
+ 
 function aiSend(){
   var inp=document.getElementById('aiInp'),txt=inp.value.trim();
   if(!txt||aiThinking)return;
@@ -2915,7 +2920,7 @@ function aiSend(){
   _aiUsrMsg(txt);
   aiPlainLog.push({r:'Aap',m:txt});
   if(typeof gtag!=='undefined')gtag('event','ai_chat',{event_category:'Engagement',event_label:txt.substring(0,50)});
-
+ 
   /* Naam collect */
   if(aiStep==='naam'){
     clientNaam=txt;aiStep='phone';
@@ -2936,9 +2941,9 @@ function aiSend(){
     },500);
     return;
   }
-
+ 
   var tl=txt.toLowerCase();
-
+ 
   /* Receipt flow */
   if(tl.match(/receipt|payment check|paid|payment hua|confirm|meri receipt|paisa diya/)){
     if(!_receiptStep){
@@ -2948,7 +2953,7 @@ function aiSend(){
     return;
   }
   if(_receiptStep==='waiting'){_receiptStep=null;_searchReceipt(txt);return;}
-
+ 
   /* Demo booking flow */
   if(tl.match(/demo book|booking|appointment|milna|free demo|meeting/)&&!_demoStep){
     _demoStep='service';_demoData={naam:clientNaam,phone:clientPhone};
@@ -2968,18 +2973,18 @@ function aiSend(){
     _aiMsg('Sahi choice! 👍\n\nKab milna chahoge? (subah/dopahar/shaam ya date batao):');return;
   }
   if(_demoStep==='time'){_demoData.time=txt;_demoStep=null;_confirmDemo();return;}
-
+ 
   /* WhatsApp direct */
   if(tl.match(/whatsapp connect|seedha baat|direct contact|call karo/)){
     _aiMsg('📞 Seedha Tarun sir se baat karo:\n\n👉 wa.me/'+WA_NUM+'\n\n5 min mein reply milega! ⚡');
     setTimeout(function(){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!%20I%20need%20help.','_blank');},1200);
     return;
   }
-
+ 
   /* Claude AI — baaki sab */
   _askClaude(txt);
 }
-
+ 
 /* ── RECEIPT SEARCH ── */
 function _searchReceipt(q){
   aiTyping();
@@ -2999,7 +3004,7 @@ function _searchReceipt(q){
     _aiMsg('❌ System se connect nahi ho paya.\n\nSeedha WhatsApp: wa.me/'+WA_NUM);
   });
 }
-
+ 
 /* ── DEMO CONFIRM ── */
 function _confirmDemo(){
   _aiMsg('✅ **Demo Booked!**\n\n👤 '+(_demoData.naam||clientNaam)+'\n📱 '+(_demoData.phone||clientPhone)+'\n🌐 '+_demoData.service+'\n⏰ '+_demoData.time+'\n\nTarun sir jald contact karenge! 🚀');
@@ -3007,7 +3012,7 @@ function _confirmDemo(){
   window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank');
   if(typeof gtag!=='undefined')gtag('event','demo_booked',{event_category:'Lead',event_label:_demoData.service});
 }
-
+ 
 /* ── GEMINI AI — MAIN BRAIN ── */
 function _askClaude(userText){
   aiThinking=true;aiTyping();
@@ -3041,7 +3046,7 @@ function _askClaude(userText){
     _aiMsg(fb);aiHist.push({role:'assistant',content:fb});
   });
 }
-
+ 
 /* ── WA HELPERS ── */
 function aiForwardToWhatsApp(){
   if(!aiPlainLog.length){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
@@ -3050,16 +3055,16 @@ function aiForwardToWhatsApp(){
   t.push('','-- TK Assistant --');
   window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t.join('\n')),'_blank');
 }
-
+ 
 function aiSendToWhatsApp(){
   var v=document.getElementById('aiInp').value.trim();
   if(!v){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
   document.getElementById('aiInp').value='';
   window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi TK Web Solutions!\n\n'+v),'_blank');
 }
-
+ 
 function aiUsrMsg(txt){_aiUsrMsg(txt);}
-
+ 
 function _forwardLeadToWA(){
   if(!clientNaam&&!clientPhone)return;
   var t=['🤖 *TK Assistant — Chat Lead!*','━━━━━━━━━━━━━━━━━━','👤 Naam: '+(clientNaam||'N/A'),'📞 Phone: '+(clientPhone||'N/A'),'━━━━━━━━━━━━━━━━━━',''];
@@ -3071,7 +3076,7 @@ function _forwardLeadToWA(){
 /* ══════════════════════════════════════════
    HIGH AURA ANIMATIONS — TK WEB SOLUTIONS
 ══════════════════════════════════════════ */
-
+ 
 /* 2. CUSTOM CURSOR */
 (function(){
   var cur=document.getElementById('tk-cursor');
@@ -3086,7 +3091,7 @@ function _forwardLeadToWA(){
     el.addEventListener('mouseleave',function(){cur.classList.remove('hover');ring.classList.remove('hover');});
   });
 })();
-
+ 
 /* 3. SCROLL PROGRESS BAR */
 window.addEventListener('scroll',function(){
   var sp=document.getElementById('scroll-progress');
@@ -3095,7 +3100,7 @@ window.addEventListener('scroll',function(){
   var nb=document.getElementById('navbar');
   if(nb){nb.classList.toggle('glass',window.scrollY>50);}
 });
-
+ 
 /* 4. PARTICLE CANVAS */
 (function(){
   var canvas=document.getElementById('particle-canvas');
@@ -3146,7 +3151,7 @@ window.addEventListener('scroll',function(){
   }
   draw();
 })();
-
+ 
 /* 5. SCROLL REVEAL */
 (function(){
   var els=document.querySelectorAll('.section,.section-light,.svc-card,.proc-card,.t-card,.why-card,.sec-h,.tag,.tag-dark,.stat-box');
@@ -3161,7 +3166,7 @@ window.addEventListener('scroll',function(){
   },{threshold:.08});
   els.forEach(function(el){obs.observe(el);});
 })();
-
+ 
 /* 6. MAGNETIC BUTTONS */
 (function(){
   document.querySelectorAll('.btn-blue,.btn-wa,.nav-cta').forEach(function(btn){
@@ -3175,7 +3180,7 @@ window.addEventListener('scroll',function(){
     btn.addEventListener('mouseleave',function(){btn.style.transform='';});
   });
 })();
-
+ 
 /* 7. TYPEWRITER in hero badge */
 (function(){
   var badge=document.querySelector('.hero-badge');
@@ -3201,18 +3206,18 @@ window.addEventListener('scroll',function(){
   badge.querySelector('.pulse-dot')&&badge.querySelector('.pulse-dot').remove();
   type();
 })();
-
+ 
 /* 8. NAVBAR GLASS on hero */
 (function(){
   var nb=document.getElementById('navbar');
   if(nb)nb.classList.add('glass');
 })();
-
+ 
 /* 9. STATS STATIC */
 (function(){})();
-
+ 
 </script>
-
+ 
 <!-- ══════════════════════════════════════════
      PREMIUM 3D DIGITAL CLOCK
 ══════════════════════════════════════════ -->
@@ -3234,9 +3239,10 @@ window.addEventListener('scroll',function(){
     </div>
   </div>
 </div>
-
+ 
 <script>
-      (function(){
+ 
+    (function(){
   var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var is24=false;
@@ -3280,6 +3286,3 @@ window.addEventListener('scroll',function(){
 </script>
 </body>
 </html>
- 
-
-    
