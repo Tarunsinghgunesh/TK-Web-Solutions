@@ -3,6 +3,7 @@
   "short_name": "TK Web",
   "description": "Bharatpur ka trusted web design agency. Professional websites ₹5,000 se. 5-7 din mein LIVE!",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#060d1f",
   "theme_color": "#1a56ff",
@@ -35,8 +36,8 @@
     {
       "name": "Free Demo Lo",
       "short_name": "Demo",
-      "description": "Free demo ke liye WhatsApp karo",
-      "url": "https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20Free%20demo%20chahiye.",
+      "description": "Free demo ke liye contact karo",
+      "url": "/#contact",
       "icons": [{"src": "/logo.png", "sizes": "192x192"}]
     },
     {
