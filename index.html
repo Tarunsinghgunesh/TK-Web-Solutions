@@ -2819,75 +2819,64 @@ window.filterProj=function(cat,btn){
 };
 
 
-/* ── AI CHATBOT ── */
-var aiOpen=false,aiBooted=false,aiHist=[],aiPlainLog=[];
+/* ── TK SMART CHATBOT — Gemini AI Powered ── */
+var APPS_SCRIPT_URL_BOT='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
+var WA_NUM='919079368240';
+
+/* ============================================
+   👇 SIRF YAHAN APNI GEMINI API KEY DAALO
+   aistudio.google.com se copy karo
+   ============================================ */
+var GEMINI_KEY='APNI_KEY_YAHAN_DAALO';
+/* ============================================ */
+
+var aiOpen=false,aiBooted=false,aiThinking=false;
+var aiHist=[],aiPlainLog=[];
 var clientNaam='',clientPhone='',aiStep='naam';
-var AI_SYS="You are TK Assistant, a friendly AI sales helper for TK Web Solutions in Bharatpur, Rajasthan.\n\nOWNER: Tarun Singh Gunesh | WA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nTelegram: @TKwebsolutions_bot | Instagram: @tkwebsolutions_official\n\nSERVICES:\n- Coaching Website Rs.7000: batches, results, fee, faculty, inquiry form\n- School Website Rs.9000: admissions, gallery, events, staff pages\n- Business Website Rs.8000: product showcase, contact, local SEO\n- E-Mitra Website Rs.6000: service list, UPI QR, status checker\n- Portfolio Website Rs.5000: skills, projects, achievements\n- E-Commerce Website Rs.9000-12000: product catalog, WhatsApp orders, categories, Google Maps\n- Website Redesign Rs.6000: modernize old sites\n\nPACKAGES:\n- Starter Rs.7k: mobile design, form, WhatsApp, maps, 30 days support\n- Business Rs.10k-15k: multi-page, gallery, SEO, optimization\n- Custom: app dev, custom features, maintenance\n\nEVERY SITE INCLUDES: mobile responsive, WhatsApp button, contact form, Google Maps, social links, SEO, fast loading, Google Analytics, 30 days free support. Delivery: 5-7 days.\n\nLIVE DEMOS:\n- Achievers Point: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- Ek Pahal India NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Support Small Biz: tarunsinghgunesh.github.io/support_small_business/\n- Dhruv E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- Chirag Handlooms (E-Commerce): tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nRESPOND: Friendly Hinglish, under 80 words, quote exact prices, suggest WA when user interested. Never invent info.";
+var _receiptStep=null,_demoData={},_demoStep=null;
+
+var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\nSERVICES & PRICING:\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form\n- School Website Rs.9000 — admission, gallery, events, staff\n- Business Website Rs.8000 — showcase, contact, local SEO\n- E-Mitra Website Rs.6000 — services, UPI QR, status checker\n- Portfolio Website Rs.5000 — skills, projects, achievements\n- E-Commerce Website Rs.9000 — catalog, WhatsApp ordering, categories\n- Website Redesign Rs.6000 — modern makeover\n\nHAR WEBSITE MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support. DELIVERY: 5-7 din.\n\nLIVE DEMOS:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI IFSC SBIN0031855\n\nRULES: Friendly Hinglish mein jawab do. Max 80 words. Exact prices quote karo. WA suggest karo jab interested ho. Kabhi galat info mat do.';
+
 function aiToggle(){
   aiOpen=!aiOpen;
   document.getElementById('aiWin').classList.toggle('open',aiOpen);
   var d=document.getElementById('aiDot');if(d)d.style.display='none';
-  if(!aiOpen && aiPlainLog.length>1){
-    var t=['🤖 TK Assistant — New Lead!','━━━━━━━━━━━━━━━━━━','👤 Naam: '+clientNaam,'📞 Phone: '+clientPhone,'━━━━━━━━━━━━━━━━━━',''];
-    aiPlainLog.forEach(function(e){t.push((e.r==='Aap'?'👤':'🤖')+' '+e.r+': '+e.m);t.push('');});
-    t.push('━━━━━━━━━━━━━━━━━━');t.push('🌐 tkwebsolutions.in');
-    window.open('https://wa.me/919079368240?text='+encodeURIComponent(t.join('\n')),'_blank');
-       emailjs.send('service_n1reiw9','template_gg2zxzw',{
-  client_naam: clientNaam,
-  client_phone: clientPhone,
-  chat_log: t.join('\n')
-});
-  }
+  if(!aiOpen&&aiPlainLog.length>2)_forwardLeadToWA();
   if(aiOpen&&!aiBooted){
     aiBooted=true;
     setTimeout(function(){
-      aiMsg('Namaste! 👋 Main hoon TK Assistant — TK Web Solutions ka helper!\n\nPehle aapka naam batayein? 😊');
+      _aiMsg('Namaste! 👋 Main hoon **TK Assistant** — TK Web Solutions ka AI helper!\n\nMujhse poochho:\n💰 Pricing & Services\n🧾 Payment Receipt check\n📅 Free Demo book karna\n📞 WhatsApp connect\n\nPehle aapka naam batayein? 😊');
       aiStep='naam';
     },380);
   }
   if(aiOpen)setTimeout(function(){document.getElementById('aiInp').focus();},340);
 }
-     
+
 function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
-function aiMsg(txt){
+
+function _aiMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg b';
-  var wt='Hi TK Web Solutions!\n\nBot ne bola:\n'+txt+'\n\n-- TK Assistant';
-  var wa='https://wa.me/919079368240?text='+encodeURIComponent(wt);
-  d.innerHTML='<div class="abub">'+txt.replace(/\n/g,'<br>')+'</div>'+
+  var html=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  var wa='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi TK Web Solutions!\n\nBot ne bola:\n'+txt+'\n\n-- TK Assistant');
+  d.innerHTML='<div class="abub">'+html+'</div>'+
     '<div style="display:flex;align-items:center;gap:8px;margin-top:3px;">'+
     '<div class="atime">'+aiNow()+'</div>'+
     '<a href="'+wa+'" target="_blank" style="display:inline-flex;align-items:center;gap:3px;background:rgba(37,211,102,.1);color:#25d366;border:1px solid rgba(37,211,102,.25);padding:3px 9px;border-radius:20px;font-size:.62rem;font-weight:700;text-decoration:none;">'+
-    '<i class=\'fab fa-whatsapp\'></i> WA pe bhejo</a>'+
-    '</div>';
+    '<i class="fab fa-whatsapp"></i> WA pe bhejo</a></div>';
   m.appendChild(d);m.scrollTop=m.scrollHeight;
-  aiPlainLog.push({r:'TK Bot',m:txt.substring(0,200)});
+  aiPlainLog.push({r:'TK Bot',m:txt.substring(0,300)});
 }
 
-/* ── WA HELPERS ── */
+function aiMsg(txt){_aiMsg(txt);}
 
-
-function aiForwardToWhatsApp(){
-  if(!aiPlainLog.length){window.open('https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
-  var t=['Hi TK Web Solutions! AI Chat conversation:',''];
-  aiPlainLog.forEach(function(e){t.push(e.r+': '+e.m);});
-  t.push('','-- TK Assistant se --');
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent(t.join('\n')),'_blank');
-}
-
-function aiSendToWhatsApp(){
-  var v=document.getElementById('aiInp').value.trim();
-  if(!v){window.open('https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
-  document.getElementById('aiInp').value='';
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent('Hi TK Web Solutions!\n\n'+v),'_blank');
-}
-
-function aiUsrMsg(txt){
+function _aiUsrMsg(txt){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg u';
   d.innerHTML='<div class="abub">'+txt+'</div><div class="atime">'+aiNow()+'</div>';
   m.appendChild(d);m.scrollTop=m.scrollHeight;
 }
+
 function aiTyping(){
   var m=document.getElementById('aiMsgs');
   var d=document.createElement('div');d.className='amsg b';d.id='aiType';
@@ -2895,66 +2884,410 @@ function aiTyping(){
   m.appendChild(d);m.scrollTop=m.scrollHeight;
 }
 function aiStopTyping(){var t=document.getElementById('aiType');if(t)t.remove();}
+
+function _showQR(btns){
+  var qr=document.getElementById('qrRow');if(!qr)return;
+  qr.innerHTML='';
+  btns.forEach(function(b){
+    var btn=document.createElement('button');btn.className='qr';
+    btn.textContent=b.label;
+    btn.onclick=function(){aiQ(b.q);};
+    qr.appendChild(btn);
+  });
+  qr.style.display='flex';
+}
+
 function aiQ(txt){document.getElementById('aiInp').value=txt;aiSend();}
+
 function aiSend(){
-  var inp=document.getElementById('aiInp'),txt=inp.value.trim();if(!txt)return;
+  var inp=document.getElementById('aiInp'),txt=inp.value.trim();
+  if(!txt||aiThinking)return;
   inp.value='';
   document.getElementById('qrRow').style.display='none';
-  aiUsrMsg(txt);
+  _aiUsrMsg(txt);
   aiPlainLog.push({r:'Aap',m:txt});
   if(typeof gtag!=='undefined')gtag('event','ai_chat',{event_category:'Engagement',event_label:txt.substring(0,50)});
 
+  /* Naam collect */
   if(aiStep==='naam'){
-    clientNaam=txt;
-    aiStep='phone';
-    setTimeout(function(){
-      aiMsg('Shukriya '+clientNaam+'! 😊\n\nAb aapka WhatsApp number batayein:');
-    },600);
+    clientNaam=txt;aiStep='phone';
+    setTimeout(function(){_aiMsg('Shukriya **'+clientNaam+'**! 😊\n\nAb aapka WhatsApp number batayein:');},500);
     return;
   }
-
+  /* Phone collect */
   if(aiStep==='phone'){
-    clientPhone=txt;
-    aiStep='chat';
+    clientPhone=txt;aiStep='chat';
     setTimeout(function(){
-      aiMsg('Perfect! '+clientNaam+' ji ✅\n\nAb batayein main kaise help karun?\n\n💰 Pricing\n🎓 Coaching Website\n🏢 Business Website\n🏛️ E-Mitra Website\n🛒 E-Commerce\n⚡ Delivery Time\n🏆 Kyun Choose Karein');
-    },600);
+      _aiMsg('Perfect '+clientNaam+' ji ✅\n\nMain kaise help karun?');
+      _showQR([
+        {label:'💰 Pricing',q:'Pricing kya hai?'},
+        {label:'🧾 Receipt',q:'Meri payment receipt check karo'},
+        {label:'📅 Demo Book',q:'Free demo book karna hai'},
+        {label:'📞 WhatsApp',q:'WhatsApp connect karo'}
+      ]);
+    },500);
     return;
   }
 
+  var tl=txt.toLowerCase();
+
+  /* Receipt flow */
+  if(tl.match(/receipt|payment check|paid|payment hua|confirm|meri receipt|paisa diya/)){
+    if(!_receiptStep){
+      _receiptStep='waiting';
+      _aiMsg('🧾 Receipt dhundhte hain!\n\nApna **naam**, **phone number**, ya **Receipt No.** (TK-WEB-XXXX) batao:');
+    } else {_receiptStep=null;_searchReceipt(txt);}
+    return;
+  }
+  if(_receiptStep==='waiting'){_receiptStep=null;_searchReceipt(txt);return;}
+
+  /* Demo booking flow */
+  if(tl.match(/demo book|booking|appointment|milna|free demo|meeting/)&&!_demoStep){
+    _demoStep='service';_demoData={naam:clientNaam,phone:clientPhone};
+    _aiMsg('📅 **Free Demo Booking!**\n\nKaunsi website chahiye?');
+    _showQR([
+      {label:'🎓 Coaching',q:'__demo_Coaching Website'},
+      {label:'🏫 School',q:'__demo_School Website'},
+      {label:'🏢 Business',q:'__demo_Business Website'},
+      {label:'🏛️ E-Mitra',q:'__demo_E-Mitra Website'},
+      {label:'🛒 E-Commerce',q:'__demo_E-Commerce Website'},
+      {label:'👤 Portfolio',q:'__demo_Portfolio Website'}
+    ]);
+    return;
+  }
+  if(_demoStep==='service'||txt.startsWith('__demo_')){
+    _demoData.service=txt.replace('__demo_','');_demoStep='time';
+    _aiMsg('Sahi choice! 👍\n\nKab milna chahoge? (subah/dopahar/shaam ya date batao):');return;
+  }
+  if(_demoStep==='time'){_demoData.time=txt;_demoStep=null;_confirmDemo();return;}
+
+  /* WhatsApp direct */
+  if(tl.match(/whatsapp connect|seedha baat|direct contact|call karo/)){
+    _aiMsg('📞 Seedha Tarun sir se baat karo:\n\n👉 wa.me/'+WA_NUM+'\n\n5 min mein reply milega! ⚡');
+    setTimeout(function(){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!%20I%20need%20help.','_blank');},1200);
+    return;
+  }
+
+  /* Gemini AI — baaki sab */
+  _askGemini(txt);
+}
+
+/* ── RECEIPT SEARCH ── */
+function _searchReceipt(q){
   aiTyping();
-  setTimeout(function(){
+  fetch(APPS_SCRIPT_URL_BOT+'?q='+encodeURIComponent(q))
+  .then(function(r){return r.json();})
+  .then(function(res){
     aiStopTyping();
-    var t=txt.toLowerCase();
-    var rep='';
-    if(t.match(/price|cost|kitna|paisa|rupee|rs|rate|charge|package/)){
-      rep='💰 Hamare Packages:\n\n🎓 Coaching — ₹7,000\n🏫 School — ₹9,000\n🏢 Business — ₹8,000\n🏛️ E-Mitra — ₹6,000\n👤 Portfolio — ₹5,000\n🛒 E-Commerce — ₹9,000\n🔄 Redesign — ₹6,000\n\nSabmein: Mobile+WhatsApp+SEO+30Din Support ✅';
-    } else if(t.match(/coaching|institute|tuition|batch|result|faculty/)){
-      rep='🎓 Coaching Website — ₹7,000\n✅ Batches & Fee Structure\n✅ Results Page\n✅ Faculty Section\n✅ Inquiry Form\n✅ Mobile Friendly\n✅ 5-7 Din Delivery\n✅ 30 Din Support';
-    } else if(t.match(/school|college|admission|student/)){
-      rep='🏫 School Website — ₹9,000\n✅ Admission Form\n✅ Photo Gallery\n✅ Events Calendar\n✅ Staff Pages\n✅ Mobile Friendly\n✅ 5-7 Din Delivery';
-    } else if(t.match(/business|shop|local|store|dukan/)){
-      rep='🏢 Business Website — ₹8,000\n✅ Services Showcase\n✅ WhatsApp Button\n✅ Google Maps\n✅ Local SEO\n✅ 5-7 Din Delivery';
-    } else if(t.match(/emitra|e-mitra|csc|govt/)){
-      rep='🏛️ E-Mitra Website — ₹6,000\n✅ Services List\n✅ UPI QR Payment\n✅ Google Maps\n✅ 5-7 Din Delivery';
-    } else if(t.match(/ecommerce|e-commerce|product|sell|bechna/)){
-      rep='🛒 E-Commerce — ₹9,000\n✅ Product Catalog\n✅ WhatsApp Ordering\n✅ Categories\n✅ 5-7 Din Delivery';
-    } else if(t.match(/demo|example|dekh|dikhao/)){
-      rep='✨ Live Demos:\n🎓 tarunsinghgunesh.github.io/ACHIEVERSPOINT\n🏛️ tarunsinghgunesh.github.io/dhruvemitrasevakendra\n🛒 tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-';
-    } else if(t.match(/time|din|day|delivery|kab|jaldi/)){
-      rep='⚡ Sirf 5-7 Din mein LIVE!\n1️⃣ Day 1: Consultation\n2️⃣ Day 2-3: Design\n3️⃣ Day 4-6: Development\n4️⃣ Day 7: GO LIVE 🚀';
-    } else if(t.match(/special|unique|kyun|kyon|best|better|fark|alag|kya h|kya hai/)){
-      rep='🏆 Hum Kyun Best Hain?\n\n✅ Local Bharatpur Team\n✅ 5-7 Din Fast Delivery\n✅ 100% Mobile Friendly\n✅ SEO Included\n✅ 30 Din Free Support\n✅ Sirf ₹5,000 se\n✅ Real Client Demos — pehle dekho phir order karo\n\nCompetitors sirf promise karte hain — hum deliver karte hain! 💪';
-    } else if(t.match(/support|help|baad|maintenance/)){
-      rep='🛠️ 30 Din FREE Support\n✅ Bug Fixes\n✅ Content Updates\n✅ WhatsApp pe direct help\n\n30 din baad bhi reasonable charges mein!';
-    } else if(t.match(/contact|number|call|phone|whatsapp/)){
-      rep='📞 Sampark:\n💬 WhatsApp: +91 90793 68240\n🤖 Telegram: @TKwebsolutions_bot\n📧 tkwebsolution1301@gmail.com';
+    if(res.success&&res.data&&res.data.length>0){
+      var d=res.data[0];
+      _aiMsg('✅ **Receipt Mili!**\n\n🧾 Receipt No: **'+(d[0]||'N/A')+'**\n📅 Date: '+(d[1]||'N/A')+'\n👤 Naam: '+(d[2]||'N/A')+'\n📱 Phone: '+(d[3]||'N/A')+'\n💰 Amount: **'+(d[4]||'N/A')+'**\n🌐 Service: '+(d[7]||'N/A')+'\n✅ Status: Confirmed\n\nKoi aur help chahiye?');
     } else {
-      rep='Samajh gaya '+clientNaam+' ji! 😊\n\nIn topics pe help kar sakta hoon:\n💰 Pricing\n🎓 Coaching/School\n🏢 Business/E-Mitra\n🛒 E-Commerce\n⚡ Delivery\n🏆 Kyun Choose Karein\n\nYa seedha WhatsApp: +91 90793 68240';
+      _aiMsg('😕 "'+q+'" se receipt nahi mili.\n\nSahi naam/phone/receipt no. try karo ya WhatsApp: wa.me/'+WA_NUM);
     }
-    aiMsg(rep);
-    aiPlainLog.push({r:'TK Bot',m:rep.substring(0,200)});
-  },900);
+  })
+  .catch(function(){
+    aiStopTyping();
+    _aiMsg('❌ System se connect nahi ho paya.\n\nSeedha WhatsApp: wa.me/'+WA_NUM);
+  });
+}
+
+/* ── DEMO CONFIRM ── */
+function _confirmDemo(){
+  _aiMsg('✅ **Demo Booked!**\n\n👤 '+(_demoData.naam||clientNaam)+'\n📱 '+(_demoData.phone||clientPhone)+'\n🌐 '+_demoData.service+'\n⏰ '+_demoData.time+'\n\nTarun sir jald contact karenge! 🚀');
+  var msg='📅 *NEW DEMO BOOKING — TK Web Solutions*\n\n👤 Naam: *'+(_demoData.naam||clientNaam)+'*\n📱 Phone: *'+(_demoData.phone||clientPhone)+'*\n🌐 Service: *'+_demoData.service+'*\n⏰ Time: *'+_demoData.time+'*\n\n🌐 tkwebsolutions.in';
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank');
+  if(typeof gtag!=='undefined')gtag('event','demo_booked',{event_category:'Lead',event_label:_demoData.service});
+}
+
+/* ── GEMINI AI — MAIN BRAIN ── */
+function _askGemini(userText){
+  if(GEMINI_KEY==='APNI_KEY_YAHAN_DAALO'){
+    _aiMsg('⚙️ AI setup pending hai.\n\nAbhi seedha WhatsApp pe baat karo: wa.me/'+WA_NUM+'\n\nTarun sir turant help karenge! 😊');
+    return;
+  }
+  aiThinking=true;aiTyping();
+  aiHist.push({role:'user',parts:[{text:userText}]});
+
+  /* Context add karo */
+  var ctx=AI_SYSTEM;
+  if(clientNaam)ctx+='\n\nUser naam: '+clientNaam;
+  if(clientPhone)ctx+='\nUser phone: '+clientPhone;
+
+  /* Last 10 messages history */
+  var msgs=aiHist.slice(-10);
+
+  fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+GEMINI_KEY,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      system_instruction:{parts:[{text:ctx}]},
+      contents:msgs,
+      generationConfig:{maxOutputTokens:200,temperature:0.7}
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    aiThinking=false;aiStopTyping();
+    var reply='';
+    try{reply=data.candidates[0].content.parts[0].text;}catch(e){}
+    if(!reply)reply='Maafi '+(clientNaam||'')+' ji — abhi connect nahi ho paya.\n\nWhatsApp: wa.me/'+WA_NUM;
+    aiHist.push({role:'model',parts:[{text:reply}]});
+    aiPlainLog.push({r:'TK Bot',m:reply.substring(0,300)});
+    _aiMsg(reply);
+  })
+  .catch(function(){
+    aiThinking=false;aiStopTyping();
+    _aiMsg('Net issue ho gaya 😅\n\nSeedha WhatsApp: wa.me/'+WA_NUM);
+  });
+}
+
+/* ── WA HELPERS ── */
+function aiForwardToWhatsApp(){
+  if(!aiPlainLog.length){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  var t=['Hi TK Web Solutions! Chat se:',''];
+  aiPlainLog.forEach(function(e){t.push(e.r+': '+e.m);});
+  t.push('','-- TK Assistant --');
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t.join('\n')),'_blank');
+}
+
+function aiSendToWhatsApp(){
+  var v=document.getElementById('aiInp').value.trim();
+  if(!v){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  document.getElementById('aiInp').value='';
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi TK Web Solutions!\n\n'+v),'_blank');
+}
+
+function aiUsrMsg(txt){_aiUsrMsg(txt);}
+
+function _forwardLeadToWA(){
+  if(!clientNaam&&!clientPhone)return;
+  var t=['🤖 *TK Assistant — Chat Lead!*','━━━━━━━━━━━━━━━━━━','👤 Naam: '+(clientNaam||'N/A'),'📞 Phone: '+(clientPhone||'N/A'),'━━━━━━━━━━━━━━━━━━',''];
+  aiPlainLog.forEach(function(e){t.push((e.r==='Aap'?'👤':'🤖')+' '+e.r+': '+e.m);t.push('');});
+  t.push('━━━━━━━━━━━━━━━━━━');t.push('🌐 tkwebsolutions.in');
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t.join('\n')),'_blank');
+  if(typeof emailjs!=='undefined'){emailjs.send('service_n1reiw9','template_gg2zxzw',{client_naam:clientNaam,client_phone:clientPhone,chat_log:t.join('\n')});}
+}
+var aiHist=[],aiPlainLog=[];
+var clientNaam='',clientPhone='',aiStep='naam';
+var _receiptStep=null,_demoData={},_demoStep=null;
+
+var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\nSERVICES & PRICING:\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form\n- School Website Rs.9000 — admission, gallery, events, staff\n- Business Website Rs.8000 — showcase, contact, local SEO\n- E-Mitra Website Rs.6000 — services, UPI QR, status checker\n- Portfolio Website Rs.5000 — skills, projects, achievements\n- E-Commerce Website Rs.9000 — catalog, WhatsApp ordering, categories\n- Website Redesign Rs.6000 — modern makeover\n\nHAR WEBSITE MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support. DELIVERY: 5-7 din.\n\nLIVE DEMOS:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI IFSC SBIN0031855\n\nRULES: Friendly Hinglish mein jawab do. Max 80 words. Exact prices quote karo. WA suggest karo jab interested ho. Kabhi galat info mat do.';
+
+function aiToggle(){
+  aiOpen=!aiOpen;
+  document.getElementById('aiWin').classList.toggle('open',aiOpen);
+  var d=document.getElementById('aiDot');if(d)d.style.display='none';
+  if(!aiOpen&&aiPlainLog.length>2)_forwardLeadToWA();
+  if(aiOpen&&!aiBooted){
+    aiBooted=true;
+    setTimeout(function(){
+      _aiMsg('Namaste! 👋 Main hoon **TK Assistant** — TK Web Solutions ka AI helper!\n\nMujhse poochho:\n💰 Pricing & Services\n🧾 Payment Receipt check\n📅 Free Demo book karna\n📞 WhatsApp connect\n\nPehle aapka naam batayein? 😊');
+      aiStep='naam';
+    },380);
+  }
+  if(aiOpen)setTimeout(function(){document.getElementById('aiInp').focus();},340);
+}
+
+function aiNow(){return new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
+
+function _aiMsg(txt){
+  var m=document.getElementById('aiMsgs');
+  var d=document.createElement('div');d.className='amsg b';
+  var html=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  var wa='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi TK Web Solutions!\n\nBot ne bola:\n'+txt+'\n\n-- TK Assistant');
+  d.innerHTML='<div class="abub">'+html+'</div>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin-top:3px;">'+
+    '<div class="atime">'+aiNow()+'</div>'+
+    '<a href="'+wa+'" target="_blank" style="display:inline-flex;align-items:center;gap:3px;background:rgba(37,211,102,.1);color:#25d366;border:1px solid rgba(37,211,102,.25);padding:3px 9px;border-radius:20px;font-size:.62rem;font-weight:700;text-decoration:none;">'+
+    '<i class="fab fa-whatsapp"></i> WA pe bhejo</a></div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+  aiPlainLog.push({r:'TK Bot',m:txt.substring(0,300)});
+}
+
+function aiMsg(txt){_aiMsg(txt);}
+
+function _aiUsrMsg(txt){
+  var m=document.getElementById('aiMsgs');
+  var d=document.createElement('div');d.className='amsg u';
+  d.innerHTML='<div class="abub">'+txt+'</div><div class="atime">'+aiNow()+'</div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+
+function aiTyping(){
+  var m=document.getElementById('aiMsgs');
+  var d=document.createElement('div');d.className='amsg b';d.id='aiType';
+  d.innerHTML='<div class="typing-row"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function aiStopTyping(){var t=document.getElementById('aiType');if(t)t.remove();}
+
+function _showQR(btns){
+  var qr=document.getElementById('qrRow');if(!qr)return;
+  qr.innerHTML='';
+  btns.forEach(function(b){
+    var btn=document.createElement('button');btn.className='qr';
+    btn.textContent=b.label;
+    btn.onclick=function(){aiQ(b.q);};
+    qr.appendChild(btn);
+  });
+  qr.style.display='flex';
+}
+
+function aiQ(txt){document.getElementById('aiInp').value=txt;aiSend();}
+
+function aiSend(){
+  var inp=document.getElementById('aiInp'),txt=inp.value.trim();
+  if(!txt||aiThinking)return;
+  inp.value='';
+  document.getElementById('qrRow').style.display='none';
+  _aiUsrMsg(txt);
+  aiPlainLog.push({r:'Aap',m:txt});
+  if(typeof gtag!=='undefined')gtag('event','ai_chat',{event_category:'Engagement',event_label:txt.substring(0,50)});
+
+  if(aiStep==='naam'){clientNaam=txt;aiStep='phone';setTimeout(function(){_aiMsg('Shukriya **'+clientNaam+'**! 😊\n\nAb aapka WhatsApp number batayein:');},500);return;}
+  if(aiStep==='phone'){
+    clientPhone=txt;aiStep='chat';
+    setTimeout(function(){
+      _aiMsg('Perfect '+clientNaam+' ji ✅\n\nMain kaise help karun?');
+      _showQR([
+        {label:'💰 Pricing',q:'Pricing kya hai?'},
+        {label:'🧾 Receipt',q:'Meri payment receipt check karo'},
+        {label:'📅 Demo Book',q:'Free demo book karna hai'},
+        {label:'📞 WhatsApp',q:'WhatsApp connect karo'}
+      ]);
+    },500);return;
+  }
+
+  var tl=txt.toLowerCase();
+
+  /* Receipt flow */
+  if(tl.match(/receipt|payment check|paid|payment hua|confirm|meri receipt|paisa diya/)){
+    if(!_receiptStep){
+      _receiptStep='waiting';
+      _aiMsg('🧾 Receipt dhundhte hain!\n\nApna **naam**, **phone number**, ya **Receipt No.** (TK-WEB-XXXX) batao:');
+    } else {
+      _receiptStep=null;
+      _searchReceipt(txt);
+    }
+    return;
+  }
+  if(_receiptStep==='waiting'){_receiptStep=null;_searchReceipt(txt);return;}
+
+  /* Demo booking flow */
+  if(tl.match(/demo book|booking|appointment|milna|free demo|meeting/) && !_demoStep){
+    _demoStep='service';_demoData={naam:clientNaam,phone:clientPhone};
+    _aiMsg('📅 **Free Demo Booking!**\n\nKaunsi website chahiye?');
+    _showQR([
+      {label:'🎓 Coaching',q:'__demo_Coaching Website'},
+      {label:'🏫 School',q:'__demo_School Website'},
+      {label:'🏢 Business',q:'__demo_Business Website'},
+      {label:'🏛️ E-Mitra',q:'__demo_E-Mitra Website'},
+      {label:'🛒 E-Commerce',q:'__demo_E-Commerce Website'},
+      {label:'👤 Portfolio',q:'__demo_Portfolio Website'}
+    ]);
+    return;
+  }
+  if(_demoStep==='service'||txt.startsWith('__demo_')){
+    _demoData.service=txt.replace('__demo_','');_demoStep='time';
+    _aiMsg('Sahi choice! 👍\n\nKab milna chahoge? (subah/dopahar/shaam ya date batao):');return;
+  }
+  if(_demoStep==='time'){_demoData.time=txt;_demoStep=null;_confirmDemo();return;}
+
+  /* WhatsApp direct */
+  if(tl.match(/whatsapp connect|seedha baat|direct contact|call karo/)){
+    _aiMsg('📞 Seedha Tarun sir se baat karo:\n\n👉 wa.me/'+WA_NUM+'\n\n5 min mein reply milega! ⚡');
+    setTimeout(function(){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!%20I%20need%20help.','_blank');},1200);
+    return;
+  }
+
+  /* Claude AI — sab baaki sawaal */
+  _askClaude(txt);
+}
+
+function _searchReceipt(q){
+  aiTyping();
+  fetch(APPS_SCRIPT_URL_BOT+'?q='+encodeURIComponent(q))
+  .then(function(r){return r.json();})
+  .then(function(res){
+    aiStopTyping();
+    if(res.success&&res.data&&res.data.length>0){
+      var d=res.data[0];
+      _aiMsg('✅ **Receipt Mili!**\n\n🧾 Receipt No: **'+(d[0]||'N/A')+'**\n📅 Date: '+(d[1]||'N/A')+'\n👤 Naam: '+(d[2]||'N/A')+'\n📱 Phone: '+(d[3]||'N/A')+'\n💰 Amount: **'+(d[4]||'N/A')+'**\n🌐 Service: '+(d[7]||'N/A')+'\n✅ Status: Confirmed\n\nKoi aur help chahiye?');
+    } else {
+      _aiMsg('😕 "'+q+'" se receipt nahi mili.\n\nSahi naam/phone/receipt no. try karo ya WhatsApp: wa.me/'+WA_NUM);
+    }
+  })
+  .catch(function(){
+    aiStopTyping();
+    _aiMsg('❌ System se connect nahi ho paya.\n\nSeedha WhatsApp: wa.me/'+WA_NUM+' pe bhejo!');
+  });
+}
+
+function _confirmDemo(){
+  _aiMsg('✅ **Demo Booked!**\n\n👤 '+(_demoData.naam||clientNaam)+'\n📱 '+(_demoData.phone||clientPhone)+'\n🌐 '+_demoData.service+'\n⏰ '+_demoData.time+'\n\nTarun sir jald contact karenge! 🚀');
+  var msg='📅 *NEW DEMO BOOKING*\n\n👤 Naam: *'+(_demoData.naam||clientNaam)+'*\n📱 Phone: *'+(_demoData.phone||clientPhone)+'*\n🌐 Service: *'+_demoData.service+'*\n⏰ Time: *'+_demoData.time+'*\n\n🌐 tkwebsolutions.in';
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank');
+  if(typeof gtag!=='undefined')gtag('event','demo_booked',{event_category:'Lead',event_label:_demoData.service});
+}
+
+function _askClaude(userText){
+  aiThinking=true;aiTyping();
+  aiHist.push({role:'user',content:userText});
+  var ctx='';
+  if(clientNaam)ctx+='User naam: '+clientNaam+'. ';
+  if(clientPhone)ctx+='Phone: '+clientPhone+'. ';
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:300,
+      system:AI_SYSTEM+(ctx?'\n\nUser context: '+ctx:''),
+      messages:aiHist.slice(-10)
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    aiThinking=false;aiStopTyping();
+    var reply='';
+    if(data.content&&data.content[0]&&data.content[0].text){reply=data.content[0].text;}
+    else{reply='Maafi '+( clientNaam||'')+' ji — abhi connect nahi ho paya. WhatsApp: wa.me/'+WA_NUM;}
+    aiHist.push({role:'assistant',content:reply});
+    aiPlainLog.push({r:'TK Bot',m:reply.substring(0,300)});
+    _aiMsg(reply);
+  })
+  .catch(function(){
+    aiThinking=false;aiStopTyping();
+    var fb='Net issue ho gaya 😅\n\nSeedha WhatsApp: wa.me/'+WA_NUM;
+    _aiMsg(fb);aiHist.push({role:'assistant',content:fb});
+  });
+}
+
+function aiForwardToWhatsApp(){
+  if(!aiPlainLog.length){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  var t=['Hi TK Web Solutions! Chat se:',''];
+  aiPlainLog.forEach(function(e){t.push(e.r+': '+e.m);});
+  t.push('','-- TK Assistant --');
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t.join('\n')),'_blank');
+}
+
+function aiSendToWhatsApp(){
+  var v=document.getElementById('aiInp').value.trim();
+  if(!v){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!','_blank');return;}
+  document.getElementById('aiInp').value='';
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi TK Web Solutions!\n\n'+v),'_blank');
+}
+
+function aiUsrMsg(txt){_aiUsrMsg(txt);}
+
+function _forwardLeadToWA(){
+  if(!clientNaam&&!clientPhone)return;
+  var t=['🤖 *TK Assistant — Chat Lead!*','━━━━━━━━━━━━━━━━━━','👤 Naam: '+(clientNaam||'N/A'),'📞 Phone: '+(clientPhone||'N/A'),'━━━━━━━━━━━━━━━━━━',''];
+  aiPlainLog.forEach(function(e){t.push((e.r==='Aap'?'👤':'🤖')+' '+e.r+': '+e.m);t.push('');});
+  t.push('━━━━━━━━━━━━━━━━━━');t.push('🌐 tkwebsolutions.in');
+  window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t.join('\n')),'_blank');
+  if(typeof emailjs!=='undefined'){emailjs.send('service_n1reiw9','template_gg2zxzw',{client_naam:clientNaam,client_phone:clientPhone,chat_log:t.join('\n')});}
 }
 
 /* ══════════════════════════════════════════
