@@ -248,23 +248,24 @@ img{max-width:100%;}
 .guide-wrap{content-visibility:auto;}
 .guide-bubble{
   background:#fff;border-radius:16px 16px 4px 16px;
-  padding:14px 16px;width:220px;
+  padding:12px 14px;width:240px;
   box-shadow:0 8px 34px rgba(26,86,255,.2),0 0 0 1px rgba(26,86,255,.09);
   position:relative;
 }
 .guide-bubble p{font-size:.79rem;color:var(--navy);line-height:1.55;margin-bottom:10px;}
 .guide-bubble strong{color:var(--blue);font-family:'Syne',sans-serif;}
-.guide-links{display:flex;flex-direction:column;gap:5px;}
+.guide-links{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
 .guide-link{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 11px;border-radius:9px;
-  font-size:.74rem;font-weight:600;
+  display:flex;align-items:center;gap:5px;
+  padding:5px 8px;border-radius:8px;
+  font-size:.68rem;font-weight:600;
   background:var(--bluel);color:var(--blue);
   transition:all .2s;cursor:pointer;border:none;
   font-family:'DM Sans',sans-serif;text-align:left;width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .guide-link:hover{background:var(--blue);color:#fff;}
-.guide-link i{width:14px;text-align:center;flex-shrink:0;font-size:.75rem;}
+.guide-link i{width:12px;text-align:center;flex-shrink:0;font-size:.68rem;}
 .guide-x{
   position:absolute;top:-8px;left:-8px;
   width:20px;height:20px;background:#fff;
@@ -2188,7 +2189,7 @@ if('serviceWorker' in navigator){
 .pamtbtn.pactive{background:linear-gradient(135deg,#1a56ff,#0d3acc);border-color:#1a56ff;color:#fff;box-shadow:0 4px 14px rgba(26,86,255,.4);}
 @media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
 </style>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
      var _lastReceiptData=null;
 var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
 function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
@@ -2633,7 +2634,7 @@ function sendOwnerAlert(data){
 <!-- ══════════════════════════════════════════
      ALL SCRIPTS
 ══════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── GUIDE MASCOT ── */
 var _gOpen=true;
 var _gSteps=[
@@ -3235,8 +3236,7 @@ window.addEventListener('scroll',function(){
 </div>
 
 <script>
-
-    (function(){
+ (function(){
   var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var is24=false;
@@ -3280,3 +3280,5 @@ window.addEventListener('scroll',function(){
 </script>
 </body>
 </html>
+
+    
