@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#060d1f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TK Web Solutions">
+<title>TK Web Solutions — Website & App Developer Bharatpur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --blue:#1a56ff;--blue2:#0d3acc;--navy:#060d1f;
+  --green:#25d366;--accent:#00e5ff;--gold:#f59e0b;
+  --white:#fff;--gray:#94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);}
+a{text-decoration:none;color:inherit;}
+
+/* ── STATUS BAR SPACER ── */
+.status-bar{height:env(safe-area-inset-top,0px);background:var(--navy);}
+
+/* ── TOP NAV ── */
+.app-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,13,31,.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(26,86,255,.15);
+  padding:14px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.app-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;}
+.app-logo span{color:var(--blue);}
+.app-logo small{font-size:.5rem;background:var(--blue);color:#fff;padding:2px 6px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.nav-call{width:36px;height:36px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--navy) 0%,#0d1a3a 100%);
+  padding:40px 5% 36px;
+  position:relative;overflow:hidden;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(26,86,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,86,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-glow{
+  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:300px;height:200px;
+  background:radial-gradient(circle,rgba(26,86,255,.25) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.4);
+  color:var(--accent);padding:5px 14px;border-radius:30px;
+  font-size:.7rem;font-weight:700;letter-spacing:.5px;margin-bottom:14px;
+}
+.dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.4;}}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.5rem,6vw,2rem);
+  font-weight:800;line-height:1.2;margin-bottom:10px;
+}
+.hero h1 span{color:var(--accent);}
+.hero p{color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.65;margin-bottom:22px;}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:#fff;
+  padding:12px 22px;border-radius:10px;
+  font-weight:700;font-size:.88rem;
+}
+.btn-call{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue);color:#fff;
+  padding:12px 22px;border-radius:10px;
+  font-weight:700;font-size:.88rem;
+}
+.hero-stats{
+  display:flex;justify-content:center;gap:28px;
+  margin-top:24px;flex-wrap:wrap;
+}
+.stat{text-align:center;}
+.stat-n{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;}
+.stat-n em{color:var(--accent);font-style:normal;}
+.stat-l{font-size:.62rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.5px;}
+
+/* ── SECTION ── */
+.section{padding:40px 5%;}
+.sec-tag{
+  display:inline-block;
+  background:rgba(26,86,255,.12);border:1px solid rgba(26,86,255,.25);
+  color:var(--blue);font-size:.65rem;font-weight:700;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.sec-h{
+  font-family:'Syne',sans-serif;font-size:1.4rem;
+  font-weight:800;margin-bottom:6px;
+}
+.sec-h span{color:var(--blue);}
+.sec-sub{color:var(--gray);font-size:.85rem;line-height:1.65;margin-bottom:24px;}
+
+/* ── SERVICE CARDS ── */
+.svc-grid{display:flex;flex-direction:column;gap:12px;}
+.svc-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:18px;
+  display:flex;align-items:center;gap:14px;
+  transition:all .2s;
+}
+.svc-card:active{transform:scale(.98);background:rgba(26,86,255,.08);}
+.svc-ico{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+}
+.svc-info{flex:1;}
+.svc-info h3{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:3px;}
+.svc-info p{font-size:.76rem;color:var(--gray);line-height:1.5;}
+.svc-price{
+  font-family:'Syne',sans-serif;font-size:.78rem;
+  font-weight:800;color:var(--gold);white-space:nowrap;
+}
+.svc-card.app-card{border-color:rgba(76,175,80,.25);background:rgba(76,175,80,.05);}
+
+/* ── APP SECTION ── */
+.app-download-box{
+  background:linear-gradient(135deg,rgba(76,175,80,.15),rgba(26,86,255,.1));
+  border:1px solid rgba(76,175,80,.3);
+  border-radius:18px;padding:28px;text-align:center;
+}
+.app-download-box h3{
+  font-family:'Syne',sans-serif;font-size:1.1rem;
+  font-weight:800;margin-bottom:8px;
+}
+.app-download-box p{font-size:.82rem;color:var(--gray);margin-bottom:20px;line-height:1.6;}
+.dl-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,#4CAF50,#2e7d32);
+  color:#fff;padding:14px 28px;border-radius:12px;
+  font-weight:700;font-size:.92rem;width:100%;
+  justify-content:center;margin-bottom:10px;
+}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--green);color:#fff;
+  padding:14px 28px;border-radius:12px;
+  font-weight:700;font-size:.92rem;width:100%;
+  justify-content:center;
+}
+
+/* ── PORTFOLIO ── */
+.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.port-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px;text-align:center;
+}
+.port-card:active{transform:scale(.97);}
+.port-ico{font-size:1.8rem;margin-bottom:8px;}
+.port-name{font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;margin-bottom:4px;}
+.port-type{font-size:.7rem;color:var(--gray);}
+.port-link{
+  display:inline-block;margin-top:10px;
+  background:var(--blue);color:#fff;
+  padding:6px 14px;border-radius:8px;
+  font-size:.72rem;font-weight:700;
+}
+
+/* ── TESTIMONIALS ── */
+.t-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:18px;margin-bottom:12px;
+}
+.t-stars{color:var(--gold);font-size:.9rem;margin-bottom:8px;}
+.t-text{font-size:.83rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:12px;font-style:italic;}
+.t-author{display:flex;align-items:center;gap:10px;}
+.t-av{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--blue);display:flex;align-items:center;
+  justify-content:center;font-family:'Syne',sans-serif;
+  font-weight:800;font-size:.9rem;flex-shrink:0;
+}
+.t-name{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;}
+.t-role{font-size:.7rem;color:var(--gray);}
+
+/* ── CONTACT ── */
+.contact-grid{display:flex;flex-direction:column;gap:10px;}
+.contact-item{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px;
+}
+.contact-item:active{transform:scale(.98);}
+.c-ico{
+  width:42px;height:42px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.c-label{font-size:.7rem;color:var(--gray);margin-bottom:2px;}
+.c-val{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(6,13,31,.98);backdrop-filter:blur(20px);
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:10px 4px;cursor:pointer;
+  font-size:.6rem;color:var(--gray);gap:4px;
+  transition:color .2s;border:none;background:none;
+  font-family:'DM Sans',sans-serif;
+}
+.nav-item.active,.nav-item:active{color:var(--blue);}
+.nav-item i{font-size:1.1rem;}
+.bottom-nav-spacer{height:70px;}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ── FLOATING WA ── */
+.fl-wa{
+  position:fixed;bottom:80px;right:18px;z-index:99;
+  width:50px;height:50px;background:var(--green);
+  border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+}
+</style>
+</head>
+<body>
+
+<div class="status-bar"></div>
+
+<!-- TOP NAV -->
+<div class="app-nav">
+  <div class="app-logo"><span>TK</span> Web Solutions <small>BHARATPUR</small></div>
+  <a href="tel:+919079368240" class="nav-call"><i class="fas fa-phone"></i></a>
+</div>
+
+<!-- PAGES CONTAINER -->
+
+<!-- ════ HOME PAGE ════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="badge"><div class="dot"></div> Bharatpur's #1 Agency</div>
+      <h1>Website &amp; App <span>Developer</span> Bharatpur</h1>
+      <p>Professional websites ₹5,000 se aur Android Apps ₹10,000 se. 5–7 din mein LIVE!</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20App%20se%20contact%20kar%20raha%20hun." target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="tel:+919079368240" class="btn-call"><i class="fas fa-phone"></i> Call Now</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-n">10<em>+</em></div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">100<em>%</em></div><div class="stat-l">Satisfied</div></div>
+        <div class="stat"><div class="stat-n">5<em>–7</em></div><div class="stat-l">Days Delivery</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <div class="section">
+    <div class="sec-tag">Our Services</div>
+    <div class="sec-h">Hum Kya <span>Banate Hain?</span></div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-ico" style="background:rgba(26,86,255,.15);">🎓</div>
+        <div class="svc-info"><h3>Coaching Website</h3><p>Batches, results, faculty, inquiry form</p></div>
+        <div class="svc-price">₹7,000</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ico" style="background:rgba(26,86,255,.15);">🏫</div>
+        <div class="svc-info"><h3>School Website</h3><p>Admissions, gallery, events calendar</p></div>
+        <div class="svc-price">₹9,000</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ico" style="background:rgba(26,86,255,.15);">🏢</div>
+        <div class="svc-info"><h3>Business Website</h3><p>24/7 customers attract karne wali site</p></div>
+        <div class="svc-price">₹8,000</div>
+      </div>
+      <div class="svc-card app-card">
+        <div class="svc-ico" style="background:rgba(76,175,80,.15);">📱</div>
+        <div class="svc-info"><h3>Android App (APK)</h3><p>Direct download APK file</p></div>
+        <div class="svc-price" style="color:#4CAF50;">₹10,000</div>
+      </div>
+      <div class="svc-card app-card">
+        <div class="svc-ico" style="background:rgba(76,175,80,.15);">🚀</div>
+        <div class="svc-info"><h3>Play Store App</h3><p>Google Play pe publish karein</p></div>
+        <div class="svc-price" style="color:#4CAF50;">₹18,000</div>
+      </div>
+      <div class="svc-card app-card">
+        <div class="svc-ico" style="background:rgba(76,175,80,.15);">🍎</div>
+        <div class="svc-info"><h3>Android + iOS App</h3><p>Dono platforms pe live app</p></div>
+        <div class="svc-price" style="color:#4CAF50;">₹35,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP DOWNLOAD -->
+  <div class="section" style="padding-top:0;">
+    <div class="app-download-box">
+      <div style="font-size:2.5rem;margin-bottom:12px;">📲</div>
+      <h3>Hamara App Download Karo!</h3>
+      <p>TK Web Solutions ka official Android app — seedha phone mein install karein aur services, pricing sab dekho.</p>
+      <a href="TKWebSolutions.apk" download class="dl-btn"><i class="fas fa-download"></i> APK Download Karo (Free)</a>
+      <a href="https://wa.me/919079368240?text=Hi!%20App%20se%20contact%20kar%20raha%20hun." target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp Pe Order Karo</a>
+    </div>
+  </div>
+
+  <div class="bottom-nav-spacer"></div>
+</div>
+
+<!-- ════ SERVICES PAGE ════ -->
+<div class="page" id="page-services">
+  <div class="section">
+    <div class="sec-tag">All Services</div>
+    <div class="sec-h">Complete <span>Price List</span></div>
+    <p class="sec-sub">Transparent pricing — koi hidden charges nahi. Sab kuch included!</p>
+
+    <div style="margin-bottom:18px;">
+      <div style="font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;color:var(--blue);margin-bottom:10px;letter-spacing:1px;">🌐 WEBSITE PACKAGES</div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">👤</div><div class="svc-info"><h3>Portfolio Website</h3><p>Skills, projects, contact — personal brand</p></div><div class="svc-price">₹5,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🏛️</div><div class="svc-info"><h3>E-Mitra Website</h3><p>Services list, UPI QR, Google Maps</p></div><div class="svc-price">₹6,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🔄</div><div class="svc-info"><h3>Website Redesign</h3><p>Purani site ka complete makeover</p></div><div class="svc-price">₹6,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🎓</div><div class="svc-info"><h3>Coaching Website</h3><p>Batches, results, faculty, inquiry form</p></div><div class="svc-price">₹7,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🏢</div><div class="svc-info"><h3>Business Website</h3><p>Local business online presence</p></div><div class="svc-price">₹8,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🏫</div><div class="svc-info"><h3>School Website</h3><p>Admissions, gallery, results, events</p></div><div class="svc-price">₹9,000</div></div>
+        <div class="svc-card"><div class="svc-ico" style="background:rgba(26,86,255,.15);">🛒</div><div class="svc-info"><h3>E-Commerce Website</h3><p>Product catalog, WhatsApp ordering</p></div><div class="svc-price">₹9,000</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;color:#4CAF50;margin-bottom:10px;letter-spacing:1px;">📱 APP PACKAGES</div>
+      <div class="svc-grid">
+        <div class="svc-card app-card"><div class="svc-ico" style="background:rgba(76,175,80,.15);">📱</div><div class="svc-info"><h3>Android APK</h3><p>Direct download — no Play Store needed</p></div><div class="svc-price" style="color:#4CAF50;">₹10,000</div></div>
+        <div class="svc-card app-card"><div class="svc-ico" style="background:rgba(76,175,80,.15);">🚀</div><div class="svc-info"><h3>Play Store App</h3><p>Google Play pe published app</p></div><div class="svc-price" style="color:#4CAF50;">₹18,000</div></div>
+        <div class="svc-card app-card"><div class="svc-ico" style="background:rgba(76,175,80,.15);">🍎</div><div class="svc-info"><h3>Android + iOS</h3><p>Dono stores pe live app</p></div><div class="svc-price" style="color:#4CAF50;">₹35,000</div></div>
+        <div class="svc-card app-card"><div class="svc-ico" style="background:rgba(76,175,80,.15);">⚙️</div><div class="svc-info"><h3>Custom App</h3><p>Login, payments, notifications, admin</p></div><div class="svc-price" style="color:#4CAF50;">₹50,000+</div></div>
+      </div>
+    </div>
+
+    <div style="background:rgba(26,86,255,.08);border:1px solid rgba(26,86,255,.2);border-radius:14px;padding:18px;margin-top:20px;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;">✅ Har Website/App Mein Included:</div>
+      <div style="font-size:.82rem;color:var(--gray);line-height:1.9;">
+        Mobile Responsive · WhatsApp Button · Contact Form · Google Maps · SEO Setup · Google Analytics · 30 Din Free Support · Fast Loading
+      </div>
+    </div>
+
+    <a href="https://wa.me/919079368240?text=Hi!%20Services%20dekhe%20—%20quote%20chahiye." target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#fff;padding:14px;border-radius:12px;font-weight:700;margin-top:20px;font-size:.92rem;"><i class="fab fa-whatsapp"></i> Free Quote Lo — WhatsApp Karo</a>
+  </div>
+  <div class="bottom-nav-spacer"></div>
+</div>
+
+<!-- ════ PORTFOLIO PAGE ════ -->
+<div class="page" id="page-portfolio">
+  <div class="section">
+    <div class="sec-tag">Our Work</div>
+    <div class="sec-h">Live <span>Demo Sites</span></div>
+    <p class="sec-sub">Real websites hamne banayi hain — click karo aur live site dekho!</p>
+
+    <div class="portfolio-grid">
+      <div class="port-card">
+        <div class="port-ico">🎓</div>
+        <div class="port-name">Achievers Point</div>
+        <div class="port-type">Coaching Institute</div>
+        <a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+      <div class="port-card">
+        <div class="port-ico">🌱</div>
+        <div class="port-name">Ek Pahal India</div>
+        <div class="port-type">NGO Website</div>
+        <a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+      <div class="port-card">
+        <div class="port-ico">🏪</div>
+        <div class="port-name">Support Small Biz</div>
+        <div class="port-type">Local Business</div>
+        <a href="https://tarunsinghgunesh.github.io/support_small_business/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+      <div class="port-card">
+        <div class="port-ico">🏛️</div>
+        <div class="port-name">Dhruv E-Mitra</div>
+        <div class="port-type">E-Mitra Center</div>
+        <a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+      <div class="port-card">
+        <div class="port-ico">🛒</div>
+        <div class="port-name">Chirag Handlooms</div>
+        <div class="port-type">E-Commerce</div>
+        <a href="https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+      <div class="port-card">
+        <div class="port-ico">🏫</div>
+        <div class="port-name">New Tagore School</div>
+        <div class="port-type">School Website</div>
+        <a href="https://tarunsinghgunesh.github.io/New-tagore-public-school/" target="_blank" class="port-link">Live Dekho →</a>
+      </div>
+    </div>
+
+    <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;padding:14px;border-radius:12px;font-weight:700;margin-top:20px;font-size:.9rem;"><i class="fas fa-cube"></i> Full 3D Portfolio Dekho</a>
+  </div>
+  <div class="bottom-nav-spacer"></div>
+</div>
+
+<!-- ════ CONTACT PAGE ════ -->
+<div class="page" id="page-contact">
+  <div class="section">
+    <div class="sec-tag">Contact Us</div>
+    <div class="sec-h">Baat <span>Karte Hain!</span></div>
+    <p class="sec-sub">Free consultation — koi charge nahi. Kisi bhi channel se contact karo!</p>
+
+    <div class="contact-grid">
+      <a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20App%20se%20contact%20kar%20raha%20hun." target="_blank" class="contact-item">
+        <div class="c-ico" style="background:rgba(37,211,102,.15);color:#25d366;"><i class="fab fa-whatsapp"></i></div>
+        <div><div class="c-label">WhatsApp (Fastest)</div><div class="c-val">+91 90793 68240</div></div>
+        <i class="fas fa-chevron-right" style="color:var(--gray);margin-left:auto;"></i>
+      </a>
+      <a href="tel:+919079368240" class="contact-item">
+        <div class="c-ico" style="background:rgba(26,86,255,.15);color:var(--blue);"><i class="fas fa-phone"></i></div>
+        <div><div class="c-label">Call Karo</div><div class="c-val">+91 90793 68240</div></div>
+        <i class="fas fa-chevron-right" style="color:var(--gray);margin-left:auto;"></i>
+      </a>
+      <a href="mailto:tkwebsolution1301@gmail.com" class="contact-item">
+        <div class="c-ico" style="background:rgba(234,67,53,.15);color:#ea4335;"><i class="fas fa-envelope"></i></div>
+        <div><div class="c-label">Email Karo</div><div class="c-val">tkwebsolution1301@gmail.com</div></div>
+        <i class="fas fa-chevron-right" style="color:var(--gray);margin-left:auto;"></i>
+      </a>
+      <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="contact-item">
+        <div class="c-ico" style="background:rgba(34,158,217,.15);color:#229ed9;"><i class="fab fa-telegram"></i></div>
+        <div><div class="c-label">Telegram Bot</div><div class="c-val">@TKwebsolutions_bot</div></div>
+        <i class="fas fa-chevron-right" style="color:var(--gray);margin-left:auto;"></i>
+      </a>
+      <a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" class="contact-item">
+        <div class="c-ico" style="background:rgba(131,58,180,.15);color:#833AB4;"><i class="fab fa-instagram"></i></div>
+        <div><div class="c-label">Instagram</div><div class="c-val">@tkwebsolutions_official</div></div>
+        <i class="fas fa-chevron-right" style="color:var(--gray);margin-left:auto;"></i>
+      </a>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div style="margin-top:32px;">
+      <div class="sec-tag">Reviews</div>
+      <div class="sec-h" style="margin-bottom:16px;">Clients <span>Kya Kehte Hain?</span></div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"TK Web Solutions ne hamare coaching institute ke liye bahut hi professional website banai. Students aur parents dono ko bahut pasand aayi!"</div>
+        <div class="t-author"><div class="t-av">R</div><div><div class="t-name">Ramesh Sir</div><div class="t-role">Achievers Point Coaching, Bharatpur</div></div></div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Fast delivery aur reasonable price. Website bilkul waisi bani jaise maine sochi thi. 30 din support bhi bahut achha mila!"</div>
+        <div class="t-author"><div class="t-av">S</div><div><div class="t-name">Suresh Kumar</div><div class="t-role">Local Business Owner, Bharatpur</div></div></div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <div class="t-text">"Mobile pe perfectly chalti hai website. Naye customers aane lage hain website dekhne ke baad. Best investment!"</div>
+        <div class="t-author"><div class="t-av">P</div><div><div class="t-name">Priya Sharma</div><div class="t-role">Business Owner, Bharatpur</div></div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;padding:20px;background:rgba(255,255,255,.03);border-radius:14px;border:1px solid rgba(255,255,255,.07);">
+      <div style="font-size:.75rem;color:var(--gray);margin-bottom:4px;">📍 Location</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:700;">Bharatpur, Rajasthan, India</div>
+      <div style="font-size:.75rem;color:var(--gray);margin-top:8px;">Mon–Sat: 9 AM – 8 PM</div>
+    </div>
+  </div>
+  <div class="bottom-nav-spacer"></div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919079368240?text=Hi%20TK%20Web%20Solutions!%20App%20se%20contact%20kar%20raha%20hun." target="_blank" class="fl-wa"><i class="fab fa-whatsapp"></i></a>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="nav-item active" id="nav-home" onclick="showPage('home')">
+    <i class="fas fa-home"></i>Home
+  </button>
+  <button class="nav-item" id="nav-services" onclick="showPage('services')">
+    <i class="fas fa-th-large"></i>Services
+  </button>
+  <button class="nav-item" id="nav-portfolio" onclick="showPage('portfolio')">
+    <i class="fas fa-images"></i>Portfolio
+  </button>
+  <button class="nav-item" id="nav-contact" onclick="showPage('contact')">
+    <i class="fas fa-phone"></i>Contact
+  </button>
+</div>
+
+<script>
+function showPage(page) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  // Show selected
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
