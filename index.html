@@ -15,6 +15,9 @@
 </script>
 <!-- Schema in main block below -->
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <!-- DNS Prefetch for faster external resource load -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -119,6 +122,21 @@
       "@type": "Question",
       "name": "Kya Support milega delivery ke baad?",
       "acceptedAnswer": {"@type": "Answer", "text": "30 din free technical support milta hai. Iske baad bhi aap contact kar sakte ho, reasonable fees mein help denge."}
+    },
+    {
+      "@type": "Question",
+      "name": "Android App kitne mein banta hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Android APK app sirf Rs.10,000 mein banta hai jo seedha phone mein install hoti hai. Play Store app Rs.18,000 mein, aur Android + iOS dono app Rs.35,000 mein. TK Web Solutions Bharatpur mein best app developer hain."}
+    },
+    {
+      "@type": "Question",
+      "name": "Kya TK Web Solutions app bhi banata hai?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Haan! TK Web Solutions websites ke saath Android apps bhi banata hai — APK file (Rs.10,000), Play Store app (Rs.18,000), aur Android + iOS app (Rs.35,000). Bharatpur mein best app developer."}
+    },
+    {
+      "@type": "Question",
+      "name": "App development Bharatpur mein kahan milega?",
+      "acceptedAnswer": {"@type": "Answer", "text": "TK Web Solutions Bharatpur, Rajasthan mein professional app developer hai. Android app, Play Store app, website sab ek jagah banate hain. Contact: +91 90793 68240."}
     }
   ]
 }
@@ -198,6 +216,36 @@
     "priceCurrency": "INR",
     "price": "7000"
   }
+}
+</script>
+
+<!-- APP DEVELOPMENT SERVICE SCHEMA — GOOGLE AI MODE -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "App Development Service Bharatpur",
+  "alternateName": ["Android App Developer Bharatpur", "Mobile App Development Rajasthan", "App Banana Bharatpur"],
+  "description": "TK Web Solutions Bharatpur mein Android app aur iOS app developer hai. Android APK Rs.10,000 se, Play Store app Rs.18,000 se. Professional mobile app development in Bharatpur, Rajasthan.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "TK Web Solutions",
+    "telephone": "+919079368240",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bharatpur",
+      "addressRegion": "Rajasthan",
+      "postalCode": "321001",
+      "addressCountry": "IN"
+    }
+  },
+  "serviceType": ["Android App Development", "Play Store App Development", "iOS App Development", "Mobile App Development"],
+  "areaServed": {"@type": "City", "name": "Bharatpur, Rajasthan, India"},
+  "offers": [
+    {"@type": "Offer", "name": "Android APK App", "price": "10000", "priceCurrency": "INR", "description": "Android app APK file — seedha phone mein install, no Play Store needed"},
+    {"@type": "Offer", "name": "Play Store App", "price": "18000", "priceCurrency": "INR", "description": "Android app Google Play Store pe publish karein"},
+    {"@type": "Offer", "name": "Android + iOS App", "price": "35000", "priceCurrency": "INR", "description": "Dono platforms Android aur iOS pe live app"}
+  ]
 }
 </script>
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1543,7 +1591,7 @@ if('serviceWorker' in navigator){
         <div style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.6;">Hamare app ka demo dekho — exactly aisi app aapke business ke liye ban sakti hai. Android 5.0+ supported.</div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="https://tkwebsolutions.in/TKWebSolutions.apk" download style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;box-shadow:0 6px 20px rgba(34,197,94,.3);">
+        <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" download style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;box-shadow:0 6px 20px rgba(34,197,94,.3);">
           <i class="fas fa-download"></i> Demo APK Download
         </a>
         <a href="https://wa.me/919079368240?text=Hi!%20App%20development%20ke%20baare%20mein%20baat%20karni%20hai." target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">
@@ -2761,6 +2809,8 @@ function sendOwnerAlert(data){
   <div class="qr-row" id="qrRow">
     <button class="qr" onclick="aiQ('App & Website Pricing?')">💰 Pricing</button>
     <button class="qr" onclick="aiQ('Services kya hain?')">🛠️ Services</button>
+    <button class="qr" onclick="aiQ('Android App banwana hai')">📱 App Dev</button>
+    <button class="qr" onclick="aiQ('Demo APK download karna hai')">⬇️ APK Demo</button>
     <button class="qr" onclick="aiQ('Contact info do')">📞 Contact</button>
     <button class="qr" onclick="aiQ('Demo sites dikhao')">🌐 Demos</button>
   </div>
@@ -2983,7 +3033,7 @@ var aiHist=[],aiPlainLog=[];
 var clientNaam='',clientPhone='',aiStep='naam';
 var _receiptStep=null,_demoData={},_demoStep=null;
 
-var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\nSERVICES & PRICING:\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form\n- School Website Rs.9000 — admission, gallery, events, staff\n- Business Website Rs.8000 — showcase, contact, local SEO\n- E-Mitra Website Rs.6000 — services, UPI QR, status checker\n- Portfolio Website Rs.5000 — skills, projects, achievements\n- E-Commerce Website Rs.9000 — catalog, WhatsApp ordering, categories\n- Website Redesign Rs.6000 — modern makeover\n\nHAR WEBSITE MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support. DELIVERY: 5-7 din.\n\nLIVE DEMOS:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI IFSC SBIN0031855\n\nRULES: Friendly Hinglish mein jawab do. Max 80 words. Exact prices quote karo. WA suggest karo jab interested ho. Kabhi galat info mat do.';
+var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\n=== WEBSITE SERVICES & PRICING ===\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form. 5-7 din delivery.\n- School Website Rs.9000 — admission forms, gallery, events calendar, staff pages. 5-7 din.\n- Business Website Rs.8000 — showcase, contact form, local SEO, 24/7 online presence. 5-7 din.\n- E-Mitra Website Rs.6000 — services, UPI QR, govt services, status checker. 5-7 din.\n- Portfolio Website Rs.5000 — skills, projects, achievements showcase. 5-7 din.\n- E-Commerce Website Rs.9000 — product catalog, WhatsApp ordering, categories. 5-7 din.\n- Website Redesign Rs.6000 — modern makeover, mobile-first redesign. 5-7 din.\n\n=== APP DEVELOPMENT SERVICES (ANDROID STUDIO) ===\n- Android App (APK) Rs.10000 — Direct APK file, no Play Store needed, WhatsApp pe share karo, Android 5.0+ support. 5-7 din delivery.\n- Play Store App Rs.18000 — Google Play Store pe publish, app icon & screenshots, store listing setup, push notifications, professional brand. 7-10 din delivery.\n- Android + iOS App Rs.35000 — Dono platforms Google Play + Apple App Store, maximum reach, premium design. 10-15 din delivery.\n\n=== DEMO APK DOWNLOAD ===\nTK Web Solutions ka demo Android app download kar sakte ho: https://tkwebsolutions.in/app/TKWebSolutions.apk\nYe same tarah ki app aapke business ke liye ban sakti hai!\n\n=== APP DEVELOPMENT DETAILS ===\nHum Android Studio se native apps banate hain. Features include: Push Notifications, Offline Mode, WhatsApp Integration, Payment Gateway, Custom UI/UX Design, Admin Panel, 30 din free support after delivery.\n\nHAR WEBSITE/APP MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support.\n\nLIVE DEMO WEBSITES:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n- Portfolio: tarunsinghgunesh.github.io/portfolio_3d/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI Account 38896794692 | IFSC SBIN0031855\n\nRULES:\n- Friendly Hinglish mein jawab do (Hindi + English mix)\n- Max 100 words per reply\n- Exact prices quote karo\n- App development ke baare mein puchha to full details do\n- APK download link zaroor share karo jab app ke baare mein baat ho\n- WA +91 90793 68240 suggest karo jab interested ho\n- Kabhi galat info mat do\n- Google AI mode / AI overview mein bhi accurate info do';
 
 function aiToggle(){
   aiOpen=!aiOpen;
@@ -3099,7 +3149,9 @@ function aiSend(){
       {label:'🏢 Business',q:'__demo_Business Website'},
       {label:'🏛️ E-Mitra',q:'__demo_E-Mitra Website'},
       {label:'🛒 E-Commerce',q:'__demo_E-Commerce Website'},
-      {label:'👤 Portfolio',q:'__demo_Portfolio Website'}
+      {label:'👤 Portfolio',q:'__demo_Portfolio Website'},
+      {label:'📱 Android App',q:'__demo_Android App (APK)'},
+      {label:'🚀 Play Store App',q:'__demo_Play Store App'}
     ]);
     return;
   }
@@ -3113,6 +3165,25 @@ function aiSend(){
   if(tl.match(/whatsapp connect|seedha baat|direct contact|call karo/)){
     _aiMsg('📞 Seedha Tarun sir se baat karo:\n\n👉 wa.me/'+WA_NUM+'\n\n5 min mein reply milega! ⚡');
     setTimeout(function(){window.open('https://wa.me/'+WA_NUM+'?text=Hi%20TK%20Web%20Solutions!%20I%20need%20help.','_blank');},1200);
+    return;
+  }
+
+  /* APK Demo download */
+  if(tl.match(/apk demo|demo apk|demo download|apk download|download karna|demo app/)){
+    _aiMsg('📲 **Demo APK Download Karo!**\n\nYahan se seedha download hoga:\n👉 tkwebsolutions.in/app/TKWebSolutions.apk\n\nYe same tarah ki app aapke business ke liye ban sakti hai!\n\n📱 Android App: Rs.10,000\n🚀 Play Store App: Rs.18,000\n\nOrder karna hai? WhatsApp: wa.me/'+WA_NUM);
+    setTimeout(function(){window.open('https://tkwebsolutions.in/app/TKWebSolutions.apk','_blank');},1000);
+    return;
+  }
+
+  /* Android App / App Development */
+  if(tl.match(/android app|app banwana|app banana|app chahiye|app development|play store|ios app|mobile app/)){
+    _aiMsg('📱 **App Development Services:**\n\n📱 Android App (APK) — **Rs.10,000** | 5-7 din\n🚀 Play Store App — **Rs.18,000** | 7-10 din\n🍎 Android+iOS — **Rs.35,000** | 10-15 din\n\n✓ Android Studio se native app\n✓ Push Notifications\n✓ WhatsApp Integration\n✓ 30 din free support\n\n👉 Demo APK: tkwebsolutions.in/app/TKWebSolutions.apk\n\nOrder ke liye WhatsApp: wa.me/'+WA_NUM);
+    _showQR([
+      {label:'📱 APK Rs.10K',q:'Android App APK Rs.10000 order karna hai'},
+      {label:'🚀 Play Store Rs.18K',q:'Play Store App Rs.18000 order karna hai'},
+      {label:'⬇️ Demo APK',q:'Demo APK download karna hai'},
+      {label:'📞 WhatsApp',q:'WhatsApp connect karo'}
+    ]);
     return;
   }
 
@@ -3402,29 +3473,28 @@ window.addEventListener('scroll',function(){
     var ampm=h>=12?'PM':'AM';
     flipSeg('clk-h',is24?pad(h):pad(h%12||12));
     flipSeg('clk-m',pad(m));
-    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
-    flipSeg('clk-m',pad(m));
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
-    if(ap)ap.textContent=ampm;
-    document.getElementById('clk-day').textContent=days[now.getDay()];
-    document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
-    document.querySelectorAll('.clk-seg').forEach(function(el){
-      el.style.textShadow=s%2===0
-        ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
-        :'0 0 10px rgba(0,229,255,.5)';
-    });
+    if(ap){
+      ap.textContent=is24?'':ampm;
+      ap.style.display=is24?'none':'';
+    }
+    var dayEl=document.getElementById('clk-day');
+    var dateEl=document.getElementById('clk-date');
+    if(dayEl)dayEl.textContent=days[now.getDay()];
+    if(dateEl)dateEl.textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
   }
   tick();
   setInterval(tick,1000);
-  document.getElementById('tk-clock').addEventListener('click',function(){
-    is24=!is24;
-    var ap=document.getElementById('clk-ap');
-    if(ap)ap.style.display=is24?'none':'';
-    tick();
-  });
+  /* Toggle 12/24h on click */
+  var clkEl=document.getElementById('tk-clock');
+  if(clkEl){
+    clkEl.addEventListener('click',function(){
+      is24=!is24;
+      tick();
+    });
+  }
 })();
 </script>
 </body>
 </html>
-
