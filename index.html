@@ -23,6 +23,10 @@
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Performance: Resource hints -->
+<link rel="prefetch" href="https://tkwebsolutions.in/app/TKWebSolutions.apk">
+<link rel="prefetch" href="https://tkwebsolutions.in/app/EduPrime.apk">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website & App Developer Bharatpur | TK Web Solutions | ₹5,000 Se</title>
 <!-- ═══ SEO — GOOGLE TOP RANKING ═══ -->
@@ -433,6 +437,17 @@
     {"@type": "Offer", "name": "Play Store App", "price": "18000", "priceCurrency": "INR", "availability": "https://schema.org/InStock"},
     {"@type": "Offer", "name": "Android + iOS App", "price": "35000", "priceCurrency": "INR", "availability": "https://schema.org/InStock"}
   ]
+}
+
+// Track APK downloads
+function trackDownload(appName) {
+  try {
+    gtag('event', 'apk_download', {
+      'event_category': 'App',
+      'event_label': appName,
+      'value': 1
+    });
+  } catch(e) {}
 }
 </script>
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -860,7 +875,7 @@ img{max-width:100%;}
 .port-pricing-head{text-align:center;margin-bottom:24px;}
 .port-pricing-title{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:#fff;margin-bottom:5px;}
 .port-pricing-sub{color:rgba(255,255,255,.44);font-size:.86rem;}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-bottom:42px;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:10px;}.pricing-bottom-row{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:42px;max-width:68%;margin-left:auto;margin-right:auto;}
 .pc-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;position:relative;transition:all .3s;}
 .pc-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(26,86,255,.15);}
 .pc-card.featured{border-color:var(--gold);background:rgba(245,158,11,.06);}
@@ -1092,7 +1107,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   .hero h1{font-size:1.95rem;}
   .hero-btns .btn-ghost{display:none;}
   .port-stats{grid-template-columns:repeat(2,1fr);}
-  .pricing-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}.pricing-bottom-row{grid-template-columns:1fr;max-width:100%;}
   .port-bottom{flex-direction:column;align-items:center;}
   .hero-stats{width:100%;}
   .speech-bub{font-size:.9rem;padding:13px 20px;}
@@ -1771,18 +1786,89 @@ if('serviceWorker' in navigator){
       </div>
     </div>
 
-    <!-- Demo APK Download Banner -->
-    <div style="background:linear-gradient(135deg,rgba(34,197,94,.12),rgba(26,86,255,.08));border:1px solid rgba(34,197,94,.25);border-radius:20px;padding:30px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:6px;">📲 TK Web Solutions Ka Demo App Download Karo!</div>
-        <div style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.6;">Hamare app ka demo dekho — exactly aisi app aapke business ke liye ban sakti hai. Android 5.0+ supported.</div>
+    <!-- ===== PREMIUM APP DOWNLOAD SECTION ===== -->
+    <div style="margin-top:20px;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,86,255,.12);border:1px solid rgba(26,86,255,.25);color:#60a5fa;padding:6px 16px;border-radius:30px;font-size:.78rem;font-weight:700;letter-spacing:.5px;margin-bottom:12px;">
+          <span style="width:6px;height:6px;background:#60a5fa;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>
+          OFFICIAL APPS — FREE DOWNLOAD
+        </div>
+        <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;">Hamare <span style="background:linear-gradient(90deg,#1a56ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Official Apps</span> Download Karo</div>
+        <div style="font-size:.88rem;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto;line-height:1.65;">Android Studio se bane professional apps — seedha APK download karo, koi Play Store ki zaroorat nahi!</div>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" download style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;box-shadow:0 6px 20px rgba(34,197,94,.3);">
-          <i class="fas fa-download"></i> Demo APK Download
-        </a>
-        <a href="https://wa.me/919079368240?text=Hi!%20App%20development%20ke%20baare%20mein%20baat%20karni%20hai." target="_blank" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;padding:13px 24px;border-radius:12px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;">
-          <i class="fab fa-whatsapp"></i> App Ke Baare Mein Poochho
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:700px;margin:0 auto;">
+
+        <!-- App 1: TK Web Solutions -->
+        <div style="background:linear-gradient(135deg,rgba(26,86,255,.12),rgba(0,20,60,.8));border:1px solid rgba(26,86,255,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1a56ff,#00e5ff);"></div>
+          <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(26,86,255,.2),transparent 70%);pointer-events:none;"></div>
+          <!-- App Icon -->
+          <div style="width:68px;height:68px;border-radius:16px;background:linear-gradient(135deg,#1a56ff,#00e5ff);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 8px 24px rgba(26,86,255,.45);">📱</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">TK Web Solutions</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:6px;font-weight:600;letter-spacing:.5px;">OFFICIAL APP</div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;margin-bottom:14px;text-align:left;">
+            <div style="font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.7;">
+              ✓ Services &amp; Pricing<br>
+              ✓ Direct Payment System<br>
+              ✓ Receipt Generator<br>
+              ✓ Portfolio &amp; Work
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:12px;">
+            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Android 5.0+</span>
+            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Free</span>
+            <span style="font-size:.65rem;color:#4ade80;background:rgba(74,222,128,.1);padding:3px 8px;border-radius:20px;">v4.0</span>
+          </div>
+          <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" download
+             style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a56ff,#0d3acc);color:#fff;padding:12px;border-radius:12px;font-weight:700;font-size:.84rem;text-decoration:none;box-shadow:0 6px 20px rgba(26,86,255,.4);margin-bottom:8px;"
+             onclick="trackDownload('TKWebSolutions')">
+            <i class="fas fa-download"></i> Download APK
+          </a>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.2);">by TK Web Solutions, Bharatpur</div>
+        </div>
+
+        <!-- App 2: EduPrime -->
+        <div style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(30,10,60,.8));border:1px solid rgba(124,58,237,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#f59e0b);"></div>
+          <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.2),transparent 70%);pointer-events:none;"></div>
+          <!-- App Icon -->
+          <div style="width:68px;height:68px;border-radius:16px;background:linear-gradient(135deg,#7c3aed,#f59e0b);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 8px 24px rgba(124,58,237,.45);">🎓</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">EduPrime</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-bottom:6px;font-weight:600;letter-spacing:.5px;">SCHOOL &amp; COACHING APP</div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;margin-bottom:14px;text-align:left;">
+            <div style="font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.7;">
+              ✓ Student / Teacher Login<br>
+              ✓ Principal Dashboard<br>
+              ✓ Attendance &amp; Results<br>
+              ✓ Multi-Role System
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:12px;">
+            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Android 5.0+</span>
+            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Demo</span>
+            <span style="font-size:.65rem;color:#f59e0b;background:rgba(245,158,11,.1);padding:3px 8px;border-radius:20px;">v2.0</span>
+          </div>
+          <a href="https://tkwebsolutions.in/app/EduPrime.apk" download
+             style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:12px;border-radius:12px;font-weight:700;font-size:.84rem;text-decoration:none;box-shadow:0 6px 20px rgba(124,58,237,.4);margin-bottom:8px;"
+             onclick="trackDownload('EduPrime')">
+            <i class="fas fa-download"></i> Download APK
+          </a>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.2);">School &amp; Coaching ke liye</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Note -->
+      <div style="text-align:center;margin-top:18px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px;">
+          <i class="fab fa-android" style="color:#78c257;"></i> Android Studio se bana
+        </div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px;">
+          <i class="fas fa-shield-halved" style="color:#60a5fa;"></i> Safe &amp; Secure APK
+        </div>
+        <a href="https://wa.me/919079368240?text=Hi!%20Mujhe%20bhi%20aisi%20app%20chahiye%20apne%20business%20ke%20liye!" target="_blank" style="font-size:.75rem;color:#4ade80;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700;">
+          <i class="fab fa-whatsapp"></i> Apne Business ke liye bhi banwao →
         </a>
       </div>
     </div>
@@ -2118,9 +2204,11 @@ if('serviceWorker' in navigator){
     <!-- Pricing -->
     <div class="port-pricing-head"><div class="port-pricing-title">Hamare Packages</div><div class="port-pricing-sub">Transparent pricing — koi hidden charges nahi</div></div>
     <div class="pricing-grid">
-      <div class="pc-card"><div class="pc-icon">🌐</div><div class="pc-name">Starter Website</div><div class="pc-tagline">Small business & portfolios</div><div class="pc-price">₹7,000</div><div class="pc-price-note">One-time payment</div><ul class="pc-list"><li>Professional Design</li><li>Mobile Responsive</li><li>Contact Form</li><li>WhatsApp Integration</li><li>Google Maps</li><li>30 Days Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Starter%20package." target="_blank" class="pc-btn pc-btn-b">Get Started</a></div>
+<div class="pc-card"><div class="pc-icon">🌐</div><div class="pc-name">Starter Website</div><div class="pc-tagline">Small business & portfolios</div><div class="pc-price">₹7,000</div><div class="pc-price-note">One-time payment</div><ul class="pc-list"><li>Professional Design</li><li>Mobile Responsive</li><li>Contact Form</li><li>WhatsApp Integration</li><li>Google Maps</li><li>30 Days Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Starter%20package." target="_blank" class="pc-btn pc-btn-b">Get Started</a></div>
       <div class="pc-card featured"><div class="pc-badge">⭐ Most Popular</div><div class="pc-icon">🏢</div><div class="pc-name">Business Website</div><div class="pc-tagline">Coaching, schools & businesses</div><div class="pc-price gold">₹10,000–₹15,000</div><div class="pc-price-note">Based on requirements</div><ul class="pc-list"><li>Everything in Starter</li><li>Multi-page Website</li><li>Advanced Design</li><li>Image Gallery</li><li>Performance Optimization</li><li>SEO Friendly</li><li>Technical Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20want%20Business%20package." target="_blank" class="pc-btn pc-btn-g">Get This Package</a></div>
       <div class="pc-card"><div class="pc-icon">⚙️</div><div class="pc-name">Custom & App</div><div class="pc-tagline">Advanced features & app dev</div><div class="pc-price">Custom</div><div class="pc-price-note">Pricing based on features</div><ul class="pc-list"><li>Everything in Business</li><li>App Development</li><li>Custom Functionality</li><li>Website Maintenance</li><li>Long-term Support</li><li>Priority Delivery</li></ul><a href="https://wa.me/919079368240?text=Hi!%20Custom%20project%20discuss%20karna%20hai." target="_blank" class="pc-btn pc-btn-o">Discuss Project</a></div>
+    </div>
+    <div class="pricing-bottom-row">
       <div class="pc-card" style="border:2px solid #22c55e;"><div class="pc-icon">📱</div><div class="pc-name">Android APK</div><div class="pc-tagline">Direct download app</div><div class="pc-price" style="color:#16a34a;">₹10,000</div><div class="pc-price-note">One-time payment</div><ul class="pc-list"><li>Android App (APK File)</li><li>Website se Direct Download</li><li>WhatsApp pe Share</li><li>Mobile Responsive</li><li>Fast Loading</li><li>30 Days Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20an%20Android%20App%20APK." target="_blank" class="pc-btn" style="background:#16a34a;color:#fff;">Order Karo</a></div>
       <div class="pc-card" style="border:2px solid #22c55e;"><div class="pc-icon">🚀</div><div class="pc-name">Play Store App</div><div class="pc-tagline">Google Play pe published</div><div class="pc-price" style="color:#16a34a;">₹18,000</div><div class="pc-price-note">One-time payment</div><ul class="pc-list"><li>Android App (Play Store)</li><li>Google Play Publishing</li><li>App Icon & Screenshots</li><li>Store Listing Setup</li><li>Push Notifications</li><li>30 Days Support</li></ul><a href="https://wa.me/919079368240?text=Hi!%20I%20need%20a%20Play%20Store%20App." target="_blank" class="pc-btn" style="background:#16a34a;color:#fff;">Order Karo</a></div>
     </div>
@@ -2950,7 +3038,7 @@ function sendOwnerAlert(data){
   <div>
     <h2 style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#060d1f;margin-bottom:8px;" itemprop="name">TK Web Solutions — Bharatpur Ka Best Website & App Developer</h2>
     <p style="color:#6b7280;font-size:.95rem;line-height:1.8;margin-bottom:28px;" itemprop="description">
-      <strong>TK Web Solutions</strong> Bharatpur, Rajasthan ka professional website aur Android app development company hai, jiske founder hain <strong itemprop="founder">Tarun Singh</strong>. Hum coaching institutes, schools, businesses aur NGOs ke liye affordable professional websites aur mobile apps banate hain. Contact: <span itemprop="telephone">+91 90793 68240</span>. Email: <span itemprop="email">tkwebsolution1301@gmail.com</span>.
+      <strong>TK Web Solutions</strong> Bharatpur, Rajasthan ka professional website aur Android app development company hai, jiske founder hain <strong itemprop="founder">Tarun Singh</strong>. Hum coaching institutes, schools, businesses aur NGOs ke liye affordable professional websites aur mobile apps banate hain. Contact: <span itemprop="telephone">+91 90793 68240</span>. Email: <span itemprop="email"><a href="mailto:tkwebsolution1301@gmail.com">tkwebsolution1301@gmail.com</a></span>.
     </p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:32px;">
@@ -2978,7 +3066,7 @@ function sendOwnerAlert(data){
           <li style="font-size:.85rem;color:#374151;"><strong>Android + iOS App</strong> — ₹35,000 | 10-15 din | Play Store + App Store dono</li>
         </ul>
         <p style="font-size:.8rem;color:#6b7280;margin-top:10px;">Sabhi apps Android Studio se native development. Features: Push Notifications, WhatsApp Integration, Offline Mode, Custom UI/UX, Admin Panel, 30 din free support.</p>
-        <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" style="display:inline-block;margin-top:10px;background:#16a34a;color:#fff;padding:8px 18px;border-radius:8px;font-size:.82rem;font-weight:700;text-decoration:none;" download>⬇️ Demo APK Download Karo</a>
+        <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" style="display:inline-block;margin-top:10px;background:#16a34a;color:#fff;padding:8px 18px;border-radius:8px;font-size:.82rem;font-weight:700;text-decoration:none;" download>⬇️ Apps Download Karo</a>
       </div>
 
       <!-- About Tarun Singh -->
@@ -3003,7 +3091,7 @@ function sendOwnerAlert(data){
         <div><strong style="font-size:.88rem;color:#1a56ff;">TK Web Solutions kya hai?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">TK Web Solutions Bharatpur, Rajasthan ka professional website aur Android app development company hai. Founder Tarun Singh hain. Websites ₹5,000 se aur apps ₹10,000 se banate hain.</p></div>
         <div><strong style="font-size:.88rem;color:#1a56ff;">Tarun Singh kaun hain?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">Tarun Singh TK Web Solutions ke founder aur website/app developer hain. Ye Bharatpur, Rajasthan mein based hain aur local businesses ke liye affordable digital solutions banate hain.</p></div>
         <div><strong style="font-size:.88rem;color:#1a56ff;">Android app kitne mein banta hai Bharatpur mein?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">TK Web Solutions mein Android APK app sirf ₹10,000 mein banta hai (5-7 din). Play Store app ₹18,000 mein aur Android+iOS dono ₹35,000 mein.</p></div>
-        <div><strong style="font-size:.88rem;color:#1a56ff;">TK Web Solutions ka demo app kahan se download karein?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">Demo Android APK seedha yahan se download karo: <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" style="color:#1a56ff;font-weight:700;">tkwebsolutions.in/app/TKWebSolutions.apk</a>. Ye same tarah ki app aapke business ke liye ban sakti hai.</p></div>
+        <div><strong style="font-size:.88rem;color:#1a56ff;">TK Web Solutions ka demo app kahan se download karein?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">Do official apps free mein download karo: <a href="https://tkwebsolutions.in/app/TKWebSolutions.apk" style="color:#1a56ff;font-weight:700;">TK Web Solutions App</a> aur <a href="https://tkwebsolutions.in/app/EduPrime.apk" style="color:#7c3aed;font-weight:700;">EduPrime App</a> (school/coaching ke liye). Aisi app aapke business ke liye bhi ban sakti hai!</p></div>
         <div><strong style="font-size:.88rem;color:#1a56ff;">Website banwane mein kitna time lagta hai?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">Sirf 5-7 din mein website ready ho jaati hai. Android app 5-10 din mein. Play Store pe live hone mein 7-10 din lagte hain.</p></div>
         <div><strong style="font-size:.88rem;color:#1a56ff;">TK Web Solutions se kaise contact karein?</strong><p style="font-size:.83rem;color:#6b7280;margin-top:4px;line-height:1.6;">Phone/WhatsApp: <a href="tel:+919079368240" style="color:#1a56ff;font-weight:700;">+91 90793 68240</a> | Email: <a href="mailto:tkwebsolution1301@gmail.com" style="color:#1a56ff;">tkwebsolution1301@gmail.com</a> | Telegram: @TKwebsolutions_bot</p></div>
       </div>
@@ -3287,7 +3375,7 @@ var aiHist=[],aiPlainLog=[];
 var clientNaam='',clientPhone='',aiStep='naam';
 var _receiptStep=null,_demoData={},_demoStep=null;
 
-var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\n=== WEBSITE SERVICES & PRICING ===\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form. 5-7 din delivery.\n- School Website Rs.9000 — admission forms, gallery, events calendar, staff pages. 5-7 din.\n- Business Website Rs.8000 — showcase, contact form, local SEO, 24/7 online presence. 5-7 din.\n- E-Mitra Website Rs.6000 — services, UPI QR, govt services, status checker. 5-7 din.\n- Portfolio Website Rs.5000 — skills, projects, achievements showcase. 5-7 din.\n- E-Commerce Website Rs.9000 — product catalog, WhatsApp ordering, categories. 5-7 din.\n- Website Redesign Rs.6000 — modern makeover, mobile-first redesign. 5-7 din.\n\n=== APP DEVELOPMENT SERVICES (ANDROID STUDIO) ===\n- Android App (APK) Rs.10000 — Direct APK file, no Play Store needed, WhatsApp pe share karo, Android 5.0+ support. 5-7 din delivery.\n- Play Store App Rs.18000 — Google Play Store pe publish, app icon & screenshots, store listing setup, push notifications, professional brand. 7-10 din delivery.\n- Android + iOS App Rs.35000 — Dono platforms Google Play + Apple App Store, maximum reach, premium design. 10-15 din delivery.\n\n=== DEMO APK DOWNLOAD ===\nTK Web Solutions ka demo Android app download kar sakte ho: https://tkwebsolutions.in/app/TKWebSolutions.apk\nYe same tarah ki app aapke business ke liye ban sakti hai!\n\n=== APP DEVELOPMENT DETAILS ===\nHum Android Studio se native apps banate hain. Features include: Push Notifications, Offline Mode, WhatsApp Integration, Payment Gateway, Custom UI/UX Design, Admin Panel, 30 din free support after delivery.\n\nHAR WEBSITE/APP MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support.\n\nLIVE DEMO WEBSITES:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n- Portfolio: tarunsinghgunesh.github.io/portfolio_3d/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI Account 38896794692 | IFSC SBIN0031855\n\nRULES:\n- Friendly Hinglish mein jawab do (Hindi + English mix)\n- Max 100 words per reply\n- Exact prices quote karo\n- App development ke baare mein puchha to full details do\n- APK download link zaroor share karo jab app ke baare mein baat ho\n- WA +91 90793 68240 suggest karo jab interested ho\n- Kabhi galat info mat do\n- Google AI mode / AI overview mein bhi accurate info do';
+var AI_SYSTEM='Tu hai TK Assistant — TK Web Solutions ka smart AI helper. Tera kaam hai visitors ko help karna.\n\nOWNER: Tarun Singh | TK Web Solutions, Bharatpur, Rajasthan\nWA: +91 90793 68240 | Email: tkwebsolution1301@gmail.com\nInstagram: @tkwebsolutions_official | Telegram: @TKwebsolutions_bot\n\n=== WEBSITE SERVICES & PRICING ===\n- Coaching Website Rs.7000 — batches, results, fee, faculty, inquiry form. 5-7 din delivery.\n- School Website Rs.9000 — admission forms, gallery, events calendar, staff pages. 5-7 din.\n- Business Website Rs.8000 — showcase, contact form, local SEO, 24/7 online presence. 5-7 din.\n- E-Mitra Website Rs.6000 — services, UPI QR, govt services, status checker. 5-7 din.\n- Portfolio Website Rs.5000 — skills, projects, achievements showcase. 5-7 din.\n- E-Commerce Website Rs.9000 — product catalog, WhatsApp ordering, categories. 5-7 din.\n- Website Redesign Rs.6000 — modern makeover, mobile-first redesign. 5-7 din.\n\n=== APP DEVELOPMENT SERVICES (ANDROID STUDIO) ===\n- Android App (APK) Rs.10000 — Direct APK file, no Play Store needed, WhatsApp pe share karo, Android 5.0+ support. 5-7 din delivery.\n- Play Store App Rs.18000 — Google Play Store pe publish, app icon & screenshots, store listing setup, push notifications, professional brand. 7-10 din delivery.\n- Android + iOS App Rs.35000 — Dono platforms Google Play + Apple App Store, maximum reach, premium design. 10-15 din delivery.\n\n=== DEMO APPS DOWNLOAD ===\nDo official apps free mein download kar sakte ho:\n1. TK Web Solutions App: https://tkwebsolutions.in/app/TKWebSolutions.apk (Services, Payment, Portfolio)\n2. EduPrime App: https://tkwebsolutions.in/app/EduPrime.apk (School/Coaching - Student, Teacher, Principal login)\nYe same tarah ki app aapke school/coaching/business ke liye ban sakti hai!\n\n=== APP DEVELOPMENT DETAILS ===\nHum Android Studio se native apps banate hain. Features include: Push Notifications, Offline Mode, WhatsApp Integration, Payment Gateway, Custom UI/UX Design, Admin Panel, 30 din free support after delivery.\n\nHAR WEBSITE/APP MEIN: Mobile Responsive, WhatsApp Button, Contact Form, Google Maps, SEO, 30 Days FREE Support.\n\nLIVE DEMO WEBSITES:\n- Coaching: tarunsinghgunesh.github.io/ACHIEVERSPOINT/\n- NGO: tarunsinghgunesh.github.io/ekpahalindia/\n- Business: tarunsinghgunesh.github.io/support_small_business/\n- E-Mitra: tarunsinghgunesh.github.io/dhruvemitrasevakendra/\n- E-Commerce: tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/\n- Portfolio: tarunsinghgunesh.github.io/portfolio_3d/\n\nPAYMENT: UPI tarun.8240@ptyes | SBI Account 38896794692 | IFSC SBIN0031855\n\nRULES:\n- Friendly Hinglish mein jawab do (Hindi + English mix)\n- Max 100 words per reply\n- Exact prices quote karo\n- App development ke baare mein puchha to full details do\n- APK download link zaroor share karo jab app ke baare mein baat ho\n- WA +91 90793 68240 suggest karo jab interested ho\n- Kabhi galat info mat do\n- Google AI mode / AI overview mein bhi accurate info do';
 
 function aiToggle(){
   aiOpen=!aiOpen;
@@ -3423,8 +3511,8 @@ function aiSend(){
   }
 
   /* APK Demo download */
-  if(tl.match(/apk demo|demo apk|demo download|apk download|download karna|demo app/)){
-    _aiMsg('📲 **Demo APK Download Karo!**\n\nYahan se seedha download hoga:\n👉 tkwebsolutions.in/app/TKWebSolutions.apk\n\nYe same tarah ki app aapke business ke liye ban sakti hai!\n\n📱 Android App: Rs.10,000\n🚀 Play Store App: Rs.18,000\n\nOrder karna hai? WhatsApp: wa.me/'+WA_NUM);
+  if(tl.match(/apk demo|demo apk|demo download|apk download|download karna|demo app|eduprime/)){
+    _aiMsg('📲 **2 Official Apps Free Download!**\n\n🔵 TK Web Solutions App:\ntkwebsolutions.in/app/TKWebSolutions.apk\n\n🟣 EduPrime (School/Coaching App):\ntkwebsolutions.in/app/EduPrime.apk\n\nAisi app aapke liye bhi ban sakti hai!\n📱 Rs.10,000 se shuru\n\nOrder karo: wa.me/'+WA_NUM);
     setTimeout(function(){window.open('https://tkwebsolutions.in/app/TKWebSolutions.apk','_blank');},1000);
     return;
   }
@@ -3725,29 +3813,21 @@ window.addEventListener('scroll',function(){
     var now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
     var h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
     var ampm=h>=12?'PM':'AM';
-    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
+    if(!is24){h=h%12||12;}
+    flipSeg('clk-h',pad(h));
     flipSeg('clk-m',pad(m));
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
-    if(ap){
-      ap.textContent=is24?'':ampm;
-      ap.style.display=is24?'none':'';
-    }
-    var dayEl=document.getElementById('clk-day');
-    var dateEl=document.getElementById('clk-date');
-    if(dayEl)dayEl.textContent=days[now.getDay()];
-    if(dateEl)dateEl.textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
+    if(ap)ap.textContent=is24?'':ampm;
+    var dd=document.getElementById('clk-day');
+    var dt=document.getElementById('clk-date');
+    if(dd)dd.textContent=days[now.getDay()];
+    if(dt)dt.textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
   }
   tick();
   setInterval(tick,1000);
-  /* Toggle 12/24h on click */
   var clkEl=document.getElementById('tk-clock');
-  if(clkEl){
-    clkEl.addEventListener('click',function(){
-      is24=!is24;
-      tick();
-    });
-  }
+  if(clkEl)clkEl.addEventListener('click',function(){is24=!is24;tick();});
 })();
 </script>
 </body>
