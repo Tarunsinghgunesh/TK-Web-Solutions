@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -15,9 +16,6 @@
 </script>
 <!-- Schema in main block below -->
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <!-- DNS Prefetch for faster external resource load -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -2653,7 +2651,6 @@ if('serviceWorker' in navigator){
 @media(max-width:700px){#payment div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}}
 </style>
 <script>
-     var _lastReceiptData=null;
 var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbyH2vIubLbmaksKz0avNLuWw9RX-SwZmE-LHNk2cRMVZ5YZ7wpmW7fz7yNrEIQdXEU/exec';
 function generateReceiptNo(){var now=new Date();var ist=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));return 'TK-WEB-'+String(ist.getDate()).padStart(2,'0')+String(ist.getMonth()+1).padStart(2,'0')+String(ist.getFullYear()).slice(-2)+'-'+Math.floor(1000+Math.random()*9000);}
 function getISTTime(){return new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});}
@@ -3113,11 +3110,12 @@ function sendOwnerAlert(data){
         <a href="https://wa.me/919079368240" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
         <a href="https://t.me/TKwebsolutions_bot" target="_blank" class="soc"><i class="fab fa-telegram"></i></a>
         <a href="mailto:tkwebsolution1301@gmail.com" class="soc"><i class="fas fa-envelope"></i></a>
+        <a href="https://sites.google.com/view/tarunsinghtkwebsolutions" target="_blank" class="soc" title="Tarun Singh — Google Profile"><i class="fas fa-user-circle"></i></a>
       </div>
     </div>
     <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Coaching Website</a></li><li><a href="#services">School Website</a></li><li><a href="#services">Business Website</a></li><li><a href="#services">E-Mitra Website</a></li><li><a href="#services">E-Commerce Website</a></li><li><a href="#services">Android App (APK)</a></li><li><a href="#services">Play Store App</a></li></ul></div>
     <div class="ft-col"><h4>Live Demos</h4><ul><li><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank">Achievers Point Coaching</a></li><li><a href="https://tarunsinghgunesh.github.io/ekpahalindia/" target="_blank">Ek Pahal India NGO</a></li><li><a href="https://tarunsinghgunesh.github.io/support_small_business/" target="_blank">Support Small Business</a></li><li><a href="https://tarunsinghgunesh.github.io/dhruvemitrasevakendra/" target="_blank">Dhruv E-Mitra Kendra</a></li><li><a href="https://tarunsinghgunesh.github.io/chirag-handlooms-e-commerce-/" target="_blank">🛒 Chirag Handlooms</a></li><li><a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank">✨ 3D Portfolio</a></li></ul></div>
-    <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#why">Kyun Chunein Hume</a></li><li><a href="#process">Kaise Kaam Karte Hain</a></li><li><a href="#testimonials">Client Reviews</a></li><li><a href="#contact">Contact Karo</a></li><li><a href="https://t.me/TKwebsolutions_bot" target="_blank">Telegram Bot</a></li><li><a href="tel:+919079368240">Call: 9079368240</a></li></ul></div>
+    <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#why">Kyun Chunein Hume</a></li><li><a href="#process">Kaise Kaam Karte Hain</a></li><li><a href="#testimonials">Client Reviews</a></li><li><a href="#contact">Contact Karo</a></li><li><a href="https://t.me/TKwebsolutions_bot" target="_blank">Telegram Bot</a></li><li><a href="tel:+919079368240">Call: 9079368240</a></li><li><a href="https://sites.google.com/view/tarunsinghtkwebsolutions" target="_blank">👤 Founder Profile</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 TK Web Solutions. All rights reserved.</p>
@@ -3795,8 +3793,7 @@ window.addEventListener('scroll',function(){
 </div>
 
 <script>
-
-     (function(){
+(function(){
   var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var is24=false;
@@ -3813,22 +3810,31 @@ window.addEventListener('scroll',function(){
     var now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));
     var h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
     var ampm=h>=12?'PM':'AM';
-    if(!is24){h=h%12||12;}
-    flipSeg('clk-h',pad(h));
+    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
+    flipSeg('clk-m',pad(m));
+    flipSeg('clk-h',is24?pad(h):pad(h%12||12));
     flipSeg('clk-m',pad(m));
     flipSeg('clk-s',pad(s));
     var ap=document.getElementById('clk-ap');
-    if(ap)ap.textContent=is24?'':ampm;
-    var dd=document.getElementById('clk-day');
-    var dt=document.getElementById('clk-date');
-    if(dd)dd.textContent=days[now.getDay()];
-    if(dt)dt.textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
+    if(ap)ap.textContent=ampm;
+    document.getElementById('clk-day').textContent=days[now.getDay()];
+    document.getElementById('clk-date').textContent=pad(now.getDate())+' '+months[now.getMonth()]+' '+now.getFullYear();
+    document.querySelectorAll('.clk-seg').forEach(function(el){
+      el.style.textShadow=s%2===0
+        ?'0 0 22px rgba(0,229,255,1),0 0 45px rgba(0,229,255,.35)'
+        :'0 0 10px rgba(0,229,255,.5)';
+    });
   }
   tick();
   setInterval(tick,1000);
-  var clkEl=document.getElementById('tk-clock');
-  if(clkEl)clkEl.addEventListener('click',function(){is24=!is24;tick();});
+  document.getElementById('tk-clock').addEventListener('click',function(){
+    is24=!is24;
+    var ap=document.getElementById('clk-ap');
+    if(ap)ap.style.display=is24?'none':'';
+    tick();
+  });
 })();
 </script>
 </body>
 </html>
+    
