@@ -3,192 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy | TK Web Solutions Bharatpur</title>
-<meta name="description" content="Privacy Policy for TK Web Solutions — Professional Website Development in Bharatpur, Rajasthan. Learn how we collect, use and protect your information.">
+<title>Privacy Policy — TK Web Solutions | Bharatpur, Rajasthan</title>
+<meta name="description" content="Privacy Policy of TK Web Solutions — Learn how we collect, use, and protect your personal information. TK Web Solutions, Bharatpur, Rajasthan.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tkwebsolutions.in/privacy-policy.html">
-<link rel="icon" type="image/png" href="favicon-32x32.png">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+<link rel="icon" href="favicon.ico">
+<!-- Google AdSense -->
+<meta name="google-adsense-account" content="ca-pub-2253826728800055">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Privacy Policy — TK Web Solutions",
+  "url": "https://tkwebsolutions.in/privacy-policy.html",
+  "description": "Privacy Policy of TK Web Solutions, Bharatpur, Rajasthan.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TK Web Solutions",
+    "url": "https://tkwebsolutions.in"
+  }
+}
+</script>
 <style>
-:root {
-  --primary: #1a56ff;
-  --primary-dark: #0d3acc;
-  --navy: #060d1f;
-  --light-bg: #f8f9fa;
-  --white: #ffffff;
-  --gray: #666666;
-  --border: #e2e6f3;
+:root{
+  --blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;
+  --navy:#060d1f;--gray:#6b7280;--light:#f4f7ff;
+  --accent:#00e5ff;--green:#25d366;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'DM Sans', Arial, sans-serif; background: var(--light-bg); color: var(--navy); line-height: 1.8; }
-.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:#1f2937;background:#fff;overflow-x:hidden;line-height:1.7;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
 
-nav {
-  background: var(--white);
-  padding: 15px 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  position: sticky; top: 0; z-index: 100;
-}
-nav .container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); text-decoration: none; }
-nav a { color: var(--navy); text-decoration: none; margin-left: 20px; font-weight: 500; }
-nav a:hover { color: var(--primary); }
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:12px 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,86,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.06);}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo img{height:34px;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--navy);}
+.logo-text span{color:var(--blue);}
+.nav-back{display:flex;align-items:center;gap:7px;color:var(--gray);font-size:.85rem;font-weight:600;transition:color .2s;text-decoration:none;}
+.nav-back:hover{color:var(--blue);text-decoration:none;}
+.nav-cta{background:var(--blue);color:#fff;padding:8px 18px;border-radius:8px;font-size:.82rem;font-weight:700;transition:background .2s;text-decoration:none;}
+.nav-cta:hover{background:var(--blue2);text-decoration:none;}
 
-header {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: white; padding: 60px 20px; margin-bottom: 40px;
-}
-header h1 { font-size: 2.2em; margin-bottom: 15px; }
-header p { opacity: 0.9; }
+/* HERO */
+.hero{background:var(--navy);padding:110px 5% 60px;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,86,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(26,86,255,.03) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
+.glow{position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(26,86,255,.18),transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(26,86,255,.18);border:1px solid rgba(26,86,255,.35);color:var(--accent);padding:5px 14px;border-radius:30px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px;}
+.hero p{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.75;margin-bottom:16px;}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap;}
+.hero-meta span{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:.78rem;}
+.hero-meta i{color:var(--accent);}
+.breadcrumb{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.35);font-size:.78rem;margin-top:14px;}
+.breadcrumb a{color:rgba(255,255,255,.5);}
+.breadcrumb a:hover{color:var(--accent);text-decoration:none;}
 
-article {
-  background: var(--white);
-  padding: 50px; border-radius: 12px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-}
-article p { margin-bottom: 18px; color: var(--gray); }
-article h2 { color: var(--primary); font-size: 1.5em; margin-top: 35px; margin-bottom: 15px; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
-article ul { margin: 10px 0 15px 25px; }
-article li { margin-bottom: 8px; color: var(--gray); }
+/* LAYOUT */
+.page-wrap{max-width:900px;margin:0 auto;padding:60px 5% 80px;}
+.toc{background:var(--light);border:1.5px solid rgba(26,86,255,.1);border-radius:16px;padding:24px 28px;margin-bottom:48px;}
+.toc h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.toc ol{padding-left:18px;display:flex;flex-direction:column;gap:7px;}
+.toc ol li a{color:var(--blue);font-size:.88rem;font-weight:500;}
+.toc ol li a:hover{color:var(--blue2);}
 
-.highlight {
-  background: #f0f3fb;
-  border-left: 4px solid var(--primary);
-  padding: 15px 20px; margin: 20px 0; border-radius: 8px;
-}
-.highlight strong { color: var(--primary); }
+/* CONTENT */
+.policy-section{margin-bottom:48px;padding-top:8px;}
+.policy-section h2{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--bluel);display:flex;align-items:center;gap:10px;}
+.policy-section h2 .num{width:32px;height:32px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0;}
+.policy-section h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin:20px 0 10px;}
+.policy-section p{color:#374151;font-size:.93rem;line-height:1.85;margin-bottom:14px;}
+.policy-section ul,.policy-section ol{padding-left:22px;display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.policy-section ul li,.policy-section ol li{color:#374151;font-size:.92rem;line-height:1.75;}
+.policy-section ul li strong,.policy-section ol li strong{color:var(--navy);}
+.highlight-box{background:var(--bluel);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:16px 20px;margin:18px 0;}
+.highlight-box p{margin:0;color:var(--navy);font-size:.88rem;}
+.contact-box{background:var(--navy);border-radius:16px;padding:24px;margin-top:20px;}
+.contact-box h3{font-family:'Syne',sans-serif;font-weight:700;color:#fff;margin-bottom:14px;}
+.contact-box p{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:8px;}
+.contact-box a{color:var(--accent);}
+.divider{height:1px;background:rgba(26,86,255,.08);margin:12px 0;}
 
-.contact-box {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white; padding: 30px; border-radius: 12px; margin-top: 30px; text-align: center;
-}
-.contact-box a { color: #90cdf4; }
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.5);padding:32px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.07);}
+footer p{font-size:.82rem;line-height:1.8;}
+footer a{color:rgba(26,86,255,.8);}
+footer a:hover{color:var(--accent);}
+.foot-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
 
-footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 40px 20px; text-align: center; }
-footer a { color: var(--primary); text-decoration: none; }
-
-@media (max-width: 768px) {
-  article { padding: 25px 16px; }
-  header h1 { font-size: 1.5em; }
-  nav a { margin-left: 10px; font-size: 0.9em; }
+@media(max-width:600px){
+  .hero{padding:90px 5% 40px;}
+  .page-wrap{padding:40px 5% 60px;}
+  .hero-meta{gap:12px;}
+  .nav-cta{display:none;}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a href="index.html" class="logo">🚀 TK Web Solutions</a>
-    <div style="display:flex;">
-      <a href="index.html">Home</a>
-      <a href="blog/blog.html">Blog</a>
-    </div>
-  </div>
-</nav>
-
-<header>
-  <div class="container">
-    <h1>🔒 Privacy Policy</h1>
-    <p>Last updated: March 7, 2026 | TK Web Solutions, Bharatpur, Rajasthan</p>
-  </div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <a href="index.html" class="logo">
+    <img src="logo.png" alt="TK Web Solutions" width="34" height="34">
+    <span class="logo-text"><span>TK</span> Web Solutions</span>
+  </a>
+  <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+  <a href="https://wa.me/919079368240" target="_blank" class="nav-cta">Contact Us</a>
 </header>
 
-<article class="container">
-
-<p>Welcome to <strong>TK Web Solutions</strong> ("we", "us", or "our"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website <strong>tkwebsolutions.in</strong>.</p>
-
-<div class="highlight">
-  <strong>📋 Quick Summary:</strong> We collect only the information you provide us (like name, phone, email when you contact us). We never sell your data. We use Google Analytics and Google AdSense on our site.
-</div>
-
-<h2>1. Information We Collect</h2>
-<p>We collect information that you voluntarily provide to us when you:</p>
-<ul>
-  <li>Fill out our contact form</li>
-  <li>Send us a WhatsApp message or email</li>
-  <li>Call us for inquiry</li>
-  <li>Comment or interact on our website</li>
-</ul>
-<p>The personal information we collect may include your <strong>name, phone number, email address, business name, and message content.</strong></p>
-
-<h2>2. Automatically Collected Information</h2>
-<p>When you visit our website, we automatically collect certain information through:</p>
-<ul>
-  <li><strong>Google Analytics</strong> — tracks website traffic, pages visited, time spent, location (city/country level), and device type. This data is anonymous and aggregated.</li>
-  <li><strong>Google AdSense</strong> — may use cookies to show relevant advertisements. Google's ad serving technology uses cookies to serve ads based on your prior visits to our website or other websites.</li>
-  <li><strong>Cookies</strong> — small files stored on your browser to improve your browsing experience.</li>
-</ul>
-
-<h2>3. How We Use Your Information</h2>
-<p>We use the information we collect to:</p>
-<ul>
-  <li>Respond to your inquiries and provide customer service</li>
-  <li>Send you project updates and communication related to your website</li>
-  <li>Improve our website and services</li>
-  <li>Analyze website traffic and user behavior (via Google Analytics)</li>
-  <li>Show relevant advertisements (via Google AdSense)</li>
-  <li>Comply with legal obligations</li>
-</ul>
-
-<h2>4. Google AdSense & Cookies</h2>
-<p>We use Google AdSense to display advertisements on our website. Google AdSense uses cookies (including the DoubleClick cookie) to serve ads based on your interests and previous visits to this and other websites.</p>
-<p>You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" style="color:var(--primary);">Google Ads Settings</a>. You can also opt out of a third-party vendor's use of cookies by visiting <a href="https://www.networkadvertising.org/managing/opt_out.asp" target="_blank" style="color:var(--primary);">Network Advertising Initiative opt-out page</a>.</p>
-
-<h2>5. Google Analytics</h2>
-<p>We use Google Analytics to understand how visitors interact with our website. Google Analytics collects anonymous data such as pages visited, time on site, and geographic location (country/city level). This data does not identify individual users.</p>
-<p>You can opt out of Google Analytics tracking by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--primary);">Google Analytics Opt-out Browser Add-on</a>.</p>
-
-<h2>6. Information Sharing</h2>
-<p>We do <strong>NOT</strong> sell, trade, rent, or transfer your personal information to third parties. We may share information only in these limited cases:</p>
-<ul>
-  <li>With your consent</li>
-  <li>To comply with legal requirements or court orders</li>
-  <li>To protect our rights and safety</li>
-  <li>With Google for analytics and advertising purposes (as described above)</li>
-</ul>
-
-<h2>7. Data Security</h2>
-<p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
-
-<h2>8. Third-Party Links</h2>
-<p>Our website may contain links to third-party websites (such as portfolio demo sites, WhatsApp, Instagram, etc.). We are not responsible for the privacy practices of these external sites. We encourage you to review their privacy policies.</p>
-
-<h2>9. Children's Privacy</h2>
-<p>Our website is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a child, please contact us immediately.</p>
-
-<h2>10. Your Rights</h2>
-<p>You have the right to:</p>
-<ul>
-  <li>Access the personal information we hold about you</li>
-  <li>Request correction of inaccurate information</li>
-  <li>Request deletion of your personal information</li>
-  <li>Opt out of marketing communications</li>
-  <li>Withdraw consent at any time</li>
-</ul>
-
-<h2>11. Changes to This Privacy Policy</h2>
-<p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
-
-<h2>12. Contact Us</h2>
-<p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-
-<div class="contact-box">
-  <p style="color:white; text-align:center; margin-bottom:10px;"><strong>TK Web Solutions</strong></p>
-  <p style="color:rgba(255,255,255,0.9); text-align:center; margin-bottom:5px;">📍 Bharatpur, Rajasthan, India</p>
-  <p style="color:rgba(255,255,255,0.9); text-align:center; margin-bottom:5px;">📞 <a href="tel:+919079368240">+91 90793 68240</a></p>
-  <p style="color:rgba(255,255,255,0.9); text-align:center; margin-bottom:5px;">📧 <a href="mailto:tkwebsolution1301@gmail.com">tkwebsolution1301@gmail.com</a></p>
-  <p style="color:rgba(255,255,255,0.9); text-align:center;">🌐 <a href="https://tkwebsolutions.in">tkwebsolutions.in</a></p>
-</div>
-
-</article>
-
-<footer>
-  <div class="container">
-    <p style="margin-bottom:10px;">© 2026 TK Web Solutions | Made with ❤️ in Bharatpur, Rajasthan</p>
-    <p><a href="index.html">Home</a> | <a href="blog/blog.html">Blog</a> | <a href="index.html#contact">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="glow"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><i class="fas fa-shield-alt"></i> Legal</div>
+    <h1>Privacy Policy</h1>
+    <p>This Privacy Policy explains how TK Web Solutions collects, uses, and protects your personal information when you visit our website or use our services.</p>
+    <div class="hero-meta">
+      <span><i class="fas fa-calendar"></i> Last Updated: April 13, 2026</span>
+      <span><i class="fas fa-map-marker-alt"></i> Bharatpur, Rajasthan, India</span>
+      <span><i class="fas fa-globe"></i> tkwebsolutions.in</span>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> › <span>Privacy Policy</span>
+    </div>
   </div>
+</section>
+
+<!-- CONTENT -->
+<div class="page-wrap">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3><i class="fas fa-list" style="color:var(--blue);"></i> Table of Contents</h3>
+    <ol>
+      <li><a href="#s1">Information We Collect</a></li>
+      <li><a href="#s2">How We Use Your Information</a></li>
+      <li><a href="#s3">Google AdSense & Third-Party Advertising</a></li>
+      <li><a href="#s4">Google Analytics</a></li>
+      <li><a href="#s5">Cookies Policy</a></li>
+      <li><a href="#s6">Information Sharing & Disclosure</a></li>
+      <li><a href="#s7">Data Security</a></li>
+      <li><a href="#s8">Your Rights & Choices</a></li>
+      <li><a href="#s9">Children's Privacy</a></li>
+      <li><a href="#s10">Third-Party Links</a></li>
+      <li><a href="#s11">Changes to This Policy</a></li>
+      <li><a href="#s12">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Summary:</strong> TK Web Solutions is committed to protecting your privacy. We collect only the information necessary to provide our services. We do not sell your personal data to third parties. This policy complies with applicable Indian data protection laws and Google AdSense program policies.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="policy-section" id="s1">
+    <h2><span class="num">1</span> Information We Collect</h2>
+    <p>When you visit <strong>tkwebsolutions.in</strong> or interact with our services, we may collect the following types of information:</p>
+
+    <h3>1.1 Information You Provide Directly</h3>
+    <ul>
+      <li><strong>Contact Form Submissions:</strong> When you fill out our contact form, we collect your name, phone number, email address, business name, and project requirements.</li>
+      <li><strong>Payment Information:</strong> When you make a payment, we collect your name, phone number, payment amount, and UPI transaction reference number. We do not store credit/debit card numbers or banking passwords.</li>
+      <li><strong>WhatsApp Communications:</strong> When you contact us via WhatsApp, we receive your name and phone number as provided by WhatsApp.</li>
+      <li><strong>Email Communications:</strong> When you email us, we receive your email address and any information you include in your message.</li>
+    </ul>
+
+    <h3>1.2 Information Collected Automatically</h3>
+    <ul>
+      <li><strong>Device Information:</strong> Browser type, operating system, device type (mobile/desktop/tablet).</li>
+      <li><strong>Usage Data:</strong> Pages visited, time spent on pages, links clicked, and navigation patterns on our website.</li>
+      <li><strong>IP Address:</strong> Your Internet Protocol address, used for security monitoring and approximate geographic location.</li>
+      <li><strong>Referral Source:</strong> How you arrived at our website (search engine, social media, direct link, etc.).</li>
+      <li><strong>Cookies and Similar Technologies:</strong> As described in Section 5 of this policy.</li>
+    </ul>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 2 -->
+  <div class="policy-section" id="s2">
+    <h2><span class="num">2</span> How We Use Your Information</h2>
+    <p>We use the information we collect for the following purposes:</p>
+    <ul>
+      <li><strong>Service Delivery:</strong> To understand your requirements and deliver web development or app development services you have requested.</li>
+      <li><strong>Communication:</strong> To respond to your inquiries, send project updates, and provide customer support.</li>
+      <li><strong>Payment Processing:</strong> To process and verify payments for our services and generate payment receipts.</li>
+      <li><strong>Website Improvement:</strong> To analyze how visitors use our website and improve our content, design, and functionality.</li>
+      <li><strong>Legal Compliance:</strong> To comply with applicable laws, regulations, and legal processes.</li>
+      <li><strong>Security:</strong> To detect, prevent, and address technical issues, fraud, and security threats.</li>
+      <li><strong>Marketing:</strong> With your consent, to send you information about our services, promotions, and updates. You can opt out at any time.</li>
+    </ul>
+    <div class="highlight-box">
+      <p><strong>Important:</strong> We do not use your personal information for automated decision-making or profiling that produces significant legal effects.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 3 -->
+  <div class="policy-section" id="s3">
+    <h2><span class="num">3</span> Google AdSense & Third-Party Advertising</h2>
+    <p>TK Web Solutions uses <strong>Google AdSense</strong> to display advertisements on our website. Google AdSense is an advertising service provided by Google LLC.</p>
+
+    <h3>3.1 How Google AdSense Works</h3>
+    <p>Google AdSense uses cookies and web beacons to serve ads based on your prior visits to our website and other websites on the Internet. Google uses this information to show you personalized advertisements that may be of interest to you.</p>
+
+    <h3>3.2 Google's Data Collection</h3>
+    <ul>
+      <li>Google may collect data including your IP address, browsing behavior, and interests to serve relevant ads.</li>
+      <li>Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site and other sites on the Internet.</li>
+      <li>Google's privacy practices are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+    </ul>
+
+    <h3>3.3 Opting Out of Personalized Advertising</h3>
+    <p>You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. Alternatively, you can opt out of third-party vendor's use of cookies by visiting the <a href="http://www.networkadvertising.org/managing/opt_out.asp" target="_blank" rel="noopener">Network Advertising Initiative opt-out page</a>.</p>
+
+    <h3>3.4 Publisher ID</h3>
+    <p>Our Google AdSense Publisher ID is: <strong>pub-2253826728800055</strong></p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 4 -->
+  <div class="policy-section" id="s4">
+    <h2><span class="num">4</span> Google Analytics</h2>
+    <p>We use <strong>Google Analytics</strong> (Tracking ID: G-KDH5BXK1ZB) to understand how visitors interact with our website. Google Analytics collects anonymous data including:</p>
+    <ul>
+      <li>Number of visitors and page views</li>
+      <li>Geographic location (country/city level)</li>
+      <li>Device type and browser information</li>
+      <li>Pages visited and time spent on each page</li>
+      <li>Traffic sources (how you found our website)</li>
+    </ul>
+    <p>This data is collected anonymously and does not personally identify you. You can opt out of Google Analytics tracking by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 5 -->
+  <div class="policy-section" id="s5">
+    <h2><span class="num">5</span> Cookies Policy</h2>
+    <p>Cookies are small text files stored on your device when you visit websites. TK Web Solutions and our third-party partners use cookies for various purposes.</p>
+
+    <h3>5.1 Types of Cookies We Use</h3>
+    <ul>
+      <li><strong>Essential Cookies:</strong> Required for the website to function properly. These cannot be disabled.</li>
+      <li><strong>Analytics Cookies:</strong> Used by Google Analytics to collect anonymous usage statistics.</li>
+      <li><strong>Advertising Cookies:</strong> Used by Google AdSense to display relevant advertisements.</li>
+      <li><strong>Preference Cookies:</strong> Remember your settings and preferences for a better experience.</li>
+    </ul>
+
+    <h3>5.2 Managing Cookies</h3>
+    <p>You can control cookies through your browser settings. Most browsers allow you to:</p>
+    <ul>
+      <li>View cookies currently stored on your device</li>
+      <li>Delete specific or all cookies</li>
+      <li>Block cookies from specific or all websites</li>
+      <li>Set preferences for when cookies should be allowed</li>
+    </ul>
+    <p>Please note that disabling certain cookies may affect the functionality of our website and the ads you see may be less relevant to you.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 6 -->
+  <div class="policy-section" id="s6">
+    <h2><span class="num">6</span> Information Sharing & Disclosure</h2>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service Providers:</strong> With trusted third-party services that help us operate our website, such as Google (Analytics, AdSense, Workspace), EmailJS (for contact form emails), and payment platforms.</li>
+      <li><strong>Legal Requirements:</strong> When required by law, court order, or government authority.</li>
+      <li><strong>Protection of Rights:</strong> To protect the rights, property, or safety of TK Web Solutions, our clients, or others.</li>
+      <li><strong>Business Transfer:</strong> In the unlikely event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
+      <li><strong>With Your Consent:</strong> For any other purpose, only with your explicit consent.</li>
+    </ul>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 7 -->
+  <div class="policy-section" id="s7">
+    <h2><span class="num">7</span> Data Security</h2>
+    <p>We take the security of your personal information seriously and implement appropriate technical and organizational measures to protect it:</p>
+    <ul>
+      <li><strong>SSL Encryption:</strong> Our website uses HTTPS (SSL/TLS encryption) to protect data transmitted between your browser and our servers.</li>
+      <li><strong>Cloudflare Protection:</strong> Our website is protected by Cloudflare, which provides DDoS protection and security monitoring.</li>
+      <li><strong>Limited Access:</strong> Only authorized personnel have access to personal information, and only to the extent necessary to perform their duties.</li>
+      <li><strong>No Sensitive Storage:</strong> We do not store sensitive financial information such as complete payment card numbers or banking passwords.</li>
+    </ul>
+    <div class="highlight-box">
+      <p><strong>Note:</strong> While we implement strong security measures, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security of your data.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 8 -->
+  <div class="policy-section" id="s8">
+    <h2><span class="num">8</span> Your Rights & Choices</h2>
+    <p>You have the following rights regarding your personal information:</p>
+    <ul>
+      <li><strong>Right to Access:</strong> You can request a copy of the personal information we hold about you.</li>
+      <li><strong>Right to Correction:</strong> You can request that we correct any inaccurate or incomplete information.</li>
+      <li><strong>Right to Deletion:</strong> You can request that we delete your personal information, subject to certain legal exceptions.</li>
+      <li><strong>Right to Opt-Out:</strong> You can opt out of receiving marketing communications from us at any time.</li>
+      <li><strong>Right to Withdraw Consent:</strong> Where we rely on your consent to process data, you can withdraw that consent at any time.</li>
+    </ul>
+    <p>To exercise any of these rights, please contact us using the details provided in Section 12. We will respond to your request within 30 days.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 9 -->
+  <div class="policy-section" id="s9">
+    <h2><span class="num">9</span> Children's Privacy</h2>
+    <p>TK Web Solutions does not knowingly collect personal information from children under the age of 13. Our services are intended for individuals who are at least 13 years old.</p>
+    <p>If you are a parent or guardian and believe that your child has provided us with personal information, please contact us immediately. If we discover that we have inadvertently collected personal information from a child under 13, we will delete it as quickly as possible.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 10 -->
+  <div class="policy-section" id="s10">
+    <h2><span class="num">10</span> Third-Party Links</h2>
+    <p>Our website may contain links to third-party websites, including:</p>
+    <ul>
+      <li>Instagram (<a href="https://www.instagram.com/tkwebsolutions_official" target="_blank" rel="noopener">@tkwebsolutions_official</a>)</li>
+      <li>GitHub (<a href="https://github.com/tarunsinghgunesh" target="_blank" rel="noopener">tarunsinghgunesh</a>)</li>
+      <li>Facebook, Telegram, WhatsApp, and Pinterest</li>
+      <li>Demo project websites hosted on GitHub Pages</li>
+    </ul>
+    <p>These third-party websites have their own privacy policies, which we encourage you to review. TK Web Solutions is not responsible for the privacy practices or content of any third-party websites. Clicking on links to external websites is at your own risk.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 11 -->
+  <div class="policy-section" id="s11">
+    <h2><span class="num">11</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make significant changes, we will:</p>
+    <ul>
+      <li>Update the "Last Updated" date at the top of this page</li>
+      <li>Post a notice on our website homepage</li>
+      <li>Notify you via WhatsApp or email if we have your contact information</li>
+    </ul>
+    <p>We encourage you to review this Privacy Policy periodically to stay informed about how we protect your information. Your continued use of our website after any changes constitutes your acceptance of the updated policy.</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- SECTION 12 -->
+  <div class="policy-section" id="s12">
+    <h2><span class="num">12</span> Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+    <div class="contact-box">
+      <h3>TK Web Solutions — Privacy Contact</h3>
+      <p><i class="fas fa-user" style="color:var(--accent);margin-right:8px;"></i> <strong style="color:#fff;">Tarun Singh</strong> — Founder, TK Web Solutions</p>
+      <p><i class="fas fa-map-marker-alt" style="color:var(--accent);margin-right:8px;"></i> Bharatpur, Rajasthan, India — 321001</p>
+      <p><i class="fas fa-envelope" style="color:var(--accent);margin-right:8px;"></i> Email: <a href="mailto:tkwebsolution1301@gmail.com">tkwebsolution1301@gmail.com</a></p>
+      <p><i class="fas fa-phone" style="color:var(--accent);margin-right:8px;"></i> Phone / WhatsApp: <a href="tel:+919079368240">+91 90793 68240</a></p>
+      <p><i class="fas fa-globe" style="color:var(--accent);margin-right:8px;"></i> Website: <a href="https://tkwebsolutions.in">tkwebsolutions.in</a></p>
+      <p style="margin-top:14px;font-size:.82rem;color:rgba(255,255,255,.4);">We aim to respond to all privacy-related inquiries within 5 business days.</p>
+    </div>
+  </div>
+
+  <!-- BACK TO HOME -->
+  <div style="text-align:center;margin-top:50px;padding-top:30px;border-top:1px solid rgba(26,86,255,.08);">
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:13px 26px;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;">
+      <i class="fas fa-arrow-left"></i> Back to TK Web Solutions
+    </a>
+    <div style="margin-top:16px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;">
+      <a href="terms.html" style="color:var(--blue);font-size:.85rem;">Terms of Service</a>
+      <a href="about.html" style="color:var(--blue);font-size:.85rem;">About Us</a>
+      <a href="index.html#contact" style="color:var(--blue);font-size:.85rem;">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong style="color:#fff;">TK Web Solutions</strong> — Bharatpur, Rajasthan, India</p>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <p style="margin-top:10px;font-size:.75rem;">"From Dreams.... to Digital Reality"</p>
 </footer>
 
+<script>
+window.addEventListener('scroll',function(){
+  document.querySelector('.navbar').style.boxShadow=window.scrollY>30?'0 4px 30px rgba(26,86,255,.1)':'';
+});
+</script>
 </body>
 </html>
