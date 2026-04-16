@@ -482,14 +482,23 @@ img{max-width:100%;}
 /* ══════════════════════════════════════════
    GUIDE MASCOT
 ══════════════════════════════════════════ */
-.guide-wrap{
-  position:fixed;bottom:96px;right:22px;z-index:2000;
-  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
-  contain:layout style;
-  will-change:transform,opacity;
-  animation:guideIn .8s .6s cubic-bezier(.34,1.56,.64,1) forwards;
-  opacity:0;
-  transform:translateX(120px);
+.guide-wrap {
+  position: fixed;
+  bottom: 96px;
+  right: 22px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  /* FIX: CLS rokne ke liye fixed dimensions */
+  min-height: 480px; 
+  min-width: 250px;
+  contain: layout size; /* Browser ko pehle hi size batane ke liye */
+  will-change: transform, opacity;
+  animation: guideIn .8s .6s cubic-bezier(.34,1.56,.64,1) forwards;
+  opacity: 0;
+  transform: translateX(120px);
 }
 @keyframes guideIn{from{opacity:0;transform:translateX(120px);}to{opacity:1;transform:translateX(0);}}
 .guide-wrap{content-visibility:auto;}
