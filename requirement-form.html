@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Website Requirement Form — TK Web Solutions</title>
+  <meta name="description" content="Fill out your website requirements and get an instant AI-generated proposal, estimated cost, and timeline from TK Web Solutions.">
+  <link rel="canonical" href="https://tkwebsolutions.in/requirement-form.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root { --blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;--navy:#060d1f;--white:#ffffff;--gray:#6b7280;--light:#f0f3fb;--accent:#00e5ff;--gold:#f59e0b;--green:#25d366;--radius-lg:18px;--radius-md:12px;--shadow-lg:0 12px 40px rgba(0,0,0,0.1);--shadow-xl:0 24px 80px rgba(0,0,0,0.12); }
+    [data-theme="dark"] { --bg-page:#030712;--bg-card:#0a0f1e;--bg-alt:#060b1a;--text-primary:#f8fafc;--text-secondary:#94a3b8;--text-muted:#64748b;--bluel:#0f172a;--light:#0f172a;--shadow-lg:0 12px 40px rgba(0,0,0,0.5);--shadow-xl:0 24px 80px rgba(0,0,0,0.6); }
+    [data-theme="dark"] .section { background:linear-gradient(180deg,#030712 0%,#0a0f1e 100%); }
+    [data-theme="dark"] .form-card { background:#0a0f1e; }
+    [data-theme="dark"] .proposal-card { background:#0a0f1e; }
+    [data-theme="dark"] .step { background:#0f172a; }
+    [data-theme="dark"] .step.active { background:var(--blue); }
+    [data-theme="dark"] .navbar { background:rgba(3,7,18,0.92); border-bottom-color:rgba(26,86,255,0.12); }
+    [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea { background:#0f172a; border-color:#1e293b; color:#f8fafc; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; color:var(--text-primary,#060d1f); background:var(--bg-page,#ffffff); overflow-x:hidden; line-height:1.6; }
+    ::selection { background:rgba(26,86,255,0.2); color:var(--blue); }
+    .skip-link { position:fixed; top:-40px; left:0; background:var(--blue); color:#fff; padding:8px 16px; z-index:99999; font-weight:700; font-size:.85rem; border-radius:0 0 8px 0; transition:top 0.2s; }
+    .skip-link:focus { top:0; }
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; padding:16px 6%; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); border-bottom:1px solid rgba(26,86,255,0.08); transition:all 0.3s; }
+    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.25rem; color:var(--text-primary,#060d1f); text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .logo span { color:var(--blue); }
+    .nav-menu { display:flex; list-style:none; gap:28px; align-items:center; }
+    .nav-menu a { font-size:.88rem; font-weight:600; color:var(--gray); text-decoration:none; transition:color 0.2s; }
+    .nav-menu a:hover { color:var(--blue); }
+    .nav-cta { background:var(--blue); color:#fff!important; padding:8px 18px; border-radius:var(--radius-md); font-weight:700!important; font-size:.8rem; }
+    .dm-toggle { width:44px; height:24px; border-radius:50px; background:linear-gradient(135deg,var(--blue),#4f46e5); border:none; cursor:pointer; position:relative; flex-shrink:0; transition:background 0.3s; }
+    .dm-toggle::after { content:''; position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:#fff; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+    [data-theme="dark"] .dm-toggle::after { transform:translateX(20px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--text-primary); border-radius:2px; }
+    @media (max-width:900px) { .hamburger { display:flex; } .nav-menu { position:fixed; top:0; right:0; width:280px; height:100vh; background:var(--bg-card); flex-direction:column; padding:90px 28px 28px; gap:18px; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.23,1,0.32,1); box-shadow:var(--shadow-xl); border-left:1px solid rgba(26,86,255,0.08); } .nav-menu.open { transform:translateX(0); } }
+    .section { padding:100px 6%; position:relative; }
+    .tag { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--blue); background:var(--bluel); border:1px solid rgba(26,86,255,0.2); padding:6px 16px; border-radius:50px; margin-bottom:16px; }
+    .sec-h { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:800; line-height:1.2; margin-bottom:16px; }
+    .sec-sub { font-size:1.05rem; color:var(--gray); max-width:640px; line-height:1.75; margin-bottom:48px; }
+    .text-center { text-align:center; }
+    .text-center .sec-sub { margin-left:auto; margin-right:auto; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; border-radius:var(--radius-md); font-weight:700; font-size:.9rem; cursor:pointer; border:none; transition:all 0.25s; text-decoration:none; }
+    .btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+    .btn-blue { background:var(--blue); color:#fff; }
+    .btn-blue:hover { background:var(--blue2); }
+    .btn-green { background:var(--green); color:#fff; }
+    .btn-green:hover { background:#1ebe5d; }
+    .btn-outline { background:transparent; border:1.5px solid var(--blue); color:var(--blue); }
+    .reveal-up { opacity:0; transform:translateY(40px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.23,1,0.32,1); }
+    .reveal-up.in-view { opacity:1; transform:translateY(0); }
+
+    .form-wrap { display:grid; grid-template-columns:1fr 380px; gap:40px; max-width:1200px; margin:0 auto; }
+    .form-card { background:var(--bg-card,#ffffff); border:1.5px solid rgba(26,86,255,0.07); border-radius:var(--radius-lg); padding:32px; box-shadow:var(--shadow-lg); }
+    .form-group { margin-bottom:20px; }
+    .form-group label { display:block; font-size:.78rem; font-weight:700; color:var(--text-primary); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+    .form-group input, .form-group select, .form-group textarea { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.12); font-family:inherit; font-size:.9rem; background:var(--bg-page); color:var(--text-primary); outline:none; transition:all 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,86,255,0.08); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:var(--gray); }
+    .form-group textarea { min-height:100px; resize:vertical; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .feature-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+    .feature-chip { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.08); background:var(--bg-card); cursor:pointer; transition:all 0.2s; font-size:.85rem; }
+    .feature-chip:hover { border-color:rgba(26,86,255,0.2); }
+    .feature-chip.selected { border-color:var(--blue); background:var(--bluel); }
+    .feature-chip .f-check { width:20px; height:20px; border-radius:6px; border:2px solid rgba(26,86,255,0.15); display:flex; align-items:center; justify-content:center; color:transparent; font-size:.7rem; transition:all 0.2s; flex-shrink:0; }
+    .feature-chip.selected .f-check { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+    .proposal-card { background:var(--bg-card); border:1.5px solid rgba(26,86,255,0.07); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-lg); position:sticky; top:100px; height:fit-content; }
+    .proposal-card h3 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:16px; }
+    .proposal-card .prop-row { display:flex; justify-content:space-between; padding:8px 0; font-size:.85rem; border-bottom:1px solid rgba(26,86,255,0.06); }
+    .proposal-card .prop-row .lbl { color:var(--gray); }
+    .proposal-card .prop-row .val { font-weight:700; color:var(--text-primary); }
+    .proposal-card .prop-row.total { border-bottom:none; border-top:2px solid var(--blue); margin-top:8px; padding-top:14px; font-size:1.1rem; }
+    .proposal-card .prop-row.total .val { color:var(--blue); font-family:'Syne',sans-serif; font-size:1.3rem; }
+    .prop-cta { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+    .prop-cta .btn { width:100%; font-size:.85rem; padding:12px; }
+    .proposal-preview { background:var(--bluel); border-radius:10px; padding:20px; margin-top:16px; font-size:.78rem; line-height:1.8; }
+    .proposal-preview h4 { font-family:'Syne',sans-serif; font-size:.9rem; margin-bottom:8px; color:var(--blue); }
+    .stepper { display:flex; gap:8px; margin-bottom:24px; }
+    .step { flex:1; height:6px; border-radius:3px; background:#e2e8f0; transition:all 0.3s; }
+    .step.active { background:var(--blue); }
+    .step.completed { background:linear-gradient(90deg,var(--blue),var(--accent)); }
+    .gen-animation { display:flex; align-items:center; justify-content:center; gap:8px; padding:20px; color:var(--blue); font-weight:700; font-size:.9rem; }
+    .gen-animation .dot { width:8px; height:8px; border-radius:50%; background:var(--blue); animation:genType 1.4s infinite; }
+    .gen-animation .dot:nth-child(2) { animation-delay:0.2s; }
+    .gen-animation .dot:nth-child(3) { animation-delay:0.4s; }
+    @keyframes genType { 0%,100% { opacity:.4; transform:translateY(0); } 50% { opacity:1; transform:translateY(-4px); } }
+    .gen-complete { display:flex; align-items:center; gap:8px; color:var(--green); font-weight:700; font-size:.9rem; padding:12px; background:linear-gradient(135deg,#dcfce7,#f0fdf4); border-radius:10px; margin-top:12px; border:1px solid #bbf7d0; }
+    [data-theme="dark"] .gen-complete { background:linear-gradient(135deg,#052e16,#14532d); border-color:#166534; }
+
+    @media (max-width:900px) { .form-wrap { grid-template-columns:1fr; } .proposal-card { position:static; } .form-row { grid-template-columns:1fr; } .feature-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <nav class="navbar" id="navbar">
+    <a href="index-upgraded.html" class="logo"><span>TK</span> Web Solutions</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index-upgraded.html">Home</a></li>
+      <li><a href="index-upgraded.html#services">Services</a></li>
+      <li><a href="pricing-calculator.html">Pricing</a></li>
+      <li><a href="trust.html">Trust</a></li>
+      <li><a href="index-upgraded.html#contact">Contact</a></li>
+      <li><a href="https://wa.me/919079368240" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+      <li><button class="dm-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" style="margin-top:10px;"></button></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <main id="main-content">
+    <section class="section" style="padding-top:140px;">
+      <div class="text-center">
+        <div class="tag reveal-up">AI Powered</div>
+        <h1 class="sec-h reveal-up">Website Requirement Form</h1>
+        <p class="sec-sub reveal-up">Batao apni requirements, aur AI instantly ek proposal, cost estimate, aur timeline generate karega.</p>
+      </div>
+
+      <div class="form-wrap reveal-up">
+        <div class="form-card" id="formCard">
+          <div class="stepper">
+            <div class="step active" id="step1"></div>
+            <div class="step" id="step2"></div>
+            <div class="step" id="step3"></div>
+            <div class="step" id="step4"></div>
+          </div>
+
+          <div id="formSection1">
+            <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:16px;"><i class="fas fa-user" style="color:var(--blue);margin-right:8px;"></i> Step 1: Your Details</h4>
+            <div class="form-row">
+              <div class="form-group"><label>Name</label><input type="text" id="rfName" placeholder="Your full name"></div>
+              <div class="form-group"><label>Business Name</label><input type="text" id="rfBusiness" placeholder="Your business / coaching name"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>Phone</label><input type="tel" id="rfPhone" placeholder="+91 98765 43210"></div>
+              <div class="form-group"><label>Email</label><input type="email" id="rfEmail" placeholder="you@example.com"></div>
+            </div>
+            <button class="btn btn-blue" onclick="nextStep(2)" style="width:100%;margin-top:8px;">Next Step <i class="fas fa-arrow-right"></i></button>
+          </div>
+
+          <div class="hidden" id="formSection2">
+            <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:16px;"><i class="fas fa-laptop-code" style="color:var(--blue);margin-right:8px;"></i> Step 2: Project Type</h4>
+            <div class="form-group"><label>Website / App Type</label>
+              <select id="rfType" onchange="updateEstimate()">
+                <option value="">Select type</option>
+                <option value="coaching" data-base="7000">Coaching Website</option>
+                <option value="school" data-base="10000">School / College Website</option>
+                <option value="business" data-base="7000">Business Website</option>
+                <option value="ecommerce" data-base="15000">E-Commerce Website</option>
+                <option value="portfolio" data-base="5000">Portfolio / Personal</option>
+                <option value="hospital" data-base="10000">Hospital / Clinic</option>
+                <option value="emitra" data-base="8000">E-Mitra / CSC</option>
+                <option value="android" data-base="10000">Android App (APK)</option>
+                <option value="playstore" data-base="18000">Play Store App</option>
+                <option value="bothapps" data-base="35000">Android + iOS Both</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Number of Pages</label>
+              <input type="range" min="1" max="50" value="5" id="rfPages" oninput="document.getElementById('rfPageVal').textContent=this.value+' pages';updateEstimate()" style="width:100%;accent-color:var(--blue);">
+              <div style="text-align:right;font-family:'Syne',sans-serif;font-weight:700;color:var(--blue);font-size:1rem;" id="rfPageVal">5 pages</div>
+            </div>
+            <div class="form-group"><label>Budget Range</label>
+              <select id="rfBudget" onchange="updateEstimate()">
+                <option value="">Select budget</option>
+                <option value="under5k">Under ₹5,000</option>
+                <option value="5k10k">₹5,000 - ₹10,000</option>
+                <option value="10k20k">₹10,000 - ₹20,000</option>
+                <option value="20k50k">₹20,000 - ₹50,000</option>
+                <option value="50kplus">₹50,000+</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-outline" onclick="prevStep(1)" style="flex:1;"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-blue" onclick="nextStep(3)" style="flex:1;">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="hidden" id="formSection3">
+            <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:16px;"><i class="fas fa-layer-group" style="color:var(--blue);margin-right:8px;"></i> Step 3: Features</h4>
+            <div class="feature-grid" id="rfFeatures">
+              <div class="feature-chip" data-name="Payment Gateway" data-price="3000" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Payment Gateway</div>
+              <div class="feature-chip" data-name="WhatsApp Button" data-price="0" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>WhatsApp Button</div>
+              <div class="feature-chip" data-name="SEO Package" data-price="0" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>SEO</div>
+              <div class="feature-chip" data-name="Blog Section" data-price="2000" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Blog</div>
+              <div class="feature-chip" data-name="Admin Panel" data-price="5000" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Admin Panel</div>
+              <div class="feature-chip" data-name="Hosting" data-price="0" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Hosting</div>
+              <div class="feature-chip" data-name="Domain" data-price="800" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Domain</div>
+              <div class="feature-chip" data-name="SSL Certificate" data-price="0" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>SSL</div>
+              <div class="feature-chip" data-name="Google Analytics" data-price="0" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Analytics</div>
+              <div class="feature-chip" data-name="Live Chat" data-price="1500" onclick="toggleRF(this)"><div class="f-check"><i class="fas fa-check"></i></div>Live Chat</div>
+            </div>
+            <div class="form-group" style="margin-top:20px;"><label>Timeline Preference</label>
+              <select id="rfTimeline" onchange="updateEstimate()">
+                <option value="standard">Standard (7-14 days)</option>
+                <option value="urgent">Urgent (3-5 days) +20%</option>
+                <option value="relaxed">Relaxed (2-4 weeks) -10%</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-outline" onclick="prevStep(2)" style="flex:1;"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-blue" onclick="nextStep(4)" style="flex:1;">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="hidden" id="formSection4">
+            <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:16px;"><i class="fas fa-comment" style="color:var(--blue);margin-right:8px;"></i> Step 4: Additional Details</h4>
+            <div class="form-group"><label>Describe your requirements</label><textarea id="rfDesc" placeholder="Batao apne project ke baare mein... kya chahiye, kab chahiye, koi design preference, koi example website?"></textarea></div>
+            <div class="form-group"><label>Reference Website (if any)</label><input type="url" id="rfRef" placeholder="https://example.com"></div>
+            <div id="genAnimation" class="hidden">
+              <div class="gen-animation"><div class="dot"></div><div class="dot"></div><div class="dot"></div> AI is generating your proposal...</div>
+            </div>
+            <div id="genComplete" class="hidden">
+              <div class="gen-complete"><i class="fas fa-check-circle"></i> Proposal generated successfully!</div>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-outline" onclick="prevStep(3)" style="flex:1;"><i class="fas fa-arrow-left"></i> Back</button>
+              <button class="btn btn-blue" onclick="generateProposal()" style="flex:1;"><i class="fas fa-magic"></i> Generate Proposal</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="proposal-card" id="proposalCard">
+          <h3>📋 AI Proposal Preview</h3>
+          <div class="prop-row"><span class="lbl">Project Type</span><span class="val" id="propType">-</span></div>
+          <div class="prop-row"><span class="lbl">Pages</span><span class="val" id="propPages">-</span></div>
+          <div class="prop-row"><span class="lbl">Features</span><span class="val" id="propFeatures">-</span></div>
+          <div class="prop-row"><span class="lbl">Timeline</span><span class="val" id="propTimeline">-</span></div>
+          <div class="prop-row total"><span class="lbl">Estimated Cost</span><span class="val" id="propTotal">₹0</span></div>
+          <div class="prop-cta">
+            <button class="btn btn-green" onclick="sendRFWhatsApp()"><i class="fab fa-whatsapp"></i> Send to WhatsApp</button>
+            <button class="btn btn-blue" onclick="sendRFEmail()"><i class="fas fa-envelope"></i> Email Proposal</button>
+            <button class="btn btn-outline" onclick="downloadRFProposal()"><i class="fas fa-download"></i> Download Proposal</button>
+          </div>
+          <div class="proposal-preview hidden" id="proposalText">
+            <h4>Generated Proposal</h4>
+            <div id="proposalBody"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let rfSelectedFeatures = [], rfProposal = '';
+
+    function toggleRF(el) {
+      el.classList.toggle('selected');
+      const name = el.dataset.name, price = parseInt(el.dataset.price);
+      if (el.classList.contains('selected')) { rfSelectedFeatures.push({ name, price }); } else { rfSelectedFeatures = rfSelectedFeatures.filter(f => f.name !== name); }
+      updateEstimate();
+    }
+
+    function updateEstimate() {
+      const typeSelect = document.getElementById('rfType');
+      const selected = typeSelect.options[typeSelect.selectedIndex];
+      const base = selected ? parseInt(selected.dataset.base || 0) : 0;
+      const pages = parseInt(document.getElementById('rfPages').value);
+      const extraPages = Math.max(0, pages - 5) * 500;
+      const featureTotal = rfSelectedFeatures.reduce((a, f) => a + f.price, 0);
+      let total = base + extraPages + featureTotal;
+      const timeline = document.getElementById('rfTimeline').value;
+      if (timeline === 'urgent') total *= 1.2;
+      if (timeline === 'relaxed') total *= 0.9;
+      const final = Math.round(total);
+
+      document.getElementById('propType').textContent = selected ? selected.text : '-';
+      document.getElementById('propPages').textContent = pages + ' pages';
+      document.getElementById('propFeatures').textContent = rfSelectedFeatures.length > 0 ? rfSelectedFeatures.map(f => f.name).join(', ') : 'None';
+      document.getElementById('propTimeline').textContent = timeline === 'urgent' ? '3-5 days (Urgent)' : timeline === 'relaxed' ? '2-4 weeks (Relaxed)' : '7-14 days (Standard)';
+      document.getElementById('propTotal').textContent = '₹' + final.toLocaleString();
+    }
+
+    function nextStep(n) {
+      document.querySelectorAll('.step').forEach((s, i) => { s.classList.toggle('active', i === n - 1); if (i < n - 1) s.classList.add('completed'); });
+      document.querySelectorAll('[id^="formSection"]').forEach(el => el.classList.add('hidden'));
+      document.getElementById('formSection' + n).classList.remove('hidden');
+    }
+    function prevStep(n) { nextStep(n); }
+
+    function generateProposal() {
+      document.getElementById('genAnimation').classList.remove('hidden');
+      document.getElementById('genComplete').classList.add('hidden');
+      document.getElementById('proposalText').classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('genAnimation').classList.add('hidden');
+        document.getElementById('genComplete').classList.remove('hidden');
+        document.getElementById('proposalText').classList.remove('hidden');
+        const type = document.getElementById('rfType').options[document.getElementById('rfType').selectedIndex].text;
+        const total = document.getElementById('propTotal').textContent;
+        const name = document.getElementById('rfName').value || 'Client';
+        const business = document.getElementById('rfBusiness').value || 'Your Business';
+        rfProposal = `TK WEB SOLUTIONS - PROJECT PROPOSAL\n\nClient: ${name}\nBusiness: ${business}\nProject: ${type}\nEstimated Cost: ${total}\nPages: ${document.getElementById('rfPages').value}\nFeatures: ${document.getElementById('propFeatures').textContent}\nTimeline: ${document.getElementById('propTimeline').textContent}\n\nProposal generated on ${new Date().toLocaleDateString()}\nhttps://tkwebsolutions.in`;
+        document.getElementById('proposalBody').textContent = rfProposal;
+      }, 2000);
+    }
+
+    function sendRFWhatsApp() {
+      const msg = `Hi TK Web Solutions!\n\nI filled out the AI requirement form. Here are my details:\n\nName: ${document.getElementById('rfName').value || 'N/A'}\nBusiness: ${document.getElementById('rfBusiness').value || 'N/A'}\nProject: ${document.getElementById('propType').textContent}\nBudget: ${document.getElementById('propTotal').textContent}\n\nPlease contact me to discuss.`;
+      window.open('https://wa.me/919079368240?text=' + encodeURIComponent(msg), '_blank');
+    }
+    function sendRFEmail() {
+      const email = document.getElementById('rfEmail').value || 'your@email.com';
+      window.open('mailto:' + email + '?subject=TK Web Solutions - Proposal&body=' + encodeURIComponent(rfProposal || 'Proposal attached'), '_blank');
+    }
+    function downloadRFProposal() {
+      const blob = new Blob([rfProposal || 'Please generate a proposal first'], { type: 'text/plain' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'TK_Proposal_' + (new Date().toISOString().split('T')[0]) + '.txt'; a.click(); URL.revokeObjectURL(a.href);
+    }
+
+    function toggleDarkMode() {
+      const root = document.documentElement; const d = root.getAttribute('data-theme') === 'dark';
+      if (d) { root.removeAttribute('data-theme'); localStorage.setItem('tk-theme', 'light'); } else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('tk-theme', 'dark'); }
+    }
+    (function() { const stored = localStorage.getItem('tk-theme'); if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); })();
+    const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); }); }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal-up').forEach(el => obs.observe(el));
+  </script>
+  <script src="ai-assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Calculator — TK Web Solutions</title>
+  <meta name="description" content="Interactive pricing calculator for websites, apps, and digital services. Calculate your project cost instantly.">
+  <link rel="canonical" href="https://tkwebsolutions.in/pricing-calculator.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root { --blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;--navy:#060d1f;--white:#ffffff;--gray:#6b7280;--light:#f0f3fb;--accent:#00e5ff;--gold:#f59e0b;--green:#25d366;--radius-lg:18px;--radius-md:12px;--shadow-lg:0 12px 40px rgba(0,0,0,0.1);--shadow-xl:0 24px 80px rgba(0,0,0,0.12); }
+    [data-theme="dark"] { --bg-page:#030712;--bg-card:#0a0f1e;--bg-alt:#060b1a;--text-primary:#f8fafc;--text-secondary:#94a3b8;--text-muted:#64748b;--bluel:#0f172a;--light:#0f172a;--border:rgba(255,255,255,0.06);--shadow-lg:0 12px 40px rgba(0,0,0,0.5);--shadow-xl:0 24px 80px rgba(0,0,0,0.6); }
+    [data-theme="dark"] .section { background:linear-gradient(180deg,#030712 0%,#0a0f1e 100%); }
+    [data-theme="dark"] .calc-card { background:#0a0f1e; }
+    [data-theme="dark"] .feature-chip { background:#0f172a; border-color:rgba(26,86,255,0.2); }
+    [data-theme="dark"] .summary-card { background:#0a0f1e; }
+    [data-theme="dark"] .range-track { background:#1e293b; }
+    [data-theme="dark"] input, [data-theme="dark"] select { background:#0f172a; border-color:#1e293b; color:#f8fafc; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; color:var(--text-primary,#060d1f); background:var(--bg-page,#ffffff); overflow-x:hidden; line-height:1.6; }
+    ::selection { background:rgba(26,86,255,0.2); color:var(--blue); }
+    .skip-link { position:fixed; top:-40px; left:0; background:var(--blue); color:#fff; padding:8px 16px; z-index:99999; font-weight:700; font-size:.85rem; border-radius:0 0 8px 0; transition:top 0.2s; }
+    .skip-link:focus { top:0; }
+    .navbar { position:fixed; top:0; left:0; right:0; z-index:1000; padding:16px 6%; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.85); backdrop-filter:blur(16px); border-bottom:1px solid rgba(26,86,255,0.08); transition:all 0.3s; }
+    [data-theme="dark"] .navbar { background:rgba(3,7,18,0.92); border-bottom-color:rgba(26,86,255,0.12); }
+    .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.25rem; color:var(--text-primary,#060d1f); text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .logo span { color:var(--blue); }
+    .nav-menu { display:flex; list-style:none; gap:28px; align-items:center; }
+    .nav-menu a { font-size:.88rem; font-weight:600; color:var(--gray); text-decoration:none; transition:color 0.2s; }
+    .nav-menu a:hover { color:var(--blue); }
+    .nav-cta { background:var(--blue); color:#fff!important; padding:8px 18px; border-radius:var(--radius-md); font-weight:700!important; font-size:.8rem; }
+    .dm-toggle { width:44px; height:24px; border-radius:50px; background:linear-gradient(135deg,var(--blue),#4f46e5); border:none; cursor:pointer; position:relative; flex-shrink:0; transition:background 0.3s; }
+    .dm-toggle::after { content:''; position:absolute; top:2px; left:2px; width:20px; height:20px; border-radius:50%; background:#fff; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+    [data-theme="dark"] .dm-toggle::after { transform:translateX(20px); }
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--text-primary); border-radius:2px; }
+    @media (max-width:900px) { .hamburger { display:flex; } .nav-menu { position:fixed; top:0; right:0; width:280px; height:100vh; background:var(--bg-card); flex-direction:column; padding:90px 28px 28px; gap:18px; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.23,1,0.32,1); box-shadow:var(--shadow-xl); border-left:1px solid rgba(26,86,255,0.08); } .nav-menu.open { transform:translateX(0); } }
+    .section { padding:100px 6%; position:relative; }
+    .section-light { background:linear-gradient(180deg,#f8faff 0%,#f4f7ff 100%); }
+    [data-theme="dark"] .section-light { background:linear-gradient(180deg,#060b1a 0%,#0a0f1e 100%); }
+    .tag { display:inline-flex; align-items:center; gap:8px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--blue); background:var(--bluel); border:1px solid rgba(26,86,255,0.2); padding:6px 16px; border-radius:50px; margin-bottom:16px; }
+    .sec-h { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:800; line-height:1.2; margin-bottom:16px; }
+    .sec-sub { font-size:1.05rem; color:var(--gray); max-width:640px; line-height:1.75; margin-bottom:48px; }
+    .text-center { text-align:center; }
+    .text-center .sec-sub { margin-left:auto; margin-right:auto; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; border-radius:var(--radius-md); font-weight:700; font-size:.9rem; cursor:pointer; border:none; transition:all 0.25s; text-decoration:none; }
+    .btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+    .btn-blue { background:var(--blue); color:#fff; }
+    .btn-blue:hover { background:var(--blue2); }
+    .btn-green { background:var(--green); color:#fff; }
+    .btn-green:hover { background:#1ebe5d; }
+    .btn-ghost { background:transparent; border:1.5px solid rgba(255,255,255,0.2); color:#fff; }
+    .btn-outline { background:transparent; border:1.5px solid var(--blue); color:var(--blue); }
+    .reveal-up { opacity:0; transform:translateY(40px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.23,1,0.32,1); }
+    .reveal-up.in-view { opacity:1; transform:translateY(0); }
+
+    /* Calculator */
+    .calc-wrap { display:grid; grid-template-columns:1fr 360px; gap:40px; max-width:1200px; margin:0 auto; }
+    .calc-card { background:var(--bg-card,#ffffff); border:1.5px solid rgba(26,86,255,0.07); border-radius:var(--radius-lg); padding:32px; box-shadow:var(--shadow-lg); transition:all 0.3s; }
+    .calc-card:hover { border-color:rgba(26,86,255,0.15); }
+    .calc-group { margin-bottom:28px; }
+    .calc-group h4 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--text-primary); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+    .calc-group h4 i { color:var(--blue); font-size:.85rem; }
+    .calc-group p { font-size:.82rem; color:var(--gray); margin-bottom:12px; }
+    .type-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; }
+    .type-card { padding:14px; border-radius:var(--radius-md); border:2px solid rgba(26,86,255,0.08); background:var(--bg-card); cursor:pointer; transition:all 0.25s; text-align:center; }
+    .type-card:hover { border-color:rgba(26,86,255,0.2); transform:translateY(-2px); }
+    .type-card.selected { border-color:var(--blue); background:var(--bluel); }
+    .type-card .t-ico { font-size:1.6rem; margin-bottom:6px; display:block; }
+    .type-card .t-name { font-size:.82rem; font-weight:700; color:var(--text-primary); }
+    .type-card .t-price { font-size:.72rem; color:var(--gray); margin-top:4px; }
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+    .feature-chip { display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:var(--radius-md); border:1.5px solid rgba(26,86,255,0.08); background:var(--bg-card); cursor:pointer; transition:all 0.2s; }
+    .feature-chip:hover { border-color:rgba(26,86,255,0.2); }
+    .feature-chip.selected { border-color:var(--blue); background:var(--bluel); }
+    .feature-chip .f-check { width:20px; height:20px; border-radius:6px; border:2px solid rgba(26,86,255,0.15); display:flex; align-items:center; justify-content:center; color:transparent; font-size:.7rem; transition:all 0.2s; flex-shrink:0; }
+    .feature-chip.selected .f-check { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .feature-chip .f-info { flex:1; }
+    .feature-chip .f-name { font-size:.85rem; font-weight:600; color:var(--text-primary); display:block; }
+    .feature-chip .f-price { font-size:.72rem; color:var(--gray); }
+    .range-track { height:6px; border-radius:3px; background:#e2e8f0; position:relative; margin-top:12px; }
+    .range-fill { height:100%; border-radius:3px; background:linear-gradient(90deg,var(--blue),var(--accent)); width:0%; transition:width 0.3s; }
+    .range-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:18px; height:18px; border-radius:50%; background:#fff; border:2px solid var(--blue); cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .range-labels { display:flex; justify-content:space-between; font-size:.72rem; color:var(--gray); margin-top:8px; }
+    .range-val { font-family:'Syne',sans-serif; font-weight:700; color:var(--blue); font-size:1.1rem; }
+
+    /* Summary */
+    .summary-card { position:sticky; top:100px; background:var(--bg-card); border:1.5px solid rgba(26,86,255,0.07); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow-lg); height:fit-content; }
+    .summary-card h3 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:16px; }
+    .summary-row { display:flex; justify-content:space-between; padding:8px 0; font-size:.85rem; border-bottom:1px solid rgba(26,86,255,0.06); }
+    .summary-row .lbl { color:var(--gray); }
+    .summary-row .val { font-weight:700; color:var(--text-primary); }
+    .summary-row.total { border-bottom:none; border-top:2px solid var(--blue); margin-top:8px; padding-top:14px; font-size:1.1rem; }
+    .summary-row.total .val { color:var(--blue); font-family:'Syne',sans-serif; font-size:1.3rem; }
+    .summary-cta { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+    .summary-cta .btn { width:100%; font-size:.85rem; padding:12px; }
+    .discount-badge { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#fef3c7,#fffbeb); color:#92400e; padding:6px 12px; border-radius:8px; font-size:.75rem; font-weight:700; margin-bottom:12px; border:1px solid #fde68a; }
+    [data-theme="dark"] .discount-badge { background:linear-gradient(135deg,#451a03,#78350f); color:#fcd34d; border-color:#78350f; }
+
+    @media (max-width:900px) { .calc-wrap { grid-template-columns:1fr; } .summary-card { position:static; } }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <nav class="navbar" id="navbar">
+    <a href="index-upgraded.html" class="logo"><span>TK</span> Web Solutions</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index-upgraded.html">Home</a></li>
+      <li><a href="index-upgraded.html#services">Services</a></li>
+      <li><a href="index-upgraded.html#portfolio">Portfolio</a></li>
+      <li><a href="pricing-calculator.html">Pricing</a></li>
+      <li><a href="trust.html">Trust</a></li>
+      <li><a href="index-upgraded.html#contact">Contact</a></li>
+      <li><a href="https://wa.me/919079368240" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+      <li><button class="dm-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" style="margin-top:10px;"></button></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <main id="main-content">
+    <section class="section" style="padding-top:140px;">
+      <div class="text-center">
+        <div class="tag reveal-up">Instant Quote</div>
+        <h1 class="sec-h reveal-up">Interactive Pricing Calculator</h1>
+        <p class="sec-sub reveal-up">Select your website type, features, and get an instant estimate. No hidden costs.</p>
+      </div>
+
+      <div class="calc-wrap reveal-up">
+        <div class="calc-card" id="calcForm">
+          <div class="calc-group">
+            <h4><i class="fas fa-laptop-code"></i> Website / App Type</h4>
+            <p>Select the type of project you need</p>
+            <div class="type-grid" id="typeGrid">
+              <div class="type-card" data-type="business" data-base="7000" onclick="selectType(this)"><span class="t-ico">🏢</span><div class="t-name">Business</div><div class="t-price">₹7,000+</div></div>
+              <div class="type-card" data-type="school" data-base="10000" onclick="selectType(this)"><span class="t-ico">🏫</span><div class="t-name">School</div><div class="t-price">₹10,000+</div></div>
+              <div class="type-card" data-type="coaching" data-base="7000" onclick="selectType(this)"><span class="t-ico">🎓</span><div class="t-name">Coaching</div><div class="t-price">₹7,000+</div></div>
+              <div class="type-card" data-type="hospital" data-base="10000" onclick="selectType(this)"><span class="t-ico">🏥</span><div class="t-name">Hospital</div><div class="t-price">₹10,000+</div></div>
+              <div class="type-card" data-type="portfolio" data-base="5000" onclick="selectType(this)"><span class="t-ico">👤</span><div class="t-name">Portfolio</div><div class="t-price">₹5,000+</div></div>
+              <div class="type-card" data-type="ecommerce" data-base="15000" onclick="selectType(this)"><span class="t-ico">🛒</span><div class="t-name">E-Commerce</div><div class="t-price">₹15,000+</div></div>
+              <div class="type-card" data-type="emitra" data-base="8000" onclick="selectType(this)"><span class="t-ico">🏛️</span><div class="t-name">E-Mitra</div><div class="t-price">₹8,000+</div></div>
+              <div class="type-card" data-type="android" data-base="10000" onclick="selectType(this)"><span class="t-ico">📱</span><div class="t-name">Android App</div><div class="t-price">₹10,000+</div></div>
+              <div class="type-card" data-type="playstore" data-base="18000" onclick="selectType(this)"><span class="t-ico">🚀</span><div class="t-name">Play Store App</div><div class="t-price">₹18,000+</div></div>
+              <div class="type-card" data-type="bothapps" data-base="35000" onclick="selectType(this)"><span class="t-ico">📱📱</span><div class="t-name">Android + iOS</div><div class="t-price">₹35,000+</div></div>
+            </div>
+          </div>
+
+          <div class="calc-group">
+            <h4><i class="fas fa-layer-group"></i> Features & Add-ons</h4>
+            <p>Select additional features you need</p>
+            <div class="feature-grid" id="featureGrid">
+              <div class="feature-chip" data-name="Payment Gateway" data-price="3000" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Payment Gateway</span><span class="f-price">+₹3,000</span></div></div>
+              <div class="feature-chip" data-name="WhatsApp Integration" data-price="0" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">WhatsApp</span><span class="f-price">Free</span></div></div>
+              <div class="feature-chip" data-name="SEO Package" data-price="0" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">SEO</span><span class="f-price">Free</span></div></div>
+              <div class="feature-chip" data-name="Blog Section" data-price="2000" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Blog</span><span class="f-price">+₹2,000</span></div></div>
+              <div class="feature-chip" data-name="Admin Panel" data-price="5000" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Admin Panel</span><span class="f-price">+₹5,000</span></div></div>
+              <div class="feature-chip" data-name="Hosting (1 Year)" data-price="0" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Hosting</span><span class="f-price">Free</span></div></div>
+              <div class="feature-chip" data-name="Domain" data-price="800" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Domain</span><span class="f-price">+₹800</span></div></div>
+              <div class="feature-chip" data-name="SSL Certificate" data-price="0" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">SSL</span><span class="f-price">Free</span></div></div>
+              <div class="feature-chip" data-name="Google Analytics" data-price="0" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Analytics</span><span class="f-price">Free</span></div></div>
+              <div class="feature-chip" data-name="Live Chat" data-price="1500" onclick="toggleFeature(this)"><div class="f-check"><i class="fas fa-check"></i></div><div class="f-info"><span class="f-name">Live Chat</span><span class="f-price">+₹1,500</span></div></div>
+            </div>
+          </div>
+
+          <div class="calc-group">
+            <h4><i class="fas fa-file-alt"></i> Number of Pages</h4>
+            <p>Adjust the number of pages needed</p>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <input type="range" min="1" max="50" value="5" id="pageRange" oninput="updatePages(this.value)" style="flex:1;accent-color:var(--blue);">
+              <span class="range-val" id="pageVal">5 pages</span>
+            </div>
+          </div>
+
+          <div class="calc-group">
+            <h4><i class="fas fa-user"></i> Your Details (for Quotation)</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <input type="text" id="qName" placeholder="Your Name" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+              <input type="text" id="qBusiness" placeholder="Business Name" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+              <input type="tel" id="qPhone" placeholder="Phone Number" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+              <input type="email" id="qEmail" placeholder="Email Address" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-card" id="summaryCard">
+          <h3>💰 Estimate Summary</h3>
+          <div class="discount-badge" id="discountBadge" style="display:none;"><i class="fas fa-tag"></i> <span id="discountText"></span></div>
+          <div class="summary-row"><span class="lbl">Base Price</span><span class="val" id="sumBase">₹0</span></div>
+          <div class="summary-row"><span class="lbl">Features</span><span class="val" id="sumFeatures">₹0</span></div>
+          <div class="summary-row"><span class="lbl">Extra Pages</span><span class="val" id="sumPages">₹0</span></div>
+          <div class="summary-row total"><span class="lbl">Total Estimate</span><span class="val" id="sumTotal">₹0</span></div>
+          <div style="font-size:.75rem;color:var(--gray);margin-top:8px;">* Prices are estimates. Final quote may vary.</div>
+          <div class="summary-cta">
+            <button class="btn btn-blue" onclick="generatePDF()"><i class="fas fa-file-pdf"></i> Download PDF Quote</button>
+            <button class="btn btn-green" onclick="sendWhatsApp()"><i class="fab fa-whatsapp"></i> Send to WhatsApp</button>
+            <button class="btn btn-outline" onclick="sendEmail()" style="color:var(--text-primary);border-color:rgba(26,86,255,0.2);"><i class="fas fa-envelope"></i> Email Quotation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let selectedType = null, selectedFeatures = [], pageCount = 5;
+
+    function selectType(el) {
+      document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedType = { type: el.dataset.type, base: parseInt(el.dataset.base) };
+      calculate();
+    }
+
+    function toggleFeature(el) {
+      el.classList.toggle('selected');
+      const name = el.dataset.name, price = parseInt(el.dataset.price);
+      if (el.classList.contains('selected')) {
+        selectedFeatures.push({ name, price });
+      } else {
+        selectedFeatures = selectedFeatures.filter(f => f.name !== name);
+      }
+      calculate();
+    }
+
+    function updatePages(val) {
+      pageCount = parseInt(val);
+      document.getElementById('pageVal').textContent = val + ' pages';
+      calculate();
+    }
+
+    function calculate() {
+      if (!selectedType) { document.getElementById('sumTotal').textContent = 'Select a type'; return; }
+      let base = selectedType.base;
+      let extraPages = Math.max(0, pageCount - 5) * 500;
+      let featureTotal = selectedFeatures.reduce((a, f) => a + f.price, 0);
+      let total = base + extraPages + featureTotal;
+      let discount = 0;
+      if (total > 30000) discount = 0.10;
+      else if (total > 15000) discount = 0.05;
+      let finalTotal = Math.round(total * (1 - discount));
+
+      document.getElementById('sumBase').textContent = '₹' + base.toLocaleString();
+      document.getElementById('sumFeatures').textContent = '₹' + featureTotal.toLocaleString();
+      document.getElementById('sumPages').textContent = '₹' + extraPages.toLocaleString();
+      document.getElementById('sumTotal').textContent = '₹' + finalTotal.toLocaleString();
+
+      const badge = document.getElementById('discountBadge');
+      if (discount > 0) {
+        badge.style.display = 'inline-flex';
+        document.getElementById('discountText').textContent = (discount * 100) + '% discount applied! Saved ₹' + Math.round(total * discount).toLocaleString();
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function getQuoteText() {
+      const name = document.getElementById('qName').value || 'Not provided';
+      const business = document.getElementById('qBusiness').value || 'N/A';
+      const phone = document.getElementById('qPhone').value || 'N/A';
+      const email = document.getElementById('qEmail').value || 'N/A';
+      let text = '*TK Web Solutions - Quotation*\n\n';
+      text += 'Name: ' + name + '\n';
+      text += 'Business: ' + business + '\n';
+      text += 'Phone: ' + phone + '\n';
+      text += 'Email: ' + email + '\n\n';
+      text += 'Project Type: ' + (selectedType ? selectedType.type : 'Not selected') + '\n';
+      text += 'Pages: ' + pageCount + '\n';
+      text += 'Features: ' + (selectedFeatures.length > 0 ? selectedFeatures.map(f => f.name).join(', ') : 'None') + '\n\n';
+      text += 'Base: ' + document.getElementById('sumBase').textContent + '\n';
+      text += 'Features: ' + document.getElementById('sumFeatures').textContent + '\n';
+      text += 'Extra Pages: ' + document.getElementById('sumPages').textContent + '\n';
+      text += '*Total: ' + document.getElementById('sumTotal').textContent + '*\n\n';
+      text += 'Generated from: https://tkwebsolutions.in/pricing-calculator.html';
+      return text;
+    }
+
+    function sendWhatsApp() {
+      const text = getQuoteText();
+      window.open('https://wa.me/919079368240?text=' + encodeURIComponent(text), '_blank');
+    }
+
+    function sendEmail() {
+      const email = document.getElementById('qEmail').value || 'your@email.com';
+      const subject = 'TK Web Solutions - Quotation Request';
+      const body = getQuoteText();
+      window.open('mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body), '_blank');
+    }
+
+    function generatePDF() {
+      const text = getQuoteText();
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'TK_Quotation_' + (new Date().toISOString().split('T')[0]) + '.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      alert('Quotation downloaded! (PDF generation requires a backend or jsPDF library)');
+    }
+
+    function toggleDarkMode() {
+      const root = document.documentElement;
+      const d = root.getAttribute('data-theme') === 'dark';
+      if (d) { root.removeAttribute('data-theme'); localStorage.setItem('tk-theme', 'light'); } else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('tk-theme', 'dark'); }
+    }
+    (function() {
+      const stored = localStorage.getItem('tk-theme');
+      if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+
+    // IntersectionObserver
+    const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); } }); }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

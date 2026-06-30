@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard — TK Web Solutions</title>
+  <meta name="description" content="Client dashboard for TK Web Solutions. Track your project, download invoices, view meetings, and manage support tickets.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root { --blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;--navy:#060d1f;--white:#ffffff;--gray:#6b7280;--light:#f0f3fb;--accent:#00e5ff;--gold:#f59e0b;--green:#25d366;--red:#ef4444; --bg:#f4f7ff; --sidebar:180px; --radius:14px; }
+    [data-theme="dark"] { --bg:#030712; --sidebar-bg:#0a0f1e; --card:#0f172a; --text:#f8fafc; --text2:#94a3b8; --border:rgba(255,255,255,0.06); --light:#0f172a; }
+    [data-theme="dark"] body { background:var(--bg); color:var(--text); }
+    [data-theme="dark"] .sidebar { background:var(--sidebar-bg); border-color:var(--border); }
+    [data-theme="dark"] .card { background:var(--card); border-color:var(--border); }
+    [data-theme="dark"] .topbar { background:var(--card); border-color:var(--border); }
+    [data-theme="dark"] .progress-track { background:#1e293b; }
+    [data-theme="dark"] .ticket { background:var(--card); border-color:var(--border); }
+    [data-theme="dark"] input, [data-theme="dark"] select { background:#0f172a; border-color:#1e293b; color:#f8fafc; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'DM Sans',sans-serif; color:#060d1f; background:var(--bg); overflow-x:hidden; line-height:1.6; }
+    .app { display:flex; min-height:100vh; }
+    .sidebar { width:var(--sidebar); background:#fff; border-right:1px solid rgba(26,86,255,0.06); padding:24px 16px; display:flex; flex-direction:column; gap:8px; position:fixed; height:100vh; z-index:100; transition:transform 0.3s; }
+    .sidebar-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:var(--navy); margin-bottom:24px; padding:0 8px; }
+    .sidebar-logo span { color:var(--blue); }
+    .nav-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; font-size:.85rem; font-weight:600; color:var(--gray); cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; background:none; width:100%; }
+    .nav-item:hover, .nav-item.active { background:var(--bluel); color:var(--blue); }
+    .nav-item i { width:20px; text-align:center; font-size:.9rem; }
+    .sidebar-bottom { margin-top:auto; padding-top:16px; border-top:1px solid rgba(26,86,255,0.06); }
+    .main { flex:1; margin-left:var(--sidebar); min-height:100vh; }
+    .topbar { background:#fff; border-bottom:1px solid rgba(26,86,255,0.06); padding:16px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+    .topbar h1 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; }
+    .topbar-actions { display:flex; align-items:center; gap:12px; }
+    .topbar .dm-toggle { width:36px; height:20px; border-radius:50px; background:linear-gradient(135deg,var(--blue),#4f46e5); border:none; cursor:pointer; position:relative; }
+    .topbar .dm-toggle::after { content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform 0.3s; }
+    [data-theme="dark"] .topbar .dm-toggle::after { transform:translateX(16px); }
+    .content { padding:32px; max-width:1400px; }
+    .card { background:#fff; border-radius:var(--radius); border:1.5px solid rgba(26,86,255,0.06); padding:24px; transition:all 0.2s; }
+    .card:hover { border-color:rgba(26,86,255,0.12); box-shadow:0 8px 24px rgba(0,0,0,0.04); }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .stat-card { padding:20px; text-align:center; }
+    .stat-card .num { font-family:'Syne',sans-serif; font-size:1.8rem; font-weight:800; color:var(--blue); }
+    .stat-card .lbl { font-size:.75rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
+    .progress-track { height:8px; border-radius:4px; background:#e2e8f0; overflow:hidden; margin-top:12px; }
+    .progress-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--blue),var(--accent)); transition:width 0.6s; }
+    .phase-list { display:flex; flex-direction:column; gap:14px; }
+    .phase { display:flex; align-items:center; gap:14px; padding:14px; border-radius:10px; background:var(--light); transition:all 0.2s; }
+    .phase.done { background:linear-gradient(135deg,#dcfce7,#f0fdf4); border:1px solid #bbf7d0; }
+    .phase.active { background:linear-gradient(135deg,#dbeafe,#eff6ff); border:1px solid #bfdbfe; }
+    .phase .icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.85rem; flex-shrink:0; }
+    .phase.done .icon { background:#22c55e; color:#fff; }
+    .phase.active .icon { background:var(--blue); color:#fff; }
+    .phase .icon { background:var(--bluel); color:var(--blue); }
+    .phase h5 { font-family:'Syne',sans-serif; font-size:.88rem; font-weight:700; }
+    .phase p { font-size:.75rem; color:var(--gray); }
+    .file-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(26,86,255,0.06); }
+    .file-row:last-child { border-bottom:none; }
+    .file-row .name { font-size:.85rem; font-weight:600; display:flex; align-items:center; gap:8px; }
+    .file-row .name i { color:var(--blue); }
+    .file-row .meta { font-size:.75rem; color:var(--gray); }
+    .file-row .btn { padding:6px 12px; border-radius:6px; font-size:.75rem; font-weight:700; border:none; cursor:pointer; transition:all 0.2s; }
+    .btn-dl { background:var(--bluel); color:var(--blue); }
+    .btn-dl:hover { background:var(--blue); color:#fff; }
+    .ticket { padding:16px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.06); background:#fff; margin-bottom:10px; }
+    .ticket-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .ticket h5 { font-family:'Syne',sans-serif; font-size:.9rem; font-weight:700; }
+    .ticket .status { font-size:.72rem; font-weight:700; padding:3px 10px; border-radius:20px; }
+    .status-open { background:#dbeafe; color:var(--blue); }
+    .status-closed { background:#dcfce7; color:#166534; }
+    .status-pending { background:#fef3c7; color:#92400e; }
+    .ticket p { font-size:.82rem; color:var(--gray); }
+    .ticket .date { font-size:.72rem; color:var(--gray); margin-top:6px; }
+    .login-wrap { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
+    .login-card { background:#fff; border-radius:var(--radius); border:1.5px solid rgba(26,86,255,0.06); padding:48px; max-width:420px; width:100%; text-align:center; box-shadow:0 24px 80px rgba(0,0,0,0.08); }
+    [data-theme="dark"] .login-card { background:var(--card); border-color:var(--border); }
+    .login-card .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.5rem; margin-bottom:8px; }
+    .login-card .logo span { color:var(--blue); }
+    .login-card p { color:var(--gray); font-size:.9rem; margin-bottom:28px; }
+    .login-card input { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.12); margin-bottom:12px; font-family:inherit; font-size:.9rem; outline:none; transition:all 0.2s; }
+    .login-card input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,86,255,0.08); }
+    .login-card button { width:100%; padding:12px; border-radius:10px; background:var(--blue); color:#fff; border:none; font-weight:700; font-size:.9rem; cursor:pointer; transition:all 0.2s; margin-top:8px; }
+    .login-card button:hover { background:var(--blue2); }
+    .login-card .hint { font-size:.78rem; color:var(--gray); margin-top:16px; }
+    .hidden { display:none !important; }
+    .mobile-toggle { display:none; position:fixed; bottom:20px; right:20px; z-index:200; width:48px; height:48px; border-radius:50%; background:var(--blue); color:#fff; border:none; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 16px rgba(26,86,255,0.3); }
+    @media (max-width:900px) { .sidebar { transform:translateX(-100%); } .sidebar.open { transform:translateX(0); } .main { margin-left:0; } .mobile-toggle { display:flex; align-items:center; justify-content:center; } .grid-4, .grid-3, .grid-2 { grid-template-columns:1fr; } .content { padding:16px; } }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- LOGIN SCREEN -->
+    <div class="login-wrap" id="loginScreen">
+      <div class="login-card">
+        <div class="logo"><span>TK</span> Web Solutions</div>
+        <p>Client Dashboard</p>
+        <input type="text" id="loginId" placeholder="Enter Project ID (e.g., TK-2026-001)" value="TK-2026-DEMO">
+        <input type="password" id="loginPass" placeholder="Enter Password" value="demo123">
+        <button onclick="doLogin()">Sign In</button>
+        <div class="hint">Demo: Project ID = TK-2026-DEMO, Password = demo123</div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="hidden" id="dashboard">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo"><span>TK</span> Dashboard</div>
+        <button class="nav-item active" onclick="showTab('overview')" data-tab="overview"><i class="fas fa-chart-pie"></i> Overview</button>
+        <button class="nav-item" onclick="showTab('timeline')" data-tab="timeline"><i class="fas fa-stream"></i> Timeline</button>
+        <button class="nav-item" onclick="showTab('files')" data-tab="files"><i class="fas fa-folder"></i> Files</button>
+        <button class="nav-item" onclick="showTab('invoices')" data-tab="invoices"><i class="fas fa-file-invoice"></i> Invoices</button>
+        <button class="nav-item" onclick="showTab('meetings')" data-tab="meetings"><i class="fas fa-calendar"></i> Meetings</button>
+        <button class="nav-item" onclick="showTab('support')" data-tab="support"><i class="fas fa-headset"></i> Support</button>
+        <button class="nav-item" onclick="showTab('profile')" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+        <div class="sidebar-bottom">
+          <button class="nav-item" onclick="toggleDarkMode()" style="color:var(--gray);"><i class="fas fa-moon"></i> Dark Mode</button>
+          <button class="nav-item" onclick="doLogout()" style="color:var(--red);"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div class="topbar">
+          <h1 id="pageTitle">Dashboard Overview</h1>
+          <div class="topbar-actions">
+            <span style="font-size:.85rem;color:var(--gray);" id="clientName">Welcome, Client</span>
+            <div class="dm-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></div>
+          </div>
+        </div>
+
+        <div class="content">
+          <!-- OVERVIEW TAB -->
+          <div id="tab-overview">
+            <div class="grid-4">
+              <div class="card stat-card"><div class="num" id="statProgress">75%</div><div class="lbl">Project Progress</div><div class="progress-track"><div class="progress-fill" id="statBar" style="width:75%"></div></div></div>
+              <div class="card stat-card"><div class="num" id="statDays">12</div><div class="lbl">Days Remaining</div></div>
+              <div class="card stat-card"><div class="num" id="statInvoices">2</div><div class="lbl">Invoices Pending</div></div>
+              <div class="card stat-card"><div class="num" id="statTickets">0</div><div class="lbl">Open Tickets</div></div>
+            </div>
+            <div style="margin-top:24px;" class="grid-2">
+              <div class="card">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-stream" style="color:var(--blue);margin-right:8px;"></i>Current Phase</h4>
+                <div class="phase active">
+                  <div class="icon"><i class="fas fa-code"></i></div>
+                  <div><h5>Development</h5><p>In progress — Backend integration & frontend responsive</p></div>
+                </div>
+              </div>
+              <div class="card">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-calendar" style="color:var(--blue);margin-right:8px;"></i>Upcoming Meeting</h4>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--light);border-radius:10px;">
+                  <div style="width:48px;height:48px;border-radius:12px;background:var(--bluel);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.2rem;"><i class="fas fa-video"></i></div>
+                  <div><div style="font-weight:700;font-size:.9rem;">Review Call</div><div style="font-size:.82rem;color:var(--gray);">Tomorrow, 3:00 PM — Google Meet</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIMELINE TAB -->
+          <div class="hidden" id="tab-timeline">
+            <div class="card">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:20px;"><i class="fas fa-stream" style="color:var(--blue);margin-right:8px;"></i>Project Timeline</h4>
+              <div class="phase-list" id="timelineList">
+                <div class="phase done"><div class="icon"><i class="fas fa-check"></i></div><div><h5>Discovery</h5><p>Completed on Jan 15, 2026</p></div></div>
+                <div class="phase done"><div class="icon"><i class="fas fa-check"></i></div><div><h5>Planning</h5><p>Completed on Jan 18, 2026</p></div></div>
+                <div class="phase done"><div class="icon"><i class="fas fa-check"></i></div><div><h5>Proposal</h5><p>Approved on Jan 20, 2026</p></div></div>
+                <div class="phase done"><div class="icon"><i class="fas fa-check"></i></div><div><h5>Agreement</h5><p>Signed on Jan 22, 2026</p></div></div>
+                <div class="phase done"><div class="icon"><i class="fas fa-check"></i></div><div><h5>Design</h5><p>Approved on Feb 1, 2026</p></div></div>
+                <div class="phase active"><div class="icon"><i class="fas fa-code"></i></div><div><h5>Development</h5><p>In progress — 75% complete</p></div></div>
+                <div class="phase"><div class="icon"><i class="fas fa-bug"></i></div><div><h5>Testing</h5><p>Scheduled for Feb 20, 2026</p></div></div>
+                <div class="phase"><div class="icon"><i class="fas fa-rocket"></i></div><div><h5>Deployment</h5><p>Scheduled for Feb 25, 2026</p></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILES TAB -->
+          <div class="hidden" id="tab-files">
+            <div class="card">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-folder" style="color:var(--blue);margin-right:8px;"></i>Project Files</h4>
+              <div id="fileList">
+                <div class="file-row"><div class="name"><i class="fas fa-file-pdf"></i> Project_Proposal.pdf</div><div class="meta">Jan 20, 2026 • 1.2 MB</div><button class="btn btn-dl" onclick="alert('Download starting...')"><i class="fas fa-download"></i> Download</button></div>
+                <div class="file-row"><div class="name"><i class="fas fa-file-image"></i> Design_Mockups_v2.fig</div><div class="meta">Feb 1, 2026 • 8.4 MB</div><button class="btn btn-dl" onclick="alert('Download starting...')"><i class="fas fa-download"></i> Download</button></div>
+                <div class="file-row"><div class="name"><i class="fas fa-file-code"></i> Source_Code_Backup.zip</div><div class="meta">Feb 10, 2026 • 12.1 MB</div><button class="btn btn-dl" onclick="alert('Download starting...')"><i class="fas fa-download"></i> Download</button></div>
+                <div class="file-row"><div class="name"><i class="fas fa-file-contract"></i> Development_Agreement.pdf</div><div class="meta">Jan 22, 2026 • 480 KB</div><button class="btn btn-dl" onclick="alert('Download starting...')"><i class="fas fa-download"></i> Download</button></div>
+              </div>
+            </div>
+            <div class="card" style="margin-top:20px;">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-mobile-alt" style="color:var(--blue);margin-right:8px;"></i>App Downloads</h4>
+              <div class="file-row"><div class="name"><i class="fas fa-file-archive"></i> Android_APK_v1.0.apk</div><div class="meta">Feb 10, 2026 • 18.5 MB</div><button class="btn btn-dl" onclick="alert('Download starting...')"><i class="fas fa-download"></i> Download APK</button></div>
+            </div>
+          </div>
+
+          <!-- INVOICES TAB -->
+          <div class="hidden" id="tab-invoices">
+            <div class="card">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-file-invoice" style="color:var(--blue);margin-right:8px;"></i>Invoices & Payments</h4>
+              <div id="invoiceList">
+                <div class="file-row"><div class="name"><i class="fas fa-file-invoice-dollar"></i> INV-001 — Advance Payment</div><div class="meta">₹5,000 • Paid • Jan 22, 2026</div><button class="btn btn-dl" onclick="alert('Downloading invoice...')"><i class="fas fa-download"></i> Download</button></div>
+                <div class="file-row"><div class="name"><i class="fas fa-file-invoice-dollar"></i> INV-002 — Milestone 1</div><div class="meta">₹7,000 • Paid • Feb 5, 2026</div><button class="btn btn-dl" onclick="alert('Downloading invoice...')"><i class="fas fa-download"></i> Download</button></div>
+                <div class="file-row"><div class="name"><i class="fas fa-file-invoice-dollar" style="color:var(--gold);"></i> INV-003 — Final Payment</div><div class="meta">₹5,000 • Pending • Due Feb 25, 2026</div><button class="btn btn-dl" style="background:var(--gold);color:#fff;" onclick="alert('Redirecting to payment...')"><i class="fas fa-credit-card"></i> Pay Now</button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MEETINGS TAB -->
+          <div class="hidden" id="tab-meetings">
+            <div class="card">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-calendar" style="color:var(--blue);margin-right:8px;"></i>Meeting Schedule</h4>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--light);border-radius:10px;border-left:4px solid var(--blue);">
+                  <div style="width:48px;height:48px;border-radius:12px;background:var(--bluel);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.2rem;"><i class="fas fa-video"></i></div>
+                  <div style="flex:1;"><div style="font-weight:700;font-size:.9rem;">Review Call</div><div style="font-size:.82rem;color:var(--gray);">Feb 14, 2026 • 3:00 PM • Google Meet</div></div>
+                  <a href="#" class="btn btn-dl" style="text-decoration:none;"><i class="fas fa-video"></i> Join</a>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--light);border-radius:10px;border-left:4px solid var(--green);">
+                  <div style="width:48px;height:48px;border-radius:12px;background:var(--bluel);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.2rem;"><i class="fas fa-check-circle"></i></div>
+                  <div style="flex:1;"><div style="font-weight:700;font-size:.9rem;">Kickoff Meeting</div><div style="font-size:.82rem;color:var(--gray);">Jan 15, 2026 • 11:00 AM • Completed</div></div>
+                  <span style="font-size:.75rem;color:var(--green);font-weight:700;">Done</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUPPORT TAB -->
+          <div class="hidden" id="tab-support">
+            <div class="card">
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-headset" style="color:var(--blue);margin-right:8px;"></i>Support Tickets</h4>
+              <div id="ticketList">
+                <div style="font-size:.85rem;color:var(--gray);text-align:center;padding:40px;"><i class="fas fa-check-circle" style="font-size:2rem;color:var(--green);margin-bottom:12px;display:block;"></i>No open tickets. Great!</div>
+              </div>
+              <div style="margin-top:20px;">
+                <h5 style="font-family:'Syne',sans-serif;font-size:.9rem;margin-bottom:10px;">Raise New Ticket</h5>
+                <input type="text" id="ticketSubject" placeholder="Subject" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+                <textarea id="ticketBody" placeholder="Describe your issue..." style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;min-height:80px;resize:vertical;margin-bottom:8px;outline:none;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'"></textarea>
+                <button class="btn btn-dl" style="width:100%;padding:10px;" onclick="raiseTicket()"><i class="fas fa-paper-plane"></i> Submit Ticket</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROFILE TAB -->
+          <div class="hidden" id="tab-profile">
+            <div class="grid-2">
+              <div class="card">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-user" style="color:var(--blue);margin-right:8px;"></i>Profile</h4>
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+                  <div style="width:64px;height:64px;border-radius:50%;background:var(--bluel);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:1.5rem;font-weight:700;">JD</div>
+                  <div><div style="font-weight:700;font-size:1rem;">John Doe</div><div style="font-size:.82rem;color:var(--gray);">john@example.com</div></div>
+                </div>
+                <input type="text" value="John Doe" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+                <input type="email" value="john@example.com" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+                <input type="tel" value="+91 98765 43210" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='rgba(26,86,255,0.12)'">
+                <button class="btn btn-dl" style="width:100%;padding:10px;" onclick="alert('Profile updated!')"><i class="fas fa-save"></i> Save Changes</button>
+              </div>
+              <div class="card">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-lock" style="color:var(--blue);margin-right:8px;"></i>Security</h4>
+                <input type="password" placeholder="Current Password" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;">
+                <input type="password" placeholder="New Password" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;">
+                <input type="password" placeholder="Confirm New Password" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-bottom:8px;outline:none;">
+                <button class="btn btn-dl" style="width:100%;padding:10px;" onclick="alert('Password changed!')"><i class="fas fa-key"></i> Change Password</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="mobile-toggle" id="mobileToggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+
+  <script>
+    function toggleDarkMode() {
+      const root = document.documentElement;
+      const d = root.getAttribute('data-theme') === 'dark';
+      if (d) { root.removeAttribute('data-theme'); localStorage.setItem('tk-theme', 'light'); } else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('tk-theme', 'dark'); }
+    }
+    (function() { const stored = localStorage.getItem('tk-theme'); if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); })();
+
+    function doLogin() {
+      const id = document.getElementById('loginId').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
+      if (id === 'TK-2026-DEMO' && pass === 'demo123') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        document.getElementById('clientName').textContent = 'Welcome, John Doe';
+        localStorage.setItem('tk_client_auth', 'true');
+      } else {
+        alert('Invalid credentials. Try TK-2026-DEMO / demo123');
+      }
+    }
+
+    function doLogout() {
+      localStorage.removeItem('tk_client_auth');
+      location.reload();
+    }
+
+    // Auto-login if stored
+    (function() {
+      if (localStorage.getItem('tk_client_auth') === 'true') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+      }
+    })();
+
+    function showTab(tab) {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('[data-tab]').forEach(n => { if (n.dataset.tab === tab) n.classList.add('active'); });
+      document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.add('hidden'));
+      document.getElementById('tab-' + tab).classList.remove('hidden');
+      const titles = { overview:'Dashboard Overview', timeline:'Project Timeline', files:'Project Files', invoices:'Invoices & Payments', meetings:'Meetings', support:'Support Tickets', profile:'Profile' };
+      document.getElementById('pageTitle').textContent = titles[tab] || 'Dashboard';
+    }
+
+    function raiseTicket() {
+      const sub = document.getElementById('ticketSubject').value;
+      const body = document.getElementById('ticketBody').value;
+      if (!sub || !body) { alert('Please fill subject and description'); return; }
+      const list = document.getElementById('ticketList');
+      const div = document.createElement('div'); div.className = 'ticket';
+      div.innerHTML = `<div class="ticket-header"><h5>${sub}</h5><span class="status status-open">Open</span></div><p>${body}</p><div class="date">Just now</div>`;
+      // Clear empty state if present
+      if (list.children.length === 1 && list.children[0].querySelector('.fa-check-circle')) list.innerHTML = '';
+      list.appendChild(div);
+      document.getElementById('ticketSubject').value = '';
+      document.getElementById('ticketBody').value = '';
+      document.getElementById('statTickets').textContent = list.children.length;
+      alert('Ticket raised successfully!');
+    }
+  </script>
+</body>
+</html>
