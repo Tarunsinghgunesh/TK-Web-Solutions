@@ -1,7 +1,7 @@
 {
   "name": "TK Web Solutions",
   "short_name": "TK Web",
-  "description": "Bharatpur ka trusted web design agency. Professional websites ₹5,000 se. 5-7 din mein LIVE!",
+  "description": "TK Web Solutions — an independent digital studio in Bharatpur, Rajasthan, building websites and apps for ambitious businesses.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -30,27 +30,27 @@
     }
   ],
   "categories": ["business", "productivity"],
-  "lang": "hi",
+  "lang": "en",
   "dir": "ltr",
   "shortcuts": [
     {
-      "name": "Free Demo Lo",
-      "short_name": "Demo",
-      "description": "Free demo ke liye contact karo",
+      "name": "Start a Project",
+      "short_name": "Start",
+      "description": "Get in touch to start your project",
       "url": "/#contact",
       "icons": [{"src": "/logo.png", "sizes": "192x192"}]
     },
     {
-      "name": "Blog Padho",
+      "name": "Read the Blog",
       "short_name": "Blog",
-      "description": "Free web design tips Hindi mein",
-      "url": "/blog/blog.html",
+      "description": "Free web design and SEO guides",
+      "url": "/blog.html",
       "icons": [{"src": "/logo.png", "sizes": "192x192"}]
     },
     {
-      "name": "Services Dekho",
+      "name": "View Services",
       "short_name": "Services",
-      "description": "Hamare website packages",
+      "description": "Explore our website and app packages",
       "url": "/#services",
       "icons": [{"src": "/logo.png", "sizes": "192x192"}]
     }
