@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,14 +100,14 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <nav class="navbar" id="navbar">
-    <a href="index-upgraded.html" class="logo"><span>TK</span> Web Solutions</a>
+    <a href="index.html" class="logo"><span>TK</span> Web Solutions</a>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="index-upgraded.html">Home</a></li>
-      <li><a href="index-upgraded.html#services">Services</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
       <li><a href="pricing-calculator.html">Pricing</a></li>
       <li><a href="trust.html">Trust</a></li>
-      <li><a href="index-upgraded.html#contact">Contact</a></li>
-      <li><a href="https://wa.me/919079368240" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="index.html#contact" class="nav-cta"><i class="fas fa-rocket"></i> Start a Project</a></li>
       <li><button class="dm-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode" style="margin-top:10px;"></button></li>
     </ul>
     <button class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -117,7 +118,7 @@
       <div class="text-center">
         <div class="tag reveal-up">AI Powered</div>
         <h1 class="sec-h reveal-up">Website Requirement Form</h1>
-        <p class="sec-sub reveal-up">Batao apni requirements, aur AI instantly ek proposal, cost estimate, aur timeline generate karega.</p>
+        <p class="sec-sub reveal-up">Share your requirements, and get an instant proposal with cost estimate and timeline.</p>
       </div>
 
       <div class="form-wrap reveal-up">
@@ -147,16 +148,16 @@
             <div class="form-group"><label>Website / App Type</label>
               <select id="rfType" onchange="updateEstimate()">
                 <option value="">Select type</option>
-                <option value="coaching" data-base="7000">Coaching Website</option>
-                <option value="school" data-base="10000">School / College Website</option>
-                <option value="business" data-base="7000">Business Website</option>
-                <option value="ecommerce" data-base="15000">E-Commerce Website</option>
-                <option value="portfolio" data-base="5000">Portfolio / Personal</option>
-                <option value="hospital" data-base="10000">Hospital / Clinic</option>
-                <option value="emitra" data-base="8000">E-Mitra / CSC</option>
-                <option value="android" data-base="10000">Android App (APK)</option>
-                <option value="playstore" data-base="18000">Play Store App</option>
-                <option value="bothapps" data-base="35000">Android + iOS Both</option>
+                <option value="coaching" data-base="14999">Coaching Website</option>
+                <option value="school" data-base="19999">School / College Website</option>
+                <option value="business" data-base="17999">Business Website</option>
+                <option value="ecommerce" data-base="19999">E-Commerce Website</option>
+                <option value="portfolio" data-base="9999">Portfolio / Personal</option>
+                <option value="hospital" data-base="19999">Hospital / Clinic</option>
+                <option value="emitra" data-base="11999">E-Mitra / CSC</option>
+                <option value="android" data-base="14999">Android App (APK)</option>
+                <option value="playstore" data-base="24999">Play Store App</option>
+                <option value="bothapps" data-base="44999">Android + iOS Both</option>
               </select>
             </div>
             <div class="form-group"><label>Number of Pages</label>
@@ -166,10 +167,10 @@
             <div class="form-group"><label>Budget Range</label>
               <select id="rfBudget" onchange="updateEstimate()">
                 <option value="">Select budget</option>
-                <option value="under5k">Under ₹5,000</option>
-                <option value="5k10k">₹5,000 - ₹10,000</option>
+                <option value="under10k">Under ₹10,000</option>
                 <option value="10k20k">₹10,000 - ₹20,000</option>
-                <option value="20k50k">₹20,000 - ₹50,000</option>
+                <option value="20k30k">₹20,000 - ₹30,000</option>
+                <option value="30k50k">₹30,000 - ₹50,000</option>
                 <option value="50kplus">₹50,000+</option>
               </select>
             </div>
@@ -208,7 +209,7 @@
 
           <div class="hidden" id="formSection4">
             <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:16px;"><i class="fas fa-comment" style="color:var(--blue);margin-right:8px;"></i> Step 4: Additional Details</h4>
-            <div class="form-group"><label>Describe your requirements</label><textarea id="rfDesc" placeholder="Batao apne project ke baare mein... kya chahiye, kab chahiye, koi design preference, koi example website?"></textarea></div>
+            <div class="form-group"><label>Describe your requirements</label><textarea id="rfDesc" placeholder="Tell us about your project... what you need, your timeline, any design preferences, or example websites you like."></textarea></div>
             <div class="form-group"><label>Reference Website (if any)</label><input type="url" id="rfRef" placeholder="https://example.com"></div>
             <div id="genAnimation" class="hidden">
               <div class="gen-animation"><div class="dot"></div><div class="dot"></div><div class="dot"></div> AI is generating your proposal...</div>
