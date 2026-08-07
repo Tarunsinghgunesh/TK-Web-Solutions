@@ -14,8 +14,8 @@ self.addEventListener('install', function(e) {
       var safeurls = CACHE_URLS.filter(function(url) {
         return !url.startsWith('chrome-extension') && !url.startsWith('http');
       });
-      return cache.addAll(safeurls).catch(function() {
-        // Silent fail — cache optional hai
+      return cache.addAll(safeurls).catch(function(err) {
+        console.error('Service worker pre-cache failed:', err);
       });
     })
   );
@@ -29,8 +29,9 @@ self.addEventListener('fetch', function(e) {
 
   e.respondWith(
     caches.match(e.request).then(function(cached) {
-      return cached || fetch(e.request).catch(function() {
-        return cached;
+      return cached || fetch(e.request).catch(function(err) {
+        console.error('Network fetch failed in service worker:', err);
+        return cached || Response.error();
       });
     })
   );
