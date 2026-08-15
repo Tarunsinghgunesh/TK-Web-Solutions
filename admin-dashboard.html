@@ -99,8 +99,8 @@
       <div class="login-card">
         <div class="logo"><span>TK</span> Admin</div>
         <p>Admin Dashboard & CRM</p>
-        <input type="text" id="adminUser" placeholder="Username" value="admin">
-        <input type="password" id="adminPass" placeholder="Password" value="admin123">
+        <input type="text" id="adminUser" placeholder="Username">
+        <input type="password" id="adminPass" placeholder="Password">
         <button onclick="doLogin()">Sign In</button>
         <div style="font-size:.78rem;color:var(--gray);margin-top:16px;">Demo: admin / admin123</div>
       </div>
@@ -379,7 +379,7 @@
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
         localStorage.setItem('tk_admin_auth', 'true');
-      } else { alert('Invalid credentials. Try admin / admin123'); }
+      } else { alert('Invalid credentials. Please try again.'); }
     }
     function doLogout() { localStorage.removeItem('tk_admin_auth'); location.reload(); }
     (function() { if (localStorage.getItem('tk_admin_auth') === 'true') { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('dashboard').classList.remove('hidden'); } })();

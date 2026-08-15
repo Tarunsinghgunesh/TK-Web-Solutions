@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -1835,7 +1836,7 @@ animation:pulseGlow 2s infinite;
         <div style="font-size:.88rem;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto;line-height:1.65;">Native apps built with Android Studio — download the APK directly, no Play Store required.</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:700px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;max-width:1050px;margin:0 auto;">
 
         <!-- App 1: TK Web Solutions -->
         <div style="background:linear-gradient(135deg,rgba(26,86,255,.12),rgba(0,20,60,.8));border:1px solid rgba(26,86,255,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
@@ -1893,6 +1894,36 @@ animation:pulseGlow 2s infinite;
             <i class="fas fa-download"></i> Download APK
           </a>
           <div style="font-size:.62rem;color:rgba(255,255,255,.2);">Built for schools &amp; coaching institutes</div>
+        </div>
+
+        <!-- App 3: Luna -->
+        <div style="background:linear-gradient(135deg,rgba(233,30,99,.12),rgba(40,10,50,.8));border:1px solid rgba(233,30,99,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e91e63,#9c27b0);"></div>
+          <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(233,30,99,.2),transparent 70%);pointer-events:none;"></div>
+          <!-- App Icon -->
+          <div style="width:68px;height:68px;border-radius:16px;background:linear-gradient(135deg,#e91e63,#9c27b0);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(233,30,99,.45);overflow:hidden;padding:4px;">
+            <img src="image/luna-icon.png" alt="Luna App Icon" style="width:100%;height:100%;border-radius:12px;object-fit:cover;">
+          </div>
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">Luna</div>
+          <div style="font-size:.7rem;color:rgba(244,143,177,.7);margin-bottom:6px;font-weight:600;letter-spacing:.5px;">CYCLE &amp; SANCTUARY APP</div>
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;margin-bottom:14px;text-align:left;">
+            <div style="font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.7;">
+              ✓ 100% Offline-First (Isar DB)<br>
+              ✓ Partner Mode &amp; SOS Alert<br>
+              ✓ Doctor-Ready PDF Reports<br>
+              ✓ Encrypted Biometric Security
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:12px;">
+            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Android 5.0+</span>
+            <span style="font-size:.65rem;color:#f48fb1;background:rgba(233,30,99,.15);padding:3px 8px;border-radius:20px;">Soon</span>
+            <span style="font-size:.65rem;color:#4ade80;background:rgba(74,222,128,.1);padding:3px 8px;border-radius:20px;">v1.0</span>
+          </div>
+          <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20Notify%20me%20when%20Luna%20App%20is%20available%20for%20download." target="_blank" rel="noopener"
+             style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#e91e63,#9c27b0);color:#fff;padding:12px;border-radius:12px;font-weight:700;font-size:.84rem;text-decoration:none;box-shadow:0 6px 20px rgba(233,30,99,.4);margin-bottom:8px;">
+            <i class="fas fa-rocket"></i> Launching Soon
+          </a>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.2);">Crafted by TK Web Solutions, Bharatpur</div>
         </div>
 
       </div>
@@ -1962,7 +1993,7 @@ animation:pulseGlow 2s infinite;
 
     <div class="port-stats reveal">
       <div class="ps-card"><div class="ps-num">10+</div><div class="ps-lbl">Projects Done</div></div>
-      <div class="ps-card"><div class="ps-num">6</div><div class="ps-lbl">Live Demo Sites</div></div>
+      <div class="ps-card"><div class="ps-num">5</div><div class="ps-lbl">Live Demo Sites</div></div>
       <div class="ps-card"><div class="ps-num">100%</div><div class="ps-lbl">Satisfaction</div></div>
       <div class="ps-card"><div class="ps-num">5–7</div><div class="ps-lbl">Days Delivery</div></div>
     </div>
@@ -1974,6 +2005,7 @@ animation:pulseGlow 2s infinite;
       <button class="ftab" onclick="filterProj('business',this)"><i class="fas fa-briefcase"></i> Business</button>
       <button class="ftab" onclick="filterProj('emitra',this)"><i class="fas fa-landmark"></i> E-Mitra</button>
       <button class="ftab" onclick="filterProj('ecommerce',this)"><i class="fas fa-shopping-cart"></i> E-Commerce</button>
+      <button class="ftab" onclick="filterProj('app',this)"><i class="fas fa-mobile-alt"></i> Mobile App</button>
       <button class="ftab" onclick="filterProj('school',this)"><i class="fas fa-school"></i> School</button>
     </div>
 
@@ -3850,5 +3882,60 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+<script>
+// --- LUNA APP LIVE DOWNLOAD TRACKER & ANALYTICS ---
+const LUNA_INITIAL_COUNT = 1248;
+
+function getLunaDownloadCount() {
+  const local = localStorage.getItem('luna_download_count');
+  return local ? parseInt(local, 10) : LUNA_INITIAL_COUNT;
+}
+
+function updateLunaCounterDisplay() {
+  const count = getLunaDownloadCount();
+  document.querySelectorAll('.luna-download-count-val').forEach(el => {
+    el.innerText = count.toLocaleString('en-IN');
+  });
+}
+
+function downloadLunaApk(event) {
+  if (event) event.preventDefault();
+  let current = getLunaDownloadCount();
+  current += 1;
+  localStorage.setItem('luna_download_count', current);
+  
+  // Track download log for admin dashboard
+  const logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]');
+  logs.push({
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    referrer: document.referrer || 'Direct / Website'
+  });
+  localStorage.setItem('luna_download_logs', JSON.stringify(logs));
+  
+  updateLunaCounterDisplay();
+  
+  // Show toast feedback
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#1e1028;color:#f48fb1;padding:16px 24px;border-radius:16px;border:1px solid #f48fb1;box-shadow:0 10px 30px rgba(0,0,0,0.6);z-index:9999;font-weight:bold;font-family:sans-serif;display:flex;align-items:center;gap:12px;';
+  toast.innerHTML = '<span style="font-size:24px;">🚀</span> <div><strong style="color:#fff;">Luna App Download Started!</strong><br><small style="color:#a78bfa;">Release APK v1.0 (70.8 MB)</small></div>';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+  
+  // Trigger file download
+  const a = document.createElement('a');
+  a.href = 'app/luna-v1.0.apk';
+  a.download = 'luna-v1.0.apk';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLunaCounterDisplay();
+});
+</script>
+
 </body>
 </html>

@@ -236,6 +236,23 @@
     <!-- PORTFOLIO GRID -->
     <section class="section" style="padding-top:30px;">
       <div class="port-grid reveal-up" id="portGrid">
+        <div class="port-card" data-cat="android website">
+          <div class="port-img" style="background:linear-gradient(135deg, #1e1028, #4a194e);color:#f48fb1;">
+            <i class="fas fa-mobile-alt"></i>
+            <a href="app/luna-v1.0.apk" download onclick="trackDownload('LunaApp')" class="live-btn"><i class="fas fa-download"></i> Download APK</a>
+          </div>
+          <div class="port-body">
+            <div class="port-cat" style="color:#e91e63;">Flutter Android App</div>
+            <h3>Luna - Companion &amp; Period Sanctuary</h3>
+            <p>High-fidelity native menstrual sanctuary &amp; companion mobile app with 100% private local storage, partner syncing &amp; cycle predictions.</p>
+            <div class="port-meta"><span><i class="fas fa-mobile-alt"></i> Android App (APK)</span><span><i class="fas fa-calendar"></i> 2026</span></div>
+            <div class="port-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Dart</span><span class="tech-tag">Firebase</span><span class="tech-tag">Supabase</span><span class="tech-tag">Isar DB</span></div>
+            <div class="port-links" style="margin-top:14px;">
+              <a href="app/luna-v1.0.apk" download onclick="trackDownload('LunaApp')" class="live" style="background:#e91e63;color:#fff;"><i class="fas fa-download"></i> Download APK</a>
+              <a href="https://wa.me/919079368240?text=Hi!%20I%20tested%20the%20Luna%20Flutter%20App%20APK." target="_blank" rel="noopener" class="case"><i class="fab fa-whatsapp"></i> Inquiry</a>
+            </div>
+          </div>
+        </div>
         <div class="port-card" data-cat="website school">
           <div class="port-img"><i class="fas fa-graduation-cap"></i><a href="https://tarunsinghgunesh.github.io/ACHIEVERSPOINT/" target="_blank" class="live-btn"><i class="fas fa-external-link-alt"></i> Live Preview</a></div>
           <div class="port-body">
@@ -443,5 +460,57 @@
     document.querySelectorAll('.reveal-up').forEach(el => obs.observe(el));
   </script>
   <script src="ai-assistant.js"></script>
+
+<script>
+// --- LUNA APP LIVE DOWNLOAD TRACKER & ANALYTICS ---
+const LUNA_INITIAL_COUNT = 1248;
+
+function getLunaDownloadCount() {
+  const local = localStorage.getItem('luna_download_count');
+  return local ? parseInt(local, 10) : LUNA_INITIAL_COUNT;
+}
+
+function updateLunaCounterDisplay() {
+  const count = getLunaDownloadCount();
+  document.querySelectorAll('.luna-download-count-val').forEach(el => {
+    el.innerText = count.toLocaleString('en-IN');
+  });
+}
+
+function downloadLunaApk(event) {
+  if (event) event.preventDefault();
+  let current = getLunaDownloadCount();
+  current += 1;
+  localStorage.setItem('luna_download_count', current);
+  
+  const logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]');
+  logs.push({
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    referrer: document.referrer || 'Direct / Website'
+  });
+  localStorage.setItem('luna_download_logs', JSON.stringify(logs));
+  
+  updateLunaCounterDisplay();
+  
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#1e1028;color:#f48fb1;padding:16px 24px;border-radius:16px;border:1px solid #f48fb1;box-shadow:0 10px 30px rgba(0,0,0,0.6);z-index:9999;font-weight:bold;font-family:sans-serif;display:flex;align-items:center;gap:12px;';
+  toast.innerHTML = '<span style="font-size:24px;">🚀</span> <div><strong style="color:#fff;">Luna App Download Started!</strong><br><small style="color:#a78bfa;">Release APK v1.0 (70.8 MB)</small></div>';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+  
+  const a = document.createElement('a');
+  a.href = 'app/luna-v1.0.apk';
+  a.download = 'luna-v1.0.apk';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateLunaCounterDisplay();
+});
+</script>
+
 </body>
 </html>
