@@ -1,25 +1,27 @@
-/* TK Web Solutions — Service Worker v3 (Error-Free) */
-var CACHE_NAME = 'tk-web-v3';
-var CACHE_URLS = [
+/* TK Web Solutions — Service Worker v4 (Speed Optimized) */
+var CACHE_NAME = 'tk-web-v4';
+
+// Critical assets to precache
+var PRECACHE_URLS = [
   '/',
   '/index.html',
   '/logo.png',
-  '/favicon.ico'
+  '/favicon.ico',
+  '/favicon-32x32.png',
+  '/favicon-16x16.png'
 ];
 
+// External CDN resources to cache on first fetch
+var CDN_CACHE = 'tk-cdn-v4';
+
 self.addEventListener('install', function(e) {
-  self.skipWaiting(); // activate the new SW as soon as it finishes installing
+  self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      // Cache each URL independently so one missing file (e.g. favicon.ico)
-      // doesn't fail the entire precache batch (cache.addAll is all-or-nothing).
-      var safeUrls = CACHE_URLS.filter(function(url) {
-        return !url.startsWith('chrome-extension') && !url.startsWith('http');
-      });
       return Promise.all(
-        safeUrls.map(function(url) {
+        PRECACHE_URLS.map(function(url) {
           return cache.add(url).catch(function(err) {
-            console.warn('Service worker pre-cache skipped for', url, err);
+            console.warn('[SW] Precache skipped:', url, err.message);
           });
         })
       );
@@ -27,19 +29,41 @@ self.addEventListener('install', function(e) {
   );
 });
 
+self.addEventListener('activate', function(e) {
+  e.waitUntil(
+    caches.keys().then(function(keys) {
+      return Promise.all(
+        keys
+          .filter(function(k) { return k !== CACHE_NAME && k !== CDN_CACHE; })
+          .map(function(k) { return caches.delete(k); })
+      );
+    }).then(function() {
+      return self.clients.claim();
+    })
+  );
+});
+
 self.addEventListener('fetch', function(e) {
   var req = e.request;
 
-  // Only handle same-origin GET requests
+  // Skip non-GET, chrome-extension, and non-http requests
   if (req.method !== 'GET') return;
   if (req.url.startsWith('chrome-extension://')) return;
   if (req.url.startsWith('chrome://')) return;
   if (!req.url.startsWith('http')) return;
 
-  // Network-first for HTML/navigation requests so visitors always get the
-  // latest deployed page instead of a stale cached copy (this was previously
-  // cache-first for everything, which could serve an outdated index.html
-  // indefinitely after a deploy). Falls back to cache when offline.
+  // Skip Google Analytics/GTM (always network)
+  if (req.url.includes('google-analytics.com') ||
+      req.url.includes('googletagmanager.com') ||
+      req.url.includes('googlesyndication.com') ||
+      req.url.includes('doubleclick.net')) {
+    return;
+  }
+
+  var url = new URL(req.url);
+  var isSameOrigin = url.origin === self.location.origin;
+
+  // ── HTML / Navigation → Network-first (always fresh) ──
   var isNavigation = req.mode === 'navigate' ||
     (req.headers.get('accept') || '').indexOf('text/html') !== -1;
 
@@ -47,10 +71,8 @@ self.addEventListener('fetch', function(e) {
     e.respondWith(
       fetch(req)
         .then(function(res) {
-          var resClone = res.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(req, resClone).catch(function() {});
-          });
+          var clone = res.clone();
+          caches.open(CACHE_NAME).then(function(c) { c.put(req, clone).catch(function(){}); });
           return res;
         })
         .catch(function() {
@@ -62,38 +84,52 @@ self.addEventListener('fetch', function(e) {
     return;
   }
 
-  // Cache-first (with network fallback) for static assets
-  e.respondWith(
-    caches.match(req).then(function(cached) {
-      if (cached) return cached;
-      return fetch(req)
-        .then(function(res) {
-          // Only cache valid, basic (same-origin) responses
-          if (res && res.ok && res.type === 'basic') {
-            var resClone = res.clone();
-            caches.open(CACHE_NAME).then(function(cache) {
-              cache.put(req, resClone).catch(function() {});
-            });
-          }
-          return res;
-        })
-        .catch(function(err) {
-          console.error('Network fetch failed in service worker:', err);
-          return Response.error();
-        });
-    })
+  // ── Fonts & CDN assets → Cache-first (they never change) ──
+  var isCDN = !isSameOrigin && (
+    req.url.includes('fonts.googleapis.com') ||
+    req.url.includes('fonts.gstatic.com') ||
+    req.url.includes('cdnjs.cloudflare.com') ||
+    req.url.includes('cdn.jsdelivr.net')
   );
-});
 
-self.addEventListener('activate', function(e) {
-  e.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(
-        keys.filter(function(k) { return k !== CACHE_NAME; })
-            .map(function(k) { return caches.delete(k); })
-      );
-    }).then(function() {
-      return self.clients.claim(); // take control of open tabs immediately
+  if (isCDN) {
+    e.respondWith(
+      caches.open(CDN_CACHE).then(function(cache) {
+        return cache.match(req).then(function(cached) {
+          if (cached) return cached;
+          return fetch(req).then(function(res) {
+            if (res && res.ok) cache.put(req, res.clone()).catch(function(){});
+            return res;
+          }).catch(function() { return cached; });
+        });
+      })
+    );
+    return;
+  }
+
+  // ── Same-origin static assets → Stale-while-revalidate ──
+  var isStatic = /\.(css|js|png|jpg|jpeg|webp|gif|svg|ico|woff2?|ttf|eot)$/i.test(url.pathname);
+
+  if (isSameOrigin && isStatic) {
+    e.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match(req).then(function(cached) {
+          var networkFetch = fetch(req).then(function(res) {
+            if (res && res.ok) cache.put(req, res.clone()).catch(function(){});
+            return res;
+          }).catch(function() { return cached; });
+          // Return cached immediately, update in background
+          return cached || networkFetch;
+        });
+      })
+    );
+    return;
+  }
+
+  // ── Everything else → Network with cache fallback ──
+  e.respondWith(
+    fetch(req).catch(function() {
+      return caches.match(req);
     })
   );
 });

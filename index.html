@@ -2,30 +2,34 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NC2CJ7D4');</script>
+<!-- Google Tag Manager (deferred - does not block LCP) -->
+<script>window.dataLayer=window.dataLayer||[];window._gtmDefer=function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NC2CJ7D4');};
+window.addEventListener('load',function(){setTimeout(window._gtmDefer,2000);});
+</script>
 <!-- End Google Tag Manager -->
      
      <meta name="google-adsense-account" content="ca-pub-2253826728800055">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2253826728800055"
-     crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KDH5BXK1ZB"></script>
+<!-- Google tag (gtag.js) - deferred for LCP -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-KDH5BXK1ZB');
+  window.addEventListener('load', function(){
+    var s=document.createElement('script');
+    s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-KDH5BXK1ZB';
+    document.head.appendChild(s);
+    var a=document.createElement('script');
+    a.async=true;
+    a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2253826728800055';
+    a.crossOrigin='anonymous';
+    document.head.appendChild(a);
+  });
 </script>
 <!-- Schema in main block below -->
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<!-- Cache-Control is set via server headers; meta tags removed to allow browser caching for performance -->
 <!-- DNS Prefetch for faster external resource load -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -429,12 +433,14 @@ function trackDownload(appName) {
   } catch(e) {}
 }
 </script>
-<!-- Google Fonts — non-blocking -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap">
+<!-- Google Fonts — truly non-blocking (avoid render-blocking) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"></noscript>
 <!-- Font Awesome — non-blocking load -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+<!-- Preload logo (LCP candidate on navbar) -->
+<link rel="preload" as="image" href="logo.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -1431,10 +1437,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
   .clk-divider,.clk-right{display:none;}
 }
 </style>
-     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+     <!-- EmailJS: loaded after page is interactive -->
 <script>
   window.addEventListener('load', function() {
-    emailjs.init("ygQhaRBTpL_oM8QYs");
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    s.onload = function() { emailjs.init('ygQhaRBTpL_oM8QYs'); };
+    document.body.appendChild(s);
   });
 </script>
      <link rel="manifest" href="/manifest.json?v=2">
@@ -1444,7 +1453,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:50px 6% 28px;bo
 <link rel="apple-touch-icon" href="/logo.png">
 <script>
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/service-worker.js?v=3')
+  navigator.serviceWorker.register('/service-worker.js?v=4')
   .then(function(){})
   .catch(function(){});
 }
@@ -1902,7 +1911,7 @@ animation:pulseGlow 2s infinite;
           <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(233,30,99,.2),transparent 70%);pointer-events:none;"></div>
           <!-- App Icon -->
           <div style="width:68px;height:68px;border-radius:16px;background:linear-gradient(135deg,#e91e63,#9c27b0);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(233,30,99,.45);overflow:hidden;padding:4px;">
-            <img src="image/luna-icon.png" alt="Luna App Icon" style="width:100%;height:100%;border-radius:12px;object-fit:cover;">
+            <img src="image/luna-icon.png" alt="Luna App Icon" loading="lazy" decoding="async" style="width:100%;height:100%;border-radius:12px;object-fit:cover;">
           </div>
           <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">Luna</div>
           <div style="font-size:.7rem;color:rgba(244,143,177,.7);margin-bottom:6px;font-weight:600;letter-spacing:.5px;">CYCLE &amp; SANCTUARY APP</div>
@@ -3331,11 +3340,11 @@ function sendForm(e){
   var n=fd.get('name')||'',ph=fd.get('phone')||'',biz=fd.get('business')||'',svc=fd.get('service')||'',msg=fd.get('message')||'';
   var txt='Hi%20TK%20Web%20Solutions!%0A%0ANew%20Enquiry%3A%0AName%3A%20'+encodeURIComponent(n)+'%0APhone%3A%20'+encodeURIComponent(ph)+'%0ABusiness%3A%20'+encodeURIComponent(biz)+'%0AService%3A%20'+encodeURIComponent(svc)+'%0AMessage%3A%20'+encodeURIComponent(msg);
   window.open('https://wa.me/919079368240?text='+txt,'_blank');
-     emailjs.send('service_n1reiw9','template_gg2zxzw',{
+     if(typeof emailjs!=='undefined'){emailjs.send('service_n1reiw9','template_gg2zxzw',{
   client_naam: n,
   client_phone: ph,
   chat_log: 'Business: '+biz+'\nService: '+svc+'\nMessage: '+msg
-});
+});}
   btn.textContent='✅ Sent! We\'ll be in touch soon.';btn.style.background='#16a34a';btn.disabled=true;
   setTimeout(function(){btn.textContent='Send Message';btn.style.background='';btn.disabled=false;e.target.reset();},4000);
   if(typeof gtag!=='undefined')gtag('event','contact_form',{event_category:'Lead',event_label:svc});
