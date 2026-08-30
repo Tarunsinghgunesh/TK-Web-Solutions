@@ -218,18 +218,42 @@
             </div>
           </div>
 
-          <!-- INVOICES TAB -->
+          <!-- INVOICES & PAYMENTS TAB -->
           <div class="hidden" id="tab-invoices">
+            <div class="grid-4" style="margin-bottom:20px;">
+              <div class="card stat-card"><div class="num" id="adminTotalTx">18</div><div class="lbl">Total Payments</div></div>
+              <div class="card stat-card"><div class="num" style="color:var(--green);" id="adminConfirmedRevenue">₹3.8L</div><div class="lbl">Confirmed Revenue</div></div>
+              <div class="card stat-card"><div class="num" id="adminActiveCare">6</div><div class="lbl">Care Subscriptions</div></div>
+              <div class="card stat-card"><div class="num" style="color:var(--accent);" id="adminAvgTicket">₹18,500</div><div class="lbl">Average Ticket</div></div>
+            </div>
+
             <div class="card">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-file-invoice" style="color:var(--blue);margin-right:8px;"></i>Invoices</h4>
-                <button class="btn btn-blue btn-sm"><i class="fas fa-plus"></i> Create Invoice</button>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-file-invoice-dollar" style="color:var(--blue);margin-right:8px;"></i>Payment &amp; Invoice Ledger</h4>
+                <div style="display:flex;gap:8px;">
+                  <button class="btn btn-green btn-sm" onclick="exportInvoicesCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
+                  <button class="btn btn-blue btn-sm" onclick="openManualInvoiceModal()"><i class="fas fa-plus"></i> Create Invoice</button>
+                </div>
               </div>
-              <div class="table">
-                <div class="table-row table-header"><span>Invoice #</span><span>Client</span><span>Date</span><span>Amount</span><span>Status</span><span>Actions</span></div>
-                <div class="table-row"><span>INV-001</span><span>Rahul Sharma</span><span>Jan 22, 2026</span><span>₹5,000</span><span><span class="badge badge-converted">Paid</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-download"></i></button></span></div>
-                <div class="table-row"><span>INV-002</span><span>Neha Gupta</span><span>Jan 25, 2026</span><span>₹7,000</span><span><span class="badge badge-converted">Paid</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-download"></i></button></span></div>
-                <div class="table-row"><span>INV-003</span><span>Amit Kumar</span><span>Jan 28, 2026</span><span>₹9,000</span><span><span class="badge badge-contacted">Pending</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-download"></i></button></span></div>
+
+              <div class="search-bar">
+                <input type="text" placeholder="Search by customer, phone, invoice #, service..." id="invoiceSearchInput" onkeyup="filterInvoicesTable()">
+              </div>
+
+              <div class="filter-row">
+                <button class="filter-pill active" onclick="filterInvoiceStatus('all')">All</button>
+                <button class="filter-pill" onclick="filterInvoiceStatus('PAID')">Paid / Confirmed</button>
+                <button class="filter-pill" onclick="filterInvoiceStatus('PENDING')">Pending</button>
+                <button class="filter-pill" onclick="filterInvoiceStatus('CARE')">Care Plans</button>
+              </div>
+
+              <div class="table" style="overflow-x:auto;">
+                <div class="table-row table-header" style="grid-template-columns: 140px 1.5fr 1fr 100px 120px 140px;">
+                  <span>Invoice #</span><span>Customer</span><span>Service</span><span>Amount</span><span>Status</span><span>Actions</span>
+                </div>
+                <div id="adminInvoiceTable">
+                  <!-- Dynamic Rendered Rows -->
+                </div>
               </div>
             </div>
           </div>
@@ -364,6 +388,9 @@
 
   <button class="mobile-toggle" id="mobileToggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
 
+  <!-- Invoice & Payment Modules -->
+  <script src="js/payment-config.js"></script>
+  <script src="js/invoice-generator.js"></script>
   <script>
     function toggleDarkMode() {
       const root = document.documentElement;
@@ -379,18 +406,26 @@
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
         localStorage.setItem('tk_admin_auth', 'true');
+        loadAdminInvoices();
       } else { alert('Invalid credentials. Please try again.'); }
     }
     function doLogout() { localStorage.removeItem('tk_admin_auth'); location.reload(); }
-    (function() { if (localStorage.getItem('tk_admin_auth') === 'true') { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('dashboard').classList.remove('hidden'); } })();
+    (function() { 
+      if (localStorage.getItem('tk_admin_auth') === 'true') { 
+        document.getElementById('loginScreen').classList.add('hidden'); 
+        document.getElementById('dashboard').classList.remove('hidden'); 
+        window.addEventListener('DOMContentLoaded', loadAdminInvoices);
+      } 
+    })();
 
     function showTab(tab) {
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.querySelectorAll('[data-tab]').forEach(n => { if (n.dataset.tab === tab) n.classList.add('active'); });
       document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.add('hidden'));
       document.getElementById('tab-' + tab).classList.remove('hidden');
-      const titles = { analytics:'Analytics', leads:'Lead Management', bookings:'Meeting Bookings', invoices:'Invoices', portfolio:'Portfolio', reviews:'Reviews', services:'Services', seo:'SEO', settings:'Settings' };
+      const titles = { analytics:'Analytics', leads:'Lead Management', bookings:'Meeting Bookings', invoices:'Invoices & Payments', portfolio:'Portfolio', reviews:'Reviews', services:'Services', seo:'SEO', settings:'Settings' };
       document.getElementById('pageTitle').textContent = titles[tab] || 'Admin';
+      if (tab === 'invoices') loadAdminInvoices();
     }
 
     function filterLeads() {
@@ -412,6 +447,135 @@
       });
       const blob = new Blob([csv], { type: 'text/csv' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'leads_export_' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(a.href);
+    }
+
+    // ============================================================
+    // ADMIN INVOICE LEDGER SYSTEM
+    // ============================================================
+    var _adminInvoiceList = [
+      { invoiceNo: 'TK-INV-2026-081420', name: 'Ramesh Sharma', business: 'Achievers Point Coaching', phone: '9829012345', service: 'Coaching Website', amount: 14999, status: 'PAID', date: 'Jan 28, 2026' },
+      { invoiceNo: 'TK-INV-2026-072891', name: 'Priya Patel', business: 'Apex Public School', phone: '9414054321', service: 'School Website', amount: 19999, status: 'PAID', date: 'Jan 26, 2026' },
+      { invoiceNo: 'TK-INV-2026-064320', name: 'Chirag Sharma', business: 'Chirag Handlooms', phone: '9079311223', service: 'E-Commerce Website', amount: 19999, status: 'PAID', date: 'Jan 24, 2026' },
+      { invoiceNo: 'TK-INV-2026-051890', name: 'Sneha Reddy', business: 'Ek Pahal NGO', phone: '9988776655', service: 'Business Care', amount: 3499, status: 'PAID', isCare: true, date: 'Jan 20, 2026' },
+      { invoiceNo: 'TK-INV-2026-042110', name: 'Amit Verma', business: 'Verma Traders', phone: '9123456780', service: 'Basic Care', amount: 1499, status: 'PAID', isCare: true, date: 'Jan 15, 2026' }
+    ];
+
+    function loadAdminInvoices() {
+      var local = window.TK_INVOICE ? window.TK_INVOICE.getLocalPayments() : [];
+      var merged = [...local, ..._adminInvoiceList];
+      
+      // Deduplicate
+      var seen = new Set();
+      var final = [];
+      merged.forEach(item => {
+        var id = item.invoiceNo || item.receiptNo;
+        if (!seen.has(id)) {
+          seen.add(id);
+          final.push(item);
+        }
+      });
+
+      renderInvoiceRows(final);
+
+      // Update metrics
+      var totalAmt = final.reduce((acc, cur) => acc + (parseFloat(cur.amount) || 0), 0);
+      var careCount = final.filter(c => c.isCare || (c.service && c.service.includes('Care'))).length;
+
+      document.getElementById('adminTotalTx').textContent = final.length;
+      document.getElementById('adminConfirmedRevenue').textContent = '₹' + totalAmt.toLocaleString('en-IN');
+      document.getElementById('adminActiveCare').textContent = careCount;
+      document.getElementById('adminAvgTicket').textContent = '₹' + Math.round(totalAmt / (final.length || 1)).toLocaleString('en-IN');
+    }
+
+    function renderInvoiceRows(list) {
+      var container = document.getElementById('adminInvoiceTable');
+      if (!container) return;
+
+      container.innerHTML = list.map((item, idx) => {
+        var isPaid = (item.status || 'PAID').toUpperCase().includes('PAID');
+        var badgeClass = isPaid ? 'badge-converted' : 'badge-contacted';
+        var invNo = item.invoiceNo || item.receiptNo || 'TK-INV-2026-000';
+        var safeJSON = encodeURIComponent(JSON.stringify(item));
+
+        return `
+          <div class="table-row" style="grid-template-columns: 140px 1.5fr 1fr 100px 120px 140px;" data-inv="${invNo}" data-cust="${item.name}" data-service="${item.service}" data-status="${item.status || 'PAID'}" data-care="${item.isCare ? 'true' : 'false'}">
+            <span><strong>${invNo}</strong></span>
+            <span><strong>${item.name}</strong><br><small style="color:var(--gray);">${item.business || item.phone || ''}</small></span>
+            <span>${item.service || 'Digital Service'}</span>
+            <span><strong>₹${parseInt(item.amount || 0).toLocaleString('en-IN')}</strong></span>
+            <span><span class="badge ${badgeClass}">${item.status || 'Paid'}</span></span>
+            <span style="display:flex;gap:4px;">
+              <button class="btn btn-ghost btn-sm" title="View & Print" onclick="viewAdminInvoice('${safeJSON}')"><i class="fas fa-eye"></i></button>
+              <button class="btn btn-ghost btn-sm" title="Copy Invoice #" onclick="navigator.clipboard.writeText('${invNo}');alert('Copied: ${invNo}');"><i class="fas fa-copy"></i></button>
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function viewAdminInvoice(encoded) {
+      var data = JSON.parse(decodeURIComponent(encoded));
+      window.TK_INVOICE.showInvoiceModal(data);
+    }
+
+    function filterInvoicesTable() {
+      var q = document.getElementById('invoiceSearchInput').value.toLowerCase();
+      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+
+    function filterInvoiceStatus(status) {
+      document.querySelectorAll('#tab-invoices .filter-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(row => {
+        var rowStatus = row.getAttribute('data-status') || '';
+        var isCare = row.getAttribute('data-care') === 'true';
+
+        if (status === 'all') {
+          row.style.display = '';
+        } else if (status === 'CARE') {
+          row.style.display = isCare ? '' : 'none';
+        } else {
+          row.style.display = rowStatus.toUpperCase().includes(status) ? '' : 'none';
+        }
+      });
+    }
+
+    function exportInvoicesCSV() {
+      let csv = 'Invoice No,Customer,Business,Phone,Service,Amount,Date,Status\n';
+      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(r => {
+        if (r.style.display !== 'none') {
+          const cells = r.querySelectorAll('span');
+          csv += `"${cells[0].innerText}","${cells[1].innerText.replace(/\n/g, ' - ')}","${cells[2].innerText}","${cells[3].innerText}","${cells[4].innerText}"\n`;
+        }
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'tk_invoices_' + new Date().toISOString().split('T')[0] + '.csv'; a.click();
+    }
+
+    function openManualInvoiceModal() {
+      var name = prompt("Customer Full Name:");
+      if (!name) return;
+      var service = prompt("Service Description (e.g., Business Website):", "Business Website");
+      var amt = prompt("Amount (₹):", "17999");
+      var phone = prompt("Customer Phone Number:", "9079368240");
+      var invNo = window.TK_INVOICE.generateInvoiceNo();
+
+      var record = {
+        invoiceNo: invNo,
+        name: name,
+        service: service,
+        amount: parseInt(amt) || 0,
+        phone: phone,
+        status: 'PAID',
+        datetime: window.TK_INVOICE.getISTDateTime(),
+        method: 'Direct Admin Invoice'
+      };
+
+      window.TK_INVOICE.savePaymentRecord(record);
+      loadAdminInvoices();
+      window.TK_INVOICE.showInvoiceModal(record);
     }
   </script>
 </body>

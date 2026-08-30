@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TK Web Solutions — Payment &amp; Invoice Verification</title>
+  <meta name="description" content="Securely find and verify your TK Web Solutions payment receipt or invoice. Access instant print-ready PDF invoices.">
+  <link rel="canonical" href="https://tkwebsolutions.in/invoice.html">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+  <style>
+    :root {
+      --bg: #060d1f;
+      --bg-card: rgba(14, 23, 52, 0.92);
+      --accent-blue: #1a56ff;
+      --accent-cyan: #00e5ff;
+      --accent-violet: #818cf8;
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.65);
+      --border: rgba(99, 102, 241, 0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Navbar */
+    .inv-nav {
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6, 13, 31, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26, 86, 255, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .inv-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .inv-logo img { width: 38px; height: 38px; object-fit: contain; }
+    .inv-logo span { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; }
+    .inv-logo span span { color: var(--accent-cyan); }
+    .inv-nav-links { display: flex; align-items: center; gap: 16px; }
+    .inv-nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+    .inv-nav-link:hover { color: #fff; }
+    .inv-nav-btn { background: var(--accent-blue); color: #fff; padding: 8px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 0.85rem; }
+
+    /* Main Container */
+    .inv-main {
+      flex: 1;
+      padding: 60px 6% 80px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .inv-header { text-align: center; margin-bottom: 40px; }
+    .inv-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.18);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      color: var(--accent-cyan);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 14px;
+    }
+    .inv-heading { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; margin-bottom: 10px; }
+    .inv-sub { color: var(--text-muted); font-size: 1rem; max-width: 540px; margin: 0 auto; line-height: 1.6; }
+
+    /* Search Box */
+    .inv-search-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      margin-bottom: 36px;
+    }
+    .inv-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .inv-fg label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .inv-fg input {
+      width: 100%;
+      background: rgba(8, 14, 32, 0.8);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .inv-fg input:focus { border-color: var(--accent-cyan); }
+    .inv-search-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #0052ff, #00d4ff);
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0, 150, 255, 0.35);
+      transition: transform 0.2s;
+    }
+    .inv-search-btn:hover { transform: translateY(-2px); }
+
+    /* Results */
+    .inv-result-card {
+      background: rgba(14, 23, 52, 0.95);
+      border: 1.5px solid rgba(34, 197, 94, 0.4);
+      border-radius: 20px;
+      padding: 28px;
+      margin-top: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      display: none;
+    }
+    .inv-res-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .inv-res-badge { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.5); color: #4ade80; font-size: 0.72rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+    .inv-res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+    .inv-res-item { font-size: 0.88rem; }
+    .inv-res-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .inv-res-val { font-weight: 700; color: #fff; }
+    .inv-res-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .inv-btn-view { background: var(--accent-blue); color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+    .inv-btn-wa { background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #22c55e; padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; }
+
+    /* Not Found Card */
+    .inv-notfound-card {
+      background: rgba(14, 23, 52, 0.9);
+      border: 1.5px solid rgba(239, 68, 68, 0.35);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+      display: none;
+    }
+    .inv-notfound-card h3 { color: #f87171; margin-bottom: 8px; font-size: 1.1rem; }
+    .inv-notfound-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; max-width: 480px; margin: 0 auto 16px; }
+
+    /* Modal Overlay */
+    .tk-modal-overlay {
+      position: fixed; inset: 0; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(8px);
+      z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .tk-modal-card {
+      background: #fff; color: #0d1635; border-radius: 16px; max-width: 860px; width: 100%;
+      max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .tk-modal-topbar {
+      background: #0f172a; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .tk-modal-top-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 8px; color: #00e5ff; }
+    .tk-modal-btns { display: flex; align-items: center; gap: 8px; }
+    .tk-m-btn { padding: 8px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: none; }
+    .tk-m-btn-print { background: var(--accent-blue); color: #fff; }
+    .tk-m-btn-wa { background: #25d366; color: #fff; }
+    .tk-m-btn-close { background: rgba(255,255,255,0.15); color: #fff; font-size: 1.2rem; line-height: 1; }
+    .tk-modal-body { padding: 24px; overflow-y: auto; background: #f8fafc; }
+
+    @media(max-width: 640px) {
+      .inv-form-grid { grid-template-columns: 1fr; }
+      .inv-res-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="inv-nav">
+    <a href="index.html" class="inv-logo">
+      <img src="logo.png" alt="TK Web Solutions" width="38" height="38">
+      <span>TK <span>Web Solutions</span></span>
+    </a>
+    <div class="inv-nav-links">
+      <a href="index.html#founder" class="inv-nav-link">Founder Story</a>
+      <a href="index.html#payment" class="inv-nav-btn">Make a Payment</a>
+    </div>
+  </nav>
+
+  <!-- Main Search Container -->
+  <main class="inv-main">
+    <div class="inv-header">
+      <div class="inv-tag">Official Client Records</div>
+      <h1 class="inv-heading">Find Your Invoice / Receipt</h1>
+      <p class="inv-sub">Already made a payment to TK Web Solutions? Verify your transaction, access official receipt records, and download print-ready PDF invoices.</p>
+    </div>
+
+    <!-- Search Card -->
+    <div class="inv-search-card">
+      <div class="inv-form-grid">
+        <div class="inv-fg">
+          <label><i class="fas fa-file-invoice"></i> Invoice / Receipt No. (Optional)</label>
+          <input type="text" id="invQuery" placeholder="e.g. TK-INV-2026-XXXXXX or TK-WEB-...">
+        </div>
+        <div class="inv-fg">
+          <label><i class="fas fa-phone-alt"></i> Phone Number *</label>
+          <input type="tel" id="invPhone" placeholder="Enter your 10-digit phone number" maxlength="10">
+        </div>
+      </div>
+      <button class="inv-search-btn" id="searchBtn" onclick="runInvoiceSearch()">
+        <i class="fas fa-search"></i> Verify &amp; Search Invoice
+      </button>
+
+      <!-- Found Record Card -->
+      <div class="inv-result-card" id="invResultBox">
+        <div class="inv-res-header">
+          <div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">VERIFIED INVOICE</div>
+            <h3 style="font-family: 'Syne', sans-serif; font-size: 1.2rem; color: #fff;" id="resInvNo">TK-INV-2026-000000</h3>
+          </div>
+          <span class="inv-res-badge">✓ PAYMENT CONFIRMED</span>
+        </div>
+        <div class="inv-res-grid">
+          <div class="inv-res-item">
+            <div class="inv-res-lbl">Customer Name</div>
+            <div class="inv-res-val" id="resCustName">-</div>
+          </div>
+          <div class="inv-res-item">
+            <div class="inv-res-lbl">Service</div>
+            <div class="inv-res-val" id="resService">-</div>
+          </div>
+          <div class="inv-res-item">
+            <div class="inv-res-lbl">Amount Paid</div>
+            <div class="inv-res-val" style="color: #00e5ff; font-size: 1.1rem;" id="resAmount">₹0</div>
+          </div>
+          <div class="inv-res-item">
+            <div class="inv-res-lbl">Date &amp; Time</div>
+            <div class="inv-res-val" id="resDate">-</div>
+          </div>
+        </div>
+        <div class="inv-res-actions">
+          <button class="inv-btn-view" onclick="viewFoundInvoice()"><i class="fas fa-eye"></i> View &amp; Print PDF Invoice</button>
+          <button class="inv-btn-wa" onclick="shareFoundInvoice()"><i class="fab fa-whatsapp"></i> WhatsApp Copy</button>
+        </div>
+      </div>
+
+      <!-- Not Found Card -->
+      <div class="inv-notfound-card" id="invNotFoundBox">
+        <h3><i class="fas fa-exclamation-triangle"></i> No Payment Record Found</h3>
+        <p>We could not find a confirmed payment matching the entered details. Please verify your 10-digit phone number or invoice number and try again.</p>
+        <p>Need assistance? Contact Tarun Singh directly on WhatsApp: <a href="https://wa.me/919079368240" style="color:#00e5ff;font-weight:700;">+91 90793 68240</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.08);">
+    <p>TK Web Solutions • Bharatpur, Rajasthan • Phone: +91 90793 68240</p>
+    <p style="margin-top:4px;font-style:italic;color:var(--accent-violet);">"From Dreams.... to Digital Reality"</p>
+  </footer>
+
+  <!-- System Scripts -->
+  <script src="js/payment-config.js"></script>
+  <script src="js/invoice-generator.js"></script>
+  <script>
+    var _selectedRecord = null;
+
+    function runInvoiceSearch() {
+      var inv = document.getElementById('invQuery').value.trim();
+      var phone = document.getElementById('invPhone').value.trim();
+      var resBox = document.getElementById('invResultBox');
+      var nfBox = document.getElementById('invNotFoundBox');
+      var btn = document.getElementById('searchBtn');
+
+      resBox.style.display = 'none';
+      nfBox.style.display = 'none';
+
+      if (!inv && !phone) {
+        alert('Please enter your Phone Number or Invoice Number.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching Ledger...';
+
+      // 1. Search Local Storage Ledger first
+      var localResults = window.TK_INVOICE.searchRecord(inv, phone);
+      if (localResults && localResults.length > 0) {
+        displayFoundRecord(localResults[0]);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-search"></i> Verify &amp; Search Invoice';
+        return;
+      }
+
+      // 2. Query Google Apps Script Backend
+      var url = window.TK_CONFIG.api.appsScriptUrl;
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'searchInvoice', invoiceNo: inv, phone: phone })
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-search"></i> Verify &amp; Search Invoice';
+        if (data && data.success && data.records && data.records.length > 0) {
+          displayFoundRecord(data.records[0]);
+        } else {
+          nfBox.style.display = 'block';
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-search"></i> Verify &amp; Search Invoice';
+        // If network error, check if local query had any phone match
+        if (localResults.length > 0) {
+          displayFoundRecord(localResults[0]);
+        } else {
+          nfBox.style.display = 'block';
+        }
+      });
+    }
+
+    function displayFoundRecord(rec) {
+      _selectedRecord = rec;
+      document.getElementById('resInvNo').textContent = rec.invoiceNo || rec.receiptNo || 'TK-INV-2026-000000';
+      document.getElementById('resCustName').textContent = rec.name || rec.customerName || '-';
+      document.getElementById('resService').textContent = rec.service || rec.purpose || '-';
+      document.getElementById('resAmount').textContent = '₹' + parseInt(rec.amount || 0).toLocaleString('en-IN');
+      document.getElementById('resDate').textContent = rec.datetime || rec.date || '-';
+
+      document.getElementById('invResultBox').style.display = 'block';
+      document.getElementById('invResultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function viewFoundInvoice() {
+      if (!_selectedRecord) return;
+      window.TK_INVOICE.showInvoiceModal(_selectedRecord);
+    }
+
+    function shareFoundInvoice() {
+      if (!_selectedRecord) return;
+      window.TK_INVOICE._currentInvoiceData = _selectedRecord;
+      window.TK_INVOICE.shareWhatsApp();
+    }
+
+    // Auto-search on page load if query param present
+    window.addEventListener('DOMContentLoaded', function() {
+      var params = new URLSearchParams(window.location.search);
+      var inv = params.get('inv') || params.get('receipt') || '';
+      var phone = params.get('phone') || '';
+      if (inv) document.getElementById('invQuery').value = inv;
+      if (phone) document.getElementById('invPhone').value = phone;
+      if (inv || phone) runInvoiceSearch();
+    });
+  </script>
+</body>
+</html>
