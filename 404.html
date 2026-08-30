@@ -2941,85 +2941,34 @@ function openRazorpayCheckout(orderId, amt, name, biz, phone, email, service, in
 }
 
 // ============================================================
-    '<div style="margin-top:12px;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);padding:5px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.2);position:relative;z-index:1;">'+
-    '<span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;"></span>'+
-    '<span style="font-size:11px;color:#fff;font-weight:700;letter-spacing:.5px;">Payment Confirmed</span>'+
-    '</div></div>'+
-    '<div style="padding:22px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06);background:#1a1625;">'+
-    '<div style="font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:8px;text-transform:uppercase;font-family:sans-serif;">AMOUNT PAID</div>'+
-    '<div style="font-size:44px;font-weight:900;color:#a78bfa;line-height:1;font-family:Arial Black,sans-serif;">&#8377;'+amtFmt+'</div>'+
-    '<div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;font-family:sans-serif;">'+data.purpose+'</div>'+
-    '<div style="margin-top:10px;background:rgba(124,58,237,.2);display:inline-block;padding:5px 16px;border-radius:20px;border:1px solid rgba(124,58,237,.4);">'+
-    '<span style="font-size:11px;color:#c4b5fd;font-family:sans-serif;">Receipt No. &nbsp;<strong>'+data.receiptNo+'</strong></span>'+
-    '</div></div>'+
-    '<div style="padding:4px 22px 8px;background:#1a1625;">'+rowsHTML+'</div>'+
-    '<div style="margin:16px 18px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:16px;padding:20px;text-align:center;">'+
-    '<div style="font-size:24px;margin-bottom:8px;">&#127881;</div>'+
-    '<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;font-family:sans-serif;">Thank you for your trust and support!</div>'+
-    '<div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.8;font-family:sans-serif;">Your digital journey starts today —<br>we look forward to building it with you.</div>'+
-    '</div>'+
-    '<div style="padding:0 18px 16px;display:flex;flex-direction:column;gap:8px;">'+
-    '<button onclick="downloadReceiptPDF(\''+data.receiptNo+'\')" style="width:100%;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128229; Download PDF</button>'+
-    '<button onclick="sendReceiptWhatsApp(_lastReceiptData)" style="width:100%;background:linear-gradient(135deg,#25d366,#128c50);color:#fff;border:none;padding:13px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:sans-serif;">&#128242; Send via WhatsApp</button>'+
-    '<button onclick="document.getElementById(\'rx-modal\').remove()" style="width:100%;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);padding:12px;border-radius:12px;font-size:12px;font-weight:600;cursor:pointer;font-family:sans-serif;">&#10005; Close</button>'+
-    '</div>'+
-    '<div style="padding:14px 22px;text-align:center;border-top:1px solid rgba(255,255,255,.05);background:#0d0b14;border-radius:0 0 24px 24px;">'+
-    '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">TK Web Solutions · Bharatpur, Rajasthan</p>'+
-    '<p style="font-size:10px;color:rgba(255,255,255,.2);margin:2px 0;font-family:sans-serif;">tkwebsolutions.in · +91 90793 68240</p>'+
-    '<p style="font-size:10px;font-style:italic;color:#a78bfa;margin-top:6px;font-family:sans-serif;">"From Dreams.... to Digital Reality"</p>'+
-    '</div></div>';
-  document.body.appendChild(modal);
-  modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});
-}
-function sendEmailAlert(data){
-  if(typeof emailjs==='undefined')return;
-  emailjs.send('service_n1reiw9','template_gg2zxzw',{
-    client_naam:data.name+' — Payment Rs.'+data.amount,
-    client_phone:data.phone||'UPI Payment',
-    chat_log:'Receipt No: '+data.receiptNo+'\nAmount: Rs.'+data.amount+'\nPurpose: '+data.purpose+'\nService: '+data.service+'\nUPI Ref: '+(data.upiRef||'N/A')+'\nTime: '+data.datetime+'\n\n[MANUAL - needs verification]'
-  }).then(function(){console.log('Email sent!');}).catch(function(err){console.log('Email error:',err);});
-}
-function sendReceiptWhatsApp(data){
-  if(!data){data=_lastReceiptData;}
-  if(!data){alert('No receipt data found!');return;}
-  var amtFmt=parseInt(data.amount||0).toLocaleString('en-IN');
-  var msg='🧾 *PAYMENT RECEIPT — TK Web Solutions*\n\n'+
-    '━━━━━━━━━━━━━━━━━━━━\n'+
-    '📋 Receipt No: *'+data.receiptNo+'*\n'+
-    '📅 Date & Time: '+data.datetime+'\n'+
-    '👤 Name: '+data.name+'\n'+
-    '📱 Phone: '+(data.phone||'N/A')+'\n'+
-    '💰 Amount Paid: *Rs.'+amtFmt+'*\n'+
-    '📝 Purpose: '+data.purpose+'\n'+
-    '🌐 Service: '+data.service+'\n'+
-    '🔖 Payment ID: '+(data.upiRef||'N/A')+'\n'+
-    '✅ Status: *Payment Confirmed*\n'+
-    '⚡ Delivery: 5-7 Working Days\n'+
-    '━━━━━━━━━━━━━━━━━━━━\n'+
-    '🙏 Thank you!\n'+
-    '🌐 tkwebsolutions.in | +91 90793 68240\n'+
-    '"From Dreams.... to Digital Reality"';
-  var num=data.phone?String(data.phone).replace(/\D/g,''):'919079368240';
-  if(num.length===10)num='91'+num;
-  if(!num||num.length<10)num='919079368240';
-  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
-}
-function sendOwnerAlert(data){
-  var amtFmt=parseInt(data.amount).toLocaleString('en-IN');
-  var msg='💰 *MANUAL PAYMENT SUBMITTED — needs verification*\n\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '🧾 Receipt: *'+data.receiptNo+'*\n'+
-    '📅 Time: '+data.datetime+'\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '👤 Name: *'+data.name+'*\n'+
-    '📱 Phone: '+(data.phone||'N/A')+'\n'+
-    '💰 Amount: *₹'+amtFmt+'*\n'+
-    '📝 Purpose: '+data.purpose+'\n'+
-    '🌐 Service: '+data.service+'\n'+
-    '🔖 UPI Ref: *'+(data.upiRef||'N/A')+'*\n'+
-    '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '✅ Please verify via the Owner Portal app!';
-  window.open('https://wa.me/919079368240?text='+encodeURIComponent(msg),'_blank');
+// SEARCH INVOICE & RECEIPT (In-Page Trigger)
+// ============================================================
+function searchAndShowReceipt() {
+  var q = document.getElementById('searchReceiptInput') ? document.getElementById('searchReceiptInput').value.trim() : '';
+  if (!q) { alert('Please enter your Invoice Number or 10-digit Phone Number.'); return; }
+
+  // 1. Check local ledger first
+  if (window.TK_INVOICE) {
+    var matches = window.TK_INVOICE.searchRecord(q, q);
+    if (matches && matches.length > 0) {
+      window.TK_INVOICE.showInvoiceModal(matches[0]);
+      return;
+    }
+  }
+
+  // 2. Query Apps Script backend
+  gasPost({ action: 'searchInvoice', query: q, phone: q })
+  .then(function(res) {
+    if (res && res.success && res.records && res.records.length > 0) {
+      if (window.TK_INVOICE) {
+        window.TK_INVOICE.showInvoiceModal(res.records[0]);
+      }
+    } else {
+      alert('🔍 No verified invoice found for "' + q + '". Please check the number or contact Tarun Singh directly at +91 90793 68240.');
+    }
+  }).catch(function() {
+    alert('Verification lookup currently offline. Please contact founder directly at +91 90793 68240.');
+  });
 }
 </script>
 

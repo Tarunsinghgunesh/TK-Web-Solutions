@@ -344,11 +344,37 @@
 
     function displayFoundRecord(rec) {
       _selectedRecord = rec;
+      var status = (rec.status || 'SUCCESS').toUpperCase();
+      var badgeEl = document.querySelector('.inv-res-badge');
+      var actionWrap = document.querySelector('.inv-res-actions');
+
       document.getElementById('resInvNo').textContent = rec.invoiceNo || rec.receiptNo || 'TK-INV-2026-000000';
       document.getElementById('resCustName').textContent = rec.name || rec.customerName || '-';
       document.getElementById('resService').textContent = rec.service || rec.purpose || '-';
       document.getElementById('resAmount').textContent = '₹' + parseInt(rec.amount || 0).toLocaleString('en-IN');
       document.getElementById('resDate').textContent = rec.datetime || rec.date || '-';
+
+      if (status === 'SUCCESS' || status === 'CAPTURED' || status === 'GENERATED') {
+        badgeEl.textContent = '✓ PAYMENT CONFIRMED';
+        badgeEl.style.background = 'rgba(34, 197, 94, 0.2)';
+        badgeEl.style.color = '#22c55e';
+        actionWrap.style.display = 'flex';
+      } else if (status === 'PENDING' || status === 'CREATED') {
+        badgeEl.textContent = '⏳ PENDING VERIFICATION';
+        badgeEl.style.background = 'rgba(234, 179, 8, 0.2)';
+        badgeEl.style.color = '#eab308';
+        actionWrap.style.display = 'none';
+      } else if (status === 'FAILED') {
+        badgeEl.textContent = '❌ PAYMENT NOT COMPLETED';
+        badgeEl.style.background = 'rgba(239, 68, 68, 0.2)';
+        badgeEl.style.color = '#ef4444';
+        actionWrap.style.display = 'none';
+      } else if (status === 'REFUNDED') {
+        badgeEl.textContent = '↩️ PAYMENT REFUNDED';
+        badgeEl.style.background = 'rgba(168, 85, 247, 0.2)';
+        badgeEl.style.color = '#a855f7';
+        actionWrap.style.display = 'flex';
+      }
 
       document.getElementById('invResultBox').style.display = 'block';
       document.getElementById('invResultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });

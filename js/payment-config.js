@@ -31,6 +31,7 @@ window.TK_CONFIG = {
 
   api: {
     appsScriptUrl: "https://script.google.com/macros/s/AKfycbwpV7Bz3YGT87PWaezn1fBKc5GQYQETJjHqqxCPohHKGkXWZIVlHFg8tUipPbTP7Cy4Sw/exec",
+    spreadsheetId: "1MEpLHMm4ShYWsaJBH7jN1L59WKA81JwMsP_mmmRU06M",
     backendUrl: "/api" // Node.js / Serverless API mount point
   },
 
