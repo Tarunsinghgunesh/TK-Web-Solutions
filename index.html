@@ -2964,16 +2964,14 @@ animation:pulseGlow 2s infinite;
         <span style="font-size:.65rem;color:rgba(255,255,255,.5);"><i class="fas fa-file-invoice" style="color:#25d366;"></i> Instant A4 PDF</span>
       </div>
 
-      <!-- Search Invoice & Receipt Tool -->
-      <div style="background:rgba(8,14,32,0.6);border:1px solid rgba(99,102,241,.25);border-radius:14px;padding:16px;">
-        <div style="font-size:.65rem;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;text-align:center;">🔍 Find Your Payment &amp; Invoice Record</div>
-        <div style="display:flex;gap:8px;">
-          <input type="text" id="searchReceiptInput" placeholder="Invoice # or 10-digit Phone" style="flex:1;background:rgba(255,255,255,.05);border:1.5px solid rgba(99,102,241,.3);border-radius:10px;padding:10px 14px;color:#fff;font-size:.82rem;font-family:'DM Sans',sans-serif;outline:none;">
-          <button onclick="searchAndShowReceipt()" style="background:#1a56ff;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;">Search</button>
-        </div>
-        <div style="text-align:center;margin-top:10px;">
-          <a href="invoice.html" style="font-size:.72rem;color:#00e5ff;text-decoration:none;font-weight:600;"><i class="fas fa-external-link-alt"></i> Open Dedicated Invoice Verification Page &rarr;</a>
-        </div>
+      <!-- OFFICIAL CLIENT RECORDS CTA -->
+      <div style="background:linear-gradient(135deg, rgba(14,26,58,0.9), rgba(8,14,32,0.9));border:1.5px solid rgba(0,229,255,0.3);border-radius:16px;padding:20px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <div style="font-size:.65rem;color:#00e5ff;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-weight:800;">OFFICIAL CLIENT RECORDS</div>
+        <h4 style="font-family:'Syne',sans-serif;font-size:1.05rem;color:#ffffff;margin-bottom:6px;font-weight:800;">Find Your Invoice / Receipt</h4>
+        <p style="font-size:.76rem;color:rgba(255,255,255,0.7);line-height:1.5;margin-bottom:14px;">Already made a payment to TK Web Solutions? Verify your transaction and download your official invoice.</p>
+        <a href="invoice.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#fff;padding:10px 22px;border-radius:10px;font-size:.82rem;font-weight:700;text-decoration:none;box-shadow:0 4px 14px rgba(0,150,255,0.35);font-family:'Syne',sans-serif;transition:transform .2s;">
+          <i class="fas fa-file-invoice-dollar"></i> Find My Invoice &rarr;
+        </a>
       </div>
 
       <p style="font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;line-height:1.7;margin-top:16px;margin-bottom:0;">
@@ -3152,9 +3150,9 @@ function openRazorpayCheckout(orderId, amt, name, biz, phone, email, service, in
       // Sync to Google Apps Script / Sheet
       gasPost({
         action: 'verifyPayment',
-        razorpay_order_id: response.razorpay_order_id,
+        razorpay_order_id: response.razorpay_order_id || orderId,
         razorpay_payment_id: response.razorpay_payment_id,
-        razorpay_signature: response.razorpay_signature,
+        razorpay_signature: response.razorpay_signature || '',
         invoiceNo: invoiceNo,
         name: name,
         business: biz,
@@ -3165,7 +3163,14 @@ function openRazorpayCheckout(orderId, amt, name, biz, phone, email, service, in
       }).then(function(res) {
         btn.disabled = false;
         btn.innerHTML = '🔒 Pay ₹<span id="rzpAmtShow">' + amt.toLocaleString('en-IN') + '</span> Securely Now';
+        if (res && res.invoiceNo) {
+          record.invoiceNo = res.invoiceNo;
+        }
+        if (res && res.datetime) {
+          record.datetime = res.datetime;
+        }
         if (window.TK_INVOICE) {
+          window.TK_INVOICE.savePaymentRecord(record);
           window.TK_INVOICE.showInvoiceModal(record);
         }
       }).catch(function() {
