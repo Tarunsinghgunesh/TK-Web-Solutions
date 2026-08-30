@@ -2274,229 +2274,418 @@ animation:pulseGlow 2s infinite;
     <div class="proc-card"><div class="proc-num">3</div><h3>Development</h3><p>The full build comes together — mobile-friendly, fast-loading, every feature included.</p></div>
     <div class="proc-card"><div class="proc-num">4</div><h3>Go Live</h3><p>Live within 5–7 days, with 30 days of free support included after delivery.</p></div>
   </div>
-<div class="tk-founder-wrap">
-  
-  <style>
-    /* Reset & Wrapper for seamless integration */
-    .tk-founder-wrap {
-      background: #060d1f;
-      position: relative;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      border-top: 1px solid rgba(26,86,255,0.08);
-      border-bottom: 1px solid rgba(26,86,255,0.08);
-      box-sizing: border-box;
-    }
+</section>
 
-    /* Background decoration */
-    .tk-mesh-bg {
-      position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image:
-        linear-gradient(rgba(26,86,255,.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26,86,255,.015) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+<!-- MASTER UNIFIED FOUNDER STORY SECTION -->
+<a id="about-tarun" aria-hidden="true" style="position:relative;top:-70px;display:block;"></a>
+<a id="founder" aria-hidden="true" style="position:relative;top:-70px;display:block;"></a>
+<section class="tk-master-founder-sec" id="about">
+  <div class="tk-founder-mesh-bg"></div>
+  <div class="tk-founder-glow tk-fglow-1"></div>
+  <div class="tk-founder-glow tk-fglow-2"></div>
 
-    /* Staggered Reveal Animation classes */
-    .fi-fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .fi-fade-up.fi-vis {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fi-fade-up.d1 { transition-delay: 0.1s; }
-    .fi-fade-up.d2 { transition-delay: 0.3s; }
-    .fi-fade-up.d3 { transition-delay: 0.5s; }
-    .fi-fade-up.d-btn { transition-delay: 0.7s; }
+  <div class="tk-founder-container">
+    <!-- Header Block -->
+    <div class="tk-founder-header reveal-up">
+      <div class="tk-founder-eyebrow">
+        <span class="tk-pulsing-dot"></span> FOUNDER • DEVELOPER • BUILDER
+      </div>
+      <h2 class="tk-founder-main-h">
+        Building My Own Path <span class="tk-grad-accent">Through Technology</span>
+      </h2>
+      <p class="tk-founder-lead-p">
+        Founder of TK Web Solutions, developer, product builder, and BBA Digital Marketing student at Manipal University Jaipur.
+      </p>
+    </div>
 
-    /* Layout */
-    .tk-founder-sec {
-      padding: 100px 6%;
-      position: relative; z-index: 1;
-    }
-    .tk-founder-layout {
-      display: grid;
-      grid-template-columns: 400px 1fr;
-      gap: 80px;
-      align-items: start;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    /* Photo with Aura & 3D Tilt */
-    .tk-fp-col { text-align: center; max-width: 380px; margin: 0 auto; }
-    .tk-fp-frame { position: relative; margin-bottom: 25px; }
-    .tk-fp-ring {
-      position: absolute; inset: -4px; border-radius: 28px; z-index: 0;
-      background: linear-gradient(135deg, #1a56ff, #00e5ff, #7c3aed, #ff0080, #1a56ff);
-      background-size: 400% 400%;
-      animation: tkHue 5s ease-in-out infinite, tkGlowPulse 6s ease-in-out infinite alternate;
-    }
-    @keyframes tkHue { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(20deg); } }
-    @keyframes tkGlowPulse { 0%, 100% { box-shadow: 0 0 20px rgba(26,86,255,0.3); } 50% { box-shadow: 0 0 45px rgba(0,229,255,0.4); } }
-
-    .tk-fp-box {
-      position: relative; z-index: 1;
-      border-radius: 24px; overflow: hidden;
-      border: 3px solid #060d1f; background: #0a1628;
-      cursor: pointer; transform-style: preserve-3d; transition: 0.1s ease-out;
-    }
-    .tk-fp-box img {
-      width: 100%; display: block; object-fit: cover; aspect-ratio: 4/5;
-      filter: contrast(1.05) brightness(1.05);
-    }
-    .tk-fp-fullname {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem; font-weight: 900; color: #fff;
-    }
-
-    /* Instagram Button */
-    .tk-ig-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      margin-top: 15px; padding: 16px; border-radius: 12px;
-      background: linear-gradient(135deg, #f09433, #dc2743, #bc1888);
-      color: #fff; font-family: 'Syne', sans-serif; font-weight: 800;
-      text-decoration: none; box-shadow: 0 10px 30px rgba(220,39,67,0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .tk-ig-btn:hover {
-      transform: translateY(-3px); box-shadow: 0 15px 40px rgba(220,39,67,0.45);
-    }
-
-    /* Title Gradient & Story */
-    .tk-story-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 30px;
-    }
-    .tk-story-title span {
-      background: linear-gradient(135deg, #7c3aed, #1a56ff, #ff0080);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .tk-f-highlights {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; color: #00e5ff;
-      background: rgba(26,86,255,0.08);
-      border-left: 4px solid #1a56ff;
-      padding: 14px 20px; margin-bottom: 28px;
-      border-radius: 0 12px 12px 0;
-      font-size: 1.1rem; line-height: 1.5;
-    }
-    .tk-stl-txt {
-      color: rgba(255,255,255,0.72); font-size: 1rem;
-      line-height: 1.85; margin-bottom: 18px; text-align: justify;
-    }
-    .tk-stl-txt strong { color: #fff; font-weight: 700; }
-
-    /* New: Floating Target features */
-    .tk-f-target-card {
-      position: absolute; padding: 15px; background: rgba(0,229,255,0.06);
-      border: 1px solid rgba(0,229,255,0.15); border-radius: 12px;
-      font-family: 'Syne'; font-weight: 800; color: #fff;
-      display: flex; align-items: center; gap: 10px;
-      animation: tkFloat 4s ease-in-out infinite; z-index: 10;
-    }
-    @keyframes tkFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .tk-founder-layout { grid-template-columns: 1fr; gap: 40px; }
-      .tk-fp-col { max-width: 350px; margin: 0 auto; }
-      .tk-story-title { text-align: center; }
-      .fi-fade-up { opacity: 1; transform: translateY(0); } /* Disable on mobile */
-    }
-    @media (max-width: 600px) {
-      .tk-f-btn-row { flex-direction: column; }
-      .tk-f-target-card { position: static; margin-bottom: 10px; width: 100%; justify-content: start; }
-    }
-  </style>
-
-  <div class="tk-mesh-bg"></div>
-
-  <section class="tk-founder-sec">
-    <div class="tk-founder-layout">
+    <!-- Two-Column Master Grid -->
+    <div class="tk-founder-grid">
       
-      <div class="tk-fp-col">
-        <div class="tk-fp-frame">
-          <div class="tk-fp-ring"></div>
-          <div class="tk-fp-box" id="tkFpBox">
-            <img src="image/founder.jpg" alt="Tarun Singh — Founder TK Web Solutions" loading="lazy" width="400" height="500"/>
-            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6,13,31,0.95), transparent 52%);"></div>
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 25px 20px; z-index: 2;">
-              <div style="color: #00e5ff; font-size: .65rem; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase;">FOUNDER & DEV</div>
-              <div class="tk-fp-fullname">Tarun Singh</div>
+      <!-- LEFT COLUMN: Profile Portrait & Identity -->
+      <div class="tk-founder-col-left reveal-left">
+        <div class="tk-portrait-card">
+          <div class="tk-portrait-wrap">
+            <div class="tk-portrait-aura"></div>
+            <div class="tk-portrait-box" id="tkFounderPortrait">
+              <img src="image/founder.jpg" alt="Tarun Singh — Founder & Lead Developer at TK Web Solutions" width="400" height="480" loading="lazy" class="tk-portrait-img">
+              <div class="tk-portrait-overlay"></div>
+              <div class="tk-portrait-bottom-meta">
+                <div class="tk-portrait-pill"><i class="fas fa-terminal"></i> Founder &amp; Developer</div>
+                <div class="tk-portrait-name">Tarun Singh</div>
+              </div>
             </div>
           </div>
-          <div class="tk-f-target-card" style="top: 20%; right: -150px; animation-delay: 0.5s;">
-            <div style="font-size: 1.5rem; color:#00e5ff;">🎯</div>
-            <div>TARGET 100% Satisfaction</div>
-          </div>
-          <div class="tk-f-target-card" style="bottom: 20%; left: -150px; animation-delay: 1s;">
-            <div style="font-size: 1.5rem; color:#1a56ff;">⚡</div>
-            <div>FAST 5-7d Delivery</div>
+
+          <!-- Identity Details -->
+          <div class="tk-identity-content">
+            <div class="tk-edu-badge">
+              <i class="fas fa-university"></i>
+              <span><strong>BBA in Digital Marketing</strong> • Manipal University Jaipur (Pursuing)</span>
+            </div>
+
+            <!-- Status Card -->
+            <div class="tk-status-box">
+              <span class="tk-status-dot"></span>
+              <div class="tk-status-txt">
+                <div class="tk-status-tag">CURRENTLY BUILDING</div>
+                <div class="tk-status-title">TK Web Solutions + LUNA App</div>
+              </div>
+            </div>
+
+            <!-- Key Quick Pillars -->
+            <div class="tk-pillar-row">
+              <div class="tk-pillar-item">
+                <span class="tk-pillar-num">10+</span>
+                <span class="tk-pillar-lbl">Delivered Platforms</span>
+              </div>
+              <div class="tk-pillar-item">
+                <span class="tk-pillar-num">100%</span>
+                <span class="tk-pillar-lbl">Free LUNA App</span>
+              </div>
+              <div class="tk-pillar-item">
+                <span class="tk-pillar-num">Bharatpur</span>
+                <span class="tk-pillar-lbl">Rajasthan, India</span>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="tk-social-strip">
+              <a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" rel="noopener" class="tk-soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://github.com/tarunsinghgunesh" target="_blank" rel="noopener" class="tk-soc-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://about.me/tarunk13" target="_blank" rel="noopener" class="tk-soc-btn" aria-label="About.me"><i class="fas fa-user"></i></a>
+              <a href="https://wa.me/919079368240" target="_blank" rel="noopener" class="tk-soc-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
           </div>
         </div>
-        <a href="https://www.instagram.com/tkwebsolutions_official/" target="_blank" class="tk-ig-btn">
-          <i class="fab fa-instagram"></i> Follow My Journey
-        </a>
       </div>
 
-      <div class="tk-story-col">
-        <div class="tk-f-highlights fi-fade-up d1">"Why not build something of my own?"</div>
-        <h2 class="tk-story-title fi-fade-up d2">The Journey Behind <br><span style="background: linear-gradient(135deg, #7c3aed, #1a56ff, #ff0080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">TK Web Solutions</span></h2>
-        
-        <p class="tk-stl-txt fi-fade-up d1">Every business starts with a small idea, and this one began the same way. In the early days, coding did not come easily — errors were constant, and progress often felt slower than it should have. <strong>Learning to build software properly took real time and patience.</strong></p>
-        
-        <p class="tk-stl-txt fi-fade-up d2">What changed things was a simple realization: stopping guaranteed nothing would improve, but persistence would eventually produce something worth building. <strong>Late nights, consistent practice, and a lot of self-directed learning</strong> turned that persistence into genuine capability.</p>
-        
-        <p class="tk-stl-txt fi-fade-up d3">Along the way, a clear pattern emerged — <strong>many strong local businesses were held back not by their work, but by having no real presence online.</strong> TK Web Solutions was built to close that gap: helping businesses move online and turn their ideas into a working digital reality.</p>
-        
-        <div class="tk-f-highlights fi-fade-up d-quote" style="background:none; border:none; padding:0; font-style:italic; text-align:center; font-size:1.25rem;">From Dreams… To Digital Reality.</div>
+      <!-- RIGHT COLUMN: Story Narrative & Integrated Journey -->
+      <div class="tk-founder-col-right reveal-right">
+        <div class="tk-quote-banner">
+          <i class="fas fa-quote-left"></i>
+          <span>"Why not build something of my own?"</span>
+        </div>
 
-        <div class="tk-f-btn-row fi-fade-up d-btn" style="display:flex; gap:15px; flex-wrap:wrap; margin-top: 30px;">
-          <a href="https://tarunsinghgunesh.github.io/portfolio_3d/" target="_blank" style="background: #1a56ff; color: #fff; padding: 15px 30px; border-radius: 12px; font-weight: 800; font-family: 'Syne'; text-decoration: none; transition: 0.3s;" onmouseover="this.style.transform='scale(1.03)';" onmouseout="this.style.transform='scale(1)';">View Full Work</a>
-          <a href="https://wa.me/919079368240" target="_blank" style="border: 2px solid #25d366; color: #25d366; padding: 15px 30px; border-radius: 12px; font-weight: 800; font-family: 'Syne'; text-decoration: none; transition: 0.3s;" onmouseover="this.style.transform='scale(1.03)';" onmouseout="this.style.transform='scale(1)';">Chat on WhatsApp</a>
+        <h3 class="tk-story-h">
+          The Journey Behind <span class="tk-grad-accent">TK Web Solutions</span>
+        </h3>
+
+        <div class="tk-story-body">
+          <p>
+            Every business starts with a small idea, and mine began with a genuine curiosity to understand how computer software and web architectures work. In the early days, self-directed learning was full of trial and error — debugging errors late into the night, mastering frontend and mobile technologies, and steadily turning abstract concepts into working code.
+          </p>
+          <p>
+            What changed everything was a commitment to practical execution: stopping guaranteed no progress, but relentless persistence produced genuine capability. <strong>Late nights, consistent practice, and hands-on building turned foundational coding into real-world software engineering.</strong>
+          </p>
+          <p>
+            Along the way, a clear pattern emerged across Bharatpur and beyond — <strong>many exceptional local businesses, coaching institutes, and schools were held back simply by having no real digital presence.</strong> TK Web Solutions was founded to bridge that gap: engineering fast, mobile-friendly websites and Android apps with direct, founder-level dedication.
+          </p>
+          <p>
+            To bring even greater value to every build, I am currently pursuing a <strong>BBA in Digital Marketing at Manipal University Jaipur</strong>. Combining technical development with digital marketing psychology allows me to build high-conversion client platforms as well as independent products like <strong>LUNA</strong> (a 100% free, privacy-first menstrual sanctuary app with local Isar DB) and <strong>EduPrime</strong>.
+          </p>
+        </div>
+
+        <!-- Studio Tagline -->
+        <div class="tk-tagline-card">
+          <div class="tk-tagline-sub">STUDIO MISSION</div>
+          <div class="tk-tagline-motto">From Dreams.... to <em>Digital Reality</em></div>
+        </div>
+
+        <!-- Master Unified Action Buttons -->
+        <div class="tk-founder-cta-group">
+          <a href="journey.html" class="tk-f-btn tk-f-btn-primary">
+            <i class="fas fa-route"></i> Explore My Journey
+          </a>
+          <a href="#portfolio" class="tk-f-btn tk-f-btn-secondary">
+            <i class="fas fa-layer-group"></i> View My Work
+          </a>
+          <a href="luna.html" class="tk-f-btn tk-f-btn-tertiary">
+            <i class="fas fa-moon"></i> Explore LUNA (Free)
+          </a>
+          <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20I%20read%20your%20story%20on%20TK%20Web%20Solutions." target="_blank" rel="noopener" class="tk-f-btn tk-f-btn-wa">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
         </div>
       </div>
+
     </div>
-  </section>
-</div>
-
-<script>
-(function () {
-  /* ── Staggered Scroll Reveal Animation ── */
-  const fRevealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('fi-vis');
-        fRevealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fi-fade-up').forEach(el => fRevealObs.observe(el));
-
-  /* ── Founder Photo 3D Parallax Tilt ── */
-  const fTiltBox = document.getElementById('tkFpBox');
-  if (fTiltBox) {
-    fTiltBox.addEventListener('mousemove', (e) => {
-      const r = fTiltBox.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      // Reduced rotation for smoother feel
-      fTiltBox.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
-    });
-    fTiltBox.addEventListener('mouseleave', () => {
-      fTiltBox.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-    });
-  }
-})();
-</script>
+  </div>
 </section>
+
+<style>
+/* ══════════════════════════════════════════
+   MASTER UNIFIED FOUNDER SECTION STYLES
+══════════════════════════════════════════ */
+.tk-master-founder-sec {
+  background: #060d1f;
+  color: #fff;
+  padding: 100px 6%;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(26,86,255,0.12);
+  border-bottom: 1px solid rgba(26,86,255,0.12);
+}
+.tk-founder-mesh-bg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(26,86,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,86,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+.tk-founder-glow {
+  position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+}
+.tk-fglow-1 {
+  top: -100px; left: -100px; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(26,86,255,0.18), transparent 70%);
+}
+.tk-fglow-2 {
+  bottom: -120px; right: -100px; width: 550px; height: 550px;
+  background: radial-gradient(circle, rgba(0,229,255,0.12), transparent 70%);
+}
+.tk-founder-container {
+  max-width: 1240px; margin: 0 auto; position: relative; z-index: 1;
+}
+
+/* Header */
+.tk-founder-header {
+  text-align: center; max-width: 800px; margin: 0 auto 50px;
+}
+.tk-founder-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(26,86,255,0.16); border: 1px solid rgba(26,86,255,0.38);
+  color: #00e5ff; padding: 6px 18px; border-radius: 30px;
+  font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.tk-pulsing-dot {
+  width: 7px; height: 7px; background: #00e5ff; border-radius: 50%;
+  animation: tkPulse 1.5s infinite;
+}
+@keyframes tkPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+
+.tk-founder-main-h {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 16px;
+}
+.tk-grad-accent {
+  background: linear-gradient(135deg, #1a56ff, #00e5ff, #c084fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.tk-founder-lead-p {
+  font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0 auto;
+}
+
+/* Master Grid */
+.tk-founder-grid {
+  display: grid; grid-template-columns: 380px 1fr; gap: 50px; align-items: start;
+}
+
+/* Portrait & Identity Left Column */
+.tk-portrait-card {
+  background: rgba(10,15,30,0.85);
+  border: 1px solid rgba(26,86,255,0.22);
+  border-radius: 24px; padding: 24px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+.tk-portrait-wrap {
+  position: relative; margin-bottom: 20px;
+}
+.tk-portrait-aura {
+  position: absolute; inset: -4px; border-radius: 20px;
+  background: linear-gradient(135deg, #1a56ff, #00e5ff, #7c3aed);
+  opacity: 0.7; filter: blur(8px); z-index: 0;
+}
+.tk-portrait-box {
+  position: relative; border-radius: 18px; overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.12); z-index: 1;
+  background: #0d1527;
+}
+.tk-portrait-img {
+  width: 100%; height: auto; aspect-ratio: 4/5; object-fit: cover;
+  object-position: top; display: block;
+}
+.tk-portrait-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,13,31,0.92) 0%, rgba(6,13,31,0.2) 40%, transparent 70%);
+}
+.tk-portrait-bottom-meta {
+  position: absolute; bottom: 14px; left: 16px; right: 16px; z-index: 2;
+}
+.tk-portrait-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(0,229,255,0.18); border: 1px solid rgba(0,229,255,0.4);
+  color: #00e5ff; font-size: 0.68rem; font-weight: 800; padding: 3px 10px;
+  border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;
+}
+.tk-portrait-name {
+  font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 800; color: #fff;
+}
+
+/* Identity Info Block */
+.tk-edu-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(26,86,255,0.12); border: 1px solid rgba(26,86,255,0.25);
+  border-radius: 12px; padding: 10px 14px; margin-bottom: 14px;
+  font-size: 0.8rem; color: rgba(255,255,255,0.85); line-height: 1.4;
+}
+.tk-edu-badge i { color: #00e5ff; font-size: 1rem; flex-shrink: 0; }
+.tk-edu-badge strong { color: #fff; }
+
+.tk-status-box {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 12px; padding: 10px 14px; margin-bottom: 16px;
+}
+.tk-status-dot {
+  width: 9px; height: 9px; background: #22c55e; border-radius: 50%;
+  box-shadow: 0 0 10px #22c55e; flex-shrink: 0;
+}
+.tk-status-tag {
+  font-size: 0.62rem; font-weight: 800; color: #4ade80; letter-spacing: 1px;
+}
+.tk-status-title {
+  font-size: 0.82rem; font-weight: 700; color: #fff;
+}
+
+.tk-pillar-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;
+}
+.tk-pillar-item {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 10px 6px; text-align: center;
+}
+.tk-pillar-num {
+  font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 800; color: #00e5ff;
+  display: block; line-height: 1.2;
+}
+.tk-pillar-lbl {
+  font-size: 0.62rem; color: rgba(255,255,255,0.6); display: block; margin-top: 2px;
+}
+
+.tk-social-strip {
+  display: flex; gap: 8px; justify-content: center;
+}
+.tk-soc-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(26,86,255,0.15); border: 1px solid rgba(26,86,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: #93c5fd; font-size: 0.95rem; transition: all 0.25s; text-decoration: none;
+}
+.tk-soc-btn:hover {
+  background: #1a56ff; color: #fff; transform: translateY(-2px);
+  border-color: #00e5ff; box-shadow: 0 4px 15px rgba(26,86,255,0.4);
+}
+
+/* Right Column Story Narrative */
+.tk-quote-banner {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(0,229,255,0.08); border-left: 4px solid #00e5ff;
+  padding: 10px 18px; border-radius: 0 12px 12px 0; margin-bottom: 20px;
+  font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; color: #00e5ff;
+}
+.tk-story-h {
+  font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 22px;
+}
+.tk-story-body p {
+  font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.78);
+  margin-bottom: 18px; text-align: left;
+}
+.tk-story-body strong {
+  color: #fff; font-weight: 700;
+}
+
+.tk-tagline-card {
+  background: linear-gradient(135deg, rgba(26,86,255,0.15), rgba(0,229,255,0.06));
+  border: 1px solid rgba(26,86,255,0.25); border-radius: 14px;
+  padding: 18px 24px; margin: 26px 0 32px; text-align: center;
+}
+.tk-tagline-sub {
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.tk-tagline-motto {
+  font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #00e5ff, #c084fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* Unified CTA Group */
+.tk-founder-cta-group {
+  display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+}
+.tk-f-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 12px; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 0.9rem; text-decoration: none;
+  transition: all 0.25s; cursor: pointer;
+}
+.tk-f-btn-primary {
+  background: #1a56ff; color: #fff;
+  box-shadow: 0 6px 20px rgba(26,86,255,0.35);
+}
+.tk-f-btn-primary:hover {
+  background: #0d3acc; transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(26,86,255,0.5);
+}
+.tk-f-btn-secondary {
+  background: rgba(255,255,255,0.08); color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.tk-f-btn-secondary:hover {
+  background: rgba(255,255,255,0.15); border-color: #00e5ff;
+  transform: translateY(-2px); color: #00e5ff;
+}
+.tk-f-btn-tertiary {
+  background: rgba(236,72,153,0.12); color: #f472b6;
+  border: 1px solid rgba(236,72,153,0.35);
+}
+.tk-f-btn-tertiary:hover {
+  background: #ec4899; color: #fff; transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(236,72,153,0.4);
+}
+.tk-f-btn-wa {
+  background: rgba(37,211,102,0.12); color: #22c55e;
+  border: 1px solid rgba(37,211,102,0.35);
+}
+.tk-f-btn-wa:hover {
+  background: #25d366; color: #fff; transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .tk-founder-grid {
+    grid-template-columns: 1fr; gap: 40px;
+  }
+  .tk-portrait-card {
+    max-width: 440px; margin: 0 auto;
+  }
+  .tk-founder-header {
+    text-align: center; margin-bottom: 36px;
+  }
+}
+@media (max-width: 640px) {
+  .tk-master-founder-sec {
+    padding: 70px 5%;
+  }
+  .tk-portrait-card {
+    padding: 16px;
+  }
+  .tk-story-body p {
+    font-size: 0.95rem; line-height: 1.75;
+  }
+  .tk-founder-cta-group {
+    flex-direction: column; width: 100%;
+  }
+  .tk-f-btn {
+    width: 100%; justify-content: center;
+  }
+}
+</style>
 
 <!-- COMMITMENTS -->
 <a id="reviews" aria-hidden="true" style="position:absolute;top:0;left:0;"></a>
