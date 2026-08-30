@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Tarun Singh Uses (/uses) — Tech Stack, Hardware &amp; Tools</title>
+  <meta name="description" content="A complete breakdown of the software, development environment, mobile frameworks, hardware, and productivity tools Tarun Singh uses to build websites, apps, and digital products.">
+  <meta name="author" content="Tarun Singh">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tkwebsolutions.in/uses.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="What Tarun Singh Uses (/uses) — Tech Stack &amp; Workflow">
+  <meta property="og:description" content="Tools, editors, frameworks, hardware, and services Tarun Singh uses for daily development.">
+  <meta property="og:url" content="https://tkwebsolutions.in/uses.html">
+  <meta property="og:image" content="https://tkwebsolutions.in/image/founder.jpg">
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://tkwebsolutions.in/uses.html",
+        "name": "What Tarun Singh Uses",
+        "url": "https://tkwebsolutions.in/uses.html",
+        "description": "Tech stack, development setup, and software tools used by Tarun Singh.",
+        "author": {
+          "@type": "Person",
+          "name": "Tarun Singh",
+          "url": "https://tkwebsolutions.in/tarun-singh.html"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tkwebsolutions.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tarun Singh",
+            "item": "https://tkwebsolutions.in/tarun-singh.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Uses",
+            "item": "https://tkwebsolutions.in/uses.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --blue: #1a56ff;
+      --blue2: #0d3acc;
+      --bluel: #e8eeff;
+      --navy: #060d1f;
+      --white: #ffffff;
+      --gray: #64748b;
+      --light: #f8faff;
+      --accent: #00e5ff;
+      --green: #25d366;
+      --border: #e2e8f0;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+    [data-theme="dark"] {
+      --bg-page: #030712;
+      --bg-card: #0a0f1e;
+      --bg-alt: #060b1a;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --border: rgba(26, 86, 255, 0.15);
+      --light: #0d152a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary, #1e293b);
+      background: var(--bg-page, #ffffff);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 14px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    [data-theme="dark"] .navbar {
+      background: rgba(3, 7, 18, 0.92);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    [data-theme="dark"] .logo { color: #fff; }
+    .logo span { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-weight: 700 !important;
+    }
+    .dm-toggle {
+      width: 42px;
+      height: 24px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--blue), #4f46e5);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .dm-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    [data-theme="dark"] .dm-toggle::after { transform: translateX(18px); }
+    .hamburger { display: none; background: none; border: none; font-size: 1.3rem; color: inherit; cursor: pointer; }
+
+    @media (max-width: 900px) {
+      .hamburger { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-card, #ffffff);
+        flex-direction: column;
+        padding: 90px 28px 28px;
+        gap: 18px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        border-left: 1px solid var(--border);
+      }
+      .nav-links.open { transform: translateX(0); }
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0c1633 55%, #180d38 100%);
+      padding: 90px 6% 70px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26, 86, 255, 0.25);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 6%;
+    }
+    .sec-block {
+      margin-bottom: 60px;
+    }
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .sec-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bluel);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    [data-theme="dark"] .sec-icon { background: rgba(26, 86, 255, 0.2); }
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    [data-theme="dark"] .sec-title { color: #fff; }
+
+    .uses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .use-card {
+      background: var(--bg-card, #ffffff);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+    .use-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+      box-shadow: 0 10px 30px rgba(26, 86, 255, 0.08);
+    }
+    .use-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    [data-theme="dark"] .use-card h3 { color: #fff; }
+    .use-purpose {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .use-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta-sec {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1a3a 100%);
+      padding: 70px 6%;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-sec h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+    .cta-sec p {
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 540px;
+      margin: 0 auto 28px;
+      font-size: 1.05rem;
+    }
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cta-btns a {
+      padding: 12px 26px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .cta-wa { background: var(--green); color: #fff; }
+    .cta-blue { background: var(--blue); color: #fff; }
+
+    /* FOOTER */
+    footer {
+      background: #030712;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 40px 6%;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    footer a { color: rgba(255, 255, 255, 0.7); margin: 0 8px; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+    .footer-links { margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="https://tkwebsolutions.in/" class="logo"><span>TK</span> Web Solutions</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="https://tkwebsolutions.in/">Home</a></li>
+      <li><a href="https://tkwebsolutions.in/tarun-singh.html">About Tarun</a></li>
+      <li><a href="https://tkwebsolutions.in/journey.html">My Journey</a></li>
+      <li><a href="https://tkwebsolutions.in/education.html">Education</a></li>
+      <li><a href="https://tkwebsolutions.in/skills.html">Skills</a></li>
+      <li><a href="https://tkwebsolutions.in/portfolio.html">Projects</a></li>
+      <li><a href="https://tkwebsolutions.in/luna.html">LUNA</a></li>
+      <li><a href="https://tkwebsolutions.in/now.html">Now</a></li>
+      <li><a href="https://tkwebsolutions.in/uses.html" class="active">Uses</a></li>
+      <li><a href="https://tkwebsolutions.in/blog.html">Blog</a></li>
+      <li><a href="https://tkwebsolutions.in/#contact" class="nav-cta">Start a Project</a></li>
+      <li><button class="dm-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode"></button></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge"><i class="fas fa-tools"></i> Developer Setup</div>
+    <h1>What I Use <span>(/uses)</span></h1>
+    <p>A living catalogue of the hardware, software, code editors, design tools, and services I rely on daily to craft websites, apps, and digital products.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. CODE & DEVELOPMENT -->
+    <section class="sec-block">
+      <div class="sec-header">
+        <div class="sec-icon"><i class="fas fa-code"></i></div>
+        <h2 class="sec-title">Editor &amp; Development Tools</h2>
+      </div>
+      <div class="uses-grid">
+        <div class="use-card">
+          <h3>Visual Studio Code</h3>
+          <div class="use-purpose">Primary Code Editor</div>
+          <p class="use-desc">My daily driver for writing HTML, CSS, JavaScript, and Flutter code. Clean, modular, configured with minimal clutter.</p>
+        </div>
+        <div class="use-card">
+          <h3>Android Studio</h3>
+          <div class="use-purpose">Android SDK &amp; Emulation</div>
+          <p class="use-desc">Used for building native Android APKs, testing on emulators, configuring Gradle builds, and debugging Android manifestations.</p>
+        </div>
+        <div class="use-card">
+          <h3>Git &amp; GitHub</h3>
+          <div class="use-purpose">Version Control &amp; CI/CD</div>
+          <p class="use-desc">Version control for all client projects and open repositories. Managing branches, releases, and deployment pipelines.</p>
+        </div>
+        <div class="use-card">
+          <h3>Chrome DevTools</h3>
+          <div class="use-purpose">Inspection &amp; Performance Tuning</div>
+          <p class="use-desc">Crucial for Core Web Vitals profiling, Lighthouse audits, network waterfall analysis, and responsive mobile debugging.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MOBILE & FRONTEND FRAMEWORKS -->
+    <section class="sec-block">
+      <div class="sec-header">
+        <div class="sec-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h2 class="sec-title">Mobile &amp; Frontend Stack</h2>
+      </div>
+      <div class="uses-grid">
+        <div class="use-card">
+          <h3>Flutter &amp; Dart</h3>
+          <div class="use-purpose">Mobile App Framework</div>
+          <p class="use-desc">Used to build fast, beautiful, compiled native Android applications including LUNA and EduPrime.</p>
+        </div>
+        <div class="use-card">
+          <h3>Vanilla HTML5, CSS3 &amp; JS</h3>
+          <div class="use-purpose">Web Architecture</div>
+          <p class="use-desc">I prioritize native web standards over heavy frontend frameworks for business landing pages to guarantee sub-second load speeds.</p>
+        </div>
+        <div class="use-card">
+          <h3>Isar Database</h3>
+          <div class="use-purpose">Embedded Offline DB</div>
+          <p class="use-desc">Ultra-fast, private local database for Flutter apps. The foundation of LUNA's offline-first privacy architecture.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CLOUD & BACKEND -->
+    <section class="sec-block">
+      <div class="sec-header">
+        <div class="sec-icon"><i class="fas fa-cloud"></i></div>
+        <h2 class="sec-title">Cloud, Backend &amp; Hosting</h2>
+      </div>
+      <div class="uses-grid">
+        <div class="use-card">
+          <h3>Firebase</h3>
+          <div class="use-purpose">Auth, Firestore &amp; Push</div>
+          <p class="use-desc">Utilized for secure authentication, real-time data sync, and instant push notification delivery to mobile apps.</p>
+        </div>
+        <div class="use-card">
+          <h3>Supabase</h3>
+          <div class="use-purpose">PostgreSQL Backend</div>
+          <p class="use-desc">Open-source relational cloud database with Row Level Security, instant APIs, and seamless synchronization.</p>
+        </div>
+        <div class="use-card">
+          <h3>Netlify &amp; GitHub Pages</h3>
+          <div class="use-purpose">Edge Hosting &amp; CDN</div>
+          <p class="use-desc">High-speed global edge distribution, automated SSL, custom domains, and instant cache invalidation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DESIGN & PRODUCTIVITY -->
+    <section class="sec-block">
+      <div class="sec-header">
+        <div class="sec-icon"><i class="fas fa-palette"></i></div>
+        <h2 class="sec-title">Design, Strategy &amp; Productivity</h2>
+      </div>
+      <div class="uses-grid">
+        <div class="use-card">
+          <h3>Figma</h3>
+          <div class="use-purpose">UI/UX &amp; Wireframing</div>
+          <p class="use-desc">Used for interface prototyping, design system token planning, and client visual previews before coding begins.</p>
+        </div>
+        <div class="use-card">
+          <h3>Google Search Console &amp; Analytics</h3>
+          <div class="use-purpose">SEO Monitoring &amp; Data</div>
+          <p class="use-desc">Tracking indexation health, organic keyword queries, impressions, click-through rates, and conversion flow.</p>
+        </div>
+        <div class="use-card">
+          <h3>WhatsApp Business</h3>
+          <div class="use-purpose">Direct Client Communication</div>
+          <p class="use-desc">Enables personal, zero-middleman client collaboration with quick turnarounds and direct project updates.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <h2>Want to Discuss Technical Architecture?</h2>
+    <p>Let's build a clean, fast web solution or mobile application for your brand.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20I%20saw%20your%20/uses%20page%20and%20would%20like%20to%20discuss%20a%20project." class="cta-wa"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      <a href="https://tkwebsolutions.in/portfolio.html" class="cta-blue"><i class="fas fa-briefcase"></i> View Portfolio</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://tkwebsolutions.in/">Home</a>
+      <a href="https://tkwebsolutions.in/tarun-singh.html">About Tarun</a>
+      <a href="https://tkwebsolutions.in/journey.html">Journey</a>
+      <a href="https://tkwebsolutions.in/education.html">Education</a>
+      <a href="https://tkwebsolutions.in/skills.html">Skills</a>
+      <a href="https://tkwebsolutions.in/portfolio.html">Projects</a>
+      <a href="https://tkwebsolutions.in/luna.html">LUNA</a>
+      <a href="https://tkwebsolutions.in/now.html">Now</a>
+      <a href="https://tkwebsolutions.in/uses.html">Uses</a>
+      <a href="https://tkwebsolutions.in/achievements.html">Achievements</a>
+      <a href="https://tkwebsolutions.in/blog.html">Blog</a>
+      <a href="https://tkwebsolutions.in/#contact">Contact</a>
+    </div>
+    <p>© 2026 Tarun Singh • Founder of <a href="https://tkwebsolutions.in/">TK Web Solutions</a> • Bharatpur, Rajasthan, India. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const target = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('theme', target);
+    }
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</body>
+</html>

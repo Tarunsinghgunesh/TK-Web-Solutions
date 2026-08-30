@@ -1,3 +1,22 @@
+# Domain canonicalization
 http://tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 http://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 https://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
+
+# Clean SEO Routes for Tarun Singh & TK Web Solutions
+/journey /journey.html 200
+/education /education.html 200
+/skills /skills.html 200
+/now /now.html 200
+/uses /uses.html 200
+/achievements /achievements.html 200
+/luna /luna.html 200
+/projects/luna /luna.html 200
+/eduprime /eduprime.html 200
+/projects/eduprime /eduprime.html 200
+/tk-web-solutions /tk-web-solutions.html 200
+/tarun-singh /tarun-singh.html 200
+/about /about.html 200
+/projects /portfolio.html 200
+/portfolio /portfolio.html 200
+/blog /blog.html 200

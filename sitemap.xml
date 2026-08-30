@@ -1,34 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!--  ═══ MAIN PAGES ═══  -->
+<!--  ═══ MAIN PAGES & PERSONAL BRAND ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/</loc>
-<lastmod>2026-04-18</lastmod>
+<lastmod>2026-08-30</lastmod>
 <changefreq>weekly</changefreq>
 <priority>1.0</priority>
 </url>
 <url>
-<loc>https://tkwebsolutions.in/blog.html</loc>
-<lastmod>2026-04-18</lastmod>
+<loc>https://tkwebsolutions.in/tarun-singh.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.95</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/journey.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/education.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/skills.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.85</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/luna.html</loc>
+<lastmod>2026-08-30</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.9</priority>
 </url>
 <url>
-<loc>https://tkwebsolutions.in/tarun-singh.html</loc>
-<lastmod>2026-04-18</lastmod>
+<loc>https://tkwebsolutions.in/eduprime.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/tk-web-solutions.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.85</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/portfolio.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.85</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/now.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.85</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/uses.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/achievements.html</loc>
+<lastmod>2026-08-30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://tkwebsolutions.in/about.html</loc>
-<lastmod>2026-04-18</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
-<loc>https://tkwebsolutions.in/portfolio.html</loc>
-<lastmod>2026-08-02</lastmod>
+<lastmod>2026-08-30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
+</url>
+<url>
+<loc>https://tkwebsolutions.in/blog.html</loc>
+<lastmod>2026-08-30</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
 <loc>https://tkwebsolutions.in/trust.html</loc>
@@ -41,12 +96,6 @@
 <lastmod>2026-08-02</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
-</url>
-<url>
-<loc>https://tkwebsolutions.in/founder.html</loc>
-<lastmod>2026-08-02</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.6</priority>
 </url>
 <url>
 <loc>https://tkwebsolutions.in/pricing-calculator.html</loc>
@@ -78,6 +127,7 @@
 <changefreq>yearly</changefreq>
 <priority>0.4</priority>
 </url>
+
 <!--  ═══ SEO BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/seo-tips-for-beginners.html</loc>
@@ -103,6 +153,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ WEB DEVELOPMENT BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/bharatpur-mein-website-kaise-banwayein.html</loc>
@@ -152,6 +203,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ APP DEVELOPMENT BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/android-app-development-guide.html</loc>
@@ -165,6 +217,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ BUSINESS GROWTH BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/bina-website-kitna-nuksaan.html</loc>
@@ -190,6 +243,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ COACHING BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/coaching-center-online-admission-form.html</loc>
@@ -209,6 +263,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ DIGITAL MARKETING BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/small-business-digital-marketing-guide.html</loc>
@@ -222,6 +277,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ SOCIAL MEDIA BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/instagram-se-business-badhao.html</loc>
@@ -229,6 +285,7 @@
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
+
 <!--  ═══ EDUCATION BLOGS ═══  -->
 <url>
 <loc>https://tkwebsolutions.in/blog/school-website-admissions-badhao.html</loc>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarun Singh — My Journey | Self-Taught Developer, Founder & Product Builder</title>
+  <meta name="description" content="Explore the authentic journey of Tarun Singh: from self-taught web and Android developer in Bharatpur to founding TK Web Solutions, studying BBA Digital Marketing at Manipal University Jaipur, and building LUNA.">
+  <meta name="author" content="Tarun Singh">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tkwebsolutions.in/journey.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Tarun Singh — My Journey | Self-Taught Developer to Founder">
+  <meta property="og:description" content="From writing first lines of code in Bharatpur to founding TK Web Solutions, studying Digital Marketing at Manipal University Jaipur, and building independent digital products.">
+  <meta property="og:url" content="https://tkwebsolutions.in/journey.html">
+  <meta property="og:image" content="https://tkwebsolutions.in/image/founder.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tarun Singh — My Journey | Founder & Developer">
+  <meta name="twitter:description" content="The authentic timeline of Tarun Singh — learning, building, founding TK Web Solutions, and creating digital products.">
+  <meta name="twitter:image" content="https://tkwebsolutions.in/image/founder.jpg">
+
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://tkwebsolutions.in/#tarunsingh",
+        "name": "Tarun Singh",
+        "jobTitle": "Founder & Developer",
+        "url": "https://tkwebsolutions.in/tarun-singh.html",
+        "image": "https://tkwebsolutions.in/image/founder.jpg",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "TK Web Solutions",
+          "url": "https://tkwebsolutions.in/"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Manipal University Jaipur"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bharatpur",
+          "addressRegion": "Rajasthan",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://tkwebsolutions.in/",
+          "https://www.instagram.com/tkwebsolutions_official"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://tkwebsolutions.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tarun Singh",
+            "item": "https://tkwebsolutions.in/tarun-singh.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "My Journey",
+            "item": "https://tkwebsolutions.in/journey.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --blue: #1a56ff;
+      --blue2: #0d3acc;
+      --bluel: #e8eeff;
+      --navy: #060d1f;
+      --navy2: #0b1428;
+      --white: #ffffff;
+      --gray: #64748b;
+      --light: #f8faff;
+      --accent: #00e5ff;
+      --gold: #f59e0b;
+      --green: #25d366;
+      --border: #e2e8f0;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+    }
+    [data-theme="dark"] {
+      --bg-page: #030712;
+      --bg-card: #0a0f1e;
+      --bg-alt: #060b1a;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --border: rgba(26, 86, 255, 0.15);
+      --light: #0d152a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary, #1e293b);
+      background: var(--bg-page, #ffffff);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 14px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    [data-theme="dark"] .navbar {
+      background: rgba(3, 7, 18, 0.92);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    [data-theme="dark"] .logo { color: #fff; }
+    .logo span { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-weight: 700 !important;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue2); }
+    .dm-toggle {
+      width: 42px;
+      height: 24px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--blue), #4f46e5);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .dm-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    [data-theme="dark"] .dm-toggle::after { transform: translateX(18px); }
+    .hamburger { display: none; background: none; border: none; font-size: 1.3rem; color: inherit; cursor: pointer; }
+
+    @media (max-width: 900px) {
+      .hamburger { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-card, #ffffff);
+        flex-direction: column;
+        padding: 90px 28px 28px;
+        gap: 18px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        border-left: 1px solid var(--border);
+      }
+      .nav-links.open { transform: translateX(0); }
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1a3a 55%, #1a0d3a 100%);
+      padding: 90px 6% 70px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26, 86, 255, 0.25);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #60a5fa, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+    .hero-nav-pills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-nav-pills a {
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      transition: all 0.2s;
+    }
+    .hero-nav-pills a:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    /* TIMELINE SECTION */
+    .timeline-sec {
+      padding: 80px 6%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .timeline-tree {
+      position: relative;
+      margin-top: 40px;
+      padding-left: 36px;
+    }
+    .timeline-tree::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--blue), var(--accent), #a855f7);
+      border-radius: 4px;
+    }
+    .t-step {
+      position: relative;
+      margin-bottom: 50px;
+      background: var(--bg-card, #ffffff);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    .t-step:hover {
+      transform: translateX(6px);
+      border-color: var(--blue);
+      box-shadow: 0 12px 36px rgba(26, 86, 255, 0.1);
+    }
+    .t-dot {
+      position: absolute;
+      left: -33px;
+      top: 32px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 4px solid var(--bg-page, #ffffff);
+      box-shadow: 0 0 0 2px var(--blue);
+      z-index: 2;
+    }
+    .t-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .t-phase {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bluel);
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    [data-theme="dark"] .t-phase {
+      background: rgba(26, 86, 255, 0.2);
+    }
+    .t-year {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .t-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .t-title { color: #fff; }
+    .t-body {
+      color: var(--text-primary, #334155);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .t-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .t-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: var(--light);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 8px;
+      color: var(--gray);
+    }
+    .t-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--blue);
+      margin-top: 8px;
+      transition: gap 0.2s;
+    }
+    .t-link:hover { gap: 10px; }
+
+    /* PHILOSOPHY CARD */
+    .philosophy-box {
+      background: linear-gradient(135deg, var(--light), #e0f2fe);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-top: 40px;
+      position: relative;
+    }
+    [data-theme="dark"] .philosophy-box {
+      background: linear-gradient(135deg, #0a1128, #0f1c3f);
+    }
+    .philosophy-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .philosophy-box h3 { color: #fff; }
+    .philosophy-box p {
+      font-size: 1.02rem;
+      color: var(--text-primary, #334155);
+      line-height: 1.8;
+    }
+
+    /* CTA */
+    .cta-sec {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1a3a 100%);
+      padding: 70px 6%;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-sec h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+    .cta-sec p {
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 540px;
+      margin: 0 auto 28px;
+      font-size: 1.05rem;
+    }
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .cta-btns a {
+      padding: 12px 26px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .cta-wa { background: var(--green); color: #fff; }
+    .cta-blue { background: var(--blue); color: #fff; }
+
+    /* FOOTER */
+    footer {
+      background: #030712;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 40px 6%;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    footer a { color: rgba(255, 255, 255, 0.7); margin: 0 8px; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+    .footer-links { margin-bottom: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="https://tkwebsolutions.in/" class="logo"><span>TK</span> Web Solutions</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="https://tkwebsolutions.in/">Home</a></li>
+      <li><a href="https://tkwebsolutions.in/tarun-singh.html">About Tarun</a></li>
+      <li><a href="https://tkwebsolutions.in/journey.html" class="active">My Journey</a></li>
+      <li><a href="https://tkwebsolutions.in/education.html">Education</a></li>
+      <li><a href="https://tkwebsolutions.in/skills.html">Skills</a></li>
+      <li><a href="https://tkwebsolutions.in/portfolio.html">Projects</a></li>
+      <li><a href="https://tkwebsolutions.in/luna.html">LUNA</a></li>
+      <li><a href="https://tkwebsolutions.in/now.html">Now</a></li>
+      <li><a href="https://tkwebsolutions.in/blog.html">Blog</a></li>
+      <li><a href="https://tkwebsolutions.in/#contact" class="nav-cta">Start a Project</a></li>
+      <li><button class="dm-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode"></button></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge"><i class="fas fa-route"></i> The Authentic Story</div>
+    <h1>The Journey of <span>Tarun Singh</span></h1>
+    <p>From writing my first lines of HTML in Bharatpur to founding TK Web Solutions, studying BBA Digital Marketing at Manipal University Jaipur, and building independent digital products.</p>
+    <div class="hero-nav-pills">
+      <a href="#beginning">1. The Beginning</a>
+      <a href="#agency">2. TK Web Solutions</a>
+      <a href="#mobile">3. Mobile Dev</a>
+      <a href="#education">4. BBA Digital Marketing</a>
+      <a href="#products">5. LUNA &amp; Products</a>
+      <a href="#today">6. Today</a>
+    </div>
+  </header>
+
+  <!-- TIMELINE -->
+  <main class="timeline-sec">
+    <div class="timeline-tree">
+
+      <!-- STEP 1 -->
+      <article class="t-step" id="beginning">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-seedling"></i> Self-Taught Foundations</span>
+          <span class="t-year">2021 – 2022</span>
+        </div>
+        <h2 class="t-title">Discovering Code &amp; Web Technologies</h2>
+        <div class="t-body">
+          <p>My interest in technology started from curiosity: how does a single web link connect a person to a complete business system? Without formal developer bootcamps or outside shortcuts, I immersed myself in self-directed learning — mastering <strong>HTML5, CSS3, and JavaScript</strong>.</p>
+          <p>I focused on understanding core fundamentals rather than relying on bloated templates: building clean layouts, learning DOM manipulation, ensuring mobile responsiveness, and testing cross-browser performance from my desk in Bharatpur.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">HTML5 &amp; CSS3</span>
+          <span class="t-tag">Vanilla JavaScript</span>
+          <span class="t-tag">Responsive Design</span>
+          <span class="t-tag">Self-Taught Problem Solving</span>
+        </div>
+      </article>
+
+      <!-- STEP 2 -->
+      <article class="t-step" id="agency">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-building"></i> Entrepreneurship</span>
+          <span class="t-year">2022 – 2023</span>
+        </div>
+        <h2 class="t-title">Founding TK Web Solutions in Bharatpur</h2>
+        <div class="t-body">
+          <p>Seeing that local schools, coaching institutes, and local shops in Bharatpur struggled with expensive, unreliable agencies or had no digital presence at all, I founded <strong>TK Web Solutions</strong> ([https://tkwebsolutions.in/](https://tkwebsolutions.in/)).</p>
+          <p>I began building practical, results-driven websites for real clients — such as <em>Achievers Point Coaching</em>, <em>Ek Pahal India NGO</em>, and local retail and E-Mitra centres. I personally handled consultation, UI design, coding, search optimization, and deployment.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">TK Web Solutions Founded</span>
+          <span class="t-tag">Client Project Delivery</span>
+          <span class="t-tag">Local Business Digitalization</span>
+          <span class="t-tag">Direct Client Consultation</span>
+        </div>
+        <a href="https://tkwebsolutions.in/tk-web-solutions.html" class="t-link">Explore TK Web Solutions <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <!-- STEP 3 -->
+      <article class="t-step" id="mobile">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-mobile-alt"></i> Expansion</span>
+          <span class="t-year">2023 – 2024</span>
+        </div>
+        <h2 class="t-title">Diving Deep into Android &amp; Flutter App Development</h2>
+        <div class="t-body">
+          <p>As client needs grew beyond static websites, I expanded my technical domain into mobile application development. I learned <strong>Flutter &amp; Dart</strong>, native Android concepts, state management, and backend integrations with <strong>Firebase</strong> and <strong>Supabase</strong>.</p>
+          <p>This allowed me to develop complete school management applications (such as <em>EduPrime</em>) and utility APKs, delivering native performance and administrative panels to clients.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">Flutter &amp; Dart</span>
+          <span class="t-tag">Android App Architecture</span>
+          <span class="t-tag">Firebase &amp; Supabase</span>
+          <span class="t-tag">EduPrime School App</span>
+        </div>
+        <a href="https://tkwebsolutions.in/eduprime.html" class="t-link">Read the EduPrime Case Study <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <!-- STEP 4 -->
+      <article class="t-step" id="education">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-graduation-cap"></i> Higher Education</span>
+          <span class="t-year">2024 – Present</span>
+        </div>
+        <h2 class="t-title">Pursuing BBA in Digital Marketing at Manipal University Jaipur</h2>
+        <div class="t-body">
+          <p>To bridge technical software development with real-world commercial strategy, I enrolled in the <strong>Bachelor of Business Administration (BBA) — Digital Marketing</strong> program at <strong>Manipal University Jaipur</strong> (currently pursuing).</p>
+          <p>Studying marketing strategy, search engine optimization (SEO), consumer behaviour, branding, and business analytics gave me a major advantage: I build software not just for technical elegance, but with a deep understanding of customer acquisition, user psychology, and market growth.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">Manipal University Jaipur</span>
+          <span class="t-tag">BBA Digital Marketing</span>
+          <span class="t-tag">Marketing Strategy &amp; SEO</span>
+          <span class="t-tag">Consumer Behaviour</span>
+        </div>
+        <a href="https://tkwebsolutions.in/education.html" class="t-link">View Education Details <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <!-- STEP 5 -->
+      <article class="t-step" id="products">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-rocket"></i> Product Building</span>
+          <span class="t-year">2025 – Present</span>
+        </div>
+        <h2 class="t-title">Building Independent Digital Products: LUNA</h2>
+        <div class="t-body">
+          <p>Alongside client work at TK Web Solutions, I embarked on building independent digital products. I conceived and engineered <strong>LUNA</strong> — a native menstrual sanctuary and companion mobile application designed with 100% private local storage (Isar DB), cycle forecasting, and partner syncing.</p>
+          <p>LUNA is provided <strong>100% free</strong> with no paywalls or intrusive ads, serving as a live demonstration of high-fidelity mobile engineering, empathetic UI/UX, and privacy-first product design.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">LUNA App</span>
+          <span class="t-tag">100% Free Product</span>
+          <span class="t-tag">Privacy-First Architecture</span>
+          <span class="t-tag">Isar DB &amp; Partner Sync</span>
+        </div>
+        <a href="https://tkwebsolutions.in/luna.html" class="t-link">Explore LUNA Product <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <!-- STEP 6 -->
+      <article class="t-step" id="today">
+        <div class="t-dot"></div>
+        <div class="t-header">
+          <span class="t-phase"><i class="fas fa-compass"></i> Present Status</span>
+          <span class="t-year">Today &amp; Ahead</span>
+        </div>
+        <h2 class="t-title">Continuous Learning, Active Building &amp; Scaling</h2>
+        <div class="t-body">
+          <p>Today, I balance my university coursework at Manipal University Jaipur with expanding TK Web Solutions and iterating on products. I focus on building high-speed websites, Android applications, and SEO systems for clients across India while continuously sharing what I learn through technical writing and open guides.</p>
+        </div>
+        <div class="t-tags">
+          <span class="t-tag">Student-Founder</span>
+          <span class="t-tag">Client Delivery</span>
+          <span class="t-tag">Knowledge Sharing</span>
+          <span class="t-tag">Growing Across India</span>
+        </div>
+        <a href="https://tkwebsolutions.in/now.html" class="t-link">See What I'm Building Right Now (/now) <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+    </div>
+
+    <!-- PHILOSOPHY BOX -->
+    <section class="philosophy-box">
+      <h3>The Guiding Principle</h3>
+      <p>"I believe genuine credibility isn't built on inflated claims, but on shipping real work: writing clean code, solving real business problems, continuing rigorous education, and treating every client's project with founder-level personal ownership."</p>
+    </section>
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <h2>Let's Build Something Meaningful</h2>
+    <p>Whether you need a high-performance website for your business, an Android application, or a digital marketing strategy, I'm ready to collaborate.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20I%20read%20your%20journey%20and%20would%20like%20to%20discuss%20a%20project." class="cta-wa"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      <a href="https://tkwebsolutions.in/portfolio.html" class="cta-blue"><i class="fas fa-briefcase"></i> View All Projects</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://tkwebsolutions.in/">Home</a>
+      <a href="https://tkwebsolutions.in/tarun-singh.html">About Tarun</a>
+      <a href="https://tkwebsolutions.in/journey.html">Journey</a>
+      <a href="https://tkwebsolutions.in/education.html">Education</a>
+      <a href="https://tkwebsolutions.in/skills.html">Skills</a>
+      <a href="https://tkwebsolutions.in/portfolio.html">Projects</a>
+      <a href="https://tkwebsolutions.in/luna.html">LUNA</a>
+      <a href="https://tkwebsolutions.in/now.html">Now</a>
+      <a href="https://tkwebsolutions.in/uses.html">Uses</a>
+      <a href="https://tkwebsolutions.in/achievements.html">Achievements</a>
+      <a href="https://tkwebsolutions.in/blog.html">Blog</a>
+      <a href="https://tkwebsolutions.in/#contact">Contact</a>
+    </div>
+    <p>© 2026 Tarun Singh • Founder of <a href="https://tkwebsolutions.in/">TK Web Solutions</a> • Bharatpur, Rajasthan, India. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const target = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', target);
+      localStorage.setItem('theme', target);
+    }
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+</body>
+</html>

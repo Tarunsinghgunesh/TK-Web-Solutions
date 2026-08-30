@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin-dashboard.html
+Disallow: /client-dashboard.html
 
 Sitemap: https://tkwebsolutions.in/sitemap.xml
