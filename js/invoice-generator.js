@@ -338,8 +338,8 @@
         background: #fafafa !important;
       }
       .tk-inv-sig-img {
-        max-width: 170px !important;
-        max-height: 48px !important;
+        max-width: 200px !important;
+        max-height: 64px !important;
         object-fit: contain !important;
         display: block !important;
         margin: 0 auto 4px !important;

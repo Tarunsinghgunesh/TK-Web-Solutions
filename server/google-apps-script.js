@@ -796,7 +796,8 @@ function handleSendInvoiceEmail_(payload) {
       body: plainBody,
       htmlBody: htmlBody,
       attachments: [pdfBlob],
-      name: 'TK Web Solutions'
+      name: 'TK Web Solutions • Tarun Singh',
+      replyTo: 'tkwebsolution1301@gmail.com'
     });
   } catch (mailErr) {
     logDiagnostic_('MAILAPP_FALLBACK', mailErr.toString());
@@ -804,7 +805,8 @@ function handleSendInvoiceEmail_(payload) {
       GmailApp.sendEmail(customerEmail, 'TK Web Solutions — Official Invoice ' + record.invoiceNo, plainBody, {
         htmlBody: htmlBody,
         attachments: [pdfBlob],
-        name: 'TK Web Solutions'
+        name: 'TK Web Solutions • Tarun Singh',
+        replyTo: 'tkwebsolution1301@gmail.com'
       });
     } catch (gmailErr) {
       logDiagnostic_('GMAIL_ERR', gmailErr.toString());
@@ -829,51 +831,57 @@ function buildPrintableInvoiceHTML_(record) {
       <title>Invoice — ${record.invoiceNo}</title>
       <style>
         body { font-family: Arial, sans-serif; color: #0d1635; margin: 0; padding: 20px; background: #fff; }
-        .box { border: 1px solid #cbd5e1; border-radius: 12px; padding: 30px; max-width: 720px; margin: 0 auto; }
-        .hdr { display: flex; justify-content: space-between; border-bottom: 2px solid #0052ff; padding-bottom: 16px; margin-bottom: 20px; }
-        .title { font-size: 24px; font-weight: bold; color: #0b1736; margin: 0 0 4px; }
-        .tag { font-size: 11px; font-style: italic; color: #4338ca; }
-        .meta { font-size: 11px; color: #64748b; margin-top: 4px; line-height: 1.4; }
+        .box { border: 1px solid #cbd5e1; border-radius: 14px; padding: 32px; max-width: 740px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .hdr { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #0052ff; padding-bottom: 18px; margin-bottom: 22px; }
+        .brand-wrap { display: flex; align-items: center; gap: 16px; }
+        .logo-img { width: 62px; height: 62px; object-fit: contain; border-radius: 12px; }
+        .title { font-size: 22px; font-weight: bold; color: #0b1736; margin: 0 0 3px; }
+        .tag { font-size: 11.5px; font-style: italic; color: #4338ca; margin-bottom: 4px; }
+        .meta { font-size: 11px; color: #64748b; line-height: 1.45; }
         .right { text-align: right; }
-        .pill { background: #0052ff; color: #fff; font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
-        .inv-no { font-family: monospace; font-size: 14px; font-weight: bold; }
-        .grid { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 20px; font-size: 12px; }
-        .tbl { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; }
-        .tbl th { background: #f1f5f9; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; }
-        .tbl td { padding: 10px; border-bottom: 1px solid #f1f5f9; }
-        .total-row { border-top: 2px solid #0f172a; border-bottom: 2px solid #0f172a; font-size: 14px; font-weight: bold; }
-        .ftr { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e2e8f0; padding-top: 16px; font-size: 11px; }
-        .sig { text-align: center; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 10px 16px; min-width: 180px; }
+        .pill { background: linear-gradient(135deg, #0052ff, #00d4ff); color: #fff; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
+        .inv-no { font-family: monospace; font-size: 14.5px; font-weight: bold; color: #0f172a; }
+        .grid { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 22px; font-size: 12.5px; line-height: 1.5; }
+        .tbl { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 12.5px; }
+        .tbl th { background: #f1f5f9; border-top: 1.5px solid #cbd5e1; border-bottom: 1.5px solid #cbd5e1; padding: 10px 12px; text-align: left; font-weight: bold; color: #334155; }
+        .tbl td { padding: 11px 12px; border-bottom: 1px solid #f1f5f9; }
+        .total-row { border-top: 2px solid #0f172a; border-bottom: 2px solid #0f172a; font-size: 14.5px; font-weight: bold; }
+        .ftr { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1.5px solid #e2e8f0; padding-top: 18px; font-size: 11px; gap: 20px; }
+        .sig { text-align: center; border: 1px dashed #cbd5e1; border-radius: 10px; padding: 12px 18px; min-width: 200px; background: #fafafa; }
       </style>
     </head>
     <body>
       <div class="box">
         <div class="hdr">
-          <div>
-            <div class="title">TK Web Solutions</div>
-            <div class="tag">"From Dreams.... to Digital Reality"</div>
-            <div class="meta">Bharatpur, Rajasthan, 321001, India<br>Phone: +91 90793 68240 | Email: tkwebsolution1301@gmail.com<br>Web: tkwebsolutions.in</div>
+          <div class="brand-wrap">
+            <img src="https://tkwebsolutions.in/logo.png" class="logo-img" alt="TK Web Solutions Logo" onerror="this.style.display='none'" />
+            <div>
+              <div class="title">TK Web Solutions</div>
+              <div class="tag">"From Dreams.... to Digital Reality"</div>
+              <div class="meta">Bharatpur, Rajasthan, 321001, India<br>Phone: +91 90793 68240 | Email: tkwebsolution1301@gmail.com<br>Web: https://tkwebsolutions.in</div>
+            </div>
           </div>
           <div class="right">
             <div class="pill">TAX INVOICE / RECEIPT</div>
             <div class="inv-no">Invoice #: ${record.invoiceNo}</div>
-            <div style="font-size:11px;color:#64748b;margin-top:2px;">Date: ${record.datetime}</div>
-            <div style="font-size:11px;color:#16a34a;font-weight:bold;margin-top:4px;">✓ PAID &amp; CONFIRMED</div>
+            <div style="font-size:11px;color:#64748b;margin-top:3px;">Date: ${record.datetime}</div>
+            <div style="font-size:11.5px;color:#16a34a;font-weight:bold;margin-top:4px;">✓ PAID &amp; CONFIRMED</div>
           </div>
         </div>
 
         <div class="grid">
           <div>
-            <strong>BILLED TO:</strong><br>
-            Name: ${record.name}<br>
+            <strong style="color:#64748b;text-transform:uppercase;font-size:10.5px;letter-spacing:0.5px;">BILLED TO:</strong><br>
+            <strong style="font-size:14px;color:#0f172a;">${record.name}</strong><br>
             ${record.phone ? 'Phone: ' + record.phone + '<br>' : ''}
+            ${record.email ? 'Email: ' + record.email + '<br>' : ''}
             ${record.business ? 'Business: ' + record.business + '<br>' : ''}
           </div>
-          <div>
-            <strong>PAYMENT DETAILS:</strong><br>
-            Method: ${record.method || 'Razorpay Online'}<br>
-            Transaction Ref: ${record.paymentId || 'Verified'}<br>
-            Status: ${record.status || 'SUCCESS'}
+          <div style="text-align:right;">
+            <strong style="color:#64748b;text-transform:uppercase;font-size:10.5px;letter-spacing:0.5px;">PAYMENT DETAILS:</strong><br>
+            Method: <strong>${record.method || 'Razorpay Online'}</strong><br>
+            Transaction Ref: <strong>${record.paymentId || 'Verified'}</strong><br>
+            Payment Status: <strong style="color:#16a34a;">${record.status || 'SUCCESS'} ✓</strong>
           </div>
         </div>
 
@@ -889,9 +897,9 @@ function buildPrintableInvoiceHTML_(record) {
           <tbody>
             <tr>
               <td>1</td>
-              <td><strong>${record.service}</strong><br><span style="font-size:10.5px;color:#64748b;">Delivered with founder-level dedication &amp; 30-day technical warranty.</span></td>
+              <td><strong>${record.service}</strong><br><span style="font-size:11px;color:#64748b;">Delivered with founder-level dedication &amp; 30-day technical warranty.</span></td>
               <td style="text-align:center;">1</td>
-              <td style="text-align:right;">${formattedAmt}</td>
+              <td style="text-align:right;font-weight:bold;">${formattedAmt}</td>
             </tr>
             <tr>
               <td colspan="2"></td>
@@ -913,15 +921,17 @@ function buildPrintableInvoiceHTML_(record) {
 
         <div class="ftr">
           <div>
-            <strong>Terms &amp; Information:</strong><br>
-            • Official computer-generated digital tax receipt.<br>
-            • Includes 30-day post-delivery technical warranty.<br>
-            • Direct Founder Support: +91 90793 68240
+            <strong style="color:#334155;">Terms &amp; Information:</strong><br>
+            • Official computer-generated digital tax receipt &amp; payment confirmation.<br>
+            • Includes 30-day post-delivery technical warranty &amp; founder assistance.<br>
+            • Direct Founder Support: +91 90793 68240 | tkwebsolution1301@gmail.com
           </div>
           <div class="sig">
-            <div style="font-size:12px;font-weight:bold;">Tarun Singh</div>
+            <img src="https://tkwebsolutions.in/assets/tarun-singh-signature.png" style="height:62px;max-width:190px;object-fit:contain;margin:0 auto 4px;display:block;" alt="Tarun Singh Signature" />
+            <div style="width:100%;height:1px;background:#cbd5e1;margin:4px 0 6px;"></div>
+            <div style="font-size:12.5px;font-weight:bold;color:#0b1736;">Tarun Singh</div>
             <div style="font-size:10px;color:#64748b;">Authorized Signatory • Founder</div>
-            <div style="font-size:10px;font-weight:bold;color:#0052ff;">TK Web Solutions</div>
+            <div style="font-size:10.5px;font-weight:bold;color:#0052ff;">TK Web Solutions</div>
           </div>
         </div>
       </div>
