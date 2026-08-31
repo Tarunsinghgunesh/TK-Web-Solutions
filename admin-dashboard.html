@@ -119,6 +119,7 @@
         <button class="nav-item" onclick="showTab('services')" data-tab="services"><i class="fas fa-cogs"></i> Services</button>
         <button class="nav-item" onclick="showTab('seo')" data-tab="seo"><i class="fas fa-search"></i> SEO</button>
         <button class="nav-item" onclick="showTab('settings')" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
+        <button class="nav-item" onclick="showTab('luna')" data-tab="luna" style="background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(147,51,234,.08));color:#ec4899;border:1px solid rgba(236,72,153,.2);"><i class="fas fa-moon"></i> LUNA Downloads <span id="lunaDownloadBadge" style="margin-left:auto;background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;padding:2px 7px;border-radius:20px;font-size:.62rem;">0</span></button>
         <div class="sidebar-bottom">
           <button class="nav-item" onclick="toggleDarkMode()" style="color:var(--gray);"><i class="fas fa-moon"></i> Dark Mode</button>
           <button class="nav-item" onclick="doLogout()" style="color:var(--red);"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -407,6 +408,10 @@
         document.getElementById('dashboard').classList.remove('hidden');
         localStorage.setItem('tk_admin_auth', 'true');
         loadAdminInvoices();
+        // Update LUNA badge on login
+        var dlCount = parseInt(localStorage.getItem('luna_download_count') || '0', 10);
+        var badge = document.getElementById('lunaDownloadBadge');
+        if (badge) badge.textContent = dlCount;
       } else { alert('Invalid credentials. Please try again.'); }
     }
     function doLogout() { localStorage.removeItem('tk_admin_auth'); location.reload(); }
@@ -422,10 +427,22 @@
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.querySelectorAll('[data-tab]').forEach(n => { if (n.dataset.tab === tab) n.classList.add('active'); });
       document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.add('hidden'));
-      document.getElementById('tab-' + tab).classList.remove('hidden');
-      const titles = { analytics:'Analytics', leads:'Lead Management', bookings:'Meeting Bookings', invoices:'Invoices & Payments', portfolio:'Portfolio', reviews:'Reviews', services:'Services', seo:'SEO', settings:'Settings' };
+
+      // Lazy-inject the LUNA tab from template on first open
+      if (tab === 'luna' && !document.getElementById('tab-luna')) {
+        var tmpl = document.getElementById('lunaTabTemplate');
+        if (tmpl) {
+          var clone = tmpl.content.cloneNode(true);
+          document.querySelector('.content').appendChild(clone);
+        }
+      }
+      var tabEl = document.getElementById('tab-' + tab);
+      if (tabEl) tabEl.classList.remove('hidden');
+
+      const titles = { analytics:'Analytics', leads:'Lead Management', bookings:'Meeting Bookings', invoices:'Invoices & Payments', portfolio:'Portfolio', reviews:'Reviews', services:'Services', seo:'SEO', settings:'Settings', luna:'🌙 LUNA Downloads' };
       document.getElementById('pageTitle').textContent = titles[tab] || 'Admin';
       if (tab === 'invoices') loadAdminInvoices();
+      if (tab === 'luna') loadLunaDownloads();
     }
 
     function filterLeads() {
@@ -574,9 +591,150 @@
       };
 
       window.TK_INVOICE.savePaymentRecord(record);
-      loadAdminInvoices();
+      openManualInvoiceModal();
       window.TK_INVOICE.showInvoiceModal(record);
     }
+
+    /* ════════════════════════════════════════
+       LUNA DOWNLOADS TAB
+    ════════════════════════════════════════ */
+    function loadLunaDownloads() {
+      var count = parseInt(localStorage.getItem('luna_download_count') || '0', 10);
+      var logs = [];
+      try { logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]'); } catch(e) {}
+
+      // Update badge in sidebar
+      var badge = document.getElementById('lunaDownloadBadge');
+      if (badge) badge.textContent = count;
+
+      // Total count card
+      var totalEl = document.getElementById('lunaDlTotal');
+      if (totalEl) totalEl.textContent = count;
+
+      // Today's count
+      var today = new Date().toISOString().split('T')[0];
+      var todayCount = logs.filter(function(l) { return l.timestamp && l.timestamp.startsWith(today); }).length;
+      var todayEl = document.getElementById('lunaDlToday');
+      if (todayEl) todayEl.textContent = todayCount;
+
+      // Last 7 days
+      var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
+      var weekCount = logs.filter(function(l) { return l.timestamp && l.timestamp > weekAgo; }).length;
+      var weekEl = document.getElementById('lunaDlWeek');
+      if (weekEl) weekEl.textContent = weekCount;
+
+      // Launch state
+      var launchMs = new Date('2026-09-01T11:11:00+05:30').getTime();
+      var stateEl = document.getElementById('lunaLaunchState');
+      if (stateEl) {
+        if (Date.now() >= launchMs) {
+          stateEl.innerHTML = '<span style="color:#4ade80;font-weight:700;">🟢 LIVE</span>';
+        } else {
+          var diff = launchMs - Date.now();
+          var d = Math.floor(diff/86400000);
+          var h = Math.floor((diff%86400000)/3600000);
+          var m = Math.floor((diff%3600000)/60000);
+          stateEl.innerHTML = '<span style="color:#f472b6;font-weight:700;">⏳ PRE-LAUNCH — ' + d + 'd ' + h + 'h ' + m + 'm remaining</span>';
+        }
+      }
+
+      // Render log table
+      var tbody = document.getElementById('lunaLogTable');
+      if (!tbody) return;
+      if (logs.length === 0) {
+        tbody.innerHTML = '<div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">No downloads yet. Downloads will appear here after launch.</div>';
+        return;
+      }
+      tbody.innerHTML = '';
+      // Most recent first
+      logs.slice().reverse().forEach(function(log, i) {
+        var dt = log.timestamp ? new Date(log.timestamp).toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}) : '—';
+        var ua = (log.userAgent || '').substring(0, 55) + ((log.userAgent || '').length > 55 ? '...' : '');
+        var ref = log.referrer || 'Direct';
+        tbody.innerHTML +=
+          '<div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:10px 0;border-bottom:1px solid rgba(236,72,153,.08);font-size:.8rem;align-items:start;">' +
+          '<span style="color:var(--blue);font-weight:700;">' + (logs.length - i) + '</span>' +
+          '<span style="color:var(--navy);font-weight:600;">' + dt + '</span>' +
+          '<span style="color:var(--gray);">' + ref + '</span>' +
+          '<span style="color:var(--gray);font-size:.72rem;">' + ua + '</span>' +
+          '</div>';
+      });
+    }
+
+    function clearLunaDownloads() {
+      if (!confirm('Clear ALL LUNA download logs? This cannot be undone.')) return;
+      localStorage.removeItem('luna_download_count');
+      localStorage.removeItem('luna_download_logs');
+      loadLunaDownloads();
+      alert('LUNA download data cleared.');
+    }
+
+    function exportLunaLogsCSV() {
+      var logs = [];
+      try { logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]'); } catch(e) {}
+      if (logs.length === 0) { alert('No download logs to export.'); return; }
+      var csv = 'No,Timestamp (IST),Referrer,User Agent\n';
+      logs.forEach(function(l, i) {
+        var dt = l.timestamp ? new Date(l.timestamp).toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}) : '';
+        csv += (i+1) + ',"' + dt + '","' + (l.referrer||'Direct').replace(/"/g,'') + '","' + (l.userAgent||'').replace(/"/g,'').substring(0,120) + '"\n';
+      });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+      a.download = 'luna_downloads_' + new Date().toISOString().split('T')[0] + '.csv';
+      a.click();
+    }
   </script>
+
+  <!-- LUNA DOWNLOADS TAB HTML — injected here -->
+  <template id="lunaTabTemplate">
+    <div id="tab-luna" class="hidden">
+      <div style="background:linear-gradient(135deg,#130926,#1d0c38);border:1.5px solid rgba(236,72,153,0.3);border-radius:16px;padding:22px 24px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-size:0.72rem;font-weight:800;color:#f472b6;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">LUNA Official Product</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;">LUNA Download Analytics</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:4px;">Launch Status: <span id="lunaLaunchState">Loading...</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn btn-sm" onclick="exportLunaLogsCSV()" style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3);"><i class="fas fa-download"></i> Export CSV</button>
+          <button class="btn btn-red btn-sm" onclick="clearLunaDownloads()"><i class="fas fa-trash"></i> Clear Logs</button>
+          <a href="luna.html" target="_blank" class="btn btn-sm" style="background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;"><i class="fas fa-external-link-alt"></i> View LUNA Page</a>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;">
+        <div class="card stat-card" style="border-color:rgba(236,72,153,0.2);">
+          <div class="num" id="lunaDlTotal" style="color:#ec4899;">0</div>
+          <div class="lbl">Total Downloads</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Since launch</div>
+        </div>
+        <div class="card stat-card">
+          <div class="num" id="lunaDlToday">0</div>
+          <div class="lbl">Today</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">IST timezone</div>
+        </div>
+        <div class="card stat-card">
+          <div class="num" id="lunaDlWeek">0</div>
+          <div class="lbl">Last 7 Days</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Rolling window</div>
+        </div>
+        <div class="card stat-card" style="border-color:rgba(34,197,94,0.2);">
+          <div class="num" style="color:#22c55e;font-size:1.3rem;">100% <span style="font-size:.8rem;">Free</span></div>
+          <div class="lbl">LUNA Price</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">No ads, no subscription</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-list" style="color:#ec4899;margin-right:8px;"></i>Download Log (Device-Level)</h4>
+        <div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:2px solid rgba(236,72,153,.15);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);">
+          <span>#</span><span>Time (IST)</span><span>Referrer</span><span>Device</span>
+        </div>
+        <div id="lunaLogTable" style="max-height:340px;overflow-y:auto;">
+          <div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">Loading...</div>
+        </div>
+        <div style="font-size:.72rem;color:var(--gray);margin-top:10px;"><i class="fas fa-info-circle"></i> Note: Downloads are stored per-device in browser localStorage. Refresh to see latest data.</div>
+      </div>
+    </div>
+  </template>
 </body>
 </html>

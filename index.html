@@ -1905,49 +1905,141 @@ animation:pulseGlow 2s infinite;
           <div style="font-size:.62rem;color:rgba(255,255,255,.2);">Built for schools &amp; coaching institutes</div>
         </div>
 
-        <!-- App 3: Luna -->
-        <div style="background:linear-gradient(135deg,rgba(233,30,99,.12),rgba(40,10,50,.8));border:1px solid rgba(233,30,99,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
+        <!-- App 3: Luna (Automated Official Launch Card) -->
+        <div id="luna-card" style="background:linear-gradient(135deg,rgba(233,30,99,.12),rgba(40,10,50,.8));border:1px solid rgba(233,30,99,.25);border-radius:20px;padding:22px 18px;text-align:center;position:relative;overflow:hidden;">
           <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e91e63,#9c27b0);"></div>
           <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(233,30,99,.2),transparent 70%);pointer-events:none;"></div>
           <!-- App Icon -->
           <div style="width:68px;height:68px;border-radius:16px;background:linear-gradient(135deg,#e91e63,#9c27b0);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(233,30,99,.45);overflow:hidden;padding:4px;">
             <img src="image/luna-icon.png" alt="Luna App Icon" loading="lazy" decoding="async" style="width:100%;height:100%;border-radius:12px;object-fit:cover;">
           </div>
-          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">Luna</div>
-          <div style="font-size:.7rem;color:rgba(244,143,177,.7);margin-bottom:6px;font-weight:600;letter-spacing:.5px;">CYCLE &amp; SANCTUARY APP</div>
+          <div style="font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">LUNA</div>
+          <div style="font-size:.7rem;color:rgba(244,143,177,.85);margin-bottom:6px;font-weight:700;letter-spacing:.5px;">WOMEN'S HEALTH &amp; SANCTUARY</div>
           <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;margin-bottom:14px;text-align:left;">
-            <div style="font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.7;">
+            <div style="font-size:.72rem;color:rgba(255,255,255,.65);line-height:1.7;">
               ✓ 100% Offline-First (Isar DB)<br>
               ✓ Partner Mode &amp; SOS Alert<br>
               ✓ Doctor-Ready PDF Reports<br>
-              ✓ Encrypted Biometric Security
+              ✓ Zero Ads • 100% Free
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:12px;">
-            <span style="font-size:.65rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Android 5.0+</span>
-            <span style="font-size:.65rem;color:#f48fb1;background:rgba(233,30,99,.15);padding:3px 8px;border-radius:20px;">Soon</span>
-            <span style="font-size:.65rem;color:#4ade80;background:rgba(74,222,128,.1);padding:3px 8px;border-radius:20px;">v1.0</span>
+            <span style="font-size:.65rem;color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:20px;">Android 5.0+</span>
+            <span style="font-size:.65rem;color:#f48fb1;background:rgba(233,30,99,.15);padding:3px 8px;border-radius:20px;font-weight:700;">1 Sept 11:11 AM</span>
+            <span style="font-size:.65rem;color:#4ade80;background:rgba(74,222,128,.1);padding:3px 8px;border-radius:20px;font-weight:700;">100% Free</span>
           </div>
-          <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20Notify%20me%20when%20Luna%20App%20is%20available%20for%20download." target="_blank" rel="noopener"
-             style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#e91e63,#9c27b0);color:#fff;padding:12px;border-radius:12px;font-weight:700;font-size:.84rem;text-decoration:none;box-shadow:0 6px 20px rgba(233,30,99,.4);margin-bottom:8px;">
-            <i class="fas fa-rocket"></i> Launching Soon
+          <a href="#luna-launch" class="luna-card-cta" onclick="handleLunaPreLaunchClick(event)"
+             style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#e91e63,#9c27b0);color:#fff;padding:12px;border-radius:12px;font-weight:700;font-size:.84rem;text-decoration:none;box-shadow:0 6px 20px rgba(233,30,99,.4);margin-bottom:8px;transition:all .2s;">
+            <i class="fas fa-clock"></i> Launching 1 Sept 11:11 AM
           </a>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.2);">Crafted by TK Web Solutions, Bharatpur</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.3);">Built by Tarun Singh • TK Web Solutions</div>
         </div>
 
       </div>
 
       <!-- Bottom Note -->
       <div style="text-align:center;margin-top:18px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
-        <div style="font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px;">
-          <i class="fab fa-android" style="color:#78c257;"></i> Built with Android Studio
+        <div style="font-size:.75rem;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;">
+          <i class="fab fa-android" style="color:#78c257;"></i> Built with Android Studio &amp; Flutter
         </div>
-        <div style="font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:5px;">
-          <i class="fas fa-shield-halved" style="color:#60a5fa;"></i> Safe &amp; Secure APK
+        <div style="font-size:.75rem;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px;">
+          <i class="fas fa-shield-halved" style="color:#60a5fa;"></i> Safe &amp; Direct APK Distribution
         </div>
         <a href="https://wa.me/919079368240?text=Hi!%20I%20would%20like%20an%20app%20like%20this%20for%20my%20business!" target="_blank" style="font-size:.75rem;color:#4ade80;display:flex;align-items:center;gap:5px;text-decoration:none;font-weight:700;">
-          <i class="fab fa-whatsapp"></i> Get one built for your business →
+          <i class="fab fa-whatsapp"></i> Get an app built for your business →
         </a>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         LUNA OFFICIAL LAUNCH BANNER & GATEWAY
+    ══════════════════════════════════════════ -->
+    <div id="luna-launch" style="margin-top:50px;background:linear-gradient(145deg, #120724 0%, #1c0b36 50%, #0c0418 100%);border:1.5px solid rgba(236,72,153,0.35);border-radius:24px;padding:42px 28px;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 50px rgba(236,72,153,0.15);">
+      <div style="position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,0.25),transparent 70%);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.2),transparent 70%);pointer-events:none;"></div>
+      
+      <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;">
+        <!-- Status Badge -->
+        <div class="luna-status-badge" style="display:inline-flex;align-items:center;background:rgba(236,72,153,0.15);border:1px solid rgba(236,72,153,0.4);color:#f472b6;font-size:0.75rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 18px;border-radius:30px;margin-bottom:16px;">
+          <span style="width:8px;height:8px;background:#ec4899;border-radius:50%;display:inline-block;box-shadow:0 0 8px #ec4899;margin-right:6px;animation:lunaPulse 1.5s infinite;"></span>
+          OFFICIAL LAUNCH • 1 SEPTEMBER 2026 • 11:11 AM IST
+        </div>
+
+        <h3 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:800;color:#fff;margin:0 0 8px;line-height:1.2;">
+          LUNA — <span style="background:linear-gradient(90deg,#f472b6,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Women's Health &amp; Sanctuary</span>
+        </h3>
+        
+        <p style="font-size:0.95rem;color:rgba(255,255,255,0.72);max-width:580px;margin:0 auto 24px;line-height:1.6;">
+          An empathetic, privacy-first companion created &amp; developed by TK Web Solutions. Launching officially on 1 September 2026 at 11:11 AM IST.
+        </p>
+
+        <!-- Live Real-Time Countdown Box (Pre-launch) -->
+        <div class="luna-prelaunch-block" style="margin-bottom:26px;">
+          <div style="font-size:0.75rem;font-weight:800;color:#f472b6;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">
+            LAUNCHING IN
+          </div>
+          
+          <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">
+            <div style="background:rgba(236,72,153,0.12);border:1.5px solid rgba(236,72,153,0.3);border-radius:14px;padding:10px 16px;min-width:64px;text-align:center;">
+              <div class="luna-cd-days" style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;line-height:1;">00</div>
+              <div style="font-size:0.62rem;font-weight:800;color:#f472b6;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">DAYS</div>
+            </div>
+            <div style="background:rgba(236,72,153,0.12);border:1.5px solid rgba(236,72,153,0.3);border-radius:14px;padding:10px 16px;min-width:64px;text-align:center;">
+              <div class="luna-cd-hours" style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;line-height:1;">00</div>
+              <div style="font-size:0.62rem;font-weight:800;color:#f472b6;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">HOURS</div>
+            </div>
+            <div style="background:rgba(236,72,153,0.12);border:1.5px solid rgba(236,72,153,0.3);border-radius:14px;padding:10px 16px;min-width:64px;text-align:center;">
+              <div class="luna-cd-minutes" style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;line-height:1;">00</div>
+              <div style="font-size:0.62rem;font-weight:800;color:#f472b6;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">MIN</div>
+            </div>
+            <div style="background:rgba(236,72,153,0.12);border:1.5px solid rgba(236,72,153,0.3);border-radius:14px;padding:10px 16px;min-width:64px;text-align:center;">
+              <div class="luna-cd-seconds" style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;line-height:1;">00</div>
+              <div style="font-size:0.62rem;font-weight:800;color:#f472b6;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">SEC</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Mode Block — Active Download (appears at 11:11 AM, replaces countdown) -->
+        <div class="luna-live-block" style="display:none;margin-bottom:24px;">
+          <div style="background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.35);border-radius:18px;padding:20px 24px;text-align:center;box-shadow:0 0 30px rgba(34,197,94,0.15);">
+            <div style="display:inline-flex;align-items:center;gap:8px;color:#4ade80;font-size:0.85rem;font-weight:800;margin-bottom:14px;">
+              <span style="width:10px;height:10px;background:#22c55e;border-radius:50%;display:inline-block;animation:lunaPulse 1.5s infinite;"></span>
+              LUNA IS NOW LIVE — For You. With You. Always.
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:12px;">
+              <a href="https://luna-website-flame.vercel.app/" onclick="event.preventDefault();window.triggerLunaDownload()" target="_blank" class="luna-primary-cta" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;padding:16px 32px;border-radius:14px;font-weight:900;font-size:1.05rem;text-decoration:none;box-shadow:0 10px 35px rgba(236,72,153,0.5);letter-spacing:.3px;">
+                <i class="fas fa-download"></i> ✨ GET LUNA — Free Download
+              </a>
+            </div>
+            <div style="display:flex;gap:14px;justify-content:center;font-size:0.78rem;color:rgba(255,255,255,0.65);flex-wrap:wrap;">
+              <span style="display:inline-flex;align-items:center;gap:5px;"><i class="fas fa-users" style="color:#4ade80;"></i> <span class="luna-dl-count">0</span> downloads so far</span>
+              <span><i class="fas fa-shield-alt" style="color:#4ade80;"></i> 100% Free & Private</span>
+              <span><i class="fab fa-android" style="color:#4ade80;"></i> Direct APK Download</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:20px;">
+          <!-- PRE-LAUNCH: bell icon. LIVE: becomes GET LUNA via JS -->
+          <a href="#luna-launch" class="luna-primary-cta" onclick="event.preventDefault();window.triggerLunaDownload ? window.triggerLunaDownload() : window.handleLunaPreLaunchClick(event)"
+             style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;padding:14px 28px;border-radius:12px;font-weight:800;font-size:0.95rem;text-decoration:none;box-shadow:0 8px 25px rgba(236,72,153,0.35);transition:all .2s;">
+            <i class="fas fa-bell"></i> Launching Soon
+          </a>
+          <a href="luna.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);color:#fff;padding:14px 22px;border-radius:12px;font-weight:700;font-size:0.92rem;text-decoration:none;border:1px solid rgba(255,255,255,0.2);transition:all .2s;">
+            <i class="fas fa-info-circle"></i> Explore LUNA
+          </a>
+          <a href="https://luna-website-flame.vercel.app/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(236,72,153,0.12);color:#f472b6;padding:14px 22px;border-radius:12px;font-weight:700;font-size:0.88rem;text-decoration:none;border:1px solid rgba(236,72,153,0.3);transition:all .2s;">
+            <i class="fas fa-globe"></i> Official LUNA Website &rarr;
+          </a>
+        </div>
+
+        <div style="display:flex;justify-content:center;gap:18px;font-size:0.75rem;color:rgba(255,255,255,0.5);flex-wrap:wrap;">
+          <span><i class="fas fa-shield-alt" style="color:#ec4899;"></i> 100% Private (Isar DB)</span>
+          <span><i class="fas fa-ban" style="color:#ec4899;"></i> Zero Ads • Zero Subscriptions</span>
+          <span><i class="fab fa-android" style="color:#4ade80;"></i> Direct Android APK</span>
+          <span><i class="fas fa-users" style="color:#f472b6;"></i> <span class="luna-dl-count">0</span> downloads</span>
+        </div>
       </div>
     </div>
 
@@ -3139,10 +3231,11 @@ async function handleFreeAuditSubmit(e) {
 </div>
 </section>
 
-<!-- Include Central Payment Modules -->
+<!-- Include Central Payment & Launch Modules -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="js/payment-config.js"></script>
 <script src="js/invoice-generator.js"></script>
+<script src="js/luna-launch.js"></script>
 
 <script>
 var APPS_SCRIPT_URL = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
