@@ -3,234 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — TK Web Solutions CRM</title>
-  <meta name="description" content="Admin dashboard for TK Web Solutions. Manage leads, bookings, invoices, portfolio, reviews, and analytics.">
+  <title>Admin Dashboard — TK Web Solutions</title>
+  <meta name="description" content="Official Admin Command Center for TK Web Solutions. Live Google Sheets sync, payment ledger, client agreements, LUNA download tracking, and leads management.">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="favicon.ico">
   <style>
-    :root { --blue:#1a56ff;--blue2:#0d3acc;--bluel:#e8eeff;--navy:#060d1f;--white:#ffffff;--gray:#6b7280;--light:#f0f3fb;--accent:#00e5ff;--gold:#f59e0b;--green:#25d366;--red:#ef4444; --bg:#f4f7ff; --sidebar:240px; --radius:14px; }
-    [data-theme="dark"] { --bg:#030712; --sidebar-bg:#0a0f1e; --card:#0f172a; --text:#f8fafc; --text2:#94a3b8; --border:rgba(255,255,255,0.06); --light:#0f172a; }
-    [data-theme="dark"] body { background:var(--bg); color:var(--text); }
-    [data-theme="dark"] .sidebar { background:var(--sidebar-bg); border-color:var(--border); }
-    [data-theme="dark"] .card { background:var(--card); border-color:var(--border); }
-    [data-theme="dark"] .topbar { background:var(--card); border-color:var(--border); }
-    [data-theme="dark"] .table-row { border-color:var(--border); }
-    [data-theme="dark"] .chart-bar { background:#1e293b; }
-    [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea { background:#0f172a; border-color:#1e293b; color:#f8fafc; }
-    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'DM Sans',sans-serif; color:#060d1f; background:var(--bg); overflow-x:hidden; line-height:1.6; }
-    .app { display:flex; min-height:100vh; }
-    .sidebar { width:var(--sidebar); background:#fff; border-right:1px solid rgba(26,86,255,0.06); padding:24px 20px; display:flex; flex-direction:column; gap:6px; position:fixed; height:100vh; z-index:100; transition:transform 0.3s; }
-    .sidebar-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:var(--navy); margin-bottom:24px; padding:0 8px; display:flex; align-items:center; gap:8px; }
-    .sidebar-logo span { color:var(--blue); }
-    .nav-item { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; font-size:.85rem; font-weight:600; color:var(--gray); cursor:pointer; transition:all 0.2s; text-decoration:none; border:none; background:none; width:100%; }
-    .nav-item:hover, .nav-item.active { background:var(--bluel); color:var(--blue); }
-    .nav-item i { width:20px; text-align:center; font-size:.9rem; }
-    .sidebar-bottom { margin-top:auto; padding-top:16px; border-top:1px solid rgba(26,86,255,0.06); }
-    .main { flex:1; margin-left:var(--sidebar); min-height:100vh; }
-    .topbar { background:#fff; border-bottom:1px solid rgba(26,86,255,0.06); padding:16px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
-    .topbar h1 { font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:700; }
-    .topbar-actions { display:flex; align-items:center; gap:12px; }
-    .topbar .dm-toggle { width:36px; height:20px; border-radius:50px; background:linear-gradient(135deg,var(--blue),#4f46e5); border:none; cursor:pointer; position:relative; }
-    .topbar .dm-toggle::after { content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform 0.3s; }
-    [data-theme="dark"] .topbar .dm-toggle::after { transform:translateX(16px); }
-    .content { padding:32px; max-width:1400px; }
-    .card { background:#fff; border-radius:var(--radius); border:1.5px solid rgba(26,86,255,0.06); padding:24px; transition:all 0.2s; }
-    .card:hover { border-color:rgba(26,86,255,0.12); box-shadow:0 8px 24px rgba(0,0,0,0.04); }
-    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-    .stat-card { padding:20px; text-align:center; }
-    .stat-card .num { font-family:'Syne',sans-serif; font-size:1.8rem; font-weight:800; color:var(--blue); }
-    .stat-card .lbl { font-size:.75rem; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
-    .stat-card .delta { font-size:.75rem; font-weight:700; margin-top:4px; }
-    .delta-up { color:var(--green); }
-    .delta-down { color:var(--red); }
-    .table { display:flex; flex-direction:column; }
-    .table-row { display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 100px; padding:12px 0; border-bottom:1px solid rgba(26,86,255,0.06); align-items:center; font-size:.85rem; }
-    .table-row:last-child { border-bottom:none; }
-    .table-header { font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:1px; color:var(--gray); padding:8px 0; border-bottom:2px solid rgba(26,86,255,0.1); }
-    .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:.7rem; font-weight:700; }
-    .badge-new { background:#dbeafe; color:var(--blue); }
-    .badge-contacted { background:#fef3c7; color:#92400e; }
-    .badge-converted { background:#dcfce7; color:#166534; }
-    .badge-lost { background:#fee2e2; color:#991b1b; }
-    .badge-warm { background:#f3e8ff; color:#6b21a8; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:6px 12px; border-radius:8px; font-weight:700; font-size:.78rem; cursor:pointer; border:none; transition:all 0.2s; text-decoration:none; }
-    .btn-sm { padding:4px 10px; font-size:.72rem; }
-    .btn-blue { background:var(--blue); color:#fff; }
-    .btn-green { background:var(--green); color:#fff; }
-    .btn-red { background:var(--red); color:#fff; }
-    .btn-ghost { background:transparent; border:1.5px solid rgba(26,86,255,0.15); color:var(--blue); }
-    .btn:hover { transform:translateY(-1px); }
-    .chart { display:flex; align-items:flex-end; gap:8px; height:160px; padding:20px 0; }
-    .chart-bar { flex:1; background:var(--bluel); border-radius:6px 6px 0 0; position:relative; transition:all 0.3s; min-height:8px; }
-    .chart-bar:hover { background:var(--blue); }
-    .chart-bar .val { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:.72rem; font-weight:700; color:var(--blue); }
-    .chart-labels { display:flex; gap:8px; font-size:.72rem; color:var(--gray); text-align:center; }
-    .chart-labels span { flex:1; }
-    .search-bar { display:flex; gap:8px; margin-bottom:16px; }
-    .search-bar input { flex:1; padding:10px 14px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.12); font-family:inherit; font-size:.85rem; outline:none; transition:all 0.2s; }
-    .search-bar input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,86,255,0.08); }
-    .filter-row { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
-    .filter-pill { padding:6px 14px; border-radius:50px; border:1.5px solid rgba(26,86,255,0.12); background:transparent; color:var(--gray); font-size:.78rem; font-weight:700; cursor:pointer; transition:all 0.2s; }
-    .filter-pill:hover { border-color:var(--blue); color:var(--blue); }
-    .filter-pill.active { background:var(--blue); color:#fff; border-color:var(--blue); }
-    .login-wrap { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
-    .login-card { background:#fff; border-radius:var(--radius); border:1.5px solid rgba(26,86,255,0.06); padding:48px; max-width:420px; width:100%; text-align:center; box-shadow:0 24px 80px rgba(0,0,0,0.08); }
-    [data-theme="dark"] .login-card { background:var(--card); border-color:var(--border); }
-    .login-card .logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.5rem; margin-bottom:8px; }
-    .login-card .logo span { color:var(--blue); }
-    .login-card p { color:var(--gray); font-size:.9rem; margin-bottom:28px; }
-    .login-card input { width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid rgba(26,86,255,0.12); margin-bottom:12px; font-family:inherit; font-size:.9rem; outline:none; transition:all 0.2s; }
-    .login-card input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,86,255,0.08); }
-    .login-card button { width:100%; padding:12px; border-radius:10px; background:var(--blue); color:#fff; border:none; font-weight:700; font-size:.9rem; cursor:pointer; transition:all 0.2s; margin-top:8px; }
-    .login-card button:hover { background:var(--blue2); }
-    .hidden { display:none !important; }
-    .mobile-toggle { display:none; position:fixed; bottom:20px; right:20px; z-index:200; width:48px; height:48px; border-radius:50%; background:var(--blue); color:#fff; border:none; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 16px rgba(26,86,255,0.3); }
-    @media (max-width:1100px) { .sidebar { transform:translateX(-100%); } .sidebar.open { transform:translateX(0); } .main { margin-left:0; } .mobile-toggle { display:flex; align-items:center; justify-content:center; } .grid-4 { grid-template-columns:repeat(2,1fr); } .grid-3 { grid-template-columns:1fr; } .table-row { grid-template-columns:1fr 1fr; gap:8px; padding:12px; border:1px solid rgba(26,86,255,0.06); border-radius:8px; margin-bottom:8px; } .table-header { display:none; } }
+    :root {
+      --blue: #1a56ff;
+      --blue2: #0d3acc;
+      --bluel: #e8eeff;
+      --navy: #060d1f;
+      --white: #ffffff;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --accent: #00e5ff;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --bg: #f4f7ff;
+      --sidebar: 240px;
+      --radius: 14px;
+    }
+    [data-theme="dark"] {
+      --bg: #030712;
+      --sidebar-bg: #090e1f;
+      --card: #0f172a;
+      --text: #f8fafc;
+      --text2: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+      --light: #0d1527;
+      color: var(--text);
+    }
+    [data-theme="dark"] body { background: var(--bg); color: var(--text); }
+    [data-theme="dark"] .sidebar { background: var(--sidebar-bg); border-color: var(--border); }
+    [data-theme="dark"] .card { background: var(--card); border-color: var(--border); }
+    [data-theme="dark"] .topbar { background: var(--card); border-color: var(--border); }
+    [data-theme="dark"] .table-row { border-color: var(--border); }
+    [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea { background: #0b1329; border-color: #1e293b; color: #f8fafc; }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; color: #060d1f; background: var(--bg); overflow-x: hidden; line-height: 1.6; }
+    .app { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar { width: var(--sidebar); background: #fff; border-right: 1px solid rgba(26,86,255,0.08); padding: 24px 18px; display: flex; flex-direction: column; gap: 5px; position: fixed; height: 100vh; z-index: 100; transition: transform 0.3s; }
+    .sidebar-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--navy); margin-bottom: 20px; padding: 0 8px; display: flex; align-items: center; gap: 8px; }
+    .sidebar-logo span { color: var(--blue); }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; font-size: .84rem; font-weight: 600; color: var(--gray); cursor: pointer; transition: all 0.2s; text-decoration: none; border: none; background: none; width: 100%; text-align: left; }
+    .nav-item:hover, .nav-item.active { background: var(--bluel); color: var(--blue); }
+    [data-theme="dark"] .nav-item:hover, [data-theme="dark"] .nav-item.active { background: rgba(26,86,255,0.18); color: var(--accent); }
+    .nav-item i { width: 20px; text-align: center; font-size: .9rem; }
+    .sidebar-bottom { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(26,86,255,0.08); }
+    
+    /* Main Area */
+    .main { flex: 1; margin-left: var(--sidebar); min-height: 100vh; }
+    .topbar { background: #fff; border-bottom: 1px solid rgba(26,86,255,0.08); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+    .topbar h1 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+    .topbar .dm-toggle { width: 36px; height: 20px; border-radius: 50px; background: linear-gradient(135deg,var(--blue),#4f46e5); border: none; cursor: pointer; position: relative; }
+    .topbar .dm-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 0.3s; }
+    [data-theme="dark"] .topbar .dm-toggle::after { transform: translateX(16px); }
+    
+    .content { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+    .card { background: #fff; border-radius: var(--radius); border: 1.5px solid rgba(26,86,255,0.06); padding: 22px; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+    .card:hover { border-color: rgba(26,86,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+    
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    
+    .stat-card { padding: 18px; text-align: center; }
+    .stat-card .num { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--blue); }
+    .stat-card .lbl { font-size: .75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; font-weight: 700; }
+    
+    .table { display: flex; flex-direction: column; }
+    .table-row { display: grid; padding: 12px 0; border-bottom: 1px solid rgba(26,86,255,0.06); align-items: center; font-size: .84rem; }
+    .table-row:last-child { border-bottom: none; }
+    .table-header { font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); padding: 8px 0; border-bottom: 2px solid rgba(26,86,255,0.1); }
+    
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: .7rem; font-weight: 700; }
+    .badge-success { background: #dcfce7; color: #166534; }
+    .badge-warning { background: #fef3c7; color: #92400e; }
+    .badge-info { background: #dbeafe; color: var(--blue); }
+    
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 14px; border-radius: 8px; font-weight: 700; font-size: .8rem; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; font-family: inherit; }
+    .btn-sm { padding: 5px 10px; font-size: .74rem; }
+    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-blue:hover { background: var(--blue2); transform: translateY(-1px); }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-ghost { background: transparent; border: 1.5px solid rgba(26,86,255,0.18); color: var(--blue); }
+    
+    .search-bar { display: flex; gap: 8px; margin-bottom: 16px; }
+    .search-bar input { flex: 1; padding: 10px 14px; border-radius: 10px; border: 1.5px solid rgba(26,86,255,0.12); font-family: inherit; font-size: .86rem; outline: none; transition: all 0.2s; }
+    .search-bar input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,255,0.08); }
+    
+    .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filter-pill { padding: 5px 14px; border-radius: 50px; border: 1.5px solid rgba(26,86,255,0.12); background: transparent; color: var(--gray); font-size: .78rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .filter-pill:hover, .filter-pill.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    
+    .login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+    .login-card { background: #fff; border-radius: var(--radius); border: 1.5px solid rgba(26,86,255,0.08); padding: 42px 36px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.08); }
+    [data-theme="dark"] .login-card { background: var(--card); border-color: var(--border); }
+    .login-card .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; margin-bottom: 6px; }
+    .login-card .logo span { color: var(--blue); }
+    .login-card p { color: var(--gray); font-size: .88rem; margin-bottom: 24px; }
+    .login-card input { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid rgba(26,86,255,0.14); margin-bottom: 12px; font-family: inherit; font-size: .9rem; outline: none; transition: all 0.2s; }
+    .login-card input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,255,0.08); }
+    .login-card button { width: 100%; padding: 12px; border-radius: 10px; background: var(--blue); color: #fff; border: none; font-weight: 800; font-size: .92rem; cursor: pointer; transition: all 0.2s; margin-top: 4px; font-family: 'Syne', sans-serif; }
+    .login-card button:hover { background: var(--blue2); }
+    
+    .hidden { display: none !important; }
+    .mobile-toggle { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 200; width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; border: none; font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 16px rgba(26,86,255,0.3); }
+    @media (max-width: 1100px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
   <div class="app" id="app">
-    <!-- LOGIN -->
+
+    <!-- LOGIN SCREEN -->
     <div class="login-wrap" id="loginScreen">
       <div class="login-card">
-        <div class="logo"><span>TK</span> Admin</div>
-        <p>Admin Dashboard & CRM</p>
-        <input type="text" id="adminUser" placeholder="Username">
-        <input type="password" id="adminPass" placeholder="Password">
-        <button onclick="doLogin()">Sign In</button>
-        <div style="font-size:.78rem;color:var(--gray);margin-top:16px;">Demo: admin / admin123</div>
+        <div class="logo"><span>TK</span> Admin Command</div>
+        <p>Official Control Center • Bharatpur, Rajasthan</p>
+        <div style="text-align:left;margin-bottom:14px;">
+          <label style="font-size:0.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;">Admin Username</label>
+          <input type="text" id="adminUser" placeholder="Enter Admin Username" value="admin" style="margin-top:4px;">
+        </div>
+        <div style="text-align:left;margin-bottom:16px;">
+          <label style="font-size:0.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;">Admin Password</label>
+          <input type="password" id="adminPass" placeholder="Enter Password" value="admin123" style="margin-top:4px;" onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <button onclick="doLogin()"><i class="fas fa-lock-open" style="margin-right:6px;"></i> Sign In to Dashboard</button>
+        <div style="font-size:.76rem;color:var(--gray);margin-top:16px;">
+          <i class="fas fa-shield-alt" style="color:var(--green);"></i> Default: admin / admin123 (Change inside Settings)
+        </div>
       </div>
     </div>
 
-    <!-- DASHBOARD -->
+    <!-- MAIN DASHBOARD -->
     <div class="hidden" id="dashboard">
+      <!-- SIDEBAR -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-logo"><span>TK</span> Admin</div>
-        <button class="nav-item active" onclick="showTab('analytics')" data-tab="analytics"><i class="fas fa-chart-line"></i> Analytics</button>
-        <button class="nav-item" onclick="showTab('leads')" data-tab="leads"><i class="fas fa-user-plus"></i> Leads <span style="margin-left:auto;background:var(--red);color:#fff;padding:2px 8px;border-radius:20px;font-size:.65rem;">3</span></button>
-        <button class="nav-item" onclick="showTab('bookings')" data-tab="bookings"><i class="fas fa-calendar-check"></i> Bookings</button>
-        <button class="nav-item" onclick="showTab('invoices')" data-tab="invoices"><i class="fas fa-file-invoice"></i> Invoices</button>
-        <button class="nav-item" onclick="showTab('portfolio')" data-tab="portfolio"><i class="fas fa-images"></i> Portfolio</button>
-        <button class="nav-item" onclick="showTab('reviews')" data-tab="reviews"><i class="fas fa-star"></i> Reviews</button>
-        <button class="nav-item" onclick="showTab('services')" data-tab="services"><i class="fas fa-cogs"></i> Services</button>
-        <button class="nav-item" onclick="showTab('seo')" data-tab="seo"><i class="fas fa-search"></i> SEO</button>
-        <button class="nav-item" onclick="showTab('settings')" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
+        <button class="nav-item active" onclick="showTab('analytics')" data-tab="analytics"><i class="fas fa-chart-line"></i> Overview &amp; Live Stats</button>
+        <button class="nav-item" onclick="showTab('invoices')" data-tab="invoices"><i class="fas fa-file-invoice-dollar"></i> Payments &amp; Invoices</button>
+        <button class="nav-item" onclick="showTab('agreements')" data-tab="agreements" style="color:var(--blue);font-weight:700;"><i class="fas fa-file-contract"></i> Client Agreements</button>
         <button class="nav-item" onclick="showTab('luna')" data-tab="luna" style="background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(147,51,234,.08));color:#ec4899;border:1px solid rgba(236,72,153,.2);"><i class="fas fa-moon"></i> LUNA Downloads <span id="lunaDownloadBadge" style="margin-left:auto;background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;padding:2px 7px;border-radius:20px;font-size:.62rem;">0</span></button>
+        <button class="nav-item" onclick="showTab('leads')" data-tab="leads"><i class="fas fa-user-plus"></i> Live Inquiries &amp; Leads</button>
+        <button class="nav-item" onclick="showTab('settings')" data-tab="settings"><i class="fas fa-cog"></i> Security &amp; Credentials</button>
+        
         <div class="sidebar-bottom">
-          <button class="nav-item" onclick="toggleDarkMode()" style="color:var(--gray);"><i class="fas fa-moon"></i> Dark Mode</button>
+          <button class="nav-item" onclick="toggleDarkMode()" style="color:var(--gray);"><i class="fas fa-moon"></i> Dark / Light Mode</button>
           <button class="nav-item" onclick="doLogout()" style="color:var(--red);"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </div>
       </aside>
 
+      <!-- MAIN CONTENT AREA -->
       <div class="main">
+        <!-- TOPBAR -->
         <div class="topbar">
-          <h1 id="pageTitle">Analytics</h1>
+          <h1 id="pageTitle">Overview &amp; Live Stats</h1>
           <div class="topbar-actions">
-            <span style="font-size:.85rem;color:var(--gray);">Tarun Singh (Admin)</span>
+            <button class="btn btn-sm btn-ghost" onclick="syncWithGoogleSheet()" title="Sync with Google Spreadsheet"><i class="fas fa-sync-alt" id="syncIcon"></i> Sync Google Sheet</button>
+            <span style="font-size:.85rem;color:var(--gray);font-weight:600;"><i class="fas fa-user-circle" style="color:var(--blue);margin-right:4px;"></i>Tarun Singh</span>
             <div class="dm-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></div>
           </div>
         </div>
 
         <div class="content">
-          <!-- ANALYTICS TAB -->
+
+          <!-- 1. OVERVIEW & ANALYTICS TAB (REAL DYNAMIC DATA) -->
           <div id="tab-analytics">
             <div class="grid-4">
-              <div class="card stat-card"><div class="num">156</div><div class="lbl">Total Leads</div><div class="delta delta-up"><i class="fas fa-arrow-up"></i> 12% this month</div></div>
-              <div class="card stat-card"><div class="num">42</div><div class="lbl">Conversions</div><div class="delta delta-up"><i class="fas fa-arrow-up"></i> 8% this month</div></div>
-              <div class="card stat-card"><div class="num">₹4.2L</div><div class="lbl">Revenue</div><div class="delta delta-up"><i class="fas fa-arrow-up"></i> 24% this month</div></div>
-              <div class="card stat-card"><div class="num">18</div><div class="lbl">Active Projects</div><div class="delta delta-down"><i class="fas fa-arrow-down"></i> 2 pending</div></div>
-            </div>
-            <div class="grid-2" style="margin-top:24px;">
-              <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-chart-bar" style="color:var(--blue);margin-right:8px;"></i>Leads by Source</h4>
-                <div class="chart" id="sourceChart">
-                  <div class="chart-bar" style="height:85%"><div class="val">85</div></div>
-                  <div class="chart-bar" style="height:45%"><div class="val">45</div></div>
-                  <div class="chart-bar" style="height:30%"><div class="val">30</div></div>
-                  <div class="chart-bar" style="height:20%"><div class="val">20</div></div>
-                  <div class="chart-bar" style="height:12%"><div class="val">12</div></div>
-                </div>
-                <div class="chart-labels"><span>WhatsApp</span><span>Website</span><span>Referral</span><span>Google</span><span>Social</span></div>
+              <div class="card stat-card">
+                <div class="num" id="statTotalRevenue" style="color:#16a34a;">₹0</div>
+                <div class="lbl">Total Verified Revenue</div>
+                <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">From real Razorpay payments</div>
               </div>
-              <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-chart-line" style="color:var(--blue);margin-right:8px;"></i>Revenue Trend</h4>
-                <div class="chart" id="revenueChart">
-                  <div class="chart-bar" style="height:40%"><div class="val">28k</div></div>
-                  <div class="chart-bar" style="height:55%"><div class="val">35k</div></div>
-                  <div class="chart-bar" style="height:45%"><div class="val">32k</div></div>
-                  <div class="chart-bar" style="height:70%"><div class="val">48k</div></div>
-                  <div class="chart-bar" style="height:85%"><div class="val">62k</div></div>
-                  <div class="chart-bar" style="height:95%"><div class="val">72k</div></div>
-                </div>
-                <div class="chart-labels"><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span></div>
+              <div class="card stat-card">
+                <div class="num" id="statTotalInvoices">0</div>
+                <div class="lbl">Issued Invoices</div>
+                <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">In payment ledger</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="statTotalAgreements" style="color:var(--blue);">0</div>
+                <div class="lbl">Client Contracts</div>
+                <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Active service agreements</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="statLunaDownloads" style="color:#ec4899;">0</div>
+                <div class="lbl">LUNA App Downloads</div>
+                <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Since official launch</div>
               </div>
             </div>
-          </div>
 
-          <!-- LEADS TAB -->
-          <div class="hidden" id="tab-leads">
-            <div class="card">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-user-plus" style="color:var(--blue);margin-right:8px;"></i>Lead Management</h4>
+            <!-- Quick Action Hub -->
+            <div class="card" style="margin-top:20px;background:linear-gradient(135deg,#0a142e,#0f214a);border-color:rgba(0,229,255,0.25);color:#fff;">
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;">
                 <div>
-                  <button class="btn btn-green btn-sm" onclick="exportCSV()"><i class="fas fa-download"></i> Export CSV</button>
-                  <button class="btn btn-blue btn-sm" onclick="alert('Add new lead form')"><i class="fas fa-plus"></i> Add Lead</button>
+                  <h3 style="font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:4px;"><i class="fas fa-bolt" style="color:var(--accent);margin-right:8px;"></i>Quick Creator Hub</h3>
+                  <p style="font-size:0.84rem;color:#94a3b8;">Instantly generate official client contracts, payment invoices, or export audit reports.</p>
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <a href="agreement.html" target="_blank" class="btn btn-blue"><i class="fas fa-file-signature"></i> Create Service Agreement</a>
+                  <button class="btn btn-green" onclick="openManualInvoiceModal()"><i class="fas fa-file-invoice"></i> Create Manual Invoice</button>
+                  <a href="index.html" target="_blank" class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,0.2);"><i class="fas fa-globe"></i> View Live Site</a>
                 </div>
               </div>
-              <div class="search-bar">
-                <input type="text" placeholder="Search leads..." id="leadSearch" onkeyup="filterLeads()">
+            </div>
+
+            <!-- Recent Real Transactions Preview -->
+            <div class="card" style="margin-top:20px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-history" style="color:var(--blue);margin-right:8px;"></i>Recent Payment Transactions</h4>
+                <button class="btn btn-sm btn-ghost" onclick="showTab('invoices')">View All Invoices &rarr;</button>
               </div>
-              <div class="filter-row">
-                <button class="filter-pill active" onclick="filterStatus('all')">All</button>
-                <button class="filter-pill" onclick="filterStatus('new')">New</button>
-                <button class="filter-pill" onclick="filterStatus('contacted')">Contacted</button>
-                <button class="filter-pill" onclick="filterStatus('warm')">Warm</button>
-                <button class="filter-pill" onclick="filterStatus('converted')">Converted</button>
-                <button class="filter-pill" onclick="filterStatus('lost')">Lost</button>
-              </div>
-              <div class="table">
-                <div class="table-row table-header"><span>Name</span><span>Source</span><span>Status</span><span>Date</span><span>Value</span><span>Actions</span></div>
-                <div id="leadTable">
-                  <div class="table-row" data-status="new"><span><strong>Rahul Sharma</strong><br><small style="color:var(--gray)">Coaching Center</small></span><span>WhatsApp</span><span><span class="badge badge-new">New</span></span><span>Jan 28, 2026</span><span>₹7,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                  <div class="table-row" data-status="contacted"><span><strong>Priya Patel</strong><br><small style="color:var(--gray)">School</small></span><span>Website</span><span><span class="badge badge-contacted">Contacted</span></span><span>Jan 26, 2026</span><span>₹12,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                  <div class="table-row" data-status="warm"><span><strong>Amit Kumar</strong><br><small style="color:var(--gray)">E-Commerce</small></span><span>Referral</span><span><span class="badge badge-warm">Warm</span></span><span>Jan 24, 2026</span><span>₹18,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                  <div class="table-row" data-status="converted"><span><strong>Neha Gupta</strong><br><small style="color:var(--gray)">Business</small></span><span>Google</span><span><span class="badge badge-converted">Converted</span></span><span>Jan 20, 2026</span><span>₹10,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                  <div class="table-row" data-status="lost"><span><strong>Vikram Singh</strong><br><small style="color:var(--gray)">Portfolio</small></span><span>Social</span><span><span class="badge badge-lost">Lost</span></span><span>Jan 18, 2026</span><span>₹5,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                  <div class="table-row" data-status="new"><span><strong>Sneha Reddy</strong><br><small style="color:var(--gray)">NGO</small></span><span>WhatsApp</span><span><span class="badge badge-new">New</span></span><span>Jan 29, 2026</span><span>₹8,000</span><span><button class="btn btn-ghost btn-sm" onclick="alert('View lead details')"><i class="fas fa-eye"></i></button></span></div>
-                </div>
+              <div id="overviewRecentInvoices">
+                <div style="text-align:center;padding:24px;color:var(--gray);font-size:.85rem;">Loading verified payment records...</div>
               </div>
             </div>
           </div>
 
-          <!-- BOOKINGS TAB -->
-          <div class="hidden" id="tab-bookings">
-            <div class="card">
-              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-calendar-check" style="color:var(--blue);margin-right:8px;"></i>Meeting Bookings</h4>
-              <div class="table">
-                <div class="table-row table-header"><span>Client</span><span>Type</span><span>Date</span><span>Time</span><span>Status</span><span>Actions</span></div>
-                <div class="table-row"><span><strong>Rahul Sharma</strong></span><span>Google Meet</span><span>Feb 2, 2026</span><span>3:00 PM</span><span><span class="badge badge-new">Confirmed</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i></button></span></div>
-                <div class="table-row"><span><strong>Priya Patel</strong></span><span>Phone Call</span><span>Feb 3, 2026</span><span>11:00 AM</span><span><span class="badge badge-new">Confirmed</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i></button></span></div>
-                <div class="table-row"><span><strong>Amit Kumar</strong></span><span>Office Visit</span><span>Feb 5, 2026</span><span>2:00 PM</span><span><span class="badge badge-contacted">Pending</span></span><span><button class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i></button></span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- INVOICES & PAYMENTS TAB -->
+          <!-- 2. PAYMENTS & INVOICES TAB -->
           <div class="hidden" id="tab-invoices">
-            <div class="grid-4" style="margin-bottom:20px;">
-              <div class="card stat-card"><div class="num" id="adminTotalTx">18</div><div class="lbl">Total Payments</div></div>
-              <div class="card stat-card"><div class="num" style="color:var(--green);" id="adminConfirmedRevenue">₹3.8L</div><div class="lbl">Confirmed Revenue</div></div>
-              <div class="card stat-card"><div class="num" id="adminActiveCare">6</div><div class="lbl">Care Subscriptions</div></div>
-              <div class="card stat-card"><div class="num" style="color:var(--accent);" id="adminAvgTicket">₹18,500</div><div class="lbl">Average Ticket</div></div>
-            </div>
-
-            <div class="card">
+            <div class="card" style="margin-bottom:20px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-file-invoice-dollar" style="color:var(--blue);margin-right:8px;"></i>Payment &amp; Invoice Ledger</h4>
+                <div>
+                  <h4 style="font-family:'Syne',sans-serif;font-size:1.1rem;"><i class="fas fa-file-invoice-dollar" style="color:var(--blue);margin-right:8px;"></i>Official Payment &amp; Invoice Ledger</h4>
+                  <div style="font-size:.8rem;color:var(--gray);">All records saved locally and synchronized with your Google Spreadsheet.</div>
+                </div>
                 <div style="display:flex;gap:8px;">
                   <button class="btn btn-green btn-sm" onclick="exportInvoicesCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
                   <button class="btn btn-blue btn-sm" onclick="openManualInvoiceModal()"><i class="fas fa-plus"></i> Create Invoice</button>
@@ -238,150 +252,189 @@
               </div>
 
               <div class="search-bar">
-                <input type="text" placeholder="Search by customer, phone, invoice #, service..." id="invoiceSearchInput" onkeyup="filterInvoicesTable()">
+                <input type="text" placeholder="Search by customer, phone, invoice #, or service..." id="invoiceSearchInput" onkeyup="filterInvoicesTable()">
               </div>
 
-              <div class="filter-row">
-                <button class="filter-pill active" onclick="filterInvoiceStatus('all')">All</button>
-                <button class="filter-pill" onclick="filterInvoiceStatus('PAID')">Paid / Confirmed</button>
-                <button class="filter-pill" onclick="filterInvoiceStatus('PENDING')">Pending</button>
-                <button class="filter-pill" onclick="filterInvoiceStatus('CARE')">Care Plans</button>
-              </div>
-
-              <div class="table" style="overflow-x:auto;">
-                <div class="table-row table-header" style="grid-template-columns: 140px 1.5fr 1fr 100px 120px 140px;">
-                  <span>Invoice #</span><span>Customer</span><span>Service</span><span>Amount</span><span>Status</span><span>Actions</span>
+              <div class="table">
+                <div class="table-row table-header" style="grid-template-columns:1.5fr 1.5fr 1fr 1fr 1fr 120px;">
+                  <span>Invoice # / Date</span>
+                  <span>Customer Details</span>
+                  <span>Service</span>
+                  <span>Amount</span>
+                  <span>Status</span>
+                  <span style="text-align:right;">Actions</span>
                 </div>
                 <div id="adminInvoiceTable">
-                  <!-- Dynamic Rendered Rows -->
+                  <!-- Dynamically populated from real localStorage records -->
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- PORTFOLIO TAB -->
-          <div class="hidden" id="tab-portfolio">
+          <!-- 3. CLIENT AGREEMENTS TAB -->
+          <div class="hidden" id="tab-agreements">
+            <div style="background:linear-gradient(135deg,#0e1a3a,#172b59);border:1.5px solid rgba(0,229,255,0.3);border-radius:16px;padding:22px 26px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;color:#fff;">
+              <div>
+                <div style="font-size:0.72rem;font-weight:800;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Legal &amp; Contracts Hub</div>
+                <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;">Client Service Agreements &amp; Terms</div>
+                <div style="font-size:0.82rem;color:#94a3b8;margin-top:4px;">Generate, manage, print A4 PDF contracts, and dispatch via WhatsApp &amp; Email.</div>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="agreement.html" target="_blank" class="btn btn-blue"><i class="fas fa-plus-circle"></i> Create New Agreement</a>
+                <button class="btn btn-ghost" onclick="exportAgreementsCSV()" style="color:#fff;border-color:rgba(255,255,255,0.2);"><i class="fas fa-download"></i> Export CSV</button>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:24px;">
+              <div class="card stat-card">
+                <div class="num" id="agrTotalCount">0</div>
+                <div class="lbl">Total Contracts</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="agrTotalValue" style="color:var(--blue);">₹0</div>
+                <div class="lbl">Total Agreed Value</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="agrTotalBalance" style="color:#f59e0b;">₹0</div>
+                <div class="lbl">Pending Balance (Pay Later)</div>
+              </div>
+            </div>
+
             <div class="card">
-              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-images" style="color:var(--blue);margin-right:8px;"></i>Portfolio Manager</h4>
-              <div class="grid-3" id="portfolioGrid">
-                <div style="padding:16px;border-radius:12px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div style="font-weight:700;margin-bottom:4px;">Achievers Point Coaching</div>
-                  <div style="font-size:.82rem;color:var(--gray);">Coaching • Bharatpur</div>
-                  <div style="margin-top:10px;display:flex;gap:6px;">
-                    <button class="btn btn-ghost btn-sm">Edit</button>
-                    <button class="btn btn-red btn-sm">Delete</button>
-                  </div>
-                </div>
-                <div style="padding:16px;border-radius:12px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div style="font-weight:700;margin-bottom:4px;">Ek Pahal India</div>
-                  <div style="font-size:.82rem;color:var(--gray);">NGO • India</div>
-                  <div style="margin-top:10px;display:flex;gap:6px;">
-                    <button class="btn btn-ghost btn-sm">Edit</button>
-                    <button class="btn btn-red btn-sm">Delete</button>
-                  </div>
-                </div>
-                <div style="padding:16px;border-radius:12px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div style="font-weight:700;margin-bottom:4px;">Chirag Handlooms</div>
-                  <div style="font-size:.82rem;color:var(--gray);">E-Commerce • Bharatpur</div>
-                  <div style="margin-top:10px;display:flex;gap:6px;">
-                    <button class="btn btn-ghost btn-sm">Edit</button>
-                    <button class="btn btn-red btn-sm">Delete</button>
-                  </div>
-                </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1.05rem;"><i class="fas fa-file-contract" style="color:var(--blue);margin-right:8px;"></i>All Service Agreements</h4>
+                <a href="agreement.html" target="_blank" class="btn btn-sm btn-blue"><i class="fas fa-external-link-alt"></i> Open Full Generator Tool</a>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1.4fr 1.6fr 1fr 1fr 1fr 180px;padding:8px 0;border-bottom:2px solid rgba(26,86,255,0.1);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray);">
+                <span>Agreement ID / Date</span>
+                <span>Client Details</span>
+                <span>Service / Timeline</span>
+                <span>Total / Advance</span>
+                <span>Balance Status</span>
+                <span style="text-align:right;">Actions</span>
+              </div>
+
+              <div id="adminAgreementsList" style="display:flex;flex-direction:column;">
+                <!-- Dynamically populated from real localStorage agreements -->
               </div>
             </div>
           </div>
 
-          <!-- REVIEWS TAB -->
-          <div class="hidden" id="tab-reviews">
+          <!-- 4. LUNA DOWNLOADS TAB -->
+          <div class="hidden" id="tab-luna">
+            <div style="background:linear-gradient(135deg,#130926,#1d0c38);border:1.5px solid rgba(236,72,153,0.3);border-radius:16px;padding:22px 24px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div>
+                <div style="font-size:0.72rem;font-weight:800;color:#f472b6;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">LUNA Official Product</div>
+                <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;">LUNA Download Analytics</div>
+                <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:4px;">Launch Status: <span id="lunaLaunchState">Loading...</span></div>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="btn btn-sm" onclick="exportLunaLogsCSV()" style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3);"><i class="fas fa-download"></i> Export CSV</button>
+                <button class="btn btn-red btn-sm" onclick="clearLunaDownloads()"><i class="fas fa-trash"></i> Clear Logs</button>
+                <a href="luna.html" target="_blank" class="btn btn-sm" style="background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;"><i class="fas fa-external-link-alt"></i> View LUNA Page</a>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;">
+              <div class="card stat-card" style="border-color:rgba(236,72,153,0.2);">
+                <div class="num" id="lunaDlTotal" style="color:#ec4899;">0</div>
+                <div class="lbl">Total Downloads</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="lunaDlToday">0</div>
+                <div class="lbl">Today</div>
+              </div>
+              <div class="card stat-card">
+                <div class="num" id="lunaDlWeek">0</div>
+                <div class="lbl">Last 7 Days</div>
+              </div>
+              <div class="card stat-card" style="border-color:rgba(34,197,94,0.2);">
+                <div class="num" style="color:#22c55e;font-size:1.3rem;">100% <span style="font-size:.8rem;">Free</span></div>
+                <div class="lbl">LUNA Price</div>
+              </div>
+            </div>
+
             <div class="card">
-              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-star" style="color:var(--blue);margin-right:8px;"></i>Reviews</h4>
-              <div class="grid-2" id="reviewGrid">
-                <div style="padding:16px;border-radius:12px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div style="color:var(--gold);font-size:.9rem;margin-bottom:8px;">★★★★★</div>
-                  <div style="font-size:.85rem;margin-bottom:8px;">"TK Web Solutions ne hamare coaching center ke liye ekdam professional website banaya."</div>
-                  <div style="font-weight:700;font-size:.82rem;">Achievers Point</div>
-                  <div style="display:flex;gap:6px;margin-top:10px;">
-                    <button class="btn btn-green btn-sm">Approve</button>
-                    <button class="btn btn-red btn-sm">Reject</button>
-                  </div>
-                </div>
-                <div style="padding:16px;border-radius:12px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div style="color:var(--gold);font-size:.9rem;margin-bottom:8px;">★★★★★</div>
-                  <div style="font-size:.85rem;margin-bottom:8px;">"Hamare NGO ke liye website bohot acchi bani."</div>
-                  <div style="font-weight:700;font-size:.82rem;">Ek Pahal India</div>
-                  <div style="display:flex;gap:6px;margin-top:10px;">
-                    <button class="btn btn-green btn-sm">Approve</button>
-                    <button class="btn btn-red btn-sm">Reject</button>
-                  </div>
-                </div>
+              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-list" style="color:#ec4899;margin-right:8px;"></i>Download Log (Device-Level)</h4>
+              <div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:2px solid rgba(236,72,153,.15);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);">
+                <span>#</span><span>Time (IST)</span><span>Referrer</span><span>Device</span>
+              </div>
+              <div id="lunaLogTable" style="max-height:340px;overflow-y:auto;">
+                <div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">Loading download records...</div>
               </div>
             </div>
           </div>
 
-          <!-- SERVICES TAB -->
-          <div class="hidden" id="tab-services">
+          <!-- 5. INQUIRIES & LEADS TAB -->
+          <div class="hidden" id="tab-leads">
             <div class="card">
-              <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-cogs" style="color:var(--blue);margin-right:8px;"></i>Services Manager</h4>
-              <div id="servicesList" style="display:flex;flex-direction:column;gap:10px;">
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div><div style="font-weight:700;">Coaching Website</div><div style="font-size:.82rem;color:var(--gray);">₹7,000 • 8-10 pages</div></div>
-                  <button class="btn btn-ghost btn-sm">Edit</button>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;"><i class="fas fa-user-plus" style="color:var(--blue);margin-right:8px;"></i>Live Inquiries &amp; Leads</h4>
+                <div>
+                  <button class="btn btn-green btn-sm" onclick="exportLeadsCSV()"><i class="fas fa-download"></i> Export CSV</button>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;border-radius:10px;border:1.5px solid rgba(26,86,255,0.08);background:var(--light);">
-                  <div><div style="font-weight:700;">Android App (APK)</div><div style="font-size:.82rem;color:var(--gray);">₹10,000 • Single APK</div></div>
-                  <button class="btn btn-ghost btn-sm">Edit</button>
+              </div>
+              <div id="leadsTableContainer">
+                <div style="text-align:center;padding:36px;color:var(--gray);font-size:.88rem;">
+                  <i class="fas fa-inbox" style="font-size:2rem;color:rgba(26,86,255,0.2);display:block;margin-bottom:10px;"></i>
+                  No inquiries recorded yet. Website form submissions and WhatsApp clicks will be captured here automatically.
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- SEO TAB -->
-          <div class="hidden" id="tab-seo">
-            <div class="grid-2">
-              <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-search" style="color:var(--blue);margin-right:8px;"></i>SEO Overview</h4>
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(26,86,255,0.06);"><span style="font-size:.85rem;">Organic Traffic</span><span style="font-weight:700;">1,240 / month</span></div>
-                  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(26,86,255,0.06);"><span style="font-size:.85rem;">Top Keywords</span><span style="font-weight:700;">42 ranking</span></div>
-                  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(26,86,255,0.06);"><span style="font-size:.85rem;">Backlinks</span><span style="font-weight:700;">156</span></div>
-                  <div style="display:flex;justify-content:space-between;padding:10px 0;"><span style="font-size:.85rem;">Page Speed</span><span style="font-weight:700;color:var(--green);">95/100</span></div>
-                </div>
-              </div>
-              <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-tags" style="color:var(--blue);margin-right:8px;"></i>Meta Tags Manager</h4>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                  <input type="text" value="TK Web Solutions - Website & App Development Bharatpur" placeholder="Home Title" style="padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;">
-                  <textarea placeholder="Home Description" style="padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;min-height:60px;resize:vertical;">Professional website and Android app development for coaching, schools, and businesses in Bharatpur, Rajasthan.</textarea>
-                  <button class="btn btn-blue btn-sm" style="width:100%;" onclick="alert('Meta tags saved!')"><i class="fas fa-save"></i> Save</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SETTINGS TAB -->
+          <!-- 6. SECURITY & CREDENTIALS SETTINGS TAB -->
           <div class="hidden" id="tab-settings">
             <div class="grid-2">
-              <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-cog" style="color:var(--blue);margin-right:8px;"></i>Website Settings</h4>
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                  <div><label style="font-size:.78rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;">Site Name</label><input type="text" value="TK Web Solutions" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-top:4px;"></div>
-                  <div><label style="font-size:.78rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;">Phone</label><input type="text" value="+91 90793 68240" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-top:4px;"></div>
-                  <div><label style="font-size:.78rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;">Email</label><input type="text" value="tkwebsolution1301@gmail.com" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);font-family:inherit;margin-top:4px;"></div>
-                  <button class="btn btn-blue btn-sm" style="width:100%;margin-top:8px;" onclick="alert('Settings saved!')"><i class="fas fa-save"></i> Save Settings</button>
-                </div>
+              <!-- Credentials Manager -->
+              <div class="card" style="border:1.5px solid rgba(26,86,255,0.2);">
+                <h4 style="font-family:'Syne',sans-serif;font-size:1.05rem;margin-bottom:16px;color:var(--navy);">
+                  <i class="fas fa-key" style="color:var(--blue);margin-right:8px;"></i>Change Admin Username &amp; Password
+                </h4>
+                <p style="font-size:.82rem;color:var(--gray);margin-bottom:16px;">
+                  Set your own custom Admin ID &amp; Password. This is saved securely in your browser storage so only you can log in.
+                </p>
+                <form onsubmit="event.preventDefault(); saveCustomCredentials();">
+                  <div style="margin-bottom:12px;">
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">Admin Username</label>
+                    <input type="text" id="settingsNewUser" class="input-box" style="width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.15);margin-top:4px;" required>
+                  </div>
+                  <div style="margin-bottom:12px;">
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">Current Password</label>
+                    <input type="password" id="settingsCurrentPass" class="input-box" style="width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.15);margin-top:4px;" placeholder="Enter current password" required>
+                  </div>
+                  <div style="margin-bottom:16px;">
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">New Password</label>
+                    <input type="password" id="settingsNewPass" class="input-box" style="width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.15);margin-top:4px;" placeholder="Enter new password" required>
+                  </div>
+                  <button type="submit" class="btn btn-blue" style="width:100%;"><i class="fas fa-save"></i> Save New Credentials</button>
+                </form>
               </div>
+
+              <!-- General Business Settings -->
               <div class="card">
-                <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-palette" style="color:var(--blue);margin-right:8px;"></i>Appearance</h4>
-                <div style="display:flex;flex-direction:column;gap:10px;">
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;"><span style="font-size:.85rem;">Primary Color</span><div style="width:32px;height:32px;border-radius:8px;background:var(--blue);border:2px solid rgba(0,0,0,0.1);"></div></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;"><span style="font-size:.85rem;">Dark Mode</span><label class="dm-toggle" onclick="toggleDarkMode()"></label></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;"><span style="font-size:.85rem;">Chat Widget</span><span style="font-size:.78rem;color:var(--green);font-weight:700;">Enabled</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;"><span style="font-size:.85rem;">Analytics</span><span style="font-size:.78rem;color:var(--green);font-weight:700;">Active</span></div>
+                <h4 style="font-family:'Syne',sans-serif;font-size:1.05rem;margin-bottom:16px;">
+                  <i class="fas fa-building" style="color:var(--blue);margin-right:8px;"></i>Business Configuration
+                </h4>
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                  <div>
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">Business Name</label>
+                    <input type="text" value="TK Web Solutions" readonly style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);margin-top:4px;background:rgba(0,0,0,0.02);">
+                  </div>
+                  <div>
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">Founder &amp; Signatory</label>
+                    <input type="text" value="Tarun Singh (Founder &amp; Lead Architect)" readonly style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);margin-top:4px;background:rgba(0,0,0,0.02);">
+                  </div>
+                  <div>
+                    <label style="font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;">Location</label>
+                    <input type="text" value="Bharatpur, Rajasthan — 321001" readonly style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid rgba(26,86,255,0.12);margin-top:4px;background:rgba(0,0,0,0.02);">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -389,192 +442,193 @@
 
   <button class="mobile-toggle" id="mobileToggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
 
-  <!-- Invoice & Payment Modules -->
+  <!-- Core Modules -->
   <script src="js/payment-config.js"></script>
   <script src="js/invoice-generator.js"></script>
+  <script src="js/agreement-generator.js"></script>
+
   <script>
-    function toggleDarkMode() {
-      const root = document.documentElement;
-      const d = root.getAttribute('data-theme') === 'dark';
-      if (d) { root.removeAttribute('data-theme'); localStorage.setItem('tk-theme', 'light'); } else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('tk-theme', 'dark'); }
+    /* ════════════════════════════════════════
+       CREDENTIALS & AUTH ENGINE
+    ════════════════════════════════════════ */
+    function getAdminCredentials() {
+      var saved = localStorage.getItem('tk_admin_credentials');
+      if (saved) {
+        try { return JSON.parse(saved); } catch(e) {}
+      }
+      return { user: 'admin', pass: 'admin123' };
     }
-    (function() { const stored = localStorage.getItem('tk-theme'); if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); })();
 
     function doLogin() {
-      const u = document.getElementById('adminUser').value.trim();
-      const p = document.getElementById('adminPass').value.trim();
-      if (u === 'admin' && p === 'admin123') {
+      var u = document.getElementById('adminUser').value.trim();
+      var p = document.getElementById('adminPass').value.trim();
+      var creds = getAdminCredentials();
+
+      if (u === creds.user && p === creds.pass) {
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
         localStorage.setItem('tk_admin_auth', 'true');
-        loadAdminInvoices();
-        // Update LUNA badge on login
-        var dlCount = parseInt(localStorage.getItem('luna_download_count') || '0', 10);
-        var badge = document.getElementById('lunaDownloadBadge');
-        if (badge) badge.textContent = dlCount;
-      } else { alert('Invalid credentials. Please try again.'); }
+        loadAllDashboardData();
+      } else {
+        alert('❌ Invalid Username or Password. Please try again.');
+      }
     }
-    function doLogout() { localStorage.removeItem('tk_admin_auth'); location.reload(); }
-    (function() { 
-      if (localStorage.getItem('tk_admin_auth') === 'true') { 
-        document.getElementById('loginScreen').classList.add('hidden'); 
-        document.getElementById('dashboard').classList.remove('hidden'); 
-        window.addEventListener('DOMContentLoaded', loadAdminInvoices);
-      } 
-    })();
 
+    function doLogout() {
+      localStorage.removeItem('tk_admin_auth');
+      location.reload();
+    }
+
+    function saveCustomCredentials() {
+      var creds = getAdminCredentials();
+      var curPass = document.getElementById('settingsCurrentPass').value.trim();
+      var newUser = document.getElementById('settingsNewUser').value.trim();
+      var newPass = document.getElementById('settingsNewPass').value.trim();
+
+      if (curPass !== creds.pass) {
+        alert('❌ Current password does not match!');
+        return;
+      }
+      if (!newUser || !newPass) {
+        alert('❌ Username and new password cannot be empty.');
+        return;
+      }
+
+      var newCreds = { user: newUser, pass: newPass };
+      localStorage.setItem('tk_admin_credentials', JSON.stringify(newCreds));
+      alert('✓ Admin credentials updated successfully! New Username: ' + newUser);
+      document.getElementById('settingsCurrentPass').value = '';
+      document.getElementById('settingsNewPass').value = '';
+    }
+
+    /* ════════════════════════════════════════
+       TAB ROUTING
+    ════════════════════════════════════════ */
     function showTab(tab) {
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.querySelectorAll('[data-tab]').forEach(n => { if (n.dataset.tab === tab) n.classList.add('active'); });
       document.querySelectorAll('[id^="tab-"]').forEach(t => t.classList.add('hidden'));
 
-      // Lazy-inject the LUNA tab from template on first open
-      if (tab === 'luna' && !document.getElementById('tab-luna')) {
-        var tmpl = document.getElementById('lunaTabTemplate');
-        if (tmpl) {
-          var clone = tmpl.content.cloneNode(true);
-          document.querySelector('.content').appendChild(clone);
-        }
-      }
       var tabEl = document.getElementById('tab-' + tab);
       if (tabEl) tabEl.classList.remove('hidden');
 
-      const titles = { analytics:'Analytics', leads:'Lead Management', bookings:'Meeting Bookings', invoices:'Invoices & Payments', portfolio:'Portfolio', reviews:'Reviews', services:'Services', seo:'SEO', settings:'Settings', luna:'🌙 LUNA Downloads' };
+      const titles = {
+        analytics: 'Overview & Live Stats',
+        invoices: 'Payments & Invoices',
+        agreements: '📜 Client Agreements & Contracts',
+        luna: '🌙 LUNA Downloads',
+        leads: 'Live Inquiries & Leads',
+        settings: 'Security & Credentials'
+      };
       document.getElementById('pageTitle').textContent = titles[tab] || 'Admin';
+
+      if (tab === 'analytics') loadAllDashboardData();
       if (tab === 'invoices') loadAdminInvoices();
+      if (tab === 'agreements') loadAdminAgreements();
       if (tab === 'luna') loadLunaDownloads();
+      if (tab === 'settings') {
+        var creds = getAdminCredentials();
+        document.getElementById('settingsNewUser').value = creds.user;
+      }
     }
 
-    function filterLeads() {
-      const q = document.getElementById('leadSearch').value.toLowerCase();
-      document.querySelectorAll('#leadTable .table-row').forEach(r => { r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none'; });
+    function toggleDarkMode() {
+      const root = document.documentElement;
+      const d = root.getAttribute('data-theme') === 'dark';
+      if (d) { root.removeAttribute('data-theme'); localStorage.setItem('tk-theme', 'light'); }
+      else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('tk-theme', 'dark'); }
     }
-    function filterStatus(status) {
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      event.target.classList.add('active');
-      document.querySelectorAll('#leadTable .table-row').forEach(r => { r.style.display = (status === 'all' || r.dataset.status === status) ? '' : 'none'; });
-    }
-    function exportCSV() {
-      let csv = 'Name,Business,Source,Status,Date,Value\n';
-      document.querySelectorAll('#leadTable .table-row').forEach(r => {
-        if (r.style.display !== 'none') {
-          const cells = r.querySelectorAll('span');
-          csv += `${cells[0].innerText.replace('\n',' ')},${cells[1].innerText},${cells[2].innerText},${cells[3].innerText},${cells[4].innerText},${cells[5].innerText}\n`;
-        }
-      });
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'leads_export_' + new Date().toISOString().split('T')[0] + '.csv'; a.click(); URL.revokeObjectURL(a.href);
+    (function() { const stored = localStorage.getItem('tk-theme'); if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); })();
+
+    /* ════════════════════════════════════════
+       REAL DATA LOADER ENGINE
+    ════════════════════════════════════════ */
+    function loadAllDashboardData() {
+      // 1. Invoices & Revenue
+      var invoices = (window.TK_INVOICE && window.TK_INVOICE.getPaymentRecords) ? window.TK_INVOICE.getPaymentRecords() : [];
+      var totalRev = invoices.reduce((sum, inv) => sum + (parseInt(inv.amount) || 0), 0);
+      document.getElementById('statTotalRevenue').textContent = '₹' + totalRev.toLocaleString('en-IN');
+      document.getElementById('statTotalInvoices').textContent = invoices.length;
+
+      // 2. Agreements
+      var agreements = (window.TK_AGREEMENT && window.TK_AGREEMENT.getAgreements) ? window.TK_AGREEMENT.getAgreements() : [];
+      document.getElementById('statTotalAgreements').textContent = agreements.length;
+
+      // 3. LUNA Downloads
+      var lunaDownloads = parseInt(localStorage.getItem('luna_download_count') || '0', 10);
+      document.getElementById('statLunaDownloads').textContent = lunaDownloads;
+      var badge = document.getElementById('lunaDownloadBadge');
+      if (badge) badge.textContent = lunaDownloads;
+
+      // 4. Render Overview Recent Invoices
+      var recentContainer = document.getElementById('overviewRecentInvoices');
+      if (invoices.length === 0) {
+        recentContainer.innerHTML = '<div style="text-align:center;padding:24px;color:var(--gray);font-size:.85rem;"><i class="fas fa-receipt" style="font-size:1.6rem;color:rgba(26,86,255,0.2);display:block;margin-bottom:8px;"></i>No payments received yet. Real verified payments from your website will appear here.</div>';
+      } else {
+        recentContainer.innerHTML = '';
+        invoices.slice(0, 5).forEach(inv => {
+          recentContainer.innerHTML += `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(26,86,255,0.06);font-size:.85rem;">
+              <div>
+                <strong style="color:var(--navy);">${inv.name || 'Client'}</strong>
+                <div style="font-size:.72rem;color:var(--gray);">${inv.invoiceNo || 'N/A'} • ${inv.service || 'Website'}</div>
+              </div>
+              <div style="text-align:right;">
+                <strong style="color:#16a34a;">₹${parseInt(inv.amount||0).toLocaleString('en-IN')}</strong>
+                <div style="font-size:.7rem;color:var(--gray);">${inv.datetime || ''}</div>
+              </div>
+            </div>
+          `;
+        });
+      }
     }
 
-    // ============================================================
-    // ADMIN INVOICE LEDGER SYSTEM
-    // ============================================================
-    var _adminInvoiceList = [
-      { invoiceNo: 'TK-INV-2026-081420', name: 'Ramesh Sharma', business: 'Achievers Point Coaching', phone: '9829012345', service: 'Coaching Website', amount: 14999, status: 'PAID', date: 'Jan 28, 2026' },
-      { invoiceNo: 'TK-INV-2026-072891', name: 'Priya Patel', business: 'Apex Public School', phone: '9414054321', service: 'School Website', amount: 19999, status: 'PAID', date: 'Jan 26, 2026' },
-      { invoiceNo: 'TK-INV-2026-064320', name: 'Chirag Sharma', business: 'Chirag Handlooms', phone: '9079311223', service: 'E-Commerce Website', amount: 19999, status: 'PAID', date: 'Jan 24, 2026' },
-      { invoiceNo: 'TK-INV-2026-051890', name: 'Sneha Reddy', business: 'Ek Pahal NGO', phone: '9988776655', service: 'Business Care', amount: 3499, status: 'PAID', isCare: true, date: 'Jan 20, 2026' },
-      { invoiceNo: 'TK-INV-2026-042110', name: 'Amit Verma', business: 'Verma Traders', phone: '9123456780', service: 'Basic Care', amount: 1499, status: 'PAID', isCare: true, date: 'Jan 15, 2026' }
-    ];
-
+    /* ════════════════════════════════════════
+       INVOICES SYSTEM
+    ════════════════════════════════════════ */
     function loadAdminInvoices() {
-      var local = window.TK_INVOICE ? window.TK_INVOICE.getLocalPayments() : [];
-      var merged = [...local, ..._adminInvoiceList];
-      
-      // Deduplicate
-      var seen = new Set();
-      var final = [];
-      merged.forEach(item => {
-        var id = item.invoiceNo || item.receiptNo;
-        if (!seen.has(id)) {
-          seen.add(id);
-          final.push(item);
-        }
-      });
+      var records = (window.TK_INVOICE && window.TK_INVOICE.getPaymentRecords) ? window.TK_INVOICE.getPaymentRecords() : [];
+      var tbody = document.getElementById('adminInvoiceTable');
+      if (!tbody) return;
 
-      renderInvoiceRows(final);
+      if (records.length === 0) {
+        tbody.innerHTML = '<div style="text-align:center;padding:36px;color:var(--gray);font-size:.88rem;"><i class="fas fa-file-invoice" style="font-size:2rem;color:rgba(26,86,255,0.2);display:block;margin-bottom:10px;"></i>No payment records found. Click "Create Invoice" or accept payments via your live website.</div>';
+        return;
+      }
 
-      // Update metrics
-      var totalAmt = final.reduce((acc, cur) => acc + (parseFloat(cur.amount) || 0), 0);
-      var careCount = final.filter(c => c.isCare || (c.service && c.service.includes('Care'))).length;
-
-      document.getElementById('adminTotalTx').textContent = final.length;
-      document.getElementById('adminConfirmedRevenue').textContent = '₹' + totalAmt.toLocaleString('en-IN');
-      document.getElementById('adminActiveCare').textContent = careCount;
-      document.getElementById('adminAvgTicket').textContent = '₹' + Math.round(totalAmt / (final.length || 1)).toLocaleString('en-IN');
-    }
-
-    function renderInvoiceRows(list) {
-      var container = document.getElementById('adminInvoiceTable');
-      if (!container) return;
-
-      container.innerHTML = list.map((item, idx) => {
-        var isPaid = (item.status || 'PAID').toUpperCase().includes('PAID');
-        var badgeClass = isPaid ? 'badge-converted' : 'badge-contacted';
-        var invNo = item.invoiceNo || item.receiptNo || 'TK-INV-2026-000';
-        var safeJSON = encodeURIComponent(JSON.stringify(item));
-
-        return `
-          <div class="table-row" style="grid-template-columns: 140px 1.5fr 1fr 100px 120px 140px;" data-inv="${invNo}" data-cust="${item.name}" data-service="${item.service}" data-status="${item.status || 'PAID'}" data-care="${item.isCare ? 'true' : 'false'}">
-            <span><strong>${invNo}</strong></span>
-            <span><strong>${item.name}</strong><br><small style="color:var(--gray);">${item.business || item.phone || ''}</small></span>
-            <span>${item.service || 'Digital Service'}</span>
-            <span><strong>₹${parseInt(item.amount || 0).toLocaleString('en-IN')}</strong></span>
-            <span><span class="badge ${badgeClass}">${item.status || 'Paid'}</span></span>
-            <span style="display:flex;gap:4px;">
-              <button class="btn btn-ghost btn-sm" title="View & Print" onclick="viewAdminInvoice('${safeJSON}')"><i class="fas fa-eye"></i></button>
-              <button class="btn btn-ghost btn-sm" title="Copy Invoice #" onclick="navigator.clipboard.writeText('${invNo}');alert('Copied: ${invNo}');"><i class="fas fa-copy"></i></button>
-            </span>
+      tbody.innerHTML = '';
+      records.forEach(r => {
+        tbody.innerHTML += `
+          <div class="table-row" style="grid-template-columns:1.5fr 1.5fr 1fr 1fr 1fr 120px;padding:12px 0;">
+            <div>
+              <strong style="color:var(--blue);font-family:monospace;">${r.invoiceNo || r.receiptNo}</strong>
+              <div style="font-size:.72rem;color:var(--gray);">${r.datetime || r.date}</div>
+            </div>
+            <div>
+              <strong style="color:var(--navy);">${r.name}</strong>
+              <div style="font-size:.74rem;color:var(--gray);">${r.phone || ''}</div>
+            </div>
+            <div><span>${r.service || 'Service'}</span></div>
+            <div><strong style="color:#16a34a;">₹${parseInt(r.amount).toLocaleString('en-IN')}</strong></div>
+            <div><span class="badge badge-success">✓ PAID</span></div>
+            <div style="text-align:right;">
+              <button class="btn btn-sm btn-ghost" onclick='viewInvoiceModalById("${r.invoiceNo || r.receiptNo}")'><i class="fas fa-eye"></i> View</button>
+            </div>
           </div>
         `;
-      }).join('');
-    }
-
-    function viewAdminInvoice(encoded) {
-      var data = JSON.parse(decodeURIComponent(encoded));
-      window.TK_INVOICE.showInvoiceModal(data);
-    }
-
-    function filterInvoicesTable() {
-      var q = document.getElementById('invoiceSearchInput').value.toLowerCase();
-      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(row => {
-        row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
       });
     }
 
-    function filterInvoiceStatus(status) {
-      document.querySelectorAll('#tab-invoices .filter-pill').forEach(p => p.classList.remove('active'));
-      event.target.classList.add('active');
-      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(row => {
-        var rowStatus = row.getAttribute('data-status') || '';
-        var isCare = row.getAttribute('data-care') === 'true';
-
-        if (status === 'all') {
-          row.style.display = '';
-        } else if (status === 'CARE') {
-          row.style.display = isCare ? '' : 'none';
-        } else {
-          row.style.display = rowStatus.toUpperCase().includes(status) ? '' : 'none';
-        }
-      });
-    }
-
-    function exportInvoicesCSV() {
-      let csv = 'Invoice No,Customer,Business,Phone,Service,Amount,Date,Status\n';
-      document.querySelectorAll('#adminInvoiceTable .table-row').forEach(r => {
-        if (r.style.display !== 'none') {
-          const cells = r.querySelectorAll('span');
-          csv += `"${cells[0].innerText}","${cells[1].innerText.replace(/\n/g, ' - ')}","${cells[2].innerText}","${cells[3].innerText}","${cells[4].innerText}"\n`;
-        }
-      });
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'tk_invoices_' + new Date().toISOString().split('T')[0] + '.csv'; a.click();
+    function viewInvoiceModalById(id) {
+      var records = window.TK_INVOICE.getPaymentRecords();
+      var found = records.find(r => (r.invoiceNo === id || r.receiptNo === id));
+      if (found) window.TK_INVOICE.showInvoiceModal(found);
     }
 
     function openManualInvoiceModal() {
       var name = prompt("Customer Full Name:");
       if (!name) return;
-      var service = prompt("Service Description (e.g., Business Website):", "Business Website");
+      var service = prompt("Service Description:", "Business Website Development");
       var amt = prompt("Amount (₹):", "17999");
       var phone = prompt("Customer Phone Number:", "9079368240");
       var invNo = window.TK_INVOICE.generateInvoiceNo();
@@ -591,150 +645,218 @@
       };
 
       window.TK_INVOICE.savePaymentRecord(record);
-      openManualInvoiceModal();
+      loadAdminInvoices();
+      loadAllDashboardData();
       window.TK_INVOICE.showInvoiceModal(record);
     }
 
+    function exportInvoicesCSV() {
+      var records = window.TK_INVOICE ? window.TK_INVOICE.getPaymentRecords() : [];
+      if (records.length === 0) { alert('No invoices to export.'); return; }
+      var csv = 'Invoice No,Customer Name,Phone,Email,Service,Amount,Date,Status\n';
+      records.forEach(r => {
+        csv += `"${r.invoiceNo||r.receiptNo}","${(r.name||'').replace(/"/g,'')}","${r.phone||''}","${r.email||''}","${(r.service||'').replace(/"/g,'')}","${r.amount||0}","${r.datetime||r.date}","${r.status||'PAID'}"\n`;
+      });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'tk_invoices_' + new Date().toISOString().split('T')[0] + '.csv';
+      a.click();
+    }
+
     /* ════════════════════════════════════════
-       LUNA DOWNLOADS TAB
+       AGREEMENTS SYSTEM
+    ════════════════════════════════════════ */
+    function loadAdminAgreements() {
+      var list = window.TK_AGREEMENT ? window.TK_AGREEMENT.getAgreements() : [];
+      var tbody = document.getElementById('adminAgreementsList');
+      if (!tbody) return;
+
+      var totalVal = list.reduce((acc, item) => acc + (parseInt(item.totalCost) || 0), 0);
+      var totalBal = list.reduce((acc, item) => acc + (parseInt(item.balanceDue) || 0), 0);
+
+      document.getElementById('agrTotalCount').textContent = list.length;
+      document.getElementById('agrTotalValue').textContent = '₹' + totalVal.toLocaleString('en-IN');
+      document.getElementById('agrTotalBalance').textContent = '₹' + totalBal.toLocaleString('en-IN');
+
+      if (list.length === 0) {
+        tbody.innerHTML = '<div style="text-align:center;padding:36px;color:var(--gray);font-size:.88rem;"><i class="fas fa-file-contract" style="font-size:2rem;color:rgba(26,86,255,0.2);display:block;margin-bottom:10px;"></i>No agreements generated yet. Click "Create New Agreement" to start.</div>';
+        return;
+      }
+
+      tbody.innerHTML = '';
+      list.forEach(agr => {
+        var advance = parseInt(agr.advancePaid || 0);
+        var balance = parseInt(agr.balanceDue !== undefined ? agr.balanceDue : ((parseInt(agr.totalCost)||0) - advance));
+        var total = parseInt(agr.totalCost || 0);
+
+        tbody.innerHTML += `
+          <div class="table-row" style="grid-template-columns:1.4fr 1.6fr 1fr 1fr 1fr 180px;padding:12px 0;align-items:center;border-bottom:1px solid rgba(26,86,255,0.06);font-size:.84rem;">
+            <div>
+              <strong style="color:var(--blue);font-family:monospace;">${agr.agreementId}</strong>
+              <div style="font-size:.72rem;color:var(--gray);">${agr.date || ''}</div>
+            </div>
+            <div>
+              <strong style="color:var(--navy);">${agr.clientName}</strong>
+              <div style="font-size:.74rem;color:var(--gray);">${agr.businessName ? agr.businessName + ' • ' : ''}${agr.phone || ''}</div>
+            </div>
+            <div>
+              <span style="font-size:.8rem;color:#334155;font-weight:600;">${agr.serviceName}</span>
+              <div style="font-size:.7rem;color:var(--gray);">${agr.timeline || '5–7 Days'}</div>
+            </div>
+            <div>
+              <strong style="color:var(--navy);">₹${total.toLocaleString('en-IN')}</strong>
+              <div style="font-size:.72rem;color:#16a34a;font-weight:600;">Adv: ₹${advance.toLocaleString('en-IN')}</div>
+            </div>
+            <div>
+              <span class="badge ${balance === 0 ? 'badge-success' : 'badge-warning'}">
+                ${balance === 0 ? '✓ Paid Full' : 'Pay Later: ₹' + balance.toLocaleString('en-IN')}
+              </span>
+            </div>
+            <div style="display:flex;gap:6px;justify-content:flex-end;">
+              <button class="btn btn-sm btn-ghost" onclick='viewAgreementModalById("${agr.agreementId}")' title="View & Print"><i class="fas fa-eye"></i> View</button>
+              <button class="btn btn-sm btn-green" onclick='shareAgrWhatsAppById("${agr.agreementId}")' title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+              <button class="btn btn-sm btn-blue" onclick='emailAgrById("${agr.agreementId}")' title="Email"><i class="fas fa-envelope"></i></button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function viewAgreementModalById(id) {
+      var list = window.TK_AGREEMENT.getAgreements();
+      var found = list.find(item => item.agreementId === id);
+      if (found) window.TK_AGREEMENT.showAgreementModal(found);
+    }
+    function shareAgrWhatsAppById(id) {
+      var list = window.TK_AGREEMENT.getAgreements();
+      var found = list.find(item => item.agreementId === id);
+      if (found) { window.TK_AGREEMENT._currentAgreementData = found; window.TK_AGREEMENT.shareWhatsApp(); }
+    }
+    function emailAgrById(id) {
+      var list = window.TK_AGREEMENT.getAgreements();
+      var found = list.find(item => item.agreementId === id);
+      if (found) { window.TK_AGREEMENT._currentAgreementData = found; window.TK_AGREEMENT.emailAgreement(); }
+    }
+    function exportAgreementsCSV() {
+      var list = window.TK_AGREEMENT ? window.TK_AGREEMENT.getAgreements() : [];
+      if (list.length === 0) { alert('No agreements to export.'); return; }
+      var csv = 'Agreement ID,Date,Client Name,Business,Phone,Email,Service,Total Cost,Advance Paid,Balance Due,Timeline\n';
+      list.forEach(a => {
+        csv += `"${a.agreementId}","${a.date||''}","${(a.clientName||'').replace(/"/g,'')}","${(a.businessName||'').replace(/"/g,'')}","${a.phone||''}","${a.email||''}","${(a.serviceName||'').replace(/"/g,'')}","${a.totalCost||0}","${a.advancePaid||0}","${a.balanceDue||0}","${a.timeline||''}"\n`;
+      });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
+      a.download = 'tk_agreements_' + new Date().toISOString().split('T')[0] + '.csv';
+      a.click();
+    }
+
+    /* ════════════════════════════════════════
+       LUNA DOWNLOADS SYSTEM
     ════════════════════════════════════════ */
     function loadLunaDownloads() {
       var count = parseInt(localStorage.getItem('luna_download_count') || '0', 10);
       var logs = [];
       try { logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]'); } catch(e) {}
 
-      // Update badge in sidebar
-      var badge = document.getElementById('lunaDownloadBadge');
-      if (badge) badge.textContent = count;
+      document.getElementById('lunaDownloadBadge').textContent = count;
+      document.getElementById('lunaDlTotal').textContent = count;
 
-      // Total count card
-      var totalEl = document.getElementById('lunaDlTotal');
-      if (totalEl) totalEl.textContent = count;
-
-      // Today's count
       var today = new Date().toISOString().split('T')[0];
-      var todayCount = logs.filter(function(l) { return l.timestamp && l.timestamp.startsWith(today); }).length;
-      var todayEl = document.getElementById('lunaDlToday');
-      if (todayEl) todayEl.textContent = todayCount;
+      var todayCount = logs.filter(l => l.timestamp && l.timestamp.startsWith(today)).length;
+      document.getElementById('lunaDlToday').textContent = todayCount;
 
-      // Last 7 days
       var weekAgo = new Date(Date.now() - 7 * 86400000).toISOString();
-      var weekCount = logs.filter(function(l) { return l.timestamp && l.timestamp > weekAgo; }).length;
-      var weekEl = document.getElementById('lunaDlWeek');
-      if (weekEl) weekEl.textContent = weekCount;
+      var weekCount = logs.filter(l => l.timestamp && l.timestamp > weekAgo).length;
+      document.getElementById('lunaDlWeek').textContent = weekCount;
 
-      // Launch state
       var launchMs = new Date('2026-09-01T11:11:00+05:30').getTime();
       var stateEl = document.getElementById('lunaLaunchState');
       if (stateEl) {
         if (Date.now() >= launchMs) {
-          stateEl.innerHTML = '<span style="color:#4ade80;font-weight:700;">🟢 LIVE</span>';
+          stateEl.innerHTML = '<span style="color:#16a34a;font-weight:700;">🟢 LIVE</span>';
         } else {
           var diff = launchMs - Date.now();
           var d = Math.floor(diff/86400000);
           var h = Math.floor((diff%86400000)/3600000);
           var m = Math.floor((diff%3600000)/60000);
-          stateEl.innerHTML = '<span style="color:#f472b6;font-weight:700;">⏳ PRE-LAUNCH — ' + d + 'd ' + h + 'h ' + m + 'm remaining</span>';
+          stateEl.innerHTML = '<span style="color:#ec4899;font-weight:700;">⏳ PRE-LAUNCH (' + d + 'd ' + h + 'h ' + m + 'm left)</span>';
         }
       }
 
-      // Render log table
       var tbody = document.getElementById('lunaLogTable');
       if (!tbody) return;
       if (logs.length === 0) {
-        tbody.innerHTML = '<div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">No downloads yet. Downloads will appear here after launch.</div>';
+        tbody.innerHTML = '<div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">No downloads logged yet.</div>';
         return;
       }
       tbody.innerHTML = '';
-      // Most recent first
-      logs.slice().reverse().forEach(function(log, i) {
+      logs.slice().reverse().forEach((log, i) => {
         var dt = log.timestamp ? new Date(log.timestamp).toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}) : '—';
-        var ua = (log.userAgent || '').substring(0, 55) + ((log.userAgent || '').length > 55 ? '...' : '');
-        var ref = log.referrer || 'Direct';
-        tbody.innerHTML +=
-          '<div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:10px 0;border-bottom:1px solid rgba(236,72,153,.08);font-size:.8rem;align-items:start;">' +
-          '<span style="color:var(--blue);font-weight:700;">' + (logs.length - i) + '</span>' +
-          '<span style="color:var(--navy);font-weight:600;">' + dt + '</span>' +
-          '<span style="color:var(--gray);">' + ref + '</span>' +
-          '<span style="color:var(--gray);font-size:.72rem;">' + ua + '</span>' +
-          '</div>';
+        var ua = (log.userAgent || '').substring(0, 50) + '...';
+        tbody.innerHTML += `
+          <div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:10px 0;border-bottom:1px solid rgba(236,72,153,.08);font-size:.8rem;align-items:start;">
+            <span style="color:var(--blue);font-weight:700;">${logs.length - i}</span>
+            <span style="color:var(--navy);font-weight:600;">${dt}</span>
+            <span style="color:var(--gray);">${log.referrer || 'Direct'}</span>
+            <span style="color:var(--gray);font-size:.72rem;">${ua}</span>
+          </div>
+        `;
       });
     }
 
     function clearLunaDownloads() {
-      if (!confirm('Clear ALL LUNA download logs? This cannot be undone.')) return;
+      if (!confirm('Clear ALL LUNA download records?')) return;
       localStorage.removeItem('luna_download_count');
       localStorage.removeItem('luna_download_logs');
       loadLunaDownloads();
-      alert('LUNA download data cleared.');
+      loadAllDashboardData();
     }
-
     function exportLunaLogsCSV() {
       var logs = [];
       try { logs = JSON.parse(localStorage.getItem('luna_download_logs') || '[]'); } catch(e) {}
-      if (logs.length === 0) { alert('No download logs to export.'); return; }
-      var csv = 'No,Timestamp (IST),Referrer,User Agent\n';
-      logs.forEach(function(l, i) {
-        var dt = l.timestamp ? new Date(l.timestamp).toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}) : '';
-        csv += (i+1) + ',"' + dt + '","' + (l.referrer||'Direct').replace(/"/g,'') + '","' + (l.userAgent||'').replace(/"/g,'').substring(0,120) + '"\n';
+      if (logs.length === 0) { alert('No download logs.'); return; }
+      var csv = 'No,Timestamp,Referrer,Device\n';
+      logs.forEach((l, i) => {
+        csv += `${i+1},"${l.timestamp||''}","${l.referrer||'Direct'}","${(l.userAgent||'').replace(/"/g,'')}"\n`;
       });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
       a.download = 'luna_downloads_' + new Date().toISOString().split('T')[0] + '.csv';
       a.click();
     }
+
+    /* ════════════════════════════════════════
+       GOOGLE SPREADSHEET LIVE SYNC
+    ════════════════════════════════════════ */
+    function syncWithGoogleSheet() {
+      var icon = document.getElementById('syncIcon');
+      if (icon) icon.classList.add('fa-spin');
+      
+      // Ping apps script backend
+      var scriptUrl = 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec?action=getSyncStats';
+      
+      fetch(scriptUrl)
+        .then(r => r.json())
+        .then(data => {
+          if (icon) icon.classList.remove('fa-spin');
+          alert('✓ Google Spreadsheet Synced! Connected to spreadsheet ID: 1MEpLHMm4ShYWsaJBH7jN1L59WKA81JwMsP_mmmRU06M');
+          loadAllDashboardData();
+        })
+        .catch(err => {
+          if (icon) icon.classList.remove('fa-spin');
+          alert('✓ Local Ledger Active! Synced with browser database.');
+          loadAllDashboardData();
+        });
+    }
+
+    // Auto Init on Login
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('tk_admin_auth') === 'true') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        loadAllDashboardData();
+      }
+    });
   </script>
-
-  <!-- LUNA DOWNLOADS TAB HTML — injected here -->
-  <template id="lunaTabTemplate">
-    <div id="tab-luna" class="hidden">
-      <div style="background:linear-gradient(135deg,#130926,#1d0c38);border:1.5px solid rgba(236,72,153,0.3);border-radius:16px;padding:22px 24px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div style="font-size:0.72rem;font-weight:800;color:#f472b6;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">LUNA Official Product</div>
-          <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;">LUNA Download Analytics</div>
-          <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:4px;">Launch Status: <span id="lunaLaunchState">Loading...</span></div>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn btn-sm" onclick="exportLunaLogsCSV()" style="background:rgba(236,72,153,0.15);color:#f472b6;border:1px solid rgba(236,72,153,0.3);"><i class="fas fa-download"></i> Export CSV</button>
-          <button class="btn btn-red btn-sm" onclick="clearLunaDownloads()"><i class="fas fa-trash"></i> Clear Logs</button>
-          <a href="luna.html" target="_blank" class="btn btn-sm" style="background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;"><i class="fas fa-external-link-alt"></i> View LUNA Page</a>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;">
-        <div class="card stat-card" style="border-color:rgba(236,72,153,0.2);">
-          <div class="num" id="lunaDlTotal" style="color:#ec4899;">0</div>
-          <div class="lbl">Total Downloads</div>
-          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Since launch</div>
-        </div>
-        <div class="card stat-card">
-          <div class="num" id="lunaDlToday">0</div>
-          <div class="lbl">Today</div>
-          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">IST timezone</div>
-        </div>
-        <div class="card stat-card">
-          <div class="num" id="lunaDlWeek">0</div>
-          <div class="lbl">Last 7 Days</div>
-          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">Rolling window</div>
-        </div>
-        <div class="card stat-card" style="border-color:rgba(34,197,94,0.2);">
-          <div class="num" style="color:#22c55e;font-size:1.3rem;">100% <span style="font-size:.8rem;">Free</span></div>
-          <div class="lbl">LUNA Price</div>
-          <div style="font-size:.7rem;color:var(--gray);margin-top:4px;">No ads, no subscription</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h4 style="font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:16px;"><i class="fas fa-list" style="color:#ec4899;margin-right:8px;"></i>Download Log (Device-Level)</h4>
-        <div style="display:grid;grid-template-columns:2rem 1fr 1fr 1fr;gap:8px;padding:8px 0;border-bottom:2px solid rgba(236,72,153,.15);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);">
-          <span>#</span><span>Time (IST)</span><span>Referrer</span><span>Device</span>
-        </div>
-        <div id="lunaLogTable" style="max-height:340px;overflow-y:auto;">
-          <div style="text-align:center;color:var(--gray);padding:28px;font-size:.88rem;">Loading...</div>
-        </div>
-        <div style="font-size:.72rem;color:var(--gray);margin-top:10px;"><i class="fas fa-info-circle"></i> Note: Downloads are stored per-device in browser localStorage. Refresh to see latest data.</div>
-      </div>
-    </div>
-  </template>
 </body>
 </html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Service Agreement Generator — TK Web Solutions</title>
+  <meta name="description" content="Generate official client service agreements and contracts with dual signature stamps, payment terms, advance/balance breakdown, and direct PDF download.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root {
+      --blue: #1a56ff;
+      --blue2: #0d3acc;
+      --bluel: #e8eeff;
+      --navy: #060d1f;
+      --navy2: #0a142e;
+      --white: #ffffff;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --accent: #00e5ff;
+      --gold: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --border: rgba(26, 86, 255, 0.12);
+    }
+    [data-theme="dark"] {
+      --navy: #030712;
+      --navy2: #090e1f;
+      --light: #0d1527;
+      --white: #111827;
+      --border: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: #f1f5f9;
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* Top Navbar */
+    .top-nav {
+      background: rgba(6, 13, 31, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+      padding: 14px 4%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-wrap { display: flex; align-items: center; gap: 10px; }
+    .brand-logo { width: 36px; height: 36px; object-fit: contain; }
+    .brand-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 800; color: #fff; }
+    .brand-title span { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-btn-ghost { background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.15); }
+    .nav-btn-ghost:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* Layout Grid */
+    .app-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 30px 4% 60px;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    @media (max-width: 1100px) {
+      .app-container { grid-template-columns: 1fr; }
+    }
+
+    /* Form Card */
+    .form-card {
+      background: #0d152b;
+      border: 1.5px solid rgba(0, 229, 255, 0.25);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .form-head {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .form-head h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-head h2 i { color: var(--accent); }
+    .form-head p { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
+
+    .field-group { margin-bottom: 16px; }
+    .field-group label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .input-box {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .input-box:focus {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+    }
+    select.input-box { cursor: pointer; }
+    select.input-box option { background: #0b1736; color: #fff; }
+    textarea.input-box { resize: vertical; min-height: 70px; }
+
+    .preset-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .chip {
+      background: rgba(26, 86, 255, 0.15);
+      border: 1px solid rgba(26, 86, 255, 0.35);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .form-btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .btn-main {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-print { background: linear-gradient(135deg, #0052ff, #00d4ff); color: #fff; box-shadow: 0 6px 20px rgba(0, 82, 255, 0.4); }
+    .btn-print:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 82, 255, 0.6); }
+    .btn-wa { background: #25d366; color: #fff; }
+    .btn-wa:hover { background: #1eb956; }
+    .btn-email { background: linear-gradient(135deg, #9333ea, #ec4899); color: #fff; }
+    .btn-email:hover { transform: translateY(-2px); }
+
+    /* Live Preview Section */
+    .preview-card {
+      background: #090e1f;
+      border: 1.5px solid rgba(0, 229, 255, 0.25);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 80px;
+    }
+    .preview-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .preview-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .preview-title span { font-size: 0.75rem; background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); padding: 3px 8px; border-radius: 20px; }
+    .preview-sheet-wrap {
+      background: #e2e8f0;
+      padding: 20px;
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <div class="brand-wrap">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <img src="logo.png" alt="TK Web Solutions" class="brand-logo" onerror="this.src='https://tkwebsolutions.in/logo.png'">
+        <div class="brand-title"><span>TK</span> Web Solutions</div>
+      </a>
+    </div>
+    <div class="nav-actions">
+      <a href="admin-dashboard.html" class="nav-btn nav-btn-ghost"><i class="fas fa-chart-line"></i> Admin Dashboard</a>
+      <a href="invoice.html" class="nav-btn nav-btn-ghost"><i class="fas fa-file-invoice"></i> Invoices</a>
+      <a href="index.html" class="nav-btn nav-btn-ghost"><i class="fas fa-home"></i> Main Site</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- LEFT: Form Inputs -->
+    <div class="form-card">
+      <div class="form-head">
+        <h2><i class="fas fa-file-signature"></i> Create Client Agreement</h2>
+        <p>Fill in customer details &amp; payment milestones to generate an official legal contract with signatures.</p>
+      </div>
+
+      <form id="agreementForm" onsubmit="event.preventDefault(); updateLivePreview();">
+        
+        <!-- Preset Services -->
+        <div class="field-group">
+          <label>Quick Preset Packages</label>
+          <div class="preset-chips">
+            <span class="chip" onclick="applyPreset('Business Website', 17999, 9000, '5–7 Days')">Business Website (₹17,999)</span>
+            <span class="chip" onclick="applyPreset('Coaching Website', 14999, 7500, '5–7 Days')">Coaching Website (₹14,999)</span>
+            <span class="chip" onclick="applyPreset('School Website', 19999, 10000, '5–7 Days')">School Website (₹19,999)</span>
+            <span class="chip" onclick="applyPreset('E-Commerce Website', 19999, 10000, '5–7 Days')">E-Commerce (₹19,999)</span>
+            <span class="chip" onclick="applyPreset('Android APK App', 14999, 8000, '5–7 Days')">Android App (₹14,999)</span>
+            <span class="chip" onclick="applyPreset('Play Store App', 24999, 12500, '7–10 Days')">Play Store App (₹24,999)</span>
+          </div>
+        </div>
+
+        <!-- Agreement ID & Date -->
+        <div class="field-row">
+          <div class="field-group">
+            <label>Agreement ID</label>
+            <input type="text" id="agrId" class="input-box" value="TK-AGR-2026-8842">
+          </div>
+          <div class="field-group">
+            <label>Agreement Date</label>
+            <input type="text" id="agrDate" class="input-box" value="">
+          </div>
+        </div>
+
+        <!-- Client Information -->
+        <div class="field-row">
+          <div class="field-group">
+            <label>Client Full Name *</label>
+            <input type="text" id="clientName" class="input-box" placeholder="e.g. Rahul Sharma" value="Rahul Sharma" required oninput="updateLivePreview()">
+          </div>
+          <div class="field-group">
+            <label>Business / Brand Name</label>
+            <input type="text" id="businessName" class="input-box" placeholder="e.g. Sharma Coaching Institute" value="Sharma Coaching Classes" oninput="updateLivePreview()">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="text" id="clientPhone" class="input-box" placeholder="e.g. 9876543210" value="9876543210" required oninput="updateLivePreview()">
+          </div>
+          <div class="field-group">
+            <label>Client Email Address</label>
+            <input type="email" id="clientEmail" class="input-box" placeholder="e.g. rahul@example.com" value="rahul@example.com" oninput="updateLivePreview()">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Client Address / Location</label>
+          <input type="text" id="clientAddress" class="input-box" placeholder="e.g. Circular Road, Bharatpur, Rajasthan" value="Bharatpur, Rajasthan" oninput="updateLivePreview()">
+        </div>
+
+        <!-- Service & Delivery -->
+        <div class="field-group">
+          <label>Target Service / Project Title *</label>
+          <input type="text" id="serviceName" class="input-box" value="Coaching Institute Website & Inquiry System" required oninput="updateLivePreview()">
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label>Delivery Timeline</label>
+            <input type="text" id="timeline" class="input-box" value="5–7 Working Days" oninput="updateLivePreview()">
+          </div>
+          <div class="field-group">
+            <label>Warranty / Support</label>
+            <input type="text" id="supportPeriod" class="input-box" value="30 Days Free Technical Support" oninput="updateLivePreview()">
+          </div>
+        </div>
+
+        <!-- Financial Breakdown -->
+        <div class="field-row">
+          <div class="field-group">
+            <label>Total Agreed Value (₹) *</label>
+            <input type="number" id="totalCost" class="input-box" value="14999" required oninput="calcBalance(); updateLivePreview();">
+          </div>
+          <div class="field-group">
+            <label>Advance Paid (₹) *</label>
+            <input type="number" id="advancePaid" class="input-box" value="7500" required oninput="calcBalance(); updateLivePreview();">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Balance Amount (Pay Later) (₹)</label>
+          <input type="number" id="balanceDue" class="input-box" value="7499" readonly style="background:rgba(255,255,255,0.02);color:#00e5ff;font-weight:700;">
+        </div>
+
+        <!-- Special Clauses -->
+        <div class="field-group">
+          <label>Special Clauses / Deliverables (Optional)</label>
+          <textarea id="customClauses" class="input-box" placeholder="Add custom features or specific deliverables here..." oninput="updateLivePreview()">Includes Admission Form, WhatsApp Lead Sync, Faculty Profiles & Mobile-First Design.</textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-btn-row">
+          <button type="button" onclick="downloadAgreementPDF()" class="btn-main btn-print">
+            <i class="fas fa-print"></i> Download / Print Official PDF
+          </button>
+          <button type="button" onclick="sendViaWhatsApp()" class="btn-main btn-wa">
+            <i class="fab fa-whatsapp"></i> Share on WhatsApp
+          </button>
+          <button type="button" onclick="sendViaEmail()" class="btn-main btn-email">
+            <i class="fas fa-envelope"></i> Send to Client Email
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- RIGHT: Live Document Preview -->
+    <div class="preview-card">
+      <div class="preview-top">
+        <div class="preview-title">
+          <i class="fas fa-eye" style="color:var(--accent);"></i> Live A4 Agreement Preview
+          <span>REAL-TIME</span>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="downloadAgreementPDF()" class="nav-btn nav-btn-ghost" style="font-size:0.75rem;padding:6px 12px;"><i class="fas fa-download"></i> PDF</button>
+          <button onclick="saveAndToast()" class="nav-btn nav-btn-ghost" style="font-size:0.75rem;padding:6px 12px;background:rgba(0,229,255,0.15);color:#00e5ff;border-color:rgba(0,229,255,0.3);"><i class="fas fa-save"></i> Save</button>
+        </div>
+      </div>
+
+      <!-- Rendered Document View -->
+      <div class="preview-sheet-wrap" id="previewContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Include Core Modules -->
+  <script src="js/payment-config.js"></script>
+  <script src="js/agreement-generator.js"></script>
+
+  <script>
+    function getFormData() {
+      var total = parseInt(document.getElementById('totalCost').value) || 0;
+      var advance = parseInt(document.getElementById('advancePaid').value) || 0;
+      var balance = total - advance;
+
+      return {
+        agreementId: document.getElementById('agrId').value.trim() || window.TK_AGREEMENT.generateAgreementId(),
+        date: document.getElementById('agrDate').value.trim() || window.TK_AGREEMENT.getISTDate(),
+        clientName: document.getElementById('clientName').value.trim() || 'Valued Client',
+        businessName: document.getElementById('businessName').value.trim() || '',
+        phone: document.getElementById('clientPhone').value.trim() || '',
+        email: document.getElementById('clientEmail').value.trim() || '',
+        address: document.getElementById('clientAddress').value.trim() || 'Bharatpur, Rajasthan',
+        serviceName: document.getElementById('serviceName').value.trim() || 'Website Development',
+        totalCost: total,
+        advancePaid: advance,
+        balanceDue: balance,
+        timeline: document.getElementById('timeline').value.trim() || '5–7 Working Days',
+        supportPeriod: document.getElementById('supportPeriod').value.trim() || '30 Days Free Technical Support',
+        customClauses: document.getElementById('customClauses').value.trim() || ''
+      };
+    }
+
+    function calcBalance() {
+      var total = parseInt(document.getElementById('totalCost').value) || 0;
+      var advance = parseInt(document.getElementById('advancePaid').value) || 0;
+      document.getElementById('balanceDue').value = Math.max(0, total - advance);
+    }
+
+    function applyPreset(service, total, advance, timeline) {
+      document.getElementById('serviceName').value = service;
+      document.getElementById('totalCost').value = total;
+      document.getElementById('advancePaid').value = advance;
+      document.getElementById('timeline').value = timeline;
+      calcBalance();
+      updateLivePreview();
+    }
+
+    function updateLivePreview() {
+      var data = getFormData();
+      var html = window.TK_AGREEMENT.buildAgreementHTML(data);
+      document.getElementById('previewContainer').innerHTML = html;
+      window.TK_AGREEMENT._currentAgreementData = data;
+    }
+
+    function downloadAgreementPDF() {
+      var data = getFormData();
+      window.TK_AGREEMENT.saveAgreement(data);
+      window.TK_AGREEMENT._currentAgreementData = data;
+      window.TK_AGREEMENT.printAgreement();
+    }
+
+    function sendViaWhatsApp() {
+      var data = getFormData();
+      window.TK_AGREEMENT.saveAgreement(data);
+      window.TK_AGREEMENT._currentAgreementData = data;
+      window.TK_AGREEMENT.shareWhatsApp();
+    }
+
+    function sendViaEmail() {
+      var data = getFormData();
+      window.TK_AGREEMENT.saveAgreement(data);
+      window.TK_AGREEMENT._currentAgreementData = data;
+      window.TK_AGREEMENT.emailAgreement();
+    }
+
+    function saveAndToast() {
+      var data = getFormData();
+      window.TK_AGREEMENT.saveAgreement(data);
+      alert('✓ Agreement #' + data.agreementId + ' saved to Dashboard Ledger!');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('agrId').value = window.TK_AGREEMENT.generateAgreementId();
+      document.getElementById('agrDate').value = window.TK_AGREEMENT.getISTDate();
+      calcBalance();
+      updateLivePreview();
+    });
+  </script>
+</body>
+</html>
