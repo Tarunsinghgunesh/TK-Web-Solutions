@@ -400,6 +400,16 @@
 
       document.getElementById('invResultBox').style.display = 'block';
       document.getElementById('invResultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      if (window._autoDownloadPDF) {
+        window._autoDownloadPDF = false;
+        setTimeout(function() {
+          viewFoundInvoice();
+          setTimeout(function() {
+            downloadPDFInvoice();
+          }, 600);
+        }, 400);
+      }
     }
 
     function viewFoundInvoice() {
@@ -503,12 +513,17 @@
       return s;
     }
 
-    // Auto-search on page load if query param present
+    // Auto-search and auto-download on page load if query param present
     window.addEventListener('DOMContentLoaded', function() {
       var params = new URLSearchParams(window.location.search);
       var inv = params.get('invoice') || params.get('inv') || params.get('receipt') || '';
       var rawPhone = params.get('phone') || params.get('mobile') || '';
       var phone = normalizeSearchPhone(rawPhone);
+      var dl = params.get('download') || params.get('dl') || params.get('print') || '';
+
+      if (dl === 'pdf' || dl === '1' || dl === 'true') {
+        window._autoDownloadPDF = true;
+      }
 
       if (inv) document.getElementById('invQuery').value = inv;
       if (phone) document.getElementById('invPhone').value = phone;

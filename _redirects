@@ -22,3 +22,13 @@ https://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 /invoice /invoice.html 200
 /verify /invoice.html 200
 /receipt /invoice.html 200
+/start-project /start-project.html 200
+/quote /quote.html 200
+/admin /admin.html 200
+/business-website /business-website.html 200
+/coaching-website /coaching-website.html 200
+/school-website /school-website.html 200
+/ecommerce-website /ecommerce-website.html 200
+/android-app-development /android-app-development.html 200
+/local-seo-bharatpur /local-seo-bharatpur.html 200
+

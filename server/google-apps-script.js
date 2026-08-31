@@ -145,7 +145,34 @@ function setupDatabase() {
   ];
   setupSheet_(ss, 'Customers', customersHeaders, '#042f2e', '#ffffff');
 
-  // 5. BUILD 'Settings' TAB
+  // 5. BUILD 'Leads' TAB (22 Columns: A to V)
+  var leadsHeaders = [
+    'Lead ID',                   // A
+    'Created At',                // B
+    'Name',                      // C
+    'Business Name',             // D
+    'Phone',                     // E
+    'Email',                     // F
+    'City',                      // G
+    'Business Type',             // H
+    'Website',                   // I
+    'Interested Service',        // J
+    'Budget',                    // K
+    'Timeline',                  // L
+    'Lead Source',               // M (Website Free Audit, Website Project Brief, WhatsApp, Direct)
+    'Lead Status',               // N (NEW, CONTACTED, REPLIED, QUALIFIED, CALL_SCHEDULED, QUOTE_SENT, NEGOTIATION, PAYMENT_PENDING, WON, LOST, FOLLOW_UP)
+    'Priority',                  // O (HOT, WARM, COLD)
+    'Notes',                     // P
+    'Last Contact',              // Q
+    'Next Follow-up',            // R
+    'Quote Amount',              // S
+    'Quotation Number',          // T
+    'Converted',                 // U (TRUE, FALSE)
+    'Updated At'                 // V
+  ];
+  setupSheet_(ss, 'Leads', leadsHeaders, '#134e4a', '#ffffff');
+
+  // 6. BUILD 'Settings' TAB
   var settingsHeaders = ['Config Key', 'Config Value', 'Description', 'Last Updated'];
   var settingsSheet = setupSheet_(ss, 'Settings', settingsHeaders, '#1f2937', '#ffffff');
   
@@ -159,17 +186,20 @@ function setupDatabase() {
       ['WEBSITE_URL', 'https://tkwebsolutions.in', 'Official Production URL', getISTTime_()],
       ['RAZORPAY_KEY_ID', 'rzp_live_T3mcmKzaGbCA8j', 'Live Razorpay Key ID', getISTTime_()],
       ['INVOICE_COUNTER', '1', 'Auto-increment counter for invoice numbers', getISTTime_()],
+      ['LEAD_COUNTER', '1', 'Auto-increment counter for lead numbers', getISTTime_()],
+      ['QUOTE_COUNTER', '1', 'Auto-increment counter for quotation numbers', getISTTime_()],
+      ['ADMIN_PIN', '8240', 'Admin dashboard access PIN', getISTTime_()],
       ['CURRENCY', 'INR', 'Default billing currency', getISTTime_()],
       ['AUTO_EMAIL_INVOICE', 'TRUE', 'Send automated invoice to customer email', getISTTime_()]
     ];
     initialSettings.forEach(function(row) { settingsSheet.appendRow(row); });
   }
 
-  // 6. Apply Conditional Formatting on 'Payments' Sheet for Statuses
+  // 7. Apply Conditional Formatting on 'Payments' Sheet for Statuses
   applyConditionalFormatting_(ss.getSheetByName('Payments'));
 
   logDiagnostic_('DATABASE_SETUP', 'Database initialized successfully on spreadsheet: ' + SPREADSHEET_ID);
-  return { success: true, message: 'TK Payment Records initialized with 5 production tabs!' };
+  return { success: true, message: 'TK Payment Records initialized with 6 production tabs!' };
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
@@ -185,9 +215,19 @@ function doGet(e) {
     return createJSONOutput_(result);
   }
 
+  if (action === 'getQuote' || action === 'viewQuote' || params.quoteId || params.quoteNo) {
+    var qResult = handleGetQuote_(params);
+    return createJSONOutput_(qResult);
+  }
+
+  if (action === 'getAdminLeads' || action === 'getAdminMetrics') {
+    var aResult = handleGetAdminLeads_(params);
+    return createJSONOutput_(aResult);
+  }
+
   return createJSONOutput_({
     status: 'online',
-    system: 'TK Web Solutions Razorpay & Invoice Engine',
+    system: 'TK Web Solutions Razorpay, Invoice & Lead Engine',
     spreadsheetId: SPREADSHEET_ID,
     timestamp: getISTTime_()
   });
@@ -231,11 +271,26 @@ function doPost(e) {
     else if (action === 'sendInvoiceEmail') {
       result = handleSendInvoiceEmail_(payload);
     }
-    // 6. Admin Metrics & Reconciliation
+    // 6. Lead Capture (Free Audit + Project Brief)
+    else if (action === 'submitLead' || action === 'createLead') {
+      result = handleSubmitLead_(payload);
+    }
+    // 7. Quotation Generation
+    else if (action === 'generateQuote' || action === 'createQuote') {
+      result = handleGenerateQuote_(payload);
+    }
+    // 8. Admin Lead & Pipeline Management
+    else if (action === 'getAdminLeads') {
+      result = handleGetAdminLeads_(payload);
+    }
+    else if (action === 'updateLead' || action === 'updateLeadStatus') {
+      result = handleUpdateLeadStatus_(payload);
+    }
+    // 9. Admin Metrics & Reconciliation
     else if (action === 'getAdminMetrics') {
       result = handleGetAdminMetrics_(payload);
     }
-    // 7. Manual Past Payment Reconciliation
+    // 10. Manual Past Payment Reconciliation
     else if (action === 'reconcilePayment') {
       result = handleReconcilePayment_(payload);
     }
@@ -941,26 +996,442 @@ function buildPrintableInvoiceHTML_(record) {
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
-// 9. MANUAL RECONCILIATION HELPER
+// 9. LEAD CAPTURE SYSTEM (FREE AUDIT & PROJECT BRIEF)
 // ════════════════════════════════════════════════════════════════════════════════
-function handleReconcilePayment_(payload) {
-  var paymentId = payload.paymentId || payload.razorpay_payment_id || '';
-  if (!paymentId) return { success: false, error: 'Payment ID is required.' };
 
-  return handleVerifyPayment_({
-    razorpay_payment_id: paymentId,
-    razorpay_order_id: payload.orderId || '',
-    amount: payload.amount || 1,
-    name: payload.name || 'Tarun Singh',
-    phone: payload.phone || '9079368240',
-    email: payload.email || 'tarunsinghgunesh@gmail.com',
-    service: payload.service || 'Live ₹1 Test Payment'
-  });
+function handleSubmitLead_(payload) {
+  var name = (payload.name || '').trim();
+  var phone = (payload.phone || payload.mobile || '').trim();
+  var email = (payload.email || '').trim();
+  var businessName = (payload.businessName || payload.business || '').trim();
+  var city = (payload.city || 'Bharatpur').trim();
+  var businessType = (payload.businessType || 'Commercial').trim();
+  var website = (payload.website || payload.currentWebsite || '').trim();
+  var service = (payload.service || payload.interestedService || 'Website Development').trim();
+  var budget = (payload.budget || '₹10,000–₹20,000').trim();
+  var timeline = (payload.timeline || '1–2 Weeks').trim();
+  var source = (payload.source || 'Website Lead').trim();
+  var notes = (payload.notes || payload.requirements || '').trim();
+
+  if (!name || (!phone && !email)) {
+    return { success: false, error: 'Name and Phone or Email are required.' };
+  }
+
+  var ss = getSpreadsheet_();
+  var leadsSheet = ss.getSheetByName('Leads');
+  if (!leadsSheet) {
+    setupDatabase();
+    leadsSheet = ss.getSheetByName('Leads');
+  }
+
+  var leadId = 'LEAD-2026-' + ('0000' + (leadsSheet.getLastRow())).slice(-4);
+  var createdAt = getISTTime_();
+  
+  // Auto calculate priority
+  var priority = 'WARM';
+  if (budget.indexOf('35,000') !== -1 || budget.indexOf('50,000') !== -1 || timeline.toUpperCase() === 'ASAP') {
+    priority = 'HOT';
+  } else if (budget.indexOf('Under') !== -1) {
+    priority = 'COLD';
+  }
+
+  var leadRow = [
+    leadId,             // A: Lead ID
+    createdAt,          // B: Created At
+    name,               // C: Name
+    businessName,       // D: Business Name
+    phone,              // E: Phone
+    email,              // F: Email
+    city,               // G: City
+    businessType,       // H: Business Type
+    website,            // I: Website
+    service,            // J: Interested Service
+    budget,             // K: Budget
+    timeline,           // L: Timeline
+    source,             // M: Lead Source
+    'NEW',              // N: Lead Status
+    priority,           // O: Priority (HOT, WARM, COLD)
+    notes,              // P: Notes
+    createdAt,          // Q: Last Contact
+    '',                 // R: Next Follow-up
+    '',                 // S: Quote Amount
+    '',                 // T: Quotation Number
+    'FALSE',            // U: Converted
+    createdAt           // V: Updated At
+  ];
+
+  leadsSheet.appendRow(leadRow);
+
+  // Send instant alert email to Tarun Singh
+  try {
+    MailApp.sendEmail({
+      to: 'tkwebsolution1301@gmail.com',
+      subject: '🔥 New Lead Captured: ' + name + ' (' + service + ' • ' + budget + ')',
+      htmlBody: `
+        <div style="font-family:Arial,sans-serif;padding:20px;background:#090e1f;color:#fff;border-radius:12px;">
+          <h2 style="color:#00e5ff;margin-top:0;">⚡ New Client Lead: ${leadId}</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Phone:</strong> <a href="tel:${phone}" style="color:#4ade80;">${phone}</a> | <a href="https://wa.me/${phone.replace(/\D/g,'')}" style="color:#00e5ff;">WhatsApp Chat</a></p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Business:</strong> ${businessName} (${city})</p>
+          <p><strong>Service:</strong> ${service}</p>
+          <p><strong>Budget:</strong> ${budget} | <strong>Timeline:</strong> ${timeline}</p>
+          <p><strong>Source:</strong> ${source}</p>
+          <p><strong>Notes:</strong> ${notes || 'None'}</p>
+          <div style="margin-top:20px;padding:12px;background:rgba(255,255,255,0.08);border-radius:8px;">
+            <a href="https://tkwebsolutions.in/admin.html" style="color:#00e5ff;font-weight:bold;">Open Admin Sales Dashboard &rarr;</a>
+          </div>
+        </div>
+      `,
+      name: 'TK Web Solutions CRM'
+    });
+  } catch (err) {
+    Logger.log('Lead alert email error: ' + err);
+  }
+
+  logDiagnostic_('LEAD_SUBMITTED', 'Lead: ' + leadId + ' | Name: ' + name + ' | Priority: ' + priority);
+
+  return {
+    success: true,
+    leadId: leadId,
+    message: 'Thank you ' + name + '! Your inquiry has been received. Tarun Singh will review your requirements and reach out within 2-4 hours.'
+  };
 }
 
 // ════════════════════════════════════════════════════════════════════════════════
-// 10. ADMIN METRICS
+// 10. ADMIN LEAD & SALES PIPELINE MANAGEMENT
 // ════════════════════════════════════════════════════════════════════════════════
+
+function handleGetAdminLeads_(payload) {
+  var pin = payload.pin || payload.token || '';
+  // Simple authentication: PIN 8240 or master key
+  if (pin !== '8240' && pin !== 'TK_ADMIN_2026') {
+    return { success: false, error: 'Unauthorized. Invalid Admin PIN.' };
+  }
+
+  var ss = getSpreadsheet_();
+  var leadsSheet = ss.getSheetByName('Leads');
+  if (!leadsSheet) {
+    setupDatabase();
+    leadsSheet = ss.getSheetByName('Leads');
+  }
+
+  var data = leadsSheet.getDataRange().getValues();
+  var leads = [];
+  var metrics = {
+    newLeads: 0,
+    hotLeads: 0,
+    followUpsToday: 0,
+    quotesSent: 0,
+    paymentPending: 0,
+    wonProjects: 0,
+    lostLeads: 0,
+    pipelineValue: 0,
+    monthlyRevenue: 0
+  };
+
+  var todayDateStr = (new Date()).toISOString().slice(0, 10);
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var status = String(row[13] || 'NEW').toUpperCase();
+    var priority = String(row[14] || 'WARM').toUpperCase();
+    var quoteAmt = parseFloat(row[18] || 0);
+
+    if (status === 'NEW') metrics.newLeads++;
+    if (priority === 'HOT' && status !== 'WON' && status !== 'LOST') metrics.hotLeads++;
+    if (status === 'QUOTE_SENT') metrics.quotesSent++;
+    if (status === 'PAYMENT_PENDING') metrics.paymentPending++;
+    if (status === 'WON') metrics.wonProjects++;
+    if (status === 'LOST') metrics.lostLeads++;
+
+    if (quoteAmt > 0 && status !== 'LOST') {
+      metrics.pipelineValue += quoteAmt;
+    }
+
+    leads.unshift({
+      leadId: row[0],
+      createdAt: row[1],
+      name: row[2],
+      businessName: row[3],
+      phone: row[4],
+      email: row[5],
+      city: row[6],
+      businessType: row[7],
+      website: row[8],
+      service: row[9],
+      budget: row[10],
+      timeline: row[11],
+      source: row[12],
+      status: status,
+      priority: priority,
+      notes: row[15],
+      lastContact: row[16],
+      nextFollowUp: row[17],
+      quoteAmount: row[18],
+      quoteNo: row[19],
+      converted: row[20],
+      updatedAt: row[21]
+    });
+  }
+
+  // Calculate actual revenue from Payments sheet
+  var paymentsSheet = ss.getSheetByName('Payments');
+  if (paymentsSheet) {
+    var pData = paymentsSheet.getDataRange().getValues();
+    for (var p = 1; p < pData.length; p++) {
+      var pStatus = String(pData[p][14] || '').toUpperCase();
+      if (pStatus === 'SUCCESS' || pStatus === 'CAPTURED') {
+        metrics.monthlyRevenue += parseFloat(pData[p][11] || 0);
+      }
+    }
+  }
+
+  return {
+    success: true,
+    metrics: metrics,
+    leads: leads
+  };
+}
+
+function handleUpdateLeadStatus_(payload) {
+  var pin = payload.pin || payload.token || '';
+  if (pin !== '8240' && pin !== 'TK_ADMIN_2026') {
+    return { success: false, error: 'Unauthorized.' };
+  }
+
+  var leadId = payload.leadId || '';
+  if (!leadId) return { success: false, error: 'Lead ID required.' };
+
+  var ss = getSpreadsheet_();
+  var leadsSheet = ss.getSheetByName('Leads');
+  var data = leadsSheet.getDataRange().getValues();
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === leadId) {
+      var rowIdx = i + 1;
+      if (payload.status) leadsSheet.getRange(rowIdx, 14).setValue(payload.status); // Col N: Status
+      if (payload.priority) leadsSheet.getRange(rowIdx, 15).setValue(payload.priority); // Col O: Priority
+      if (payload.notes) leadsSheet.getRange(rowIdx, 16).setValue(payload.notes); // Col P: Notes
+      if (payload.nextFollowUp) leadsSheet.getRange(rowIdx, 18).setValue(payload.nextFollowUp); // Col R: Follow-up
+      if (payload.quoteAmount) leadsSheet.getRange(rowIdx, 19).setValue(payload.quoteAmount); // Col S: Quote Amt
+      if (payload.quoteNo) leadsSheet.getRange(rowIdx, 20).setValue(payload.quoteNo); // Col T: Quote No
+      if (payload.status === 'WON') leadsSheet.getRange(rowIdx, 21).setValue('TRUE'); // Col U: Converted
+      leadsSheet.getRange(rowIdx, 22).setValue(getISTTime_()); // Col V: Updated At
+
+      return { success: true, message: 'Lead ' + leadId + ' updated successfully.' };
+    }
+  }
+
+  return { success: false, error: 'Lead ID not found.' };
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 11. PROFESSIONAL QUOTATION GENERATOR (TK-QUO-2026-XXXX)
+// ════════════════════════════════════════════════════════════════════════════════
+
+function handleGenerateQuote_(payload) {
+  var customer = payload.customer || payload.name || 'Client';
+  var business = payload.business || '';
+  var phone = payload.phone || '';
+  var email = payload.email || '';
+  var service = payload.service || 'Custom Website Development';
+  var scope = payload.scope || 'Professional design, development, SEO, WhatsApp integration & 30-day technical support';
+  var features = payload.features || ['Mobile-First Responsive Design', 'Lead Capture Form', 'WhatsApp Direct Integration', 'Fast Cloud Deployment'];
+  var timeline = payload.timeline || '5–7 Business Days';
+  var price = parseFloat(payload.price || 14999);
+  var paymentTerms = payload.paymentTerms || '50% Advance Milestone, 50% Before Final Launch';
+  var validity = payload.validity || '15 Days from Issue Date';
+  var notes = payload.notes || 'Includes 30 days of post-launch warranty and direct founder support.';
+
+  var ss = getSpreadsheet_();
+  var quoteNo = 'TK-QUO-2026-' + ('0000' + (Math.floor(Math.random() * 9000) + 1000)).slice(-4);
+  var datetime = getISTTime_();
+
+  var quoteData = {
+    quoteNo: quoteNo,
+    customer: customer,
+    business: business,
+    phone: phone,
+    email: email,
+    service: service,
+    scope: scope,
+    features: Array.isArray(features) ? features : [features],
+    timeline: timeline,
+    price: price,
+    paymentTerms: paymentTerms,
+    validity: validity,
+    notes: notes,
+    datetime: datetime
+  };
+
+  // Generate vector PDF
+  var html = buildPrintableQuoteHTML_(quoteData);
+  var pdfBlob = HtmlService.createHtmlOutput(html).getAs('application/pdf');
+  pdfBlob.setName('TK-Web-Solutions-Quotation-' + quoteNo + '.pdf');
+
+  // If email provided, send to client
+  if (email && email.indexOf('@') !== -1) {
+    try {
+      MailApp.sendEmail({
+        to: email,
+        subject: 'TK Web Solutions — Official Quotation ' + quoteNo + ' for ' + customer,
+        htmlBody: `
+          <div style="font-family:Arial,sans-serif;background:#090e1f;color:#fff;padding:24px;border-radius:14px;max-width:600px;">
+            <h2 style="color:#00e5ff;margin-top:0;">Official Project Quotation</h2>
+            <p>Dear <strong>${customer}</strong>,</p>
+            <p>Thank you for considering TK Web Solutions for your project. Please find attached your customized project proposal and quotation.</p>
+            <div style="background:rgba(255,255,255,0.06);padding:16px;border-radius:8px;margin:16px 0;">
+              <p><strong>Quotation Number:</strong> ${quoteNo}</p>
+              <p><strong>Service:</strong> ${service}</p>
+              <p><strong>Total Project Investment:</strong> <span style="font-size:18px;color:#22c55e;font-weight:bold;">₹${price.toLocaleString('en-IN')}</span></p>
+              <p><strong>Estimated Timeline:</strong> ${timeline}</p>
+              <p><strong>Payment Structure:</strong> ${paymentTerms}</p>
+            </div>
+            <p style="color:#00e5ff;">📎 Your detailed PDF Quotation is attached to this email.</p>
+            <div style="text-align:center;margin:24px 0;">
+              <a href="https://wa.me/919079368240?text=${encodeURIComponent('Hi Tarun, I reviewed Quotation ' + quoteNo + ' and would like to proceed with the project.')}" style="background:linear-gradient(135deg,#0052ff,#00d4ff);color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Accept & Start Project on WhatsApp &rarr;</a>
+            </div>
+            <p style="font-size:11px;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;">Tarun Singh • Founder & Lead Developer, TK Web Solutions • +91 90793 68240</p>
+          </div>
+        `,
+        attachments: [pdfBlob],
+        name: 'TK Web Solutions • Tarun Singh',
+        replyTo: 'tkwebsolution1301@gmail.com'
+      });
+    } catch (e) {
+      Logger.log('Quote email error: ' + e);
+    }
+  }
+
+  // Update lead if leadId provided
+  if (payload.leadId) {
+    handleUpdateLeadStatus_({
+      pin: '8240',
+      leadId: payload.leadId,
+      status: 'QUOTE_SENT',
+      quoteAmount: price,
+      quoteNo: quoteNo
+    });
+  }
+
+  return {
+    success: true,
+    quoteNo: quoteNo,
+    quoteData: quoteData,
+    message: 'Quotation ' + quoteNo + ' generated successfully!'
+  };
+}
+
+function handleGetQuote_(payload) {
+  var quoteNo = payload.quoteNo || payload.quoteId || payload.id || '';
+  if (!quoteNo) return { success: false, error: 'Quotation Number required.' };
+
+  // Return formatted quote shell or lookup
+  return {
+    success: true,
+    quoteNo: quoteNo,
+    url: 'https://tkwebsolutions.in/quote.html?id=' + encodeURIComponent(quoteNo)
+  };
+}
+
+function buildPrintableQuoteHTML_(q) {
+  var formattedPrice = '₹' + parseInt(q.price || 0).toLocaleString('en-IN');
+  var featuresList = (q.features || []).map(function(f) {
+    return '<li style="margin-bottom:6px;">' + f + '</li>';
+  }).join('');
+
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Quotation — ${q.quoteNo}</title>
+      <style>
+        body { font-family: Arial, sans-serif; color: #0d1635; margin: 0; padding: 20px; background: #fff; }
+        .box { border: 1.5px solid #0052ff; border-radius: 14px; padding: 32px; max-width: 740px; margin: 0 auto; }
+        .hdr { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #e2e8f0; padding-bottom: 18px; margin-bottom: 20px; }
+        .title { font-size: 22px; font-weight: bold; color: #0b1736; margin: 0 0 3px; }
+        .tag { font-size: 11px; font-style: italic; color: #4338ca; }
+        .pill { background: linear-gradient(135deg, #0052ff, #00d4ff); color: #fff; font-size: 10px; font-weight: bold; letter-spacing: 1px; padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
+        .grid { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 20px; font-size: 12.5px; }
+        .scope-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 18px; margin-bottom: 20px; }
+        .ftr { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1.5px solid #e2e8f0; padding-top: 18px; font-size: 11px; }
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <div class="hdr">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <img src="https://tkwebsolutions.in/logo.png" style="width:60px;height:60px;object-fit:contain;border-radius:12px;" alt="Logo" onerror="this.style.display='none'" />
+            <div>
+              <div class="title">TK Web Solutions</div>
+              <div class="tag">"From Dreams.... to Digital Reality"</div>
+              <div style="font-size:11px;color:#64748b;margin-top:4px;">Bharatpur, Rajasthan • +91 90793 68240 • tkwebsolution1301@gmail.com</div>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div class="pill">OFFICIAL PROPOSAL &amp; QUOTE</div>
+            <div style="font-family:monospace;font-size:14px;font-weight:bold;">${q.quoteNo}</div>
+            <div style="font-size:11px;color:#64748b;margin-top:3px;">Date: ${q.datetime}</div>
+            <div style="font-size:11px;color:#ea580c;font-weight:bold;margin-top:3px;">Validity: ${q.validity}</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <strong style="color:#64748b;font-size:10px;text-transform:uppercase;">PREPARED FOR:</strong><br>
+            <strong style="font-size:15px;color:#0f172a;">${q.customer}</strong><br>
+            ${q.business ? 'Business: ' + q.business + '<br>' : ''}
+            ${q.phone ? 'Phone: ' + q.phone + '<br>' : ''}
+            ${q.email ? 'Email: ' + q.email + '<br>' : ''}
+          </div>
+          <div style="text-align:right;">
+            <strong style="color:#64748b;font-size:10px;text-transform:uppercase;">PROJECT INVESTMENT:</strong><br>
+            <div style="font-size:22px;font-weight:900;color:#0052ff;">${formattedPrice}</div>
+            <div style="font-size:11.5px;color:#475569;margin-top:2px;">Timeline: <strong>${q.timeline}</strong></div>
+          </div>
+        </div>
+
+        <div class="scope-box">
+          <h3 style="font-size:14px;color:#0b1736;margin:0 0 8px;">Scope of Work: ${q.service}</h3>
+          <p style="font-size:12.5px;color:#334155;line-height:1.5;margin:0 0 12px;">${q.scope}</p>
+          <strong style="font-size:11.5px;color:#0b1736;">Key Deliverables &amp; Inclusions:</strong>
+          <ul style="font-size:12px;color:#475569;margin:8px 0 0;padding-left:20px;">
+            ${featuresList}
+          </ul>
+        </div>
+
+        <div style="background:#f1f5f9;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:12px;">
+          <strong>Payment Structure:</strong> ${q.paymentTerms}<br>
+          <strong>Founder Support:</strong> ${q.notes}
+        </div>
+
+        <div class="ftr">
+          <div>
+            <strong>Next Steps:</strong><br>
+            1. Review &amp; accept the quotation on WhatsApp (+91 90793 68240).<br>
+            2. Transfer initial milestone advance.<br>
+            3. Project development kicks off immediately.
+          </div>
+          <div style="text-align:center;border:1px dashed #cbd5e1;border-radius:10px;padding:12px 18px;min-width:190px;background:#fafafa;">
+            <img src="https://tkwebsolutions.in/assets/tarun-singh-signature.png" style="height:58px;max-width:180px;object-fit:contain;margin:0 auto 4px;display:block;" alt="Tarun Singh Signature" />
+            <div style="width:100%;height:1px;background:#cbd5e1;margin:4px 0 6px;"></div>
+            <div style="font-size:12px;font-weight:bold;color:#0b1736;">Tarun Singh</div>
+            <div style="font-size:10px;color:#64748b;">Founder &amp; Lead Developer</div>
+            <div style="font-size:10.5px;font-weight:bold;color:#0052ff;">TK Web Solutions</div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 12. ADMIN PAYMENT METRICS & RECONCILIATION
+// ════════════════════════════════════════════════════════════════════════════════
+
 function handleGetAdminMetrics_(payload) {
   var ss = getSpreadsheet_();
   var paymentsSheet = ss.getSheetByName('Payments');
@@ -1008,6 +1479,21 @@ function handleGetAdminMetrics_(payload) {
       lastUpdated: getISTTime_()
     }
   };
+}
+
+function handleReconcilePayment_(payload) {
+  var paymentId = payload.paymentId || payload.razorpay_payment_id || '';
+  if (!paymentId) return { success: false, error: 'Payment ID is required.' };
+
+  return handleVerifyPayment_({
+    razorpay_payment_id: paymentId,
+    razorpay_order_id: payload.orderId || '',
+    amount: payload.amount || 1,
+    name: payload.name || 'Tarun Singh',
+    phone: payload.phone || '9079368240',
+    email: payload.email || 'tarunsinghgunesh@gmail.com',
+    service: payload.service || 'Live ₹1 Test Payment'
+  });
 }
 
 // ════════════════════════════════════════════════════════════════════════════════

@@ -1,12 +1,13 @@
 /**
- * TK Web Solutions — Central Payment & Service Catalog Configuration
- * Single source of truth for services, pricing, maintenance plans, and business details.
+ * TK Web Solutions — Central Business, Pricing & Service Catalog Configuration
+ * Single source of truth for services, standardized pricing, maintenance plans, lead capture, and WhatsApp CTAs.
  */
 
 window.TK_CONFIG = {
   business: {
     name: "TK Web Solutions",
     tagline: "From Dreams.... to Digital Reality",
+    positioning: "Founder-led Web & App Development Studio",
     founder: "Tarun Singh",
     founderTitle: "Founder & Lead Developer",
     education: "BBA in Digital Marketing • Manipal University Jaipur",
@@ -19,6 +20,7 @@ window.TK_CONFIG = {
     signaturePath: "assets/tarun-singh-signature.png",
     upiId: "9079368240@ybl",
     invoicePrefix: "TK-INV-2026-",
+    quotePrefix: "TK-QUO-2026-",
     currency: "INR",
     currencySymbol: "₹"
   },
@@ -32,89 +34,226 @@ window.TK_CONFIG = {
   api: {
     appsScriptUrl: "https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec",
     spreadsheetId: "1MEpLHMm4ShYWsaJBH7jN1L59WKA81JwMsP_mmmRU06M",
-    backendUrl: "/api" // Node.js / Serverless API mount point
+    backendUrl: "/api"
   },
 
-  // Central Service Catalog (Website Services, Apps, Maintenance & Support)
+  // 3 Primary High-Impact Sales Offers (Homepage focus)
+  offers: [
+    {
+      id: "offer-online",
+      title: "Get Your Business Online",
+      subtitle: "Professional Business Website",
+      startingPrice: 9999,
+      ctaText: "GET FREE DEMO",
+      ctaLink: "https://wa.me/919079368240?text=" + encodeURIComponent("Hi Tarun, I found TK Web Solutions and I'm interested in getting a professional website for my business. Please share the details.")
+    },
+    {
+      id: "offer-local-seo",
+      title: "Get More Local Customers",
+      subtitle: "Website + Local SEO & Online Presence",
+      startingPrice: 14999,
+      ctaText: "GET FREE AUDIT",
+      ctaLink: "#free-audit"
+    },
+    {
+      id: "offer-app",
+      title: "Turn Your Business Into An App",
+      subtitle: "Native Android Application Development",
+      startingPrice: 14999,
+      ctaText: "DISCUSS MY APP",
+      ctaLink: "https://wa.me/919079368240?text=" + encodeURIComponent("Hi Tarun, I'm interested in developing an Android app for my business. I would like to discuss my requirements.")
+    }
+  ],
+
+  // Central Standard Price List (Single Source of Truth)
   catalog: {
     websites: [
-      { id: "portfolio-web", name: "Portfolio Website", price: 9999, category: "Website", delivery: "5-7 Days", desc: "Personal branding, portfolio showcase, bio, contact & social links" },
-      { id: "emitra-web", name: "E-Mitra Website", price: 11999, category: "Website", delivery: "5-7 Days", desc: "Online service list, certificate assistance, rate card & customer lead form" },
-      { id: "redesign-web", name: "Website Redesign", price: 11999, category: "Website", delivery: "5-7 Days", desc: "Modern visual upgrade, 100% mobile responsiveness, speed optimization" },
-      { id: "starter-web", name: "Starter Website", price: 14999, category: "Website", delivery: "5-7 Days", desc: "Fast 5-page business site, modern UI, SEO essentials, WhatsApp CTA" },
-      { id: "coaching-web", name: "Coaching Website", price: 14999, category: "Website", delivery: "5-7 Days", desc: "Batches, fee structure, faculty profiles, results & student inquiry form" },
-      { id: "business-web", name: "Business Website", price: 17999, category: "Website", delivery: "5-7 Days", desc: "Full commercial presence, service showcase, trust badges & lead capture" },
-      { id: "school-web", name: "School Website", price: 19999, category: "Website", delivery: "7-10 Days", desc: "Admissions, notices, faculty directory, gallery & parent inquiry system" },
-      { id: "ecommerce-web", name: "E-Commerce Website", price: 19999, category: "Website", delivery: "7-10 Days", desc: "Product catalog, cart, online payment gateway & order notification system" }
+      {
+        id: "starter-web",
+        name: "Starter Business Website",
+        price: 9999,
+        category: "Website",
+        delivery: "5-7 Days",
+        ctaText: "GET MY WEBSITE",
+        badge: "Essential",
+        desc: "For small businesses that need a clean, professional online presence.",
+        features: [
+          "Responsive mobile-first website (Up to 5 sections/pages)",
+          "Business overview, services & contact section",
+          "One-click WhatsApp & call integration",
+          "Interactive Google Maps location embed",
+          "Direct inquiry & lead contact form",
+          "Basic SEO-ready meta & speed optimization",
+          "Fast cloud hosting setup & domain connection",
+          "30 days founder-level technical warranty & support"
+        ]
+      },
+      {
+        id: "pro-web",
+        name: "Professional Business Website",
+        price: 14999,
+        category: "Website",
+        delivery: "5-7 Days",
+        ctaText: "GET A FREE DEMO",
+        badge: "Most Popular",
+        desc: "For businesses wanting a stronger commercial brand and higher lead conversions.",
+        features: [
+          "Everything in Starter Plan",
+          "Multi-page structured layout with high-converting UI/UX",
+          "Dedicated lead capture & inquiry forms",
+          "Social media integration & trust badges",
+          "Enhanced on-page SEO & JSON-LD schema markup",
+          "Speed & mobile responsiveness testing",
+          "30 days dedicated support & minor updates"
+        ]
+      },
+      {
+        id: "business-coaching-pro",
+        name: "Business / Coaching Pro",
+        price: 19999,
+        category: "Website",
+        delivery: "7-10 Days",
+        ctaText: "DISCUSS MY WEBSITE",
+        badge: "Growth",
+        desc: "For coaching institutes, schools, consultants, and established service businesses.",
+        features: [
+          "Everything in Professional Plan",
+          "Batches, fee structure, faculty profiles & gallery",
+          "Student/client inquiry & admission capture form",
+          "Notice board / updates section",
+          "Local SEO optimization (Google Business Profile ready)",
+          "Interactive WhatsApp direct lead routing",
+          "30 days founder assistance & warranty"
+        ]
+      },
+      {
+        id: "ecommerce-web",
+        name: "E-Commerce Website",
+        price: 24999,
+        isStartingFrom: true,
+        category: "Website",
+        delivery: "10-14 Days",
+        ctaText: "GET E-COMMERCE QUOTE",
+        badge: "Commercial",
+        desc: "For online stores selling products with online payment and ordering workflows.",
+        features: [
+          "Complete product catalog with categories & search",
+          "Shopping cart & direct WhatsApp order system",
+          "Razorpay / UPI online payment gateway setup",
+          "Order notification & client invoice generation",
+          "Mobile-optimized checkout & shipping configuration",
+          "Final price tailored to product count & admin workflow",
+          "30 days technical support & staff guidance"
+        ]
+      }
     ],
 
     applications: [
-      { id: "android-apk", name: "Android App (APK)", price: 14999, category: "Application", delivery: "7-10 Days", desc: "Fast Android application APK with custom branding & offline capability" },
-      { id: "playstore-app", name: "Play Store App", price: 24999, category: "Application", delivery: "10-14 Days", desc: "Complete Google Play Store app with policy compliance & publication setup" },
-      { id: "cross-platform-app", name: "Android + iOS App", price: 44999, category: "Application", delivery: "14-21 Days", desc: "Unified Flutter codebase running natively on both Android and iOS devices" }
+      {
+        id: "android-apk",
+        name: "Android App (APK)",
+        price: 14999,
+        isStartingFrom: true,
+        category: "Application",
+        delivery: "7-10 Days",
+        ctaText: "DISCUSS MY APP",
+        badge: "Fast Delivery",
+        desc: "Direct shareable Android APK for client portfolios, staff, or customer utilities.",
+        features: [
+          "Native Android app built with modern Android Studio / Flutter",
+          "Direct APK file — easy to share on WhatsApp or website download",
+          "Push notifications & offline usability",
+          "WhatsApp lead & contact buttons",
+          "Custom branding, logo, and smooth UI/UX",
+          "Final price tailored to exact feature requirements"
+        ]
+      },
+      {
+        id: "playstore-app",
+        name: "Android + Play Store",
+        price: 24999,
+        isStartingFrom: true,
+        category: "Application",
+        delivery: "10-14 Days",
+        ctaText: "BUILD MY APP",
+        badge: "Full Launch",
+        desc: "Complete Android application published directly on the Google Play Store.",
+        features: [
+          "Everything in Android App plan",
+          "Google Play Store submission & policy compliance setup",
+          "App icon, store screenshots & promotional graphics",
+          "Push notifications & analytics integration",
+          "Play Console release management & guidance"
+        ]
+      },
+      {
+        id: "custom-app",
+        name: "Custom Application",
+        price: 39999,
+        isStartingFrom: true,
+        category: "Application",
+        delivery: "14-21 Days",
+        ctaText: "REQUEST CUSTOM QUOTE",
+        badge: "Enterprise",
+        desc: "For advanced portals, multi-role management dashboards, and custom software systems.",
+        features: [
+          "Tailored full-stack application architecture",
+          "Admin panel, database & role-based authentication",
+          "API integrations & custom workflow automation",
+          "Quotation-based scope with clear milestone delivery"
+        ]
+      }
     ],
 
-    // TK Web Solutions Care & Support Plans (Monthly / Recurring)
+    // TK Web Solutions Care & Support Plans (Recurring Revenue)
     maintenance: [
       {
-        id: "care-basic",
-        name: "Basic Care",
-        price: 1499,
+        id: "care-standard",
+        name: "TK Web Solutions Care & Support",
+        price: 2999,
         interval: "month",
         category: "Maintenance",
-        badge: "Essential",
-        desc: "Ideal for small websites needing routine checks and regular minor updates.",
+        badge: "Recommended",
+        ctaText: "KEEP MY WEBSITE RUNNING",
+        desc: "Keep your website secure, fast, updated and error-free every month.",
         features: [
-          "1 content or image update per month",
-          "Monthly speed & uptime monitoring",
-          "Core software & security check",
-          "Standard email & WhatsApp support (24-48h)"
-        ]
-      },
-      {
-        id: "care-business",
-        name: "Business Care",
-        price: 3499,
-        interval: "month",
-        category: "Maintenance",
-        badge: "Most Popular",
-        desc: "For active coaching institutes, schools, and growing commercial businesses.",
-        features: [
-          "Up to 4 content / banner / batch updates",
-          "Bi-weekly cloud backups & uptime check",
-          "Priority WhatsApp & phone support (12-24h)",
-          "Monthly performance & SEO review report",
-          "Minor styling & layout adjustments"
-        ]
-      },
-      {
-        id: "care-growth",
-        name: "Growth Care",
-        price: 6999,
-        interval: "month",
-        category: "Maintenance",
-        badge: "Pro Dedicated",
-        desc: "Direct founder-level priority support for mission-critical digital platforms.",
-        features: [
-          "Unlimited routine text/image/page updates",
-          "Weekly automated cloud backups",
-          "Direct founder-level WhatsApp priority line",
-          "Monthly feature improvements & optimization",
-          "DNS, domain & server health management",
-          "Emergency bugfix turnaround within 6 hours"
+          "Technical maintenance & uptime monitoring",
+          "Up to 3 minor content / banner / text updates per month",
+          "Website health checks & broken links repair",
+          "Core security checks & cloud backup",
+          "Priority WhatsApp support directly from founder"
         ]
       }
     ],
 
     addons: [
-      { id: "addon-maintenance", name: "Website Maintenance (One-Time)", price: 2499, category: "Support", desc: "Full site health check, speed cleanup & broken links fix" },
-      { id: "addon-content", name: "Content / Banner Update", price: 1499, category: "Support", desc: "New pages, batch updates, pricing changes or banner refreshes" },
-      { id: "addon-support", name: "Technical Support / Debugging", price: 1999, category: "Support", desc: "Fixing layout errors, script bugs, forms, or API connections" },
-      { id: "addon-hosting", name: "Hosting / Deployment Setup", price: 2999, category: "Support", desc: "Custom domain connection, SSL certificate, CDN & Cloudflare setup" },
+      { id: "addon-audit", name: "Free 5-Minute Website Audit", price: 0, category: "LeadMagnet", desc: "Expert assessment of your website or online presence" },
+      { id: "addon-maintenance", name: "Website Maintenance (Monthly)", price: 2999, category: "Support", desc: "TK Web Solutions Care & Support Plan" },
+      { id: "addon-advance", name: "Advance Project Milestone Payment", price: 0, isCustom: true, category: "Custom", desc: "Advance payment towards your agreed project scope" },
+      { id: "addon-remaining", name: "Final Project Delivery Payment", price: 0, isCustom: true, category: "Custom", desc: "Final balance payment upon project sign-off" },
       { id: "addon-test", name: "Live ₹1 Test Payment", price: 1, category: "Test", desc: "Live instant ₹1 test payment for QR/UPI verification" },
-      { id: "addon-advance", name: "Advance Project Payment", price: 0, isCustom: true, category: "Custom", desc: "Custom advance milestone payment towards your project" },
-      { id: "addon-remaining", name: "Remaining Project Payment", price: 0, isCustom: true, category: "Custom", desc: "Final balance payment upon project sign-off" },
-      { id: "addon-custom", name: "Other Digital Service", price: 0, isCustom: true, category: "Custom", desc: "Custom tailored service agreed with TK Web Solutions" }
+      { id: "addon-custom", name: "Custom Tailored Digital Service", price: 0, isCustom: true, category: "Custom", desc: "Custom tailored service agreed with TK Web Solutions" }
     ]
+  },
+
+  // WhatsApp Intent Message Templates
+  whatsapp: {
+    businessWebsite: "Hi Tarun, I found TK Web Solutions and I'm interested in getting a professional website for my business. Please share the details.",
+    androidApp: "Hi Tarun, I'm interested in developing an Android app for my business. I would like to discuss my requirements.",
+    freeAudit: "Hi Tarun, I would like to get a free website/online presence audit for my business.",
+    ecommerce: "Hi Tarun, I'm interested in an e-commerce website and would like to discuss my requirements.",
+    customProject: "Hi Tarun, I have a custom digital project and would like to discuss the requirements with you.",
+    referral: "Hi Tarun, I know a business that needs a website or app. I would like to refer them to TK Web Solutions.",
+    general: "Hi Tarun, I'm interested in discussing a project with TK Web Solutions."
+  },
+
+  // Helper Methods
+  getWhatsAppUrl: function(type, customText) {
+    var msg = customText || this.whatsapp[type] || this.whatsapp.general;
+    return "https://wa.me/" + this.business.phoneClean + "?text=" + encodeURIComponent(msg);
+  },
+
+  formatINR: function(amount) {
+    return "₹" + parseInt(amount || 0).toLocaleString("en-IN");
   }
 };

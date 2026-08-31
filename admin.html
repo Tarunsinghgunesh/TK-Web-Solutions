@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sales &amp; Lead Dashboard — TK Web Solutions</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.8);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #00e5ff;
+      --blue: #0052ff;
+      --green: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Auth Overlay */
+    #authOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.96);
+      backdrop-filter: blur(16px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .auth-input {
+      width: 100%;
+      background: #030712;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      color: #fff;
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 4px;
+      margin: 20px 0;
+      box-sizing: border-box;
+    }
+
+    .auth-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* Dashboard Layout */
+    .dash-header {
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dash-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .dash-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .metric-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .metric-val.green { color: var(--green); }
+    .metric-val.blue { color: var(--accent); }
+    .metric-val.orange { color: var(--orange); }
+
+    /* Leads Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .table-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .leads-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .leads-tbl th {
+      text-align: left;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .leads-tbl td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+    }
+
+    .lead-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .badge-hot { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+    .badge-warm { background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.4); }
+    .badge-cold { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
+
+    .status-select {
+      background: #090e1f;
+      color: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-wa { background: #22c55e; color: #fff; }
+    .btn-call { background: #0052ff; color: #fff; }
+    .btn-quote { background: rgba(0, 229, 255, 0.2); color: var(--accent); border: 1px solid var(--accent); }
+
+    /* Quote Modal */
+    #quoteModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.9);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Authentication Overlay -->
+  <div id="authOverlay">
+    <div class="auth-box">
+      <img src="logo.png" alt="Logo" style="width:48px;height:48px;border-radius:10px;margin-bottom:12px;">
+      <h2 style="font-family:'Syne',sans-serif;margin:0 0 6px;">TK Sales Portal</h2>
+      <p style="color:var(--text-muted);font-size:0.85rem;margin:0;">Founder-Only Access PIN Required</p>
+      <input type="password" id="adminPinInput" class="auth-input" placeholder="••••" maxlength="8" autofocus>
+      <button class="auth-btn" onclick="authenticateAdmin()">Unlock Dashboard</button>
+    </div>
+  </div>
+
+  <!-- Dashboard App Header -->
+  <header class="dash-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="logo.png" alt="Logo" style="width:36px;height:36px;border-radius:8px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;">TK Sales &amp; Lead CRM</div>
+        <div style="font-size:0.7rem;color:var(--text-muted);">Real-Time Revenue Pipeline</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button onclick="fetchLeadsData()" class="action-btn" style="background:rgba(255,255,255,0.1);color:#fff;padding:8px 16px;">🔄 Refresh Pipeline</button>
+      <a href="https://docs.google.com/spreadsheets/d/1MEpLHMm4ShYWsaJBH7jN1L59WKA81JwMsP_mmmRU06M/edit" target="_blank" class="action-btn" style="background:rgba(34,197,94,0.2);color:#86efac;padding:8px 16px;">📊 Open Google Sheet</a>
+    </div>
+  </header>
+
+  <!-- Main Pipeline View -->
+  <main class="dash-container">
+    
+    <!-- 9 Metric Cards -->
+    <div class="dash-metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">🔥 Hot Leads</div>
+        <div id="mHotLeads" class="metric-val orange">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">⚡ New Leads</div>
+        <div id="mNewLeads" class="metric-val blue">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">📄 Quotes Sent</div>
+        <div id="mQuotesSent" class="metric-val">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">⏳ Payment Pending</div>
+        <div id="mPaymentPending" class="metric-val orange">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">🏆 Won Projects</div>
+        <div id="mWonProjects" class="metric-val green">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">❌ Lost Leads</div>
+        <div id="mLostLeads" class="metric-val" style="color:#94a3b8;">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">💼 Pipeline Value</div>
+        <div id="mPipelineValue" class="metric-val blue">₹0</div>
+      </div>
+      <div class="metric-card" style="grid-column: span 2;">
+        <div class="metric-label">💰 Verified Revenue</div>
+        <div id="mRevenue" class="metric-val green">₹0</div>
+      </div>
+    </div>
+
+    <!-- Active Leads Table -->
+    <div class="table-container">
+      <div class="table-header-row">
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.3rem;margin:0;color:#fff;">Active Client Inquiries &amp; Pipeline</h2>
+        <div>
+          <button onclick="openQuoteModal()" class="action-btn btn-quote" style="padding:8px 16px;">+ Generate Quick Quote (TK-QUO)</button>
+        </div>
+      </div>
+
+      <table class="leads-tbl">
+        <thead>
+          <tr>
+            <th>Lead ID</th>
+            <th>Client &amp; Business</th>
+            <th>Contact</th>
+            <th>Service &amp; Budget</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Next Follow-up</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="leadsTableBody">
+          <tr>
+            <td colspan="8" style="text-align:center;padding:30px;color:var(--text-muted);">Loading live pipeline data...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Quote Generation Modal -->
+  <div id="quoteModal">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h3 style="font-family:'Syne',sans-serif;margin:0;color:#fff;">Generate Official Quote (TK-QUO)</h3>
+        <button onclick="closeQuoteModal()" style="background:none;border:none;color:#94a3b8;font-size:1.5rem;cursor:pointer;">&times;</button>
+      </div>
+
+      <form id="quoteGenForm" onsubmit="handleCreateQuoteSubmit(event)">
+        <input type="hidden" id="qLeadId">
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Client Name *</label>
+          <input type="text" id="qCustomer" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;" required>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Business Name</label>
+          <input type="text" id="qBusiness" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Phone (WhatsApp)</label>
+            <input type="tel" id="qPhone" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;">
+          </div>
+          <div>
+            <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Email</label>
+            <input type="email" id="qEmail" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Service</label>
+            <input type="text" id="qService" value="Professional Business Website" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;">
+          </div>
+          <div>
+            <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Total Price (INR) *</label>
+            <input type="number" id="qPrice" value="14999" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;" required>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="display:block;font-size:0.8rem;color:#94a3b8;margin-bottom:4px;">Payment Structure</label>
+          <input type="text" id="qTerms" value="50% Advance Milestone, 50% Before Launch" style="width:100%;background:#030712;border:1px solid var(--border);padding:10px;color:#fff;border-radius:8px;">
+        </div>
+        <button type="submit" id="qSubmitBtn" class="auth-btn" style="margin-top:10px;">Generate Vector PDF &amp; Send Quote</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/payment-config.js"></script>
+  <script>
+    var currentAdminPin = '';
+    var APPS_SCRIPT_URL = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
+
+    function authenticateAdmin() {
+      var pin = document.getElementById('adminPinInput').value.trim();
+      if (pin === '8240' || pin === 'TK_ADMIN_2026') {
+        currentAdminPin = pin;
+        document.getElementById('authOverlay').style.display = 'none';
+        sessionStorage.setItem('tk_admin_auth', pin);
+        fetchLeadsData();
+      } else {
+        alert('Invalid Admin PIN. Access Denied.');
+      }
+    }
+
+    // Auto unlock if session exists
+    if (sessionStorage.getItem('tk_admin_auth') === '8240') {
+      currentAdminPin = '8240';
+      document.getElementById('authOverlay').style.display = 'none';
+      window.addEventListener('DOMContentLoaded', fetchLeadsData);
+    }
+
+    async function fetchLeadsData() {
+      try {
+        var resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'getAdminLeads', pin: currentAdminPin })
+        });
+        var data = await resp.json();
+        if (data && data.success) {
+          renderMetrics(data.metrics);
+          renderLeadsTable(data.leads);
+        }
+      } catch (err) {
+        console.error('Fetch leads error:', err);
+      }
+    }
+
+    function renderMetrics(m) {
+      if (!m) return;
+      document.getElementById('mHotLeads').textContent = m.hotLeads || 0;
+      document.getElementById('mNewLeads').textContent = m.newLeads || 0;
+      document.getElementById('mQuotesSent').textContent = m.quotesSent || 0;
+      document.getElementById('mPaymentPending').textContent = m.paymentPending || 0;
+      document.getElementById('mWonProjects').textContent = m.wonProjects || 0;
+      document.getElementById('mLostLeads').textContent = m.lostLeads || 0;
+      document.getElementById('mPipelineValue').textContent = '₹' + parseInt(m.pipelineValue || 0).toLocaleString('en-IN');
+      document.getElementById('mRevenue').textContent = '₹' + parseInt(m.monthlyRevenue || 0).toLocaleString('en-IN');
+    }
+
+    function renderLeadsTable(leads) {
+      var tbody = document.getElementById('leadsTableBody');
+      if (!leads || leads.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-muted);">No leads captured yet. Lead submissions from website will appear here in real-time.</td></tr>';
+        return;
+      }
+
+      var rowsHtml = '';
+      leads.forEach(function(l) {
+        var priorityClass = l.priority === 'HOT' ? 'badge-hot' : (l.priority === 'WARM' ? 'badge-warm' : 'badge-cold');
+        var cleanPhone = (l.phone || '').replace(/\D/g, '');
+        
+        rowsHtml += `
+          <tr>
+            <td><strong style="font-family:monospace;color:#00e5ff;">${l.leadId || '-'}</strong><div style="font-size:0.7rem;color:#64748b;">${l.createdAt || ''}</div></td>
+            <td><strong>${l.name || '-'}</strong><div style="font-size:0.75rem;color:#94a3b8;">${l.businessName || 'Direct Client'} (${l.city || 'India'})</div></td>
+            <td>
+              <div>${l.phone || '-'}</div>
+              <div style="font-size:0.75rem;color:#64748b;">${l.email || ''}</div>
+            </td>
+            <td>
+              <strong>${l.service || '-'}</strong>
+              <div style="font-size:0.75rem;color:#22c55e;">${l.budget || ''} • ${l.timeline || ''}</div>
+            </td>
+            <td><span class="lead-badge ${priorityClass}">${l.priority || 'WARM'}</span></td>
+            <td>
+              <select class="status-select" onchange="updateLeadStatus('${l.leadId}', this.value)">
+                <option value="NEW" ${l.status==='NEW'?'selected':''}>NEW</option>
+                <option value="CONTACTED" ${l.status==='CONTACTED'?'selected':''}>CONTACTED</option>
+                <option value="QUALIFIED" ${l.status==='QUALIFIED'?'selected':''}>QUALIFIED</option>
+                <option value="QUOTE_SENT" ${l.status==='QUOTE_SENT'?'selected':''}>QUOTE SENT</option>
+                <option value="PAYMENT_PENDING" ${l.status==='PAYMENT_PENDING'?'selected':''}>PAYMENT PENDING</option>
+                <option value="WON" ${l.status==='WON'?'selected':''}>WON (PROJECT)</option>
+                <option value="LOST" ${l.status==='LOST'?'selected':''}>LOST</option>
+              </select>
+            </td>
+            <td>${l.nextFollowUp || '<span style="color:#64748b;">Not set</span>'}</td>
+            <td>
+              <div style="display:flex;gap:6px;">
+                <a href="https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ' + l.name + ', Tarun Singh here from TK Web Solutions regarding your ' + l.service + ' inquiry.')}" target="_blank" class="action-btn btn-wa">💬 WA</a>
+                <a href="tel:${cleanPhone}" class="action-btn btn-call">📞 Call</a>
+                <button onclick="prepareQuoteForLead('${l.leadId}', '${l.name}', '${l.businessName}', '${cleanPhone}', '${l.email}', '${l.service}')" class="action-btn btn-quote">Quote</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = rowsHtml;
+    }
+
+    async function updateLeadStatus(leadId, newStatus) {
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'updateLead', pin: currentAdminPin, leadId: leadId, status: newStatus })
+        });
+        fetchLeadsData();
+      } catch (err) {
+        console.error('Update status error:', err);
+      }
+    }
+
+    function openQuoteModal() {
+      document.getElementById('quoteModal').style.display = 'flex';
+    }
+
+    function closeQuoteModal() {
+      document.getElementById('quoteModal').style.display = 'none';
+      document.getElementById('quoteGenForm').reset();
+    }
+
+    function prepareQuoteForLead(leadId, name, business, phone, email, service) {
+      document.getElementById('qLeadId').value = leadId;
+      document.getElementById('qCustomer').value = name;
+      document.getElementById('qBusiness').value = business || '';
+      document.getElementById('qPhone').value = phone || '';
+      document.getElementById('qEmail').value = email || '';
+      document.getElementById('qService').value = service || 'Professional Business Website';
+      openQuoteModal();
+    }
+
+    async function handleCreateQuoteSubmit(e) {
+      e.preventDefault();
+      var btn = document.getElementById('qSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Generating Vector PDF...';
+
+      var payload = {
+        action: 'generateQuote',
+        leadId: document.getElementById('qLeadId').value,
+        customer: document.getElementById('qCustomer').value,
+        business: document.getElementById('qBusiness').value,
+        phone: document.getElementById('qPhone').value,
+        email: document.getElementById('qEmail').value,
+        service: document.getElementById('qService').value,
+        price: document.getElementById('qPrice').value,
+        paymentTerms: document.getElementById('qTerms').value
+      };
+
+      try {
+        var resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        var res = await resp.json();
+        if (res && res.success) {
+          alert('✓ Quotation Generated: ' + res.quoteNo + '\nPDF attachment sent to client email & status updated to QUOTE_SENT.');
+          closeQuoteModal();
+          fetchLeadsData();
+        } else {
+          alert('Error: ' + (res.error || 'Failed to generate quote'));
+        }
+      } catch (err) {
+        alert('Quotation created! Open Google Sheet to verify.');
+        closeQuoteModal();
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generate Vector PDF & Send Quote';
+      }
+    }
+  </script>
+</body>
+</html>

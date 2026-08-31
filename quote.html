@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Project Quotation — TK Web Solutions</title>
+  <meta name="description" content="View official quotation and proposal from TK Web Solutions. Direct founder execution, transparent milestone payments, and 30-day technical support.">
+  <link rel="canonical" href="https://tkwebsolutions.in/quote.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background: #030712;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .quote-box {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #0b1736;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .q-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #0052ff;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .q-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .q-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .q-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: #0b1736;
+      margin: 0 0 2px;
+    }
+
+    .q-tagline {
+      font-size: 11.5px;
+      font-style: italic;
+      color: #4338ca;
+    }
+
+    .q-pill {
+      background: linear-gradient(135deg, #0052ff, #00d4ff);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .q-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+
+    .q-scope-card {
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .q-action-bar {
+      max-width: 780px;
+      margin: 24px auto 0;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .q-btn {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .q-btn-print { background: #0052ff; color: #fff; }
+    .q-btn-wa { background: #22c55e; color: #fff; }
+    .q-btn-pay { background: linear-gradient(135deg, #00e5ff, #0052ff); color: #fff; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .q-action-bar { display: none !important; }
+      .quote-box { box-shadow: none; border: none; padding: 10px; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Official Quotation Card -->
+  <div class="quote-box" id="printArea">
+    <div class="q-hdr">
+      <div class="q-brand">
+        <img src="logo.png" class="q-logo" alt="Logo">
+        <div>
+          <div class="q-title">TK Web Solutions</div>
+          <div class="q-tagline">"From Dreams.... to Digital Reality"</div>
+          <div style="font-size:11px;color:#64748b;margin-top:4px;">Bharatpur, Rajasthan, 321001, India<br>Phone: +91 90793 68240 | Email: tkwebsolution1301@gmail.com</div>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="q-pill">OFFICIAL PROPOSAL &amp; QUOTE</div>
+        <div id="qNum" style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:bold;color:#0f172a;">TK-QUO-2026-0001</div>
+        <div id="qDate" style="font-size:11.5px;color:#64748b;margin-top:3px;">Date: Today</div>
+        <div style="font-size:11px;color:#ea580c;font-weight:bold;margin-top:3px;">Validity: 15 Days from Issue</div>
+      </div>
+    </div>
+
+    <div class="q-grid">
+      <div>
+        <strong style="color:#64748b;font-size:10.5px;text-transform:uppercase;letter-spacing:0.5px;">PREPARED FOR:</strong><br>
+        <strong id="qClientName" style="font-size:16px;color:#0f172a;">Client</strong><br>
+        <span id="qClientBusiness" style="font-size:12.5px;color:#475569;">Business Organization</span><br>
+        <span id="qClientContact" style="font-size:12px;color:#64748b;">Direct Client</span>
+      </div>
+      <div style="text-align:right;">
+        <strong style="color:#64748b;font-size:10.5px;text-transform:uppercase;letter-spacing:0.5px;">TOTAL PROJECT INVESTMENT:</strong>
+        <div id="qTotalAmt" style="font-size:24px;font-weight:900;color:#0052ff;margin-top:2px;">₹14,999</div>
+        <div id="qTimeline" style="font-size:12px;color:#475569;margin-top:3px;">Estimated Timeline: <strong>5–7 Business Days</strong></div>
+      </div>
+    </div>
+
+    <div class="q-scope-card">
+      <h3 id="qServiceTitle" style="font-size:15px;color:#0b1736;margin:0 0 8px;">Scope of Work: Professional Business Website</h3>
+      <p style="font-size:13px;color:#334155;line-height:1.6;margin:0 0 14px;">
+        Complete modern responsive website crafted to position your brand with commercial excellence, lead capture capabilities, and search visibility.
+      </p>
+      <strong style="font-size:12px;color:#0b1736;">Key Deliverables &amp; Inclusions:</strong>
+      <ul style="font-size:12.5px;color:#475569;margin:8px 0 0;padding-left:20px;line-height:1.6;">
+        <li>Mobile-first responsive architecture (smartphone, tablet &amp; desktop)</li>
+        <li>Lead generation contact forms with instant WhatsApp lead routing</li>
+        <li>On-page SEO optimization with schema markup &amp; speed caching</li>
+        <li>Custom domain connection, SSL certificate, and Google indexing</li>
+        <li>30-day post-launch technical warranty &amp; direct founder assistance</li>
+      </ul>
+    </div>
+
+    <div style="background:#f1f5f9;border-radius:10px;padding:14px 18px;margin-bottom:24px;font-size:12.5px;line-height:1.5;">
+      <strong>Payment Structure:</strong> 50% Advance Milestone, 50% Upon Review &amp; Before Final Launch.<br>
+      <strong>Warranty &amp; Support:</strong> Includes 30 days of comprehensive post-delivery technical warranty.
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid #e2e8f0;padding-top:18px;font-size:11.5px;">
+      <div>
+        <strong style="color:#334155;">Next Steps:</strong><br>
+        1. Confirm and accept proposal via WhatsApp (+91 90793 68240).<br>
+        2. Transfer initial 50% milestone advance via UPI / Razorpay.<br>
+        3. Project development kicks off immediately with live staging preview.
+      </div>
+      <div style="text-align:center;border:1px dashed #cbd5e1;border-radius:10px;padding:12px 18px;min-width:190px;background:#fafafa;">
+        <img src="assets/tarun-singh-signature.png" style="height:54px;max-width:170px;object-fit:contain;margin:0 auto 4px;display:block;" alt="Tarun Singh Signature">
+        <div style="width:100%;height:1px;background:#cbd5e1;margin:4px 0 6px;"></div>
+        <div style="font-size:12px;font-weight:bold;color:#0b1736;">Tarun Singh</div>
+        <div style="font-size:10px;color:#64748b;">Founder &amp; Lead Developer</div>
+        <div style="font-size:10.5px;font-weight:bold;color:#0052ff;">TK Web Solutions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Bar -->
+  <div class="q-action-bar">
+    <button onclick="window.print()" class="q-btn q-btn-print">🖨️ Download / Print Vector PDF</button>
+    <a id="waAcceptBtn" href="https://wa.me/919079368240" target="_blank" class="q-btn q-btn-wa">💬 Accept &amp; Chat on WhatsApp</a>
+    <a href="index.html#payment" class="q-btn q-btn-pay">💳 Pay Milestone Advance Online</a>
+  </div>
+
+  <script src="js/payment-config.js"></script>
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id') || params.get('inv') || 'TK-QUO-2026-0001';
+      var name = params.get('name') || params.get('client') || 'Valued Client';
+      var business = params.get('business') || '';
+      var service = params.get('service') || 'Professional Business Website';
+      var price = params.get('price') || '14999';
+
+      document.getElementById('qNum').textContent = id;
+      document.getElementById('qClientName').textContent = name;
+      if (business) document.getElementById('qClientBusiness').textContent = business;
+      document.getElementById('qServiceTitle').textContent = 'Scope of Work: ' + service;
+      document.getElementById('qTotalAmt').textContent = '₹' + parseInt(price).toLocaleString('en-IN');
+      document.getElementById('qDate').textContent = 'Date: ' + (new Date()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      var waMsg = "Hi Tarun, I reviewed Quotation " + id + " for " + service + " (₹" + price + ") and would like to proceed!";
+      document.getElementById('waAcceptBtn').href = "https://wa.me/919079368240?text=" + encodeURIComponent(waMsg);
+    })();
+  </script>
+</body>
+</html>

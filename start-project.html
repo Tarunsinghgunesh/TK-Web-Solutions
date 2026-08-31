@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Your Project — TK Web Solutions | Founder-Led Web & App Development Studio</title>
+  <meta name="description" content="Tell us about your project requirements. Get a transparent scope, timeline, and quote directly from Tarun Singh, Founder of TK Web Solutions.">
+  <link rel="canonical" href="https://tkwebsolutions.in/start-project.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/payment.css">
+  
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.75);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #00e5ff;
+      --blue: #0052ff;
+      --green: #22c55e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .sp-hero {
+      padding: 120px 20px 60px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 82, 255, 0.18), transparent 70%);
+    }
+
+    .sp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 9999px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .sp-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0 auto 16px;
+      max-width: 850px;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sp-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+
+    .sp-founder-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 9999px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 40px;
+    }
+
+    .sp-founder-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+
+    .sp-founder-text {
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .sp-founder-name {
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .sp-founder-sub {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .sp-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .sp-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .sp-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sp-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .sp-form-group {
+      margin-bottom: 20px;
+    }
+
+    .sp-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+    }
+
+    .sp-input, .sp-select, .sp-textarea {
+      width: 100%;
+      background: rgba(3, 7, 18, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .sp-input:focus, .sp-select:focus, .sp-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.15);
+    }
+
+    .sp-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .sp-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sp-btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue), #00d4ff);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 24px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 25px rgba(0, 82, 255, 0.35);
+    }
+
+    .sp-btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 82, 255, 0.5);
+    }
+
+    .sp-process-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .sp-process-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: var(--accent);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .sp-process-title {
+      font-weight: 800;
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .sp-process-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .sp-wa-box {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .sp-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #22c55e;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: transform 0.2s;
+    }
+
+    .sp-wa-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .sp-result-banner {
+      display: none;
+      padding: 18px;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid var(--green);
+      border-radius: 14px;
+      color: #86efac;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Start Your Project — TK Web Solutions",
+    "description": "Project brief and quotation request for custom website and Android app development.",
+    "url": "https://tkwebsolutions.in/start-project.html",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Tarun Singh",
+      "jobTitle": "Founder & Lead Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "TK Web Solutions",
+        "url": "https://tkwebsolutions.in"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;">
+      <img src="logo.png" alt="TK Web Solutions Logo" style="width:38px;height:38px;object-fit:contain;border-radius:8px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.5px;">TK Web Solutions</div>
+        <div style="font-size:0.7rem;color:var(--text-muted);letter-spacing:0.5px;">Founder-Led Studio</div>
+      </div>
+    </a>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="index.html" style="color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:600;">Home</a>
+      <a href="portfolio.html" style="color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:600;">Portfolio</a>
+      <a href="invoice.html" style="color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:600;">Verify Invoice</a>
+      <a href="https://wa.me/919079368240?text=Hi%20Tarun%2C%20I%20have%20a%20project%20inquiry" class="sp-wa-btn" style="padding:8px 16px;margin:0;font-size:0.8rem;">Chat on WhatsApp</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="sp-hero">
+    <div class="sp-badge">🚀 Client Acquisition &amp; Project Onboarding</div>
+    <h1 class="sp-title">Have a Business Idea? Let's Build It.</h1>
+    <p class="sp-sub">Tell me what you're trying to build. I'll help you choose the right technology, scope, and transparent pricing with direct founder execution.</p>
+    
+    <div class="sp-founder-card">
+      <img src="tarun-singh.jpg" alt="Tarun Singh — Founder" class="sp-founder-img" onerror="this.src='logo.png'">
+      <div class="sp-founder-text">
+        <div class="sp-founder-name">Tarun Singh</div>
+        <div class="sp-founder-sub">Founder &amp; Lead Developer • BBA Digital Marketing (Manipal Univ Jaipur)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Form & Process Grid -->
+  <main class="sp-container">
+    <div class="sp-grid">
+      
+      <!-- Project Brief Form -->
+      <div class="sp-card">
+        <h2 style="font-family:'Syne',sans-serif;font-size:1.6rem;margin-top:0;margin-bottom:8px;color:#fff;">Tell Me About Your Project</h2>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;">Fill out this brief to receive a customized quotation and milestone roadmap.</p>
+
+        <div id="spSuccessBanner" class="sp-result-banner"></div>
+
+        <form id="projectBriefForm" onsubmit="handleProjectBriefSubmit(event)">
+          <div class="sp-row-2">
+            <div class="sp-form-group">
+              <label class="sp-label">Your Full Name *</label>
+              <input type="text" id="spName" class="sp-input" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="sp-form-group">
+              <label class="sp-label">Business / Brand Name *</label>
+              <input type="text" id="spBusiness" class="sp-input" placeholder="e.g. Apex Coaching Institute" required>
+            </div>
+          </div>
+
+          <div class="sp-row-2">
+            <div class="sp-form-group">
+              <label class="sp-label">Phone Number (WhatsApp) *</label>
+              <input type="tel" id="spPhone" class="sp-input" placeholder="e.g. 9876543210" required>
+            </div>
+            <div class="sp-form-group">
+              <label class="sp-label">Email Address *</label>
+              <input type="email" id="spEmail" class="sp-input" placeholder="e.g. rahul@gmail.com" required>
+            </div>
+          </div>
+
+          <div class="sp-row-2">
+            <div class="sp-form-group">
+              <label class="sp-label">City / Location</label>
+              <input type="text" id="spCity" class="sp-input" placeholder="e.g. Bharatpur / Jaipur / Delhi">
+            </div>
+            <div class="sp-form-group">
+              <label class="sp-label">Business Type</label>
+              <select id="spBusinessType" class="sp-select">
+                <option value="Coaching / Education">Coaching / Education Institute</option>
+                <option value="School / College">School / College</option>
+                <option value="Retail / E-Commerce">Retail / E-Commerce Store</option>
+                <option value="Professional Services">Doctor / Clinic / Professional</option>
+                <option value="E-Mitra / CSC">E-Mitra / CSC Center</option>
+                <option value="Personal / Creator">Personal Portfolio / Creator</option>
+                <option value="Startup / Tech">Startup / Custom Project</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sp-row-2">
+            <div class="sp-form-group">
+              <label class="sp-label">Required Service *</label>
+              <select id="spService" class="sp-select" required>
+                <option value="Starter Business Website (₹9,999)">Starter Business Website (₹9,999)</option>
+                <option value="Professional Business Website (₹14,999)" selected>Professional Business Website (₹14,999)</option>
+                <option value="Business / Coaching Pro Website (₹19,999)">Business / Coaching Pro Website (₹19,999)</option>
+                <option value="E-Commerce Online Store (₹24,999+)">E-Commerce Online Store (₹24,999+)</option>
+                <option value="Android App APK (₹14,999+)">Android App APK (₹14,999+)</option>
+                <option value="Android + Play Store App (₹24,999+)">Android + Play Store App (₹24,999+)</option>
+                <option value="Custom Application / Portal (₹39,999+)">Custom Application / Portal (₹39,999+)</option>
+                <option value="Website Maintenance & Care (₹2,999/mo)">Website Maintenance & Care (₹2,999/mo)</option>
+              </select>
+            </div>
+            <div class="sp-form-group">
+              <label class="sp-label">Estimated Budget *</label>
+              <select id="spBudget" class="sp-select" required>
+                <option value="Under ₹10,000">Under ₹10,000</option>
+                <option value="₹10,000–₹20,000" selected>₹10,000–₹20,000</option>
+                <option value="₹20,000–₹35,000">₹20,000–₹35,000</option>
+                <option value="₹35,000–₹50,000">₹35,000–₹50,000</option>
+                <option value="₹50,000+">₹50,000+ (Custom Scope)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sp-row-2">
+            <div class="sp-form-group">
+              <label class="sp-label">Expected Timeline</label>
+              <select id="spTimeline" class="sp-select">
+                <option value="ASAP (Urgent)">ASAP (Urgent Delivery)</option>
+                <option value="1–2 Weeks" selected>1–2 Weeks (Standard)</option>
+                <option value="2–4 Weeks">2–4 Weeks</option>
+                <option value="Flexible">Flexible / Planning Stage</option>
+              </select>
+            </div>
+            <div class="sp-form-group">
+              <label class="sp-label">Current Website (If Any)</label>
+              <input type="url" id="spCurrentWeb" class="sp-input" placeholder="https://example.com">
+            </div>
+          </div>
+
+          <div class="sp-form-group">
+            <label class="sp-label">Project Requirements &amp; Special Features</label>
+            <textarea id="spNotes" class="sp-textarea" rows="4" placeholder="Mention key pages, reference links, specific features, or questions you have..."></textarea>
+          </div>
+
+          <button type="submit" id="spSubmitBtn" class="sp-btn-submit">
+            <span>GET MY CUSTOM QUOTE</span>
+            <span style="font-size:1.2rem;">&rarr;</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Column: Process & WhatsApp Card -->
+      <div>
+        <div class="sp-card" style="margin-bottom:24px;">
+          <h3 style="font-family:'Syne',sans-serif;font-size:1.25rem;margin-top:0;margin-bottom:16px;color:#fff;">How We Work (Transparent Process)</h3>
+          
+          <div class="sp-process-item">
+            <div class="sp-process-num">01</div>
+            <div>
+              <div class="sp-process-title">Tell Me What You Need</div>
+              <div class="sp-process-desc">Submit your project brief with budget and requirements.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">02</div>
+            <div>
+              <div class="sp-process-title">Free Founder Consultation</div>
+              <div class="sp-process-desc">Quick 15-minute call or WhatsApp discussion to clarify architecture.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">03</div>
+            <div>
+              <div class="sp-process-title">Official Proposal &amp; Quote</div>
+              <div class="sp-process-desc">Fixed price quotation (TK-QUO-2026) with clear timeline.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">04</div>
+            <div>
+              <div class="sp-process-title">Milestone Advance Payment</div>
+              <div class="sp-process-desc">Secure 50% advance via UPI / Razorpay with instant digital receipt.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">05</div>
+            <div>
+              <div class="sp-process-title">Design &amp; Development</div>
+              <div class="sp-process-desc">Full-stack development with live staging preview link.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">06</div>
+            <div>
+              <div class="sp-process-title">Review &amp; Refinements</div>
+              <div class="sp-process-desc">Review together and apply any necessary text/layout adjustments.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item">
+            <div class="sp-process-num">07</div>
+            <div>
+              <div class="sp-process-title">Production Launch</div>
+              <div class="sp-process-desc">Custom domain connection, SSL setup, and Google indexing.</div>
+            </div>
+          </div>
+
+          <div class="sp-process-item" style="margin-bottom:0;">
+            <div class="sp-process-num">08</div>
+            <div>
+              <div class="sp-process-title">30-Day Support &amp; Care</div>
+              <div class="sp-process-desc">Post-launch technical warranty and ongoing maintenance support.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Quick Chat Box -->
+        <div class="sp-wa-box">
+          <div style="font-size:1.5rem;margin-bottom:6px;">💬</div>
+          <div style="font-weight:800;color:#fff;font-size:1.1rem;margin-bottom:4px;">Prefer Direct WhatsApp?</div>
+          <div style="font-size:0.85rem;color:var(--text-muted);line-height:1.4;">Chat directly with Founder Tarun Singh for immediate consultation.</div>
+          <a href="https://wa.me/919079368240?text=Hi%20Tarun%2C%20I%20have%20a%20custom%20digital%20project%20and%20would%20like%20to%20discuss%20the%20requirements%20with%20you." target="_blank" rel="noopener noreferrer" class="sp-wa-btn">
+            <span>Chat on WhatsApp (+91 90793 68240)</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/payment-config.js"></script>
+  <script>
+    async function handleProjectBriefSubmit(e) {
+      e.preventDefault();
+      var btn = document.getElementById('spSubmitBtn');
+      var banner = document.getElementById('spSuccessBanner');
+      
+      btn.disabled = true;
+      btn.innerHTML = '<span>Processing Brief...</span>';
+
+      var payload = {
+        action: 'submitLead',
+        source: 'Start Project Brief',
+        name: document.getElementById('spName').value.trim(),
+        businessName: document.getElementById('spBusiness').value.trim(),
+        phone: document.getElementById('spPhone').value.trim(),
+        email: document.getElementById('spEmail').value.trim(),
+        city: document.getElementById('spCity').value.trim(),
+        businessType: document.getElementById('spBusinessType').value,
+        service: document.getElementById('spService').value,
+        budget: document.getElementById('spBudget').value,
+        timeline: document.getElementById('spTimeline').value,
+        currentWebsite: document.getElementById('spCurrentWeb').value.trim(),
+        notes: document.getElementById('spNotes').value.trim()
+      };
+
+      try {
+        var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
+        
+        var resp = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        
+        var result = await resp.json();
+        if (result && result.success) {
+          banner.style.display = 'block';
+          banner.innerHTML = '<strong>✓ Project Brief Received! (Lead ID: ' + (result.leadId || 'Generated') + ')</strong><br>' + result.message;
+          document.getElementById('projectBriefForm').reset();
+          btn.innerHTML = '<span>✓ Request Sent Successfully</span>';
+        } else {
+          throw new Error((result && result.error) || 'Submission failed');
+        }
+      } catch (err) {
+        console.warn('Brief submit fallback:', err);
+        banner.style.display = 'block';
+        banner.innerHTML = '<strong>✓ Thank you ' + payload.name + '!</strong><br>Your project inquiry has been queued. You can also connect directly on WhatsApp: <a href="https://wa.me/919079368240?text=Hi%20Tarun%2C%20I%20just%20submitted%20a%20project%20brief%20for%20' + encodeURIComponent(payload.businessName) + '" style="color:#00e5ff;font-weight:bold;">Click here to chat &rarr;</a>';
+        btn.innerHTML = '<span>GET MY CUSTOM QUOTE</span>';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
