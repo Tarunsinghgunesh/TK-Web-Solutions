@@ -170,24 +170,19 @@
     .inv-notfound-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; max-width: 480px; margin: 0 auto 16px; }
 
     /* Modal Overlay */
-    .tk-modal-overlay {
-      position: fixed; inset: 0; background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(8px);
-      z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;
+    .tk-email-modal-overlay {
+      position: fixed; inset: 0; width: 100vw; height: 100vh; background: rgba(3, 7, 18, 0.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      z-index: 9999999; display: none; align-items: center; justify-content: center; padding: 20px;
+      box-sizing: border-box; animation: tkFadeIn 0.2s ease-out;
     }
-    .tk-modal-card {
-      background: #fff; color: #0d1635; border-radius: 16px; max-width: 860px; width: 100%;
-      max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    .tk-email-modal-overlay.active {
+      display: flex !important;
     }
-    .tk-modal-topbar {
-      background: #0f172a; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+    @keyframes tkFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
     }
-    .tk-modal-top-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 8px; color: #00e5ff; }
-    .tk-modal-btns { display: flex; align-items: center; gap: 8px; }
-    .tk-m-btn { padding: 8px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: none; }
-    .tk-m-btn-print { background: var(--accent-blue); color: #fff; }
-    .tk-m-btn-wa { background: #25d366; color: #fff; }
-    .tk-m-btn-close { background: rgba(255,255,255,0.15); color: #fff; font-size: 1.2rem; line-height: 1; }
-    .tk-modal-body { padding: 24px; overflow-y: auto; background: #f8fafc; }
 
     @media(max-width: 640px) {
       .inv-form-grid { grid-template-columns: 1fr; }
@@ -277,18 +272,21 @@
     </div>
 
     <!-- Email Send Modal -->
-    <div id="emailSendModal" class="tk-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:999999;align-items:center;justify-content:center;padding:20px;">
+    <div id="emailSendModal" class="tk-email-modal-overlay" onclick="if(event.target===this) closeEmailSendModal()">
       <div style="max-width:440px;width:100%;background:#090e1f;color:#fff;padding:28px;border-radius:20px;border:1.5px solid rgba(0,229,255,0.35);box-shadow:0 30px 80px rgba(0,0,0,0.8);position:relative;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
           <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;color:#fff;margin:0;display:flex;align-items:center;gap:8px;"><i class="fas fa-envelope" style="color:#00e5ff;"></i> Send Invoice to Email</h3>
-          <button onclick="closeEmailSendModal()" style="background:none;border:none;color:#94a3b8;font-size:1.4rem;cursor:pointer;line-height:1;">&times;</button>
+          <button onclick="closeEmailSendModal()" style="background:rgba(255,255,255,0.1);border:none;color:#94a3b8;font-size:1.3rem;cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;line-height:1;">&times;</button>
         </div>
         <p style="font-size:0.8rem;color:#94a3b8;line-height:1.5;margin-bottom:18px;">Your official TK Web Solutions PDF invoice will be generated and sent as an email attachment.</p>
         <div style="margin-bottom:18px;">
           <label style="font-size:0.75rem;color:#cbd5e1;display:block;margin-bottom:6px;font-weight:600;">Email Address *</label>
           <input type="email" id="targetEmailInput" placeholder="name@example.com" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(0,229,255,0.3);border-radius:10px;padding:12px 14px;color:#fff;font-size:0.9rem;outline:none;box-sizing:border-box;">
         </div>
-        <button id="sendEmailSubmitBtn" onclick="submitEmailSend()" style="width:100%;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#fff;padding:13px;border:none;border-radius:10px;font-weight:800;font-size:0.95rem;cursor:pointer;font-family:'Syne',sans-serif;">Send Invoice</button>
+        <div style="display:flex;gap:10px;">
+          <button type="button" onclick="closeEmailSendModal()" style="flex:1;background:rgba(255,255,255,0.08);color:#cbd5e1;padding:12px;border:none;border-radius:10px;font-weight:700;font-size:0.88rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
+          <button id="sendEmailSubmitBtn" onclick="submitEmailSend()" style="flex:2;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#fff;padding:12px;border:none;border-radius:10px;font-weight:800;font-size:0.95rem;cursor:pointer;font-family:'Syne',sans-serif;">Send Invoice</button>
+        </div>
         <div id="emailSendStatusMsg" style="margin-top:14px;font-size:0.82rem;text-align:center;display:none;"></div>
       </div>
     </div>
@@ -334,7 +332,7 @@
       }
 
       // 2. Query Google Apps Script Backend
-      var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbwpV7Bz3YGT87PWaezn1fBKc5GQYQETJjHqqxCPohHKGkXWZIVlHFg8tUipPbTP7Cy4Sw/exec';
+      var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
       fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -432,11 +430,12 @@
       msg.style.display = 'none';
       btn.disabled = false;
       btn.textContent = 'Send Invoice';
-      modal.style.display = 'flex';
+      modal.classList.add('active');
     }
 
     function closeEmailSendModal() {
-      document.getElementById('emailSendModal').style.display = 'none';
+      var modal = document.getElementById('emailSendModal');
+      if (modal) modal.classList.remove('active');
     }
 
     function submitEmailSend() {
@@ -455,7 +454,7 @@
       btn.textContent = 'Sending Invoice...';
       msg.style.display = 'none';
 
-      var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbwpV7Bz3YGT87PWaezn1fBKc5GQYQETJjHqqxCPohHKGkXWZIVlHFg8tUipPbTP7Cy4Sw/exec';
+      var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
       fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -472,18 +471,28 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(res) {
-        btn.textContent = 'Invoice Sent ✓';
-        msg.style.display = 'block';
-        msg.style.color = '#4ade80';
-        msg.innerHTML = '✓ Your official PDF invoice has been sent successfully to <strong>' + email + '</strong>.';
-        setTimeout(function() { btn.disabled = false; }, 3000);
+        if (res && res.success) {
+          btn.textContent = 'Invoice Sent ✓';
+          msg.style.display = 'block';
+          msg.style.color = '#4ade80';
+          msg.innerHTML = '✓ Your official PDF invoice has been sent successfully to <strong>' + email + '</strong>.';
+          setTimeout(function() {
+            closeEmailSendModal();
+          }, 2400);
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Send Invoice';
+          msg.style.display = 'block';
+          msg.style.color = '#f87171';
+          msg.textContent = (res && res.error) ? res.error : 'Unable to send right now. Please try again.';
+        }
       })
       .catch(function() {
         btn.disabled = false;
         btn.textContent = 'Send Invoice';
         msg.style.display = 'block';
         msg.style.color = '#f87171';
-        msg.textContent = 'Unable to send the invoice right now. Please try again or contact TK Web Solutions.';
+        msg.textContent = 'Unable to send the invoice right now. Please download the PDF directly using Download button.';
       });
     }
 

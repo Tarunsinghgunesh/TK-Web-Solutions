@@ -718,37 +718,102 @@
     emailInvoiceCopy: function() {
       if (!this._currentInvoiceData) return;
       var d = this._currentInvoiceData;
-      var targetEmail = d.email || prompt('Please enter your email address to receive this official invoice:');
-      if (!targetEmail || targetEmail.indexOf('@') === -1) {
-        alert('Please provide a valid email address.');
-        return;
+      var existingEmail = (d.email && d.email.indexOf('@') !== -1 && d.email.indexOf('***') === -1) ? d.email : '';
+      
+      // Remove any existing email popup
+      var oldPop = document.getElementById('tk-email-prompt-overlay');
+      if (oldPop) oldPop.remove();
+
+      var pop = document.createElement('div');
+      pop.id = 'tk-email-prompt-overlay';
+      pop.style.cssText = 'position:fixed;inset:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:9999999;display:flex;align-items:center;justify-content:center;padding:20px;animation:tkFadeIn 0.2s ease-out;';
+      pop.innerHTML = `
+        <div style="max-width:440px;width:100%;background:#090e1f;color:#fff;padding:28px;border-radius:20px;border:1.5px solid rgba(0,229,255,0.35);box-shadow:0 30px 80px rgba(0,0,0,0.85);position:relative;font-family:'DM Sans',sans-serif;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <h3 style="font-family:'Syne',sans-serif;font-size:1.1rem;color:#fff;margin:0;display:flex;align-items:center;gap:8px;"><i class="fas fa-envelope" style="color:#00e5ff;"></i> Send Invoice to Email</h3>
+            <button id="tkEmailPromptClose" style="background:rgba(255,255,255,0.1);border:none;color:#94a3b8;font-size:1.3rem;cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;line-height:1;">&times;</button>
+          </div>
+          <p style="font-size:0.82rem;color:#94a3b8;line-height:1.5;margin-bottom:18px;">Your official TK Web Solutions PDF invoice will be delivered to this email address.</p>
+          <div style="margin-bottom:18px;">
+            <label style="font-size:0.75rem;color:#cbd5e1;display:block;margin-bottom:6px;font-weight:600;">Email Address *</label>
+            <input type="email" id="tkEmailPromptInput" value="${existingEmail}" placeholder="client@example.com" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(0,229,255,0.3);border-radius:10px;padding:12px 14px;color:#fff;font-size:0.9rem;outline:none;box-sizing:border-box;font-family:'DM Sans',sans-serif;">
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button id="tkEmailPromptCancel" style="flex:1;background:rgba(255,255,255,0.08);color:#cbd5e1;padding:12px;border:none;border-radius:10px;font-weight:700;font-size:0.88rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
+            <button id="tkEmailPromptSubmit" style="flex:2;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#fff;padding:12px;border:none;border-radius:10px;font-weight:800;font-size:0.92rem;cursor:pointer;font-family:'Syne',sans-serif;box-shadow:0 4px 14px rgba(0,150,255,0.35);">Send Invoice</button>
+          </div>
+          <div id="tkEmailPromptMsg" style="margin-top:14px;font-size:0.82rem;text-align:center;display:none;"></div>
+        </div>
+      `;
+
+      document.body.appendChild(pop);
+
+      var self = this;
+      var closeBtn = document.getElementById('tkEmailPromptClose');
+      var cancelBtn = document.getElementById('tkEmailPromptCancel');
+      var submitBtn = document.getElementById('tkEmailPromptSubmit');
+      var inputEl = document.getElementById('tkEmailPromptInput');
+      var msgEl = document.getElementById('tkEmailPromptMsg');
+
+      function closePop() {
+        if (pop && pop.parentNode) pop.parentNode.removeChild(pop);
       }
-      d.email = targetEmail;
-      this.dispatchInvoiceEmail(d, true);
+
+      closeBtn.onclick = closePop;
+      cancelBtn.onclick = closePop;
+      pop.onclick = function(e) { if (e.target === pop) closePop(); };
+
+      submitBtn.onclick = function() {
+        var email = inputEl.value.trim();
+        if (!email || email.indexOf('@') === -1) {
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#f87171';
+          msgEl.textContent = 'Please enter a valid email address.';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending Invoice...';
+        msgEl.style.display = 'none';
+
+        d.email = email;
+        var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
+
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'sendInvoiceEmail',
+            invoiceNo: d.invoiceNo,
+            name: d.name,
+            email: email,
+            phone: d.phone,
+            amount: d.amount,
+            service: d.service,
+            paymentId: d.paymentId,
+            datetime: d.datetime
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          submitBtn.textContent = 'Invoice Sent ✓';
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#4ade80';
+          msgEl.innerHTML = '✓ Official PDF Invoice sent successfully to <strong>' + email + '</strong>.';
+          setTimeout(closePop, 2400);
+        })
+        .catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Invoice';
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#f87171';
+          msgEl.textContent = 'Unable to send right now. You can download the PDF directly using the Download button.';
+        });
+      };
     },
 
     dispatchInvoiceEmail: function(data, isManual) {
-      var url = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbwpV7Bz3YGT87PWaezn1fBKc5GQYQETJjHqqxCPohHKGkXWZIVlHFg8tUipPbTP7Cy4Sw/exec';
-      
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          action: 'sendInvoiceEmail',
-          invoiceNo: data.invoiceNo,
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          amount: data.amount,
-          service: data.service,
-          paymentId: data.paymentId,
-          datetime: data.datetime
-        })
-      }).then(function() {
-        if (isManual) alert('✅ Official PDF Invoice copy dispatched to: ' + data.email);
-      }).catch(function() {
-        if (isManual) alert('Invoice details ready. You can also view it online anytime at tkwebsolutions.in/invoice.html');
-      });
+      this.emailInvoiceCopy();
     }
   };
 

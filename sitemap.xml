@@ -286,11 +286,11 @@
 <priority>0.8</priority>
 </url>
 
-<!--  ═══ EDUCATION BLOGS ═══  -->
+<!--  ═══ INVOICE & PAYMENT VERIFICATION ═══  -->
 <url>
-<loc>https://tkwebsolutions.in/blog/school-website-admissions-badhao.html</loc>
-<lastmod>2026-02-17</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.8</priority>
+<loc>https://tkwebsolutions.in/invoice.html</loc>
+<lastmod>2026-08-31</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.85</priority>
 </url>
 </urlset>
