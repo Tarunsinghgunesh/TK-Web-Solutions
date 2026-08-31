@@ -410,34 +410,34 @@
               <!-- Credentials Manager -->
               <div class="card" style="border:1.5px solid rgba(26,86,255,0.25);">
                 <h4 style="font-family:'Syne',sans-serif;font-size:1.05rem;margin-bottom:12px;color:var(--navy);">
-                  <i class="fas fa-key" style="color:var(--blue);margin-right:8px;"></i>Change Admin Username &amp; Password
+                  <i class="fas fa-key" style="color:var(--blue);margin-right:8px;"></i>Set Custom Admin Username &amp; Password
                 </h4>
                 <p style="font-size:.82rem;color:var(--gray);margin-bottom:18px;">
-                  Set your custom Admin Username &amp; Password. They will be saved securely in your browser so you can log in with your own credentials anytime.
+                  Set whatever Admin Username &amp; Password you want. It will be saved directly into your browser storage so you can easily log in.
                 </p>
                 <form onsubmit="event.preventDefault(); saveCustomCredentials();">
                   <div style="margin-bottom:14px;">
-                    <label style="font-size:.76rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Admin Username *</label>
+                    <label style="font-size:.76rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">New Admin Username *</label>
                     <input type="text" id="settingsNewUser" class="input-box" style="width:100%;padding:11px 14px;border-radius:10px;margin-top:5px;font-size:.9rem;font-weight:600;" placeholder="e.g. tarun or admin" required>
                   </div>
                   
                   <div style="margin-bottom:14px;">
-                    <label style="font-size:.76rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Current Password *</label>
-                    <div style="position:relative;margin-top:5px;">
-                      <input type="password" id="settingsCurrentPass" class="input-box" style="width:100%;padding:11px 40px 11px 14px;border-radius:10px;font-size:.9rem;" placeholder="Enter current password (default: admin123)" required>
-                      <button type="button" onclick="togglePassVisibility('settingsCurrentPass', this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;"><i class="fas fa-eye"></i></button>
-                    </div>
-                  </div>
-                  
-                  <div style="margin-bottom:18px;">
                     <label style="font-size:.76rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">New Password *</label>
                     <div style="position:relative;margin-top:5px;">
-                      <input type="password" id="settingsNewPass" class="input-box" style="width:100%;padding:11px 40px 11px 14px;border-radius:10px;font-size:.9rem;" placeholder="Enter your desired new password" required>
+                      <input type="password" id="settingsNewPass" class="input-box" style="width:100%;padding:11px 40px 11px 14px;border-radius:10px;font-size:.9rem;" placeholder="Enter new password" required>
                       <button type="button" onclick="togglePassVisibility('settingsNewPass', this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;"><i class="fas fa-eye"></i></button>
                     </div>
                   </div>
                   
-                  <button type="submit" class="btn btn-blue" style="width:100%;padding:12px;font-size:.9rem;"><i class="fas fa-save"></i> Save New Credentials</button>
+                  <div style="margin-bottom:18px;">
+                    <label style="font-size:.76rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Confirm New Password *</label>
+                    <div style="position:relative;margin-top:5px;">
+                      <input type="password" id="settingsConfirmPass" class="input-box" style="width:100%;padding:11px 40px 11px 14px;border-radius:10px;font-size:.9rem;" placeholder="Confirm new password" required>
+                      <button type="button" onclick="togglePassVisibility('settingsConfirmPass', this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);cursor:pointer;padding:4px;"><i class="fas fa-eye"></i></button>
+                    </div>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-blue" style="width:100%;padding:12px;font-size:.9rem;"><i class="fas fa-save"></i> Save My ID &amp; Password</button>
                 </form>
               </div>
 
@@ -521,25 +521,28 @@
     }
 
     function saveCustomCredentials() {
-      var creds = getAdminCredentials();
-      var curPass = document.getElementById('settingsCurrentPass').value.trim();
       var newUser = document.getElementById('settingsNewUser').value.trim();
       var newPass = document.getElementById('settingsNewPass').value.trim();
+      var confirmPass = document.getElementById('settingsConfirmPass').value.trim();
 
-      if (curPass !== creds.pass) {
-        alert('❌ Current password does not match!');
+      if (!newUser) {
+        alert('❌ Admin Username cannot be empty.');
         return;
       }
-      if (!newUser || !newPass) {
-        alert('❌ Username and new password cannot be empty.');
+      if (!newPass) {
+        alert('❌ New Password cannot be empty.');
+        return;
+      }
+      if (newPass !== confirmPass) {
+        alert('❌ New Password and Confirm Password do not match! Please enter the same password in both boxes.');
         return;
       }
 
       var newCreds = { user: newUser, pass: newPass };
       localStorage.setItem('tk_admin_credentials', JSON.stringify(newCreds));
-      alert('✓ Admin credentials updated successfully! New Username: ' + newUser);
-      document.getElementById('settingsCurrentPass').value = '';
+      alert('✓ Success! Your Admin ID & Password have been saved.\n\nUsername: ' + newUser + '\nPassword: ' + newPass);
       document.getElementById('settingsNewPass').value = '';
+      document.getElementById('settingsConfirmPass').value = '';
     }
 
     /* ════════════════════════════════════════
