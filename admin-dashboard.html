@@ -598,10 +598,11 @@
 
       tbody.innerHTML = '';
       records.forEach(r => {
+        var invId = r.invoiceNo || r.receiptNo || r.paymentId;
         tbody.innerHTML += `
-          <div class="table-row" style="grid-template-columns:1.5fr 1.5fr 1fr 1fr 1fr 120px;padding:12px 0;">
+          <div class="table-row" style="grid-template-columns:1.5fr 1.5fr 1fr 1fr 1fr 140px;padding:12px 0;">
             <div>
-              <strong style="color:var(--blue);font-family:monospace;">${r.invoiceNo || r.receiptNo}</strong>
+              <strong style="color:var(--blue);font-family:monospace;">${invId}</strong>
               <div style="font-size:.72rem;color:var(--gray);">${r.datetime || r.date}</div>
             </div>
             <div>
@@ -611,8 +612,9 @@
             <div><span>${r.service || 'Service'}</span></div>
             <div><strong style="color:#16a34a;">₹${parseInt(r.amount).toLocaleString('en-IN')}</strong></div>
             <div><span class="badge badge-success">✓ PAID</span></div>
-            <div style="text-align:right;">
-              <button class="btn btn-sm btn-ghost" onclick='viewInvoiceModalById("${r.invoiceNo || r.receiptNo}")'><i class="fas fa-eye"></i> View</button>
+            <div style="display:flex;gap:4px;justify-content:flex-end;">
+              <button class="btn btn-sm btn-ghost" onclick='viewInvoiceModalById("${invId}")' title="View & Print Invoice"><i class="fas fa-eye"></i></button>
+              <button class="btn btn-sm" onclick='deleteInvoiceById("${invId}")' style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="Delete Record"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         `;
@@ -621,8 +623,16 @@
 
     function viewInvoiceModalById(id) {
       var records = window.TK_INVOICE.getPaymentRecords();
-      var found = records.find(r => (r.invoiceNo === id || r.receiptNo === id));
+      var found = records.find(r => (r.invoiceNo === id || r.receiptNo === id || r.paymentId === id));
       if (found) window.TK_INVOICE.showInvoiceModal(found);
+    }
+
+    function deleteInvoiceById(id) {
+      if (!confirm('Are you sure you want to delete payment record ' + id + '?')) return;
+      window.TK_INVOICE.deletePaymentRecord(id);
+      loadAdminInvoices();
+      loadAllDashboardData();
+      alert('✓ Invoice deleted.');
     }
 
     function openManualInvoiceModal() {
@@ -690,7 +700,7 @@
         var total = parseInt(agr.totalCost || 0);
 
         tbody.innerHTML += `
-          <div class="table-row" style="grid-template-columns:1.4fr 1.6fr 1fr 1fr 1fr 180px;padding:12px 0;align-items:center;border-bottom:1px solid rgba(26,86,255,0.06);font-size:.84rem;">
+          <div class="table-row" style="grid-template-columns:1.4fr 1.6fr 1fr 1fr 1fr 220px;padding:12px 0;align-items:center;border-bottom:1px solid rgba(26,86,255,0.06);font-size:.84rem;">
             <div>
               <strong style="color:var(--blue);font-family:monospace;">${agr.agreementId}</strong>
               <div style="font-size:.72rem;color:var(--gray);">${agr.date || ''}</div>
@@ -712,10 +722,12 @@
                 ${balance === 0 ? '✓ Paid Full' : 'Pay Later: ₹' + balance.toLocaleString('en-IN')}
               </span>
             </div>
-            <div style="display:flex;gap:6px;justify-content:flex-end;">
-              <button class="btn btn-sm btn-ghost" onclick='viewAgreementModalById("${agr.agreementId}")' title="View & Print"><i class="fas fa-eye"></i> View</button>
+            <div style="display:flex;gap:4px;justify-content:flex-end;">
+              <button class="btn btn-sm btn-ghost" onclick='viewAgreementModalById("${agr.agreementId}")' title="View & Print"><i class="fas fa-eye"></i></button>
+              <a href="agreement.html?edit=${agr.agreementId}" target="_blank" class="btn btn-sm" style="background:rgba(26,86,255,0.12);color:var(--blue);border:1px solid rgba(26,86,255,0.25);" title="Edit Agreement"><i class="fas fa-edit"></i></a>
               <button class="btn btn-sm btn-green" onclick='shareAgrWhatsAppById("${agr.agreementId}")' title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
               <button class="btn btn-sm btn-blue" onclick='emailAgrById("${agr.agreementId}")' title="Email"><i class="fas fa-envelope"></i></button>
+              <button class="btn btn-sm" onclick='deleteAgreementById("${agr.agreementId}")' style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);" title="Delete Agreement"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         `;
@@ -736,6 +748,13 @@
       var list = window.TK_AGREEMENT.getAgreements();
       var found = list.find(item => item.agreementId === id);
       if (found) { window.TK_AGREEMENT._currentAgreementData = found; window.TK_AGREEMENT.emailAgreement(); }
+    }
+    function deleteAgreementById(id) {
+      if (!confirm('Are you sure you want to delete agreement ' + id + '?')) return;
+      window.TK_AGREEMENT.deleteAgreement(id);
+      loadAdminAgreements();
+      loadAllDashboardData();
+      alert('✓ Agreement deleted successfully.');
     }
     function exportAgreementsCSV() {
       var list = window.TK_AGREEMENT ? window.TK_AGREEMENT.getAgreements() : [];

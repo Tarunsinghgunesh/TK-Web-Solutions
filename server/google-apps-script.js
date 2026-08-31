@@ -271,6 +271,10 @@ function doPost(e) {
     else if (action === 'sendInvoiceEmail') {
       result = handleSendInvoiceEmail_(payload);
     }
+    // 5b. Send Signed Client Service Agreement Email
+    else if (action === 'sendAgreementEmail') {
+      result = handleSendAgreementEmail_(payload);
+    }
     // 6. Lead Capture (Free Audit + Project Brief)
     else if (action === 'submitLead' || action === 'createLead') {
       result = handleSubmitLead_(payload);
@@ -871,6 +875,106 @@ function handleSendInvoiceEmail_(payload) {
 
   logDiagnostic_('EMAIL_SENT_WITH_PDF', 'Sent to: ' + customerEmail + ' for ' + record.invoiceNo);
   return { success: true, message: 'PDF invoice attached and sent successfully to: ' + customerEmail };
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// 7B. SEND CLIENT SERVICE AGREEMENT EMAIL
+// ════════════════════════════════════════════════════════════════════════════════
+function handleSendAgreementEmail_(payload) {
+  var customerEmail = (payload.email || '').trim();
+  if (!customerEmail || customerEmail.indexOf('@') === -1) {
+    return { success: false, error: 'Valid client email address is required.' };
+  }
+
+  var agrId = payload.agreementId || 'TK-AGR-' + (new Date()).getFullYear() + '-0001';
+  var clientName = payload.clientName || 'Valued Client';
+  var businessName = payload.businessName || '';
+  var serviceName = payload.serviceName || 'Custom Digital Engineering';
+  var totalCost = parseInt(payload.totalCost || 0);
+  var advancePaid = parseInt(payload.advancePaid || 0);
+  var balanceDue = parseInt(payload.balanceDue !== undefined ? payload.balanceDue : (totalCost - advancePaid));
+  var timeline = payload.timeline || '5–7 Working Days';
+  var dateStr = payload.date || getISTTime_();
+
+  var htmlBody = `
+    <div style="font-family:'DM Sans',Arial,sans-serif;background:#060d1f;color:#ffffff;padding:32px 24px;border-radius:18px;max-width:600px;margin:0 auto;box-shadow:0 20px 60px rgba(0,0,0,0.6);">
+      <div style="text-align:center;border-bottom:1px solid rgba(0,229,255,0.25);padding-bottom:18px;margin-bottom:20px;">
+        <h1 style="font-size:24px;color:#00e5ff;margin:0 0 4px;font-weight:800;letter-spacing:1px;">TK Web Solutions</h1>
+        <p style="font-size:12px;color:#94a3b8;font-style:italic;margin:0 0 10px;">"From Dreams.... to Digital Reality"</p>
+        <div style="display:inline-block;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#ffffff;font-size:11px;font-weight:bold;letter-spacing:1px;padding:4px 14px;border-radius:20px;">📜 OFFICIAL CLIENT SERVICE AGREEMENT</div>
+      </div>
+      <p style="font-size:14px;color:#cbd5e1;line-height:1.6;">Dear <strong>${clientName}</strong>${businessName ? ' (' + businessName + ')' : ''},</p>
+      <p style="font-size:13px;color:#94a3b8;line-height:1.6;">Thank you for choosing <strong>TK Web Solutions</strong>. Your official digital project service agreement has been executed with the following specifications:</p>
+      
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;margin:20px 0;">
+        <table style="width:100%;font-size:13px;color:#cbd5e1;border-collapse:collapse;">
+          <tr><td style="padding:5px 0;color:#94a3b8;">Agreement #:</td><td style="padding:5px 0;font-weight:bold;text-align:right;color:#00e5ff;font-family:monospace;">${agrId}</td></tr>
+          <tr><td style="padding:5px 0;color:#94a3b8;">Service:</td><td style="padding:5px 0;text-align:right;color:#ffffff;font-weight:bold;">${serviceName}</td></tr>
+          <tr><td style="padding:5px 0;color:#94a3b8;">Execution Date:</td><td style="padding:5px 0;text-align:right;">${dateStr}</td></tr>
+          <tr><td style="padding:5px 0;color:#94a3b8;">Delivery Timeline:</td><td style="padding:5px 0;text-align:right;color:#a78bfa;">${timeline}</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.1);"><td style="padding:8px 0 2px;color:#94a3b8;">Total Project Cost:</td><td style="padding:8px 0 2px;font-size:15px;font-weight:bold;text-align:right;color:#ffffff;">₹${totalCost.toLocaleString('en-IN')}</td></tr>
+          <tr><td style="padding:4px 0 2px;color:#16a34a;">Advance Paid (Deposit):</td><td style="padding:4px 0 2px;font-weight:bold;text-align:right;color:#22c55e;">₹${advancePaid.toLocaleString('en-IN')} (Received ✓)</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.15);"><td style="padding:8px 0 2px;font-size:14px;font-weight:bold;color:#f59e0b;">Balance Due (Pay Later):</td><td style="padding:8px 0 2px;font-size:16px;font-weight:bold;text-align:right;color:#f59e0b;">₹${balanceDue.toLocaleString('en-IN')}</td></tr>
+        </table>
+      </div>
+
+      <div style="background:rgba(0,229,255,0.06);border-left:3px solid #00e5ff;padding:12px;border-radius:0 8px 8px 0;font-size:12px;color:#93c5fd;margin-bottom:20px;line-height:1.6;">
+        <strong>🛡️ Included Warranty &amp; Terms:</strong><br>
+        • Includes <strong>30-Day Free Technical Warranty</strong> covering all adjustments and performance checks.<br>
+        • Full 100% intellectual property &amp; source code transfer upon final balance settlement.<br>
+        • Direct support with Founder Tarun Singh (+91 90793 68240).
+      </div>
+
+      <div style="text-align:center;margin:20px 0;">
+        <a href="https://tkwebsolutions.in/agreement.html" style="display:inline-block;background:linear-gradient(135deg,#0052ff,#00d4ff);color:#ffffff;padding:12px 28px;border-radius:10px;text-decoration:none;font-weight:bold;font-size:13px;">View Official Agreement Portal &rarr;</a>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;text-align:center;font-size:11.5px;color:#64748b;line-height:1.5;">
+        <p style="margin:0 0 2px;color:#94a3b8;"><strong>Tarun Singh</strong> — Founder & Lead Developer • TK Web Solutions</p>
+        <p style="margin:0 0 2px;">Bharatpur, Rajasthan, 321001, India • Phone: +91 90793 68240</p>
+        <p style="margin:0;color:#475569;">Helpline & Inquiries: tkwebsolution1301@gmail.com</p>
+      </div>
+    </div>
+  `;
+
+  var plainBody = 'Dear ' + clientName + ',\n\n' +
+    'Thank you for partnering with TK Web Solutions. Your official project service agreement details are as follows:\n\n' +
+    'Agreement ID: ' + agrId + '\n' +
+    'Client: ' + clientName + (businessName ? ' (' + businessName + ')' : '') + '\n' +
+    'Service: ' + serviceName + '\n' +
+    'Timeline: ' + timeline + '\n' +
+    'Total Agreed Cost: ₹' + totalCost.toLocaleString('en-IN') + '\n' +
+    'Advance Paid: ₹' + advancePaid.toLocaleString('en-IN') + ' (Received ✓)\n' +
+    'Balance Due (Pay Later): ₹' + balanceDue.toLocaleString('en-IN') + '\n\n' +
+    'Included: 30-Day Free Technical Warranty.\n\n' +
+    'Regards,\n' +
+    'Tarun Singh\n' +
+    'Founder — TK Web Solutions\n' +
+    '+91 90793 68240 | https://tkwebsolutions.in';
+
+  try {
+    MailApp.sendEmail({
+      to: customerEmail,
+      subject: 'TK Web Solutions — Official Service Agreement [' + agrId + ']',
+      body: plainBody,
+      htmlBody: htmlBody,
+      name: 'TK Web Solutions • Tarun Singh',
+      replyTo: 'tkwebsolution1301@gmail.com'
+    });
+  } catch (mailErr) {
+    try {
+      GmailApp.sendEmail(customerEmail, 'TK Web Solutions — Official Service Agreement [' + agrId + ']', plainBody, {
+        htmlBody: htmlBody,
+        name: 'TK Web Solutions • Tarun Singh',
+        replyTo: 'tkwebsolution1301@gmail.com'
+      });
+    } catch (gmailErr) {
+      return { success: false, error: gmailErr.toString() };
+    }
+  }
+
+  logDiagnostic_('AGREEMENT_EMAIL_SENT', 'Sent agreement ' + agrId + ' to ' + customerEmail);
+  return { success: true, message: 'Agreement email delivered successfully to ' + customerEmail };
 }
 
 // ════════════════════════════════════════════════════════════════════════════════

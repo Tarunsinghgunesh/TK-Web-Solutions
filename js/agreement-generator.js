@@ -448,11 +448,23 @@
       };
     },
 
-    // Dispatch via mailto / backend ping
+    // Dispatch via Google Apps Script server email + mailto fallback
     dispatchAgreementEmail: function(data, targetEmail, modalEl) {
       var total = parseInt(data.totalCost || 0);
       var advance = parseInt(data.advancePaid || 0);
       var balance = parseInt(data.balanceDue !== undefined ? data.balanceDue : (total - advance));
+      var submitBtn = document.getElementById('tkAgrEmailSubmit');
+      var msgEl = document.getElementById('tkAgrEmailMsg');
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending from Server...';
+      }
+      if (msgEl) {
+        msgEl.style.display = 'block';
+        msgEl.style.color = '#00e5ff';
+        msgEl.innerHTML = 'Connecting to mail server...';
+      }
 
       var subject = 'Official Service Agreement — ' + (data.agreementId || 'TK-AGR') + ' [' + (data.serviceName || 'Website Project') + ']';
       var body = 'Dear ' + data.clientName + ',\n\n' +
@@ -480,22 +492,59 @@
         'Website: https://tkwebsolutions.in\n' +
         '"From Dreams.... to Digital Reality"';
 
-      // Open mailto fallback client
-      var mailtoLink = 'mailto:' + encodeURIComponent(targetEmail) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      window.location.href = mailtoLink;
+      var appsScriptUrl = (window.TK_CONFIG && window.TK_CONFIG.api && window.TK_CONFIG.api.appsScriptUrl) || 'https://script.google.com/macros/s/AKfycbyVscaGuEj3V9YkeYJ3TpACLHdwRXHivcHWjnk7vPWFEoW0gBxskIWi0WQTGTCPYK1I6A/exec';
 
-      var msgEl = document.getElementById('tkAgrEmailMsg');
-      if (msgEl) {
-        msgEl.style.display = 'block';
-        msgEl.style.color = '#4ade80';
-        msgEl.innerHTML = '<i class="fas fa-check-circle"></i> Opening email client with pre-filled contract summary!';
-      }
-      setTimeout(function() {
-        if (modalEl && modalEl.parentNode) modalEl.remove();
-      }, 2500);
+      var emailPayload = {
+        action: 'sendAgreementEmail',
+        email: targetEmail,
+        agreementId: data.agreementId,
+        clientName: data.clientName,
+        businessName: data.businessName || '',
+        phone: data.phone || '',
+        address: data.address || '',
+        serviceName: data.serviceName || '',
+        totalCost: total,
+        advancePaid: advance,
+        balanceDue: balance,
+        timeline: data.timeline || '5–7 Working Days',
+        date: data.date || this.getISTDate(),
+        customClauses: data.customClauses || ''
+      };
+
+      // Direct POST to Google Apps Script
+      fetch(appsScriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(emailPayload)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(json) {
+        if (msgEl) {
+          msgEl.style.color = '#4ade80';
+          msgEl.innerHTML = '<i class="fas fa-check-circle"></i> Agreement sent successfully to ' + targetEmail + '!';
+        }
+        if (submitBtn) {
+          submitBtn.innerHTML = '✓ Sent Successfully';
+        }
+        setTimeout(function() {
+          if (modalEl && modalEl.parentNode) modalEl.remove();
+        }, 2200);
+      })
+      .catch(function(err) {
+        // Fallback: Open Mail client
+        if (msgEl) {
+          msgEl.style.color = '#4ade80';
+          msgEl.innerHTML = '<i class="fas fa-paper-plane"></i> Opening mail draft for ' + targetEmail + '...';
+        }
+        var mailtoLink = 'mailto:' + encodeURIComponent(targetEmail) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailtoLink;
+        setTimeout(function() {
+          if (modalEl && modalEl.parentNode) modalEl.remove();
+        }, 2000);
+      });
     },
 
-    // Save to local storage ledger
+    // Save or update in local storage ledger
     saveAgreement: function(data) {
       var list = this.getAgreements();
       var idx = list.findIndex(function(item) {
@@ -510,6 +559,26 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
       } catch(e) {}
       return list;
+    },
+
+    // Delete agreement by ID
+    deleteAgreement: function(agreementId) {
+      var list = this.getAgreements();
+      var filtered = list.filter(function(item) {
+        return item.agreementId !== agreementId;
+      });
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      } catch(e) {}
+      return filtered;
+    },
+
+    // Get agreement by ID
+    getAgreementById: function(agreementId) {
+      var list = this.getAgreements();
+      return list.find(function(item) {
+        return item.agreementId === agreementId;
+      }) || null;
     },
 
     getAgreements: function() {

@@ -401,6 +401,28 @@
 
   </main>
 
+  <!-- SAVED AGREEMENTS LEDGER SECTION -->
+  <section style="max-width:1440px;margin:0 auto 60px;padding:0 4%;">
+    <div style="background:#0d152b;border:1.5px solid rgba(0,229,255,0.25);border-radius:20px;padding:26px;box-shadow:0 20px 50px rgba(0,0,0,0.5);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;">
+            <i class="fas fa-folder-open" style="color:var(--accent);"></i> Saved Agreements &amp; Contracts Ledger
+          </h3>
+          <p style="font-size:0.8rem;color:#94a3b8;margin-top:2px;">Manage, edit, or delete previously generated client agreements.</p>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="resetToNewAgreement()" class="nav-btn" style="background:rgba(26,86,255,0.25);border:1px solid #1a56ff;color:#fff;"><i class="fas fa-plus"></i> + Create Fresh Agreement</button>
+          <button onclick="clearAllAgreementsPrompt()" class="nav-btn" style="background:rgba(239,68,68,0.15);border:1px solid #ef4444;color:#f87171;"><i class="fas fa-trash-alt"></i> Clear All</button>
+        </div>
+      </div>
+
+      <div id="savedAgreementsList" style="display:flex;flex-direction:column;gap:10px;">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </section>
+
   <!-- Include Core Modules -->
   <script src="js/payment-config.js"></script>
   <script src="js/agreement-generator.js"></script>
@@ -455,6 +477,7 @@
       var data = getFormData();
       window.TK_AGREEMENT.saveAgreement(data);
       window.TK_AGREEMENT._currentAgreementData = data;
+      renderSavedAgreements();
       window.TK_AGREEMENT.printAgreement();
     }
 
@@ -462,6 +485,7 @@
       var data = getFormData();
       window.TK_AGREEMENT.saveAgreement(data);
       window.TK_AGREEMENT._currentAgreementData = data;
+      renderSavedAgreements();
       window.TK_AGREEMENT.shareWhatsApp();
     }
 
@@ -469,21 +493,124 @@
       var data = getFormData();
       window.TK_AGREEMENT.saveAgreement(data);
       window.TK_AGREEMENT._currentAgreementData = data;
+      renderSavedAgreements();
       window.TK_AGREEMENT.emailAgreement();
     }
 
     function saveAndToast() {
       var data = getFormData();
       window.TK_AGREEMENT.saveAgreement(data);
-      alert('✓ Agreement #' + data.agreementId + ' saved to Dashboard Ledger!');
+      renderSavedAgreements();
+      alert('✓ Agreement #' + data.agreementId + ' saved successfully!');
+    }
+
+    /* Edit an existing agreement */
+    function loadAgreementForEdit(id) {
+      var agr = window.TK_AGREEMENT.getAgreementById(id);
+      if (!agr) return;
+
+      document.getElementById('agrId').value = agr.agreementId || '';
+      document.getElementById('agrDate').value = agr.date || '';
+      document.getElementById('clientName').value = agr.clientName || '';
+      document.getElementById('businessName').value = agr.businessName || '';
+      document.getElementById('clientPhone').value = agr.phone || '';
+      document.getElementById('clientEmail').value = agr.email || '';
+      document.getElementById('clientAddress').value = agr.address || '';
+      document.getElementById('serviceName').value = agr.serviceName || '';
+      document.getElementById('totalCost').value = agr.totalCost || 0;
+      document.getElementById('advancePaid').value = agr.advancePaid || 0;
+      document.getElementById('timeline').value = agr.timeline || '5–7 Working Days';
+      document.getElementById('supportPeriod').value = agr.supportPeriod || '30 Days Free Technical Support';
+      document.getElementById('customClauses').value = agr.customClauses || '';
+
+      calcBalance();
+      updateLivePreview();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Delete an existing agreement */
+    function deleteAgreementById(id) {
+      if (!confirm('Are you sure you want to delete agreement ' + id + '?')) return;
+      window.TK_AGREEMENT.deleteAgreement(id);
+      renderSavedAgreements();
+      alert('✓ Agreement deleted.');
+    }
+
+    /* Clear all agreements */
+    function clearAllAgreementsPrompt() {
+      if (!confirm('Delete ALL saved agreements? This action cannot be undone.')) return;
+      localStorage.removeItem('tk_agreements_ledger');
+      renderSavedAgreements();
+      alert('All agreements cleared.');
+    }
+
+    /* Reset form for a fresh new agreement */
+    function resetToNewAgreement() {
+      document.getElementById('agrId').value = window.TK_AGREEMENT.generateAgreementId();
+      document.getElementById('agrDate').value = window.TK_AGREEMENT.getISTDate();
+      document.getElementById('clientName').value = '';
+      document.getElementById('businessName').value = '';
+      document.getElementById('clientPhone').value = '';
+      document.getElementById('clientEmail').value = '';
+      document.getElementById('clientAddress').value = 'Bharatpur, Rajasthan';
+      document.getElementById('serviceName').value = 'Coaching Center Website';
+      document.getElementById('totalCost').value = 14999;
+      document.getElementById('advancePaid').value = 7500;
+      document.getElementById('timeline').value = '5–7 Working Days';
+      document.getElementById('customClauses').value = 'Includes Admission Form, WhatsApp Lead Sync, Faculty Profiles & Mobile-First Design.';
+      calcBalance();
+      updateLivePreview();
+    }
+
+    /* Render Saved Agreements List */
+    function renderSavedAgreements() {
+      var list = window.TK_AGREEMENT.getAgreements();
+      var container = document.getElementById('savedAgreementsList');
+      if (!container) return;
+
+      if (list.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:24px;color:#94a3b8;font-size:0.85rem;"><i class="fas fa-file-contract" style="font-size:1.6rem;color:rgba(0,229,255,0.2);display:block;margin-bottom:8px;"></i>No agreements in ledger yet. Save or print an agreement to store it here.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      list.forEach(function(agr) {
+        var total = parseInt(agr.totalCost || 0);
+        var advance = parseInt(agr.advancePaid || 0);
+        var balance = parseInt(agr.balanceDue !== undefined ? agr.balanceDue : (total - advance));
+
+        container.innerHTML += `
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+            <div>
+              <div style="font-family:monospace;font-weight:800;color:var(--accent);font-size:0.9rem;">${agr.agreementId}</div>
+              <div style="font-size:0.92rem;font-weight:700;color:#fff;margin-top:2px;">${agr.clientName} ${agr.businessName ? '• <span style="color:#94a3b8;font-weight:400;">' + agr.businessName + '</span>' : ''}</div>
+              <div style="font-size:0.78rem;color:#94a3b8;">${agr.serviceName} • Total: ₹${total.toLocaleString('en-IN')} (Adv: ₹${advance.toLocaleString('en-IN')}, Bal: ₹${balance.toLocaleString('en-IN')})</div>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <button onclick="loadAgreementForEdit('${agr.agreementId}')" class="nav-btn" style="background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.3);color:#00e5ff;font-size:0.75rem;padding:6px 12px;"><i class="fas fa-edit"></i> Edit</button>
+              <button onclick="deleteAgreementById('${agr.agreementId}')" class="nav-btn" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#f87171;font-size:0.75rem;padding:6px 10px;" title="Delete Agreement"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </div>
+        `;
+      });
     }
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('agrId').value = window.TK_AGREEMENT.generateAgreementId();
-      document.getElementById('agrDate').value = window.TK_AGREEMENT.getISTDate();
-      calcBalance();
-      updateLivePreview();
+      // Check if URL has ?edit=TK-AGR-XXX
+      var params = new URLSearchParams(window.location.search);
+      var editId = params.get('edit');
+
+      if (editId) {
+        loadAgreementForEdit(editId);
+      } else {
+        document.getElementById('agrId').value = window.TK_AGREEMENT.generateAgreementId();
+        document.getElementById('agrDate').value = window.TK_AGREEMENT.getISTDate();
+        calcBalance();
+        updateLivePreview();
+      }
+
+      renderSavedAgreements();
     });
   </script>
 </body>

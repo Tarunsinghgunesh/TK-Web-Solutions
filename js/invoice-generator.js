@@ -814,6 +814,17 @@
 
     dispatchInvoiceEmail: function(data, isManual) {
       this.emailInvoiceCopy();
+    },
+
+    deletePaymentRecord: function(id) {
+      var records = this.getPaymentRecords();
+      var filtered = records.filter(function(r) {
+        return (r.invoiceNo !== id && r.receiptNo !== id && r.paymentId !== id);
+      });
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      } catch(e) {}
+      return filtered;
     }
   };
 
