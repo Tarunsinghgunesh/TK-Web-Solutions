@@ -95,7 +95,18 @@
     }
     var count = incrementLunaDownload();
     showLunaDownloadToast(count);
-    // Open official website in new tab
+
+    // 1. Direct file download of official release APK
+    try {
+      var a = document.createElement('a');
+      a.href = 'app/luna-v1.0.apk';
+      a.download = 'luna-v1.0.apk';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch(e) {}
+
+    // 2. Open official website in new tab
     window.open(LUNA_CONFIG.officialUrl, '_blank', 'noopener,noreferrer');
     return true;
   };
