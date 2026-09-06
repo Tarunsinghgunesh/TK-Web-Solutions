@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="google-adsense-account" content="ca-pub-2253826728800055">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Android App Development — TK Web Solutions</title>
@@ -35,12 +36,20 @@
   </script>
 </head>
 <body>
-  <header style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;">
-      <img src="logo.png" alt="Logo" style="width:36px;height:36px;border-radius:8px;">
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;">TK Web Solutions</div>
+    <!-- Header Navigation -->
+  <header class="site-header">
+    <a href="/" class="brand-logo">
+      <img src="/logo.png" alt="TK Web Solutions" width="36" height="36">
+      <div class="brand-name"><span>TK</span> Web Solutions</div>
     </a>
-    <a href="start-project.html" class="btn-main" style="padding:8px 16px;font-size:0.85rem;margin:0;">Start Project</a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/blog.html" class="nav-link">Blog</a>
+      <a href="/portfolio.html" class="nav-link">Portfolio</a>
+      <a href="/about.html" class="nav-link">About</a>
+      <a href="/contact.html" class="nav-link">Contact</a>
+      <a href="/start-project.html" class="btn-main" style="padding:8px 16px;font-size:0.85rem;">Start Project</a>
+    </nav>
   </header>
 
   <section class="page-hero">
@@ -96,8 +105,57 @@
     </div>
   </main>
 
-  <footer style="text-align:center;padding:40px 20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.85rem;">
-    © 2026 TK Web Solutions • Founder Tarun Singh • Bharatpur, Rajasthan
+    <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand-name" style="margin-bottom:12px;"><span>TK</span> Web Solutions</div>
+        <p style="font-size:0.88rem;line-height:1.6;margin-bottom:16px;">
+          Independent web design, application development, and SEO studio based in Bharatpur, Rajasthan, India. Founded by Tarun Singh.
+        </p>
+        <p style="font-size:0.85rem;">📞 +91 90793 68240 | ✉️ tkwebsolution1301@gmail.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/portfolio.html">Portfolio</a></li>
+          <li><a href="/blog.html">Blog &amp; Insights</a></li>
+          <li><a href="/tarun-singh.html">Founder Profile</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/business-website.html">Business Websites</a></li>
+          <li><a href="/coaching-website.html">Coaching Websites</a></li>
+          <li><a href="/school-website.html">School Portals</a></li>
+          <li><a href="/ecommerce-website.html">E-Commerce</a></li>
+          <li><a href="/android-app-development.html">Android Apps</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Trust &amp; Legal</h4>
+        <ul>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+          <li><a href="/disclaimer.html">Disclaimer</a></li>
+          <li><a href="/cookie-policy.html">Cookie Policy</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 TK Web Solutions. All rights reserved. Bharatpur, Rajasthan, India.</div>
+      <div>
+        <a href="/privacy-policy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/cookie-policy.html">Cookies</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

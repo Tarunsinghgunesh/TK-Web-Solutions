@@ -3,6 +3,9 @@ http://tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 http://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 https://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 
+# Legacy path fix
+/blog/blog.html /blog.html 301
+
 # Clean SEO Routes for Tarun Singh & TK Web Solutions
 /journey /journey.html 200
 /education /education.html 200
@@ -19,6 +22,11 @@ https://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 /about /about.html 200
 /portfolio /portfolio.html 200
 /blog /blog.html 200
+/contact /contact.html 200
+/disclaimer /disclaimer.html 200
+/cookie-policy /cookie-policy.html 200
+/privacy-policy /privacy-policy.html 200
+/terms /terms.html 200
 /invoice /invoice.html 200
 /verify /invoice.html 200
 /receipt /invoice.html 200
@@ -31,4 +39,3 @@ https://www.tkwebsolutions.in/* https://tkwebsolutions.in/:splat 301
 /ecommerce-website /ecommerce-website.html 200
 /android-app-development /android-app-development.html 200
 /local-seo-bharatpur /local-seo-bharatpur.html 200
-

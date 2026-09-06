@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Search Console Setup Kaise Karein 2026 — Complete Hindi Guide</title>
+<meta name="description" content="Google Search Console setup karne ka step-by-step tarika Hindi mein. Domain verification, sitemap submission, crawl errors fix aur keyword ranking tracking.">
+<meta name="author" content="Tarun Singh — TK Web Solutions">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="google search console setup hindi, gsc sitemap submit 2026, website google par index kaise kare, search console verification, tarun singh seo">
+<meta name="google-adsense-account" content="ca-pub-2253826728800055">
+<link rel="canonical" href="https://tkwebsolutions.in/blog/google-search-console-setup-guide.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Search Console Setup Guide 2026: Sitemap Submit & Rank Track Karein">
+<meta property="og:description" content="Google Search Console setup karne ka step-by-step tarika Hindi mein. Domain verification, sitemap submission, crawl errors fix aur keyword ranking tracking.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=1200&fit=crop">
+<meta property="og:url" content="https://tkwebsolutions.in/blog/google-search-console-setup-guide.html">
+<meta property="og:site_name" content="TK Web Solutions">
+<meta property="article:author" content="Tarun Singh">
+<meta property="article:published_time" content="2026-09-06">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google Search Console Setup Guide 2026: Sitemap Submit & Rank Track Karein">
+<meta name="twitter:description" content="Google Search Console setup karne ka step-by-step tarika Hindi mein. Domain verification, sitemap submission, crawl errors fix aur keyword ranking tracking.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=1200&fit=crop">
+<link rel="icon" href="/favicon.ico">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Google Search Console Setup Guide 2026: Sitemap Submit & Rank Track Karein",
+  "description": "Google Search Console setup karne ka step-by-step tarika Hindi mein. Domain verification, sitemap submission, crawl errors fix aur keyword ranking tracking.",
+  "datePublished": "2026-09-06",
+  "dateModified": "2026-09-06",
+  "author": {
+    "@type": "Person",
+    "name": "Tarun Singh",
+    "url": "https://tkwebsolutions.in/tarun-singh.html",
+    "jobTitle": "Founder, TK Web Solutions"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TK Web Solutions",
+    "url": "https://tkwebsolutions.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tkwebsolutions.in/logo.png"
+    }
+  },
+  "url": "https://tkwebsolutions.in/blog/google-search-console-setup-guide.html",
+  "image": "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=1200&fit=crop"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{"@type":"Question","name":"Google Search Console setup karne ke kitne paise lagte hain?","acceptedAnswer":{"@type":"Answer","text":"Google Search Console 100% free official tool hai Google ka. Iska koi subscription ya charge nahi hota."}},{"@type":"Question","name":"GSC mein data aane mein kitna time lagta hai?","acceptedAnswer":{"@type":"Answer","text":"Domain verify karne ke baad initial search performance data aane mein lagbhag 48 se 72 hours lagte hain."}},{"@type":"Question","name":"Kya WordPress aur Custom website dono ke liye GSC same hai?","acceptedAnswer":{"@type":"Answer","text":"Haan, chahe aapki website WordPress par ho, HTML/CSS par ho ya Next.js par ho — Search Console sabke liye standard process se kaam karta hai."}},{"@type":"Question","name":"Sitemap submit karne ke baad bhi page index nahi ho raha, kya karein?","acceptedAnswer":{"@type":"Answer","text":"URL Inspection tool use karke dekhein ki koi noindex tag toh nahi laga. Page ki internal linking strong karein aur unique practical content add karein."}}]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+:root{
+  --blue:#1a56ff;--navy:#060d1f;--light:#f4f7ff;--green:#25d366;
+  --accent:#00c6ff;--card-bg:#fff;--body-bg:#f0f4ff;
+  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--body-bg);line-height:1.8;}
+a{text-decoration:none;color:var(--blue);}
+img{max-width:100%;height:auto;}
+
+#read-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--accent));z-index:9999;transition:width .1s linear;}
+
+.navbar{background:rgba(255,255,255,.97);backdrop-filter:blur(10px);padding:13px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.06);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.08rem;color:var(--navy);}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;gap:16px;align-items:center;}
+.nav-links a{font-size:.85rem;font-weight:500;color:#475569;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{background:var(--blue)!important;color:#fff!important;padding:8px 16px;border-radius:8px;font-weight:700!important;}
+
+.breadcrumb{background:#fff;padding:10px 5%;font-size:.82rem;color:var(--muted);border-bottom:1px solid var(--border);}
+.breadcrumb a{color:var(--blue);}
+
+.hero{padding:60px 5% 44px;text-align:center;color:#fff;background:linear-gradient(135deg,#060d1f 0%,#0d1a3a 60%,#1a1040 100%);position:relative;overflow:hidden;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(26,86,255,.3);border:1px solid rgba(0,229,255,.4);color:#93c5fd;font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:800;margin-bottom:14px;line-height:1.2;color:#fff;}
+.hero-meta{color:rgba(255,255,255,.75);font-size:.88rem;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;align-items:center;}
+.hero-meta a{color:#93c5fd;font-weight:600;}
+.reading-time{background:rgba(255,255,255,.15);padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700;color:#fff;}
+
+.container{max-width:880px;margin:0 auto;padding:40px 5% 60px;}
+
+.takeaway-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-left:5px solid var(--blue);border-radius:12px;padding:22px 24px;margin-bottom:32px;box-shadow:0 3px 12px rgba(26,86,255,.06);}
+.takeaway-box h3{font-family:'Syne',sans-serif;font-size:1.1rem;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.takeaway-box p{margin:0;font-size:0.95rem;color:#1e3a8a;line-height:1.7;}
+
+.toc-box{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px 26px;margin-bottom:36px;box-shadow:0 2px 10px rgba(0,0,0,.03);}
+.toc-box h3{font-family:'Syne',sans-serif;font-size:1.05rem;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.toc-box ol{padding-left:20px;display:flex;flex-direction:column;gap:6px;}
+.toc-box a{color:var(--blue);font-size:0.9rem;font-weight:500;}
+.toc-box a:hover{text-decoration:underline;}
+
+.content p{margin-bottom:20px;color:#334155;font-size:1.02rem;line-height:1.85;}
+.content h2{font-family:'Syne',sans-serif;font-size:1.55rem;color:var(--navy);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+.content h3{font-family:'Syne',sans-serif;font-size:1.2rem;color:var(--navy);margin:28px 0 12px;}
+.content ul,.content ol{margin:0 0 20px 24px;color:#334155;}
+.content li{margin-bottom:8px;font-size:1rem;line-height:1.75;}
+.content li strong{color:var(--navy);}
+
+.data-table{width:100%;border-collapse:collapse;margin:28px 0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.05);border:1px solid var(--border);}
+.data-table th,.data-table td{padding:14px 18px;text-align:left;font-size:0.92rem;border-bottom:1px solid var(--border);}
+.data-table th{background:var(--navy);color:#fff;font-family:'Syne',sans-serif;font-weight:700;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even){background:#f8fafc;}
+
+.pro-box{background:#fff;border-left:4px solid var(--green);border-radius:10px;padding:18px 22px;margin:24px 0;box-shadow:0 2px 10px rgba(0,0,0,.04);}
+.pro-box h4{color:#15803d;font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:6px;}
+.pro-box p{margin:0;font-size:0.92rem;color:#374151;}
+
+.warn-box{background:#fff;border-left:4px solid #ef4444;border-radius:10px;padding:18px 22px;margin:24px 0;box-shadow:0 2px 10px rgba(0,0,0,.04);}
+.warn-box h4{color:#b91c1c;font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:6px;}
+.warn-box p{margin:0;font-size:0.92rem;color:#374151;}
+
+.author-box{background:linear-gradient(135deg,#fff,#f0f4ff);border:1.5px solid var(--border);border-radius:18px;padding:28px;margin:48px 0 36px;display:flex;align-items:flex-start;gap:22px;box-shadow:0 6px 24px rgba(26,86,255,.08);}
+.author-box img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--blue);flex-shrink:0;}
+.author-box h4{font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:3px;color:var(--navy);}
+.author-box .role{color:var(--blue);font-weight:700;font-size:.85rem;margin-bottom:8px;display:block;}
+.author-box .bio{font-size:.9rem;color:#374151;margin-bottom:12px;line-height:1.65;}
+.author-box .author-links{display:flex;gap:10px;flex-wrap:wrap;}
+.author-box .author-links a{font-size:.82rem;font-weight:700;color:#fff;background:var(--blue);padding:6px 14px;border-radius:8px;}
+.author-box .author-links a.wa-link{background:var(--green);}
+
+.faq-section{background:#fff;border-radius:18px;padding:32px;margin:44px 0;border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.05);}
+.faq-section h2{font-family:'Syne',sans-serif;font-size:1.35rem;margin-bottom:24px;color:var(--navy);display:flex;align-items:center;gap:10px;}
+.faq-item{border-bottom:1px solid #f1f5f9;padding:16px 0;cursor:pointer;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.faq-q h3{font-size:.98rem;color:var(--navy);font-weight:600;}
+.faq-q span{font-size:1.1rem;color:var(--blue);flex-shrink:0;transition:transform .25s;}
+.faq-a{font-size:.92rem;color:#374151;margin-top:10px;display:none;line-height:1.7;}
+.faq-item.open .faq-q span{transform:rotate(45deg);}
+.faq-item.open .faq-a{display:block;}
+
+.cta-box{background:linear-gradient(135deg,#1a56ff 0%,#4f46e5 60%,#0d9488 100%);color:#fff;padding:40px;text-align:center;border-radius:18px;margin:44px 0;}
+.cta-box h2{font-family:'Syne',sans-serif;font-size:1.55rem;margin-bottom:12px;}
+.cta-box p{color:rgba(255,255,255,.85);max-width:540px;margin:0 auto 24px;font-size:.97rem;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-wa{background:var(--green);color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;font-size:.92rem;display:inline-flex;align-items:center;gap:8px;}
+.btn-web{background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.5);padding:12px 24px;border-radius:10px;font-weight:700;font-size:.92rem;}
+
+.related{background:#fff;padding:30px;border-radius:16px;border:1.5px solid var(--border);margin:36px 0;}
+.related h2{font-family:'Syne',sans-serif;font-size:1.1rem;margin-bottom:18px;color:var(--navy);}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
+.related-card{background:#f8faff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .2s;}
+.related-card:hover{border-color:var(--blue);background:#fff;transform:translateY(-2px);}
+.related-card a{color:var(--navy);font-weight:600;font-size:.88rem;display:block;margin-bottom:4px;}
+.related-card a:hover{color:var(--blue);}
+.related-card span{font-size:.75rem;color:var(--muted);}
+
+.wa-float{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:999;}
+
+footer{background:var(--navy);color:rgba(255,255,255,.45);padding:36px 5%;text-align:center;font-size:.82rem;}
+footer a{color:rgba(255,255,255,.45);margin:0 8px;transition:color .2s;}
+footer a:hover{color:#fff;}
+.footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;}
+
+@media(max-width:680px){
+  .author-box{flex-direction:column;}
+  .nav-links{display:none;}
+  .hero{padding:44px 4% 34px;}
+  .cta-box{padding:30px 20px;}
+  .data-table{display:block;overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- Reading Progress Indicator -->
+<div class="book-progress-wrapper" aria-hidden="true">
+  <div class="book-progress-bar" id="read-progress"></div>
+</div>
+<div class="reading-tracker-pill" id="readingPill">
+  <span>📖 Ch. 7/8</span>
+  <span style="opacity:0.4;">|</span>
+  <span id="readingPct">0% read</span>
+</div>
+<nav class="navbar">
+  <a href="/" class="nav-logo"><span>TK</span> Web Solutions</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="/">Home</a> ›
+  <a href="/blog.html">Blog</a> ›
+  <span>SEO</span>
+</nav>
+
+<div class="hero">
+  <div class="book-chapter-badge">📖 SEO & Search Architecture — Chapter 7 of 8</div>
+  <div class="hero-tag">📂 SEO</div>
+  <h1>Google Search Console Setup Guide 2026: Sitemap Submit & Rank Track Karein</h1>
+  <div class="hero-meta">
+    <span>📅 2026</span>
+    <span>By <a href="/tarun-singh.html">Tarun Singh</a></span>
+    <span class="reading-time">⏱ 9 min read</span>
+  </div>
+</div>
+
+<main>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+<div class="container">
+  
+  <div class="takeaway-box">
+    <h3>⚡ Quick Takeaway / Summary</h3>
+    <p>Google Search Console ek 100% free tool hai jisse aap dekh sakte hain ki Google aapki website ko kaise crawl aur index kar raha hai. Domain DNS ya HTML tag se verify karke sitemap.xml submit karein taaki aapke sabhi web pages 24-48 hours mein rank hone shuru ho sakein.</p>
+  </div>
+
+  
+  <!-- Article Share & Book Tools -->
+  <div class="article-share-bar">
+    <div class="share-label">
+      <span>📖 Chapter Tools &amp; Share:</span>
+    </div>
+    <div class="share-buttons">
+      <button onclick="copyArticleUrl(this)" class="share-btn" title="Copy Chapter Link">
+        <span>🔗</span> <span class="btn-text">Copy Link</span>
+      </button>
+      <a href="https://wa.me/?text=Google%20Search%20Console%20Setup%20Kaise%20Karein%202026%20%E2%80%94%20Complete%20Hindi%20Guide%20https%3A%2F%2Ftkwebsolutions.in%2Fblog%2Fgoogle-search-console-setup-guide.html" target="_blank" class="share-btn" title="Share on WhatsApp">
+        <span>💬</span> WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftkwebsolutions.in%2Fblog%2Fgoogle-search-console-setup-guide.html" target="_blank" class="share-btn" title="Share on LinkedIn">
+        <span>💼</span> LinkedIn
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftkwebsolutions.in%2Fblog%2Fgoogle-search-console-setup-guide.html&text=Google%20Search%20Console%20Setup%20Kaise%20Karein%202026%20%E2%80%94%20Complete%20Hindi%20Guide" target="_blank" class="share-btn" title="Share on X">
+        <span>🐦</span> X / Twitter
+      </a>
+      <button onclick="window.print()" class="share-btn" title="Print Chapter / Save as PDF">
+        <span>🖨️</span> Print
+      </button>
+    </div>
+  </div>
+
+  <div class="toc-box">
+    <h3>📑 Table of Contents</h3>
+    <ol>
+      <li><a href="#sec1">1. Google Search Console Kya Hai Aur Kyun Zaroori Hai?</a></li>
+      <li><a href="#sec2">2. Domain vs URL Prefix Verification (Kaunsa Choose Karein?)</a></li>
+      <li><a href="#sec3">3. Step-by-Step Verification Process (DNS & HTML Tag)</a></li>
+      <li><a href="#sec4">4. Sitemap.xml Submit Karne Ka Sahi Tarika</a></li>
+      <li><a href="#sec5">5. URL Inspection Tool: Naya Page Fast Index Kaise Karein</a></li>
+      <li><a href="#sec6">6. Common GSC Indexing Errors Aur Unka Solution</a></li>
+      <li><a href="#sec7">7. Performance Report: Clicks, Impressions Aur CTR Analysis</a></li>
+    </ol>
+  </div>
+
+  <div class="content">
+    <img src="https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?w=1200&fit=crop" alt="Google Search Console setup guide 2026 Hindi — sitemap submission and indexing" width="880" height="450" style="width:100%;border-radius:14px;margin-bottom:28px;object-fit:cover;" onerror="this.onerror=null;this.src='/image/founder.jpg';">
+
+    
+      <h2 id="sec1">1. Google Search Console Kya Hai Aur Kyun Zaroori Hai?</h2>
+      <p>Agar aapne nayi website banwai hai — chahe coaching institute ki ho, school ki ho, ya local business ki — toh Google ko sapna nahi aayega ki aapki site live ho chuki hai. Google ek robotic crawler (Googlebot) bhejta hai jo web pages ko dhundhta hai aur apne database mein save karta hai. Is process ko <strong>Crawl &amp; Index</strong> kehte hain.</p>
+      <p><strong>Google Search Console (GSC)</strong> Google ka official aur 100% free webmaster tool hai. Yeh aapko seedha bataata hai ki Google aapki site ke baare mein kya sochta hai — kaunse keywords par aapki site dikh rahi hai, kis page par error hai, aur kitne log aapke search results par click kar rahe hain.</p>
+
+      <div class="pro-box">
+        <h4>💡 Founder Advice (Tarun Singh):</h4>
+        <p>Bina Google Search Console ke SEO karna bilkul band aankhon se gaadi chalane jaisa hai. Website banne ke agle 1 ghante ke andar GSC setup hona chahiye taaki ek bhi din ka organic traffic miss na ho.</p>
+      </div>
+
+      <h2 id="sec2">2. Domain vs URL Prefix Verification (Kaunsa Choose Karein?)</h2>
+      <p>Jab aap Search Console open karte hain (search.google.com/search-console), Google aapse do options poochta hai:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Property Type</th>
+            <th>Coverage (Kya Track Hota Hai)</th>
+            <th>Verification Method</th>
+            <th>Kiske Liye Best Hai?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Domain Property</strong> (Recommended)</td>
+            <td>Sabhi subdomains (blog., app.), http aur https, www aur non-www sab ek saath</td>
+            <td>DNS TXT Record (Cloudflare, GoDaddy, Hostinger)</td>
+            <td>Professional websites &amp; full domain owners</td>
+          </tr>
+          <tr>
+            <td><strong>URL Prefix</strong></td>
+            <td>Sirf specific exact URL (e.g. sirf https://tkwebsolutions.in/)</td>
+            <td>HTML File Upload, HTML Tag, Google Analytics</td>
+            <td>Free subdomains ya DNS access na hone par</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="sec3">3. Step-by-Step Verification Process (DNS &amp; HTML Tag)</h2>
+      <p>Sabse solid aur reliable method hai <strong>DNS TXT Record</strong>. Yahan step-by-step process di gayi hai:</p>
+      <ol>
+        <li>Search Console mein jaakar <strong>Domain</strong> box mein apna domain name daalein (jaise: <code>tkwebsolutions.in</code> bina http ya www ke).</li>
+        <li>Google aapko ek lamba TXT code dega (jaise <code>google-site-verification=abc123xyz...</code>).</li>
+        <li>Apne Domain Registrar (GoDaddy, Namecheap, Hostinger) ya DNS Provider (Cloudflare) ke dashboard mein login karein.</li>
+        <li><strong>DNS Management</strong> mein jakar <strong>Add Record</strong> par click karein:
+          <ul>
+            <li><strong>Type:</strong> TXT</li>
+            <li><strong>Name / Host:</strong> @ (ya khali chhod dein)</li>
+            <li><strong>Value / Content:</strong> Google se copy kiya hua code paste karein.</li>
+            <li><strong>TTL:</strong> Auto ya 300 seconds.</li>
+          </ul>
+        </li>
+        <li>Save karne ke baad GSC mein jakar <strong>Verify</strong> button dabayein. 1 se 5 minute mein verification success ho jaata hai.</li>
+      </ol>
+
+      <h2 id="sec4">4. Sitemap.xml Submit Karne Ka Sahi Tarika</h2>
+      <p>Sitemap ek XML roadmap file hoti hai jo Googlebot ko bataati hai ki aapki website par kaun-kaun se pages hain aur unka last modified date kya hai. <a href="/blog/seo-tips-for-beginners.html">SEO beginners ke liye</a> sitemap submit karna pehla technical step hota hai.</p>
+      <p>GSC dashboard mein left sidebar par <strong>Sitemaps</strong> option par jayein:</p>
+      <ul>
+        <li>Input box mein likhein: <code>sitemap.xml</code></li>
+        <li><strong>Submit</strong> par click karein.</li>
+        <li>Status <strong>Success</strong> green color mein dikhna chahiye. Agar "Couldn't fetch" aaye toh 10 minute wait karein aur check karein ki URL browser mein open ho raha hai ya nahi.</li>
+      </ul>
+
+      <h2 id="sec5">5. URL Inspection Tool: Naya Page Fast Index Kaise Karein</h2>
+      <p>Jab aap koi naya blog post publish karte hain ya service page update karte hain, toh Google ko normal crawl mein 3 se 10 din lag sakte hain. Fast indexing ke liye:</p>
+      <ul>
+        <li>GSC ke top search bar (Inspect any URL) mein apne naye page ka complete URL paste karein (e.g., <code>https://tkwebsolutions.in/blog/google-search-console-setup-guide.html</code>).</li>
+        <li>Agar page index nahi hai, toh <strong>Request Indexing</strong> button par click karein.</li>
+        <li>Googlebot 24 ghante ke andar aapke page ko crawl karke Google search results mein daal dega.</li>
+      </ul>
+
+      <h2 id="sec6">6. Common GSC Indexing Errors Aur Unka Solution</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>GSC Error Message</th>
+            <th>Asli Matlab Kya Hai</th>
+            <th>Quick Fix Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Discovered - currently not indexed</strong></td>
+            <td>Google ko page mil gaya lekin server load ya content quality dekhkar hold par rakha hai.</td>
+            <td>Content mein useful depth badhayein, internal links add karein, aur request re-indexing karein.</td>
+          </tr>
+          <tr>
+            <td><strong>Crawled - currently not indexed</strong></td>
+            <td>Google ne page padh liya lekin use content value kam ya duplicate lagi.</td>
+            <td>Thin content hatayein, unique value add karein aur headings structure theek karein.</td>
+          </tr>
+          <tr>
+            <td><strong>Page with redirect</strong></td>
+            <td>Sitemap mein purana URL hai jo kisi doosre link par redirect ho raha hai.</td>
+            <td>Sitemap se redirect wala purana link hatakar final 200 OK wala URL daalein.</td>
+          </tr>
+          <tr>
+            <td><strong>Not found (404)</strong></td>
+            <td>Google un links ko dhundh raha hai jo ab exist nahi karte.</td>
+            <td>Custom 404 page banayein ya relevant working page par 301 redirect karein.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="sec7">7. Performance Report: Clicks, Impressions Aur CTR Analysis</h2>
+      <p>Search Console ka sabse powerful tab hai <strong>Search Results</strong> performance report. Yahan aap 4 critical metrics dekhte hain:</p>
+      <ul>
+        <li><strong>Total Impressions:</strong> Kitni baar aapka link Google search results mein logo ko dikha.</li>
+        <li><strong>Total Clicks:</strong> Kitne logo ne search result par click karke aapki website open ki.</li>
+        <li><strong>Average CTR (Click-Through Rate):</strong> Clicks &divide; Impressions. Agar impression zyada hain lekin click kam hain, toh aapka title aur meta description attractive nahi hai.</li>
+        <li><strong>Average Position:</strong> Google par aapki average rank kya hai (e.g. 1.2 matlab top position).</li>
+      </ul>
+      <p>Agar aapko search console setup karne mein koi technical problem aaye, toh aap humari <a href="/contact.html">TK Web Solutions team se contact</a> kar sakte hain ya humare <a href="/blog/local-seo-kya-hai.html">Local SEO Guide ko detail mein padhein</a>.</p>
+    
+
+  </div>
+
+  <div class="author-box">
+    <img src="/image/founder.jpg" alt="Tarun Singh — Founder TK Web Solutions Bharatpur" loading="lazy" width="84" height="84">
+    <div>
+      <h4>Tarun Singh</h4>
+      <span class="role">🌐 Web &amp; App Developer | Founder — TK Web Solutions, Bharatpur</span>
+      <p class="bio">Main Tarun Singh hoon — Bharatpur, Rajasthan ka web developer, Android app developer, aur SEO specialist. TK Web Solutions ke zariye coaching institutes, schools, shops aur local businesses ko premium digital presence aur measurable growth provide karta hoon.</p>
+      <div class="author-links">
+        <a href="/tarun-singh.html">👤 Founder Profile</a>
+        <a href="https://wa.me/919079368240?text=Hi%20Tarun!%20Maine%20aapka%20blog%20padha." class="wa-link">💬 Direct WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h2>❓ Aksar Pooche Jaane Wale Sawaal (FAQs)</h2>
+    
+    <div class="faq-item">
+      <div class="faq-q"><h3>Google Search Console setup karne ke kitne paise lagte hain?</h3><span>+</span></div>
+      <div class="faq-a">Google Search Console 100% free official tool hai Google ka. Iska koi subscription ya charge nahi hota.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>GSC mein data aane mein kitna time lagta hai?</h3><span>+</span></div>
+      <div class="faq-a">Domain verify karne ke baad initial search performance data aane mein lagbhag 48 se 72 hours lagte hain.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>Kya WordPress aur Custom website dono ke liye GSC same hai?</h3><span>+</span></div>
+      <div class="faq-a">Haan, chahe aapki website WordPress par ho, HTML/CSS par ho ya Next.js par ho — Search Console sabke liye standard process se kaam karta hai.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>Sitemap submit karne ke baad bhi page index nahi ho raha, kya karein?</h3><span>+</span></div>
+      <div class="faq-a">URL Inspection tool use karke dekhein ki koi noindex tag toh nahi laga. Page ki internal linking strong karein aur unique practical content add karein.</div>
+    </div>
+  </div>
+
+  
+  <!-- Chapter Navigation (Book Series) -->
+  <div class="chapter-nav-grid">
+    <a href="/blog/on-page-seo-checklist-hindi.html" class="chapter-nav-card prev">
+        <div class="chapter-nav-direction">&larr; Previous Chapter (6)</div>
+        <div class="chapter-nav-title">Complete On-Page SEO Checklist 2026: Technical Audit</div>
+      </a>
+    <a href="/blog/voice-search-seo-tips-india.html" class="chapter-nav-card next">
+        <div class="chapter-nav-direction">Next Chapter (8) &rarr;</div>
+        <div class="chapter-nav-title">Voice Search SEO in India: Conversational Query Optimization</div>
+      </a>
+  </div>
+
+  
+  <!-- Editorial Trust & Content Correction -->
+  <div class="editorial-trust-box">
+    <div class="editorial-trust-text">
+      <h4>📝 Found an Error, Broken Link or Outdated Policy?</h4>
+      <p>We maintain this knowledge book to the highest technical and factual accuracy. If any information needs updating, submit a correction directly to our editor.</p>
+    </div>
+    <a href="/contact.html?type=correction&article=Google%20Search%20Console%20Setup%20Kaise%20Karein%202026%20%E2%80%94%20Complete%20Hindi%20Guide" class="btn-correction">
+      <span>Submit Correction &rarr;</span>
+    </a>
+  </div>
+
+  <div class="cta-box">
+    <h2>🚀 Professional Digital Solution Chahiye?</h2>
+    <p>Apne business ke liye custom website, Android app ya SEO ranking karwane ke liye directly founder Tarun Singh se baat karein.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919079368240?text=Hi%20Tarun%2C%20I%20read%20your%20blog%20about%20Google%20Search%20Console%20Setup%20Guide%202026%3A%20Sitemap%20Submit%20%26%20Rank%20Track%20Karein" target="_blank" class="btn-wa">💬 WhatsApp Pe Baat Karein</a>
+      <a href="/start-project.html" class="btn-web">📋 Start Project Brief</a>
+    </div>
+  </div>
+
+  <div class="related">
+    <h2>📚 Related Articles &amp; Guides</h2>
+    <div class="related-grid">
+      
+      <div class="related-card">
+        <a href="/blog/seo-tips-for-beginners.html">SEO Tips For Beginners 2026</a>
+        <span>📂 SEO</span>
+      </div>
+      <div class="related-card">
+        <a href="/blog/local-seo-kya-hai.html">Local SEO Kya Hai — Complete Guide</a>
+        <span>📂 SEO</span>
+      </div>
+      <div class="related-card">
+        <a href="/blog/google-my-business-setup.html">Google My Business Setup Guide</a>
+        <span>📂 SEO</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</article>
+</main>
+
+<a href="https://wa.me/919079368240" class="wa-float" target="_blank" aria-label="WhatsApp">💬</a>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/about.html">About Us</a>
+    <a href="/tarun-singh.html">Tarun Singh</a>
+    <a href="/contact.html">Contact Us</a>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/disclaimer.html">Disclaimer</a>
+    <a href="/cookie-policy.html">Cookie Policy</a>
+  </div>
+  <p>© 2026 <a href="/">TK Web Solutions</a> — Tarun Singh, Bharatpur, Rajasthan, India</p>
+</footer>
+
+
+
+
+<script>
+// Precision Reading Progress Tracker (Content-Bounded)
+window.addEventListener('scroll', () => {
+  const article = document.querySelector('article') || document.querySelector('.container') || document.body;
+  const rect = article.getBoundingClientRect();
+  const articleTop = window.scrollY + rect.top;
+  const articleHeight = article.offsetHeight;
+  const windowHeight = window.innerHeight;
+  
+  const scrollableDistance = articleHeight - windowHeight;
+  let pct = 0;
+  if (scrollableDistance > 0) {
+    const currentProgress = window.scrollY - articleTop;
+    pct = Math.min(100, Math.max(0, Math.round((currentProgress / scrollableDistance) * 100)));
+  }
+
+  const bar = document.getElementById('read-progress');
+  if (bar) bar.style.width = pct + '%';
+
+  const pill = document.getElementById('readingPill');
+  const pctText = document.getElementById('readingPct');
+  if (pill && pctText) {
+    pctText.textContent = pct + '% read';
+    if (window.scrollY > 140) {
+      pill.classList.add('visible');
+    } else {
+      pill.classList.remove('visible');
+    }
+  }
+});
+
+// Copy Canonical HTTPS Chapter Link with Instant Feedback
+function copyArticleUrl(btn) {
+  const button = (btn && btn.closest) ? btn.closest('.share-btn') : btn;
+  const canonicalTag = document.querySelector('link[rel="canonical"]');
+  const targetUrl = (canonicalTag && canonicalTag.href) ? canonicalTag.href : window.location.href;
+
+  function doSuccess() {
+    if (button) {
+      const textSpan = button.querySelector('.btn-text') || button;
+      const orig = textSpan.textContent;
+      textSpan.textContent = '✓ Copied!';
+      setTimeout(() => { textSpan.textContent = orig; }, 2200);
+    }
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(targetUrl).then(doSuccess).catch(() => {
+      fallbackCopy(targetUrl, doSuccess);
+    });
+  } else {
+    fallbackCopy(targetUrl, doSuccess);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const tempInput = document.createElement('textarea');
+  tempInput.value = text;
+  tempInput.style.position = 'fixed';
+  tempInput.style.opacity = '0';
+  document.body.appendChild(tempInput);
+  tempInput.focus();
+  tempInput.select();
+  try {
+    document.execCommand('copy');
+    if (cb) cb();
+  } catch (err) {
+    prompt('Copy chapter URL:', text);
+  }
+  document.body.removeChild(tempInput);
+}
+
+// Accessible FAQ Accordion Toggle
+document.querySelectorAll('.faq-item, .faq-q').forEach(item => {
+  item.addEventListener('click', () => {
+    const parent = item.closest('.faq-item') || item;
+    parent.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
